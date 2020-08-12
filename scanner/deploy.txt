@@ -1,0 +1,20 @@
+Scanner redirection deployment
+
+1. Please use the TWAIN Virtual Data Source if your scanner has TWAIN driver and your application supports TWAIN scanner. OR
+2. Please run the SparkScan.exe in RDP server to scan from a local scanner which supports TWAIN, WIA (windows) or ICA (Mac OS) scanner.
+
+
+Virtual TWAIN Data Source deployment (Need to deploy it on the RDP server first):
+
+1. Create a directory under windows\windows\twain_32\, for example: RemoteSpark
+
+2. Copy SparkDataSource.ds to this directory:
+windows\windows\twain_32\RemoteSpark\SparkDataSource.ds
+
+The name of the directory or SparkDataSource.ds can be changed.
+
+
+
+Run "SparkScan /?" to show the help information.
+
+

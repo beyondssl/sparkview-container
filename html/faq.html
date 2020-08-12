@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>FAQ</title>
+<style type="text/css">
+article {
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	font: normal 13px Verdana,Arial,'Bitstream Vera Sans',Helvetica,sans-serif;
+}
+
+header, h2 {
+	padding: 5px;
+	font-size: 110%;
+	font-weight:bold;
+	font-family: tahoma, verdana, sans-serif;
+	border-bottom: 1px dotted #BBB;
+}
+
+</style>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=desert"></script>
+
+</head>
+<body>
+<h2>FAQ</h2>
+
+<article>
+<ol>
+<li><header>64 bit or 32 bit JDK?</header>
+<div>The 64 bit JDK can allocate more memory (> 2GB) to java applications, but <a href="http://www.oracle.com/technetwork/java/hotspotfaq-138619.html#64bit%5Fperformance">32 bit JDK is usually 0%-10% faster</a>. SparkGateway doesn't use too much memory, so you can install 32bit JDK and keep an eye on the memory usage.
+Also make sure you are using JDK instead of JRE if you are using 32bit Java, because 32 bit JRE doesn't include the server side JIT.
+</div>
+</li>
+
+<li><header>64 bit or 32 bit Spark View?</header>
+<div>64 bit Spark View can only run on 64 bit JDK/JRE, 32 bit Spark View can runs on 32 bit or 64 bit JDK/JRE.
+</div>
+</li>
+
+<li><header>Turn on Network Level Authentication (NLA)/CredSSP or not on RDP host?</header>
+<div>NLA/CredSSP can slow down the RDP connection a little bit (Exactly like https vs. http). If all your RDP hosts are in internal network, it's OK to disable it, otherwise, it's better to turn it on. 
+Make sure you are using JDK 1.6.0_27 or below if you turned on NLA. 
+</div>
+</li>
+
+
+<li><header>Failed to start Gateway</header>
+<div>If you see java errors in commons-daemon*.log, that may be:<br>
+<ol>
+<li>Java is not installed, run "java -version" to check.</li>
+<li>Multiple JDK/JRE installed, and you are using the wrong version (X64 SparkGateway can only run on X64 JDK). 
+Open SparkGateway Manager, "Java" tab, unselect "Use default", choose the correct JDK like this:  C:\Program Files\Java\jdk1.6.0_27\jre\bin\server\jvm.dll
+</ol>
+If you see error in gateway.log, that may be:
+<ol>
+<li>Default port 80 is used by other application (You could see related error in gateway.log), please change the default listening port in gateway.conf</li>
+<li>Please send us the log if it's other error.</li>
+</ol>
+</div>
+</li>
+
+<li><header>How to update Spark View?</header>
+<div>Don't reinstall the application. Please download the <a href="http://www.remotespark.com/view/SparkGateway.zip">zip file</a>. 
+Replace the html directory and SparkGateway.jar with the new files extracted from the zip file, then restart the gateway.
+</div>
+</li>
+
+
+<li><header>How to start RDP connection in full screen</header>
+<pre class="prettyprint linenums">
+function _fullscr(e){
+	var element = document.webkitFullscreenElement || document.mozFullScreenElement || document.mozFullscreenElement || document.fullscreenElement || null;
+	console.log("fullscreen..... w:" + window.innerWidth + " e:" + e.target + " elm:" + element);
+	if (!svManager.getInstance()){
+		if (element){
+			$id("width").value = window.innerWidth;
+			$id("height").value = window.innerHeight;
+		}
+		connectRDP();
+	}
+}
+
+
+function connectFullscr(){
+	var enabled = document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.fullscreenEnabled || false;
+	if (enabled){//has fullscreen support
+		var b = document.body;
+		if (b.webkitRequestFullScreen){
+			b.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+		}else if (b.mozRequestFullScreen){
+			b.mozRequestFullScreen();
+		}else if (b.requestFullscreen){
+			b.requestFullscreen();
+		}
+		
+		document.addEventListener("fullscreenchange", _fullscr);
+		document.addEventListener("webkitfullscreenchange", _fullscr);
+		document.addEventListener("mozfullscreenchange", _fullscr);
+		document.addEventListener("fullscreenchange", _fullscr);
+	}else{
+		connectRDP();//no fullscreen support, start it directly
+	}
+	return false;
+}
+</pre>
+</li>
+
+
+<li><header>What should I have in my customized web page?</header>
+<div>
+<ol>
+<li>&lt;!doctype html&gt;. Which is very important because the box model is different.</li>
+<li>View port configuration if you want to make it works better on mobile devices.</li>
+<li>"filecontainer" div if you want file uploading/downloading</li>
+<li>"appinfo" div if you want session shadowing and following JavaScript:<br>
+<pre class="prettyprint linenums">
+	var info = $id("joinSelect");
+	if (info){
+		info.onchange = function(e){
+			svManager.getInstance().setJoinMode(e.target.value);
+		};
+	}
+	
+	var control =$id("requestControl");
+	if (control){
+		control.onclick = function(e){
+			svManager.getInstance().requestControl();
+		};
+	}
+</pre>
+</li>
+<li>"pc_key" div if you want the PC keys toolbar on touch UI</li>
+<li>"svToolbar" div, you must have the input with id "svTouchInput" inside if you want to make it work on mobile OS.</li>
+</ol> 
+</div>
+</li>
+
+<li><header>Time zone redirection doesn't work.</header>
+<div>
+<ol>
+<li>Make sure time zone redirection is enabled on the RDP host.</li>
+<li>Time zone name may be different on your RDP host. Plese check [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones], and modify the time zone name on your web page accordingly(e.g. rdp.html)</li>
+</ol> 
+</div>
+</li>
+
+<li><header>Use Spark View as a Java library</header>
+<div>
+The server side component (SparkGateway.jar) can be used as a library and included in your project. 
+You may want to remove the third party libraries from the jar if you have version conflict. Make sure following packages are not removed:  
+<ol>
+<li>com.toremote.*</li>
+<li>net.protocol.*</li>
+</ol> 
+To start the gateway server, you can use:
+com.toremote.gateway.SparkGateway.main(String[] args)<br> 
+or<br>
+com.toremote.gateway.SparkGateway.init(String[] args) or com.toremote.gateway.SparkGateway.init(Properties p)<br>
+com.toremote.gateway.SparkGateway.start();<br>
+com.toremote.gateway.SparkGateway.stop();<br>
+
+
+<br>
+Following arguments can be used:<br><br>
+-c=C:\SparkGateway\gateway.conf (specify the location of gateway.conf, you can also use SparkGateway.init(Properties p) to transfer the configuration values instead of specify the file location).
+<br>-console (output logs to console only) 
+</div>
+</li>
+
+
+<li><header>How to know if an user successfully logged into RDP session?</header>
+<div>
+<ol>
+<li>In server side plug in, if SessionInformation.getConfig().session.random is not null, that means the user logged in successfully.</li>
+<li>On client, the RDP JS library has onloggedin() event.</li>
+<li>In the log, you can see "User: xxx domain: xxx in session: xxx successfully logged into RDP session: xxx"</li>
+</ol> 
+</div>
+</li>
+
+<li><header>Alt+E/V/A/T/H key will show browser's menu on IE</header>
+<div>
+Unfortunately, you can not disable this on IE unless you use Kiosk Mode:<br>
+<a href="http://support.microsoft.com/kb/154780">http://support.microsoft.com/kb/154780</a> <br>
+
+You can use Alt+F and arrow keys as workaround.
+
+</div>
+</li>
+
+<li><header>.NET applications running on IE doesn't display correctly in RemoteApp mode.</header>
+<div>
+Please start IE in Kiosk mode: <a href="http://support.microsoft.com/kb/154780">http://support.microsoft.com/kb/154780</a>
+</div>
+</li>
+
+<li><header>Kiosk Mode</header>
+<div>
+<ol>
+<li>IE: <a href="http://support.microsoft.com/kb/154780">http://support.microsoft.com/kb/154780</a></li>
+<li>Chrome: change the target of your Chrome shortcut as "C:\Users\xxx\AppData\Local\Google\Chrome\Application\chrome.exe" --kiosk URL</li>
+<li>Firefox: firefox -chrome URL</li>
+</ol>
+</div>
+</li>
+
+<li><header>Silent print (bypassing print dialog)</header>
+<div>
+<ol>
+<li>Chrome: change the target of your Chrome shortcut as "C:\Users\xxx\AppData\Local\Google\Chrome\Application\chrome.exe" --kiosk --kiosk-printing URL</li>
+<li>Firefox: Type "about:config" to address bar and add a new Boolean preference item named "print.always_print_silent" then set value of the newly-added item to "true".</li>
+</ol>
+</div>
+</li>
+
+<li><header>Optimize performance for Office 2013 and SAP 7.30</header>
+<div>
+Please check <a href="http://www.thomaskoetzing.de/index.php?option=com_content&task=view&id=377&Itemid=254">tips from Thomas Koetzing.</a>
+</div>
+</li>
+
+<li><header>File share or sound doesn't work on Windows 8 and 2012</header>
+<div>
+Windows 8 and 2012 has a bug: there is co-dependence between sound and drive redirection. Please make sure you enabled both.
+</div>
+</li>
+
+<li><header>Printer redirection doesn't work</header>
+<div>
+<ol>
+<li>Check with MS RDC client first.</li>
+<li>Check with our <a href="http://remotespark.com:8080">demo gateway</a></li>
+<li>Make sure there is no "Printer redirection: false" in the log file which means this feature is disabled (on the client side or server side) or your license file expired.</li>
+<li>Printing service is working in RDP host (try print something)</li>
+<li>Printer redirection is enabled in RDP host.</li>
+<li>You domain controller is not Windows 2003 or before.</li>
+<li>Spark View  use "MS Publisher Imagesetter" as the driver of "Remote Printer from Client", please check if you can see this printer driver when you try to add a printer (Under "Generric" manufacturer). If not, you can let Spark View use other GhostScript Printer Driver in gateway.conf.</li>
+<li>Same printer driver may have different name on Windows 2003 or before. You can <a href="http://www.brianmadden.com/blogs/brianmadden/archive/2004/02/02/the-ultimate-guide-to-terminal-server-printing-design-and-configuration.aspx">map the drive names in Windows 2003.</a></li>
+<li>Try disalbe <a href="https://social.technet.microsoft.com/Forums/windowsserver/en-US/f9822431-3ac2-4220-8297-182b5ac9f911/how-do-you-disable-easy-print-driver-without-using-group-policy?forum=winserverTS">Easy Print</a>.</li>
+</ol>
+</div>
+</li>
+
+<li><header>How to lock down the RDP session</header>
+<div>
+<a href="http://support.microsoft.com/?id=278295">How to lock down a Windows Server 2003 or Windows 2000 Terminal Server session</a><br>
+<a href="http://technet.microsoft.com/en-us/library/cc736643(v=ws.10).aspx">Specify a program to start automatically when a user logs on</a><br>
+<a href="http://social.technet.microsoft.com/Forums/en-US/winserverGP/thread/8a3125a5-6805-4c5c-9b5e-370003ff987f">http://social.technet.microsoft.com/Forums/en-US/winserverGP/thread/8a3125a5-6805-4c5c-9b5e-370003ff987f</a>
+</div>
+</li>
+
+<li><header>RDP session termnates when accessing shareed drive.</header>
+<div>
+Please set shared folder Read/Write permission to everyone.
+</div>
+</li>
+
+<li><header>Disable Screensaver when using Puiblished Apps and Terminal Server</header>
+<div>
+First of all check if the screen saver is enabled on the server locally (log on to the server and check).
+Also check this setting in the Group Policy. Go to GPO linked to your Terminal Server > User Configuration > Policies > Administrative Tempaltes > Cocntrol Panel > Display > you need a setting called "Screen Saver"
+Also Please make sure that Loopback Processing of Group Policy is enabled , so that User Configuration applied to your TS is enforced. <a href="http://social.technet.microsoft.com/Forums/windowsserver/en-US/557e1e35-e433-40b9-bf84-ff567e46785d/disable-screensaver-when-using-puiblished-apps-terminal-server-2008">source</a>
+</div>
+</li>
+
+<li><header>No remote Desktop Licence Server availible on RDSH 2012</header>
+<div>
+<a href="http://www.360ict.nl/blog/no-remote-desktop-licence-server-availible-on-rd-session-host-server-2012/">http://www.360ict.nl/blog/no-remote-desktop-licence-server-availible-on-rd-session-host-server-2012/</a>
+</div>
+</li>
+
+<li><header>How to get/modify the join link?</header>
+<div>
+You can use $rdp.sessionInfo.appInfo.joinLink to get the join link, modify it in onsessionstart(sessionInfo) event.
+</div>
+</li>
+
+<li><header>Customize the login screen</header>
+<div>
+<pre class="prettyprint linenums">
+var surface = new svGlobal.LocalInterface();
+surface.onstart = function(canvas){
+   //you can draw something on the canvas here.
+}
+
+rdp.addSurface(surface);
+</pre>
+</div>
+</li>
+
+</ol>
+</article>
+
+</body>
+</html>

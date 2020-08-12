@@ -1,0 +1,497 @@
+<!doctype html>
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Spark View (RDP)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Spark RDP" />
+<link rel="apple-touch-icon" href="rdp60.png" sizes="60x60" />
+<meta name="application-name" content="Spark View" />
+<meta name="description"
+	content="Remotely view and contrl your computer with RDP protocol" />
+<link rel="shortcut icon" href="rdp.ico" />
+<link rel="shortcut icon" sizes="60x60" href="rdp60.png" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="appcfg.js"></script>
+
+<script type="text/javascript" src="hi5core_min.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="toolbar.js"></script>
+
+<style type="text/css">
+.groupborder{border:solid 1px #888;}
+</style>
+
+</head>
+<body>
+	<div style="position: relative; clear: both">
+		<canvas id="remotectrl" width="1" height="1"></canvas>
+		<div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+			<textarea id="svTouchInput"></textarea>
+			<img src="cloud.png" title="My Files" id="svCloud">
+			<img src="info.png" title="Information" id="svInfo">
+		</div>
+		<section id = "pc_key_box" class="pc_key_box" style="display: none">
+			<section id ="pc_key_left">
+				<section id = "pc_key_top" class="pc_key_keys">
+					<span>Alt+Tab</span><span>Alt+F4</span><span>Shift</span><span>Ctrl</span><span>Start</span>
+				</section>
+				<section id="pc_key_extra" class="pc_key_hidden">
+					<section class="pc_key_keys">
+						<span>Ctrl+C</span><span>Ctrl+V</span><span>Ctrl+Z</span><span>Esc</span><span>Tab</span><span>Alt</span>
+					</section>
+					<section class="pc_key_keys">
+						<span>Windows+D</span><span>Windows+E</span><span>Back</span><span>&uarr;</span><span>Del</span>
+					</section>
+					<section class="pc_key_keys">
+						<span>Windows+S</span><span>Ctrl+Alt+Del</span><span>&larr;</span><span>&darr;</span><span>&rarr;</span>
+					</section>
+				</section>
+			</section>
+			<section id = "pc_key_right" class="pc_key_handle">
+			</section>
+		</section>
+	</div>
+
+<!-- following is for login dialog only -->
+
+	<div id="login" style="padding: 0.5em;">
+		<h2>Spark View (RDP) <span class="ver"></span></h2>
+		<div><a href="vnc.html" target="_blank" class="hi5_app">Spark View (VNC)</a> <a href="ssh.html" target="_blank" class="hi5_app">Spark View (SSH)</a> <a href="telnet.html" target="_blank" class="hi5_app">Spark View (TELNET)</a> <a href="assist.html" target="_blank" class="hi5_app">Spark View (Remote Assistance)</a></div>
+		<br>
+		<form id="frmConn">
+			<div>
+				Spark Gateway: <input type="text" name="gateway" id="gateway" required/>*default port is 80 if it's not specified (ip:port). 
+			</div>
+			<div class="tab_all" id="tab_demo">
+				<div class="tab">
+					<div class="tab_title">
+						<span tabIndex="0">General</span><span tabIndex="1">Display</span><span tabIndex="2">Local</span>
+						<span tabIndex="2">Programs</span><span tabIndex="3">Advanced</span><span tabIndex="4">Multi-Monitor</span>
+					</div>
+				</div>
+				<div class="tab_body" id="dropZone">
+					<div>
+						<table>
+							<tr>
+								<td colspan="2">Enter the name of the remote computer. Open or drag a .rdp file<input type="file" id="rdpfile" name="rdpfile" /></td>
+							</tr>
+							<tr>
+								<td>Computer</td>
+								<td>
+									<input type="hidden" name="id" />
+									<input type="text" name="server" id="server" required class="Hi5Select"/>
+								</td>
+							</tr>
+							<tr>
+								<td>Port</td>
+								<td><input type="number" name="port" value="3389" /></td>
+							</tr>
+							<tr>
+								<td>User Name</td>
+								<td><input type="text" name="user" /></td>
+							</tr>
+							<tr>
+								<td>Password</td>
+								<td><input type="password" name="pwd" autocomplete="off"/></td>
+							</tr>
+							<tr>
+								<td>Domain</td>
+								<td><input type="text" name="domain" /></td>
+							</tr>
+							<tr>
+								<td>Keyboard</td>
+								<td>
+								<select name="keyboard"> 
+										<option value="1033">English (United States)</option>
+										<option value="2057">English (United Kingdom)</option>
+										<option value="4105">English (Canadian French)</option>
+										<option value="99999">Unicode (Universal QWERTY)</option>
+										<option value="99998">Unicode (Universal AZERTY)</option>
+										<option value="99997">Unicode (Universal QWERTZ)</option>
+										<option value="1025">Arabic (Saudi Arabia)</option>
+										<option value="1043">Dutch (Netherlands)</option>
+										<option value="2067">Dutch (Belgium)</option>
+										<option value="2052">Chinese (Simplified)</option>
+										<option value="1028">Chinese (Traditional)</option>
+										<option value="3759015940">Chinese (Traditional) Microsoft Pinyin IME 3.0</option>
+										<option value="2060">French (Belgium)</option>
+										<option value="3084">French (Canada Legacy)</option>
+										<option value="1036">French (France)</option>
+										<option value="4108">French (Switzerland)</option>
+										<option value="1031">German (Germany)</option>
+										<option value="2055">German (Switzerland)</option>
+										<option value="66567">German (IBM)</option>
+										<option value="1037">Hebrew</option>
+										<option value="1039">Icelandic</option>
+										<option value="1040">Italian (Italy)</option>
+										<option value="66576">Italian (142) (Italy)</option>
+										<option value="3758162961">Japanese (Japan)</option>
+										<option value="3758162962">Korean (Korea)</option>
+										<option value="1044">Norwegian (Bokmal)</option>
+										<option value="1083">Norwegian with Sami</option>
+										<option value="1045">Polish</option>
+										<option value="2070">Portuguese</option>
+										<option value="1046">Portuguese (Brazil ABNT)</option>
+										<option value="66582">Portuguese (Brazil ABNT2)</option>
+										<option value="1049">Russian (Russia)</option>
+										<option value="1034">Spanish (International Sort)</option>
+										<option value="66570">Spanish (Variation)</option>
+										<option value="2058">Spanish (Mexico/Latin American)</option>
+										<option value="1053">Swedish (Sweden)</option>
+										<option value="1055">Turkish</option>
+								</select> </td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="checkbox" name="useConsole" />Connect to
+									console session</td>
+							</tr>
+							<tr style="display:none" id="touchrow">
+								<td></td>
+								<td><input type="checkbox" name="touchpad" />Touchpad mode(Relative mouse movement)</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table>
+							<tr>
+								<td colspan="2">Enter the size of your remote desktop:</td>
+							</tr>
+							<tr>
+								<td>Width</td>
+								<td><input type="number" name="width" id="width"
+									value="800" /></td>
+							</tr>
+							<tr>
+								<td>Height</td>
+								<td><input type="number" name="height" id="height"
+									value="600" /></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="button" name="fullBrowser"
+									value="Full browser" onclick="useFullBrowser()" /><input type="button" name="fullScreen"
+									value="Full screen" onclick="useFullScreen()" /></td>
+							</tr>
+							<tr>
+								<td>Color depth</td>
+								<td><select name="server_bpp" id="colorOpt">
+										<option value="8">256</option>
+										<option value="16" selected>High color (16 bit)</option>
+										<option value="24">True color (24 bit)</option>
+										<option value="32">Highest Quality (32 bit)</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="checkbox" name="nocursor" />Disable remote cursor</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table>
+							<tr><td>Time Zone</td><td>
+							<select name="timezone" id="timezone">
+<option>(GMT-12:00) Dateline Standard Time</option>
+<option>(GMT-11:00) Samoa Standard Time</option>
+<option>(GMT-10:00) Hawaiian Standard Time</option>
+<option>(GMT-09:00) Alaskan Standard Time</option>
+<option>(GMT-08:00) Pacific Standard Time</option>
+<option>(GMT-07:00) US Mountain Standard Time</option>
+<option>(GMT-07:00) Mountain Standard Time</option>
+<option>(GMT-07:00) Mountain Standard Time (Mexico)</option>
+<option>(GMT-06:00) Central Standard Time</option>
+<option>(GMT-06:00) Central Standard Time (Mexico)</option>
+<option>(GMT-06:00) Central America Standard Time</option>
+<option>(GMT-06:00) Canada Central Standard Time</option>
+<option>(GMT-05:00) Eastern Standard Time</option>
+<option>(GMT-05:00) SA Pacific Standard Time</option>
+<option>(GMT-05:00) Eastern Standard Time</option>
+<option>(GMT-04:00) SA Western Standard Time</option>
+<option>(GMT-04:00) Pacific SA Standard Time</option>
+<option>(GMT-04:00) Central Brazilian Standard Time</option>
+<option>(GMT-04:00) Atlantic Standard Time</option>
+<option>(GMT-03:30) SA Eastern Standard Time</option>
+<option>(GMT-03:30) Newfoundland Standard Time</option>
+<option>(GMT-03:30) Greenland Standard Time</option>
+<option>(GMT-03:30) E. South America Standard Time</option>
+<option>(GMT-02:00) Mid-Atlantic Standard Time</option>
+<option>(GMT-01:00) Cape Verde Standard Time</option>
+<option>(GMT-01:00) Azores Standard Time</option>
+<option>(GMT+13:00) Tonga Standard Time</option>
+<option>(GMT+12:00) New Zealand Standard Time</option>
+<option>(GMT+12:00) Fiji Standard Time</option>
+<option>(GMT+11:00) Central Pacific Standard Time</option>
+<option>(GMT+10:00) West Pacific Standard Time</option>
+<option>(GMT+10:00) Vladivostok Standard Time</option>
+<option>(GMT+10:00) Tasmania Standard Time</option>
+<option>(GMT+10:00) E. Australia Standard Time</option>
+<option>(GMT+10:00) AUS Eastern Standard Time</option>
+<option>(GMT+09:30) Cen. Australia Standard Time</option>
+<option>(GMT+09:30) AUS Central Standard Time</option>
+<option>(GMT+09:00) Yakutsk Standard Time</option>
+<option>(GMT+09:00) Tokyo Standard Time</option>
+<option>(GMT+09:00) Korea Standard Time</option>
+<option>(GMT+08:00) W. Australia Standard Time</option>
+<option>(GMT+08:00) Taipei Standard Time</option>
+<option>(GMT+08:00) Singapore Standard Time</option>
+<option>(GMT+08:00) North Asia East Standard Time</option>
+<option>(GMT+08:00) China Standard Time</option>
+<option>(GMT+07:00) SE Asia Standard Time</option>
+<option>(GMT+07:00) North Asia Standard Time</option>
+<option>(GMT+06:30) Myanmar Standard Time</option>
+<option>(GMT+06:00) Sri Lanka Standard Time</option>
+<option>(GMT+06:00) N. Central Asia Standard Time</option>
+<option>(GMT+06:00) Central Asia Standard Time</option>
+<option>(GMT+05:45) Nepal Standard Time</option>
+<option>(GMT+05:30) India Standard Time</option>
+<option>(GMT+05:00) West Asia Standard Time</option>
+<option>(GMT+05:00) Ekaterinburg Standard Time</option>
+<option>(GMT+04:30) Afghanistan Standard Time</option>
+<option>(GMT+04:00) Georgian Standard Time</option>
+<option>(GMT+04:00) Caucasus Standard Time</option>
+<option>(GMT+04:00) Azerbaijan Standard Time</option>
+<option>(GMT+04:00) Arabian Standard Time</option>
+<option>(GMT+03:30) Iran Standard Time</option>
+<option>(GMT+03:00) Russian Standard Time</option>
+<option>(GMT+03:00) E. Africa Standard Time</option>
+<option>(GMT+03:00) Arabic Standard Time</option>
+<option>(GMT+03:00) Arab Standard Time</option>
+<option>(GMT+02:00) South Africa Standard Time</option>
+<option>(GMT+02:00) Namibia Standard Time</option>
+<option>(GMT+02:00) Israel Standard Time</option>
+<option>(GMT+02:00) GTB Standard Time</option>
+<option>(GMT+02:00) FLE Standard Time</option>
+<option>(GMT+02:00) Egypt Standard Time</option>
+<option>(GMT+02:00) E. Europe Standard Time</option>
+<option>(GMT+01:00) W. Europe Standard Time</option>
+<option>(GMT+01:00) W. Central Africa Standard Time</option>
+<option>(GMT+01:00) Romance Standard Time</option>
+<option>(GMT+01:00) Central European Standard Time</option>
+<option>(GMT+01:00) Central Europe Standard Time</option>
+<option>(GMT) Greenwich Standard Time</option>
+<option>(GMT) GMT Standard Time</option>
+							</select>
+							</td></tr>
+							<tr>
+								<td>Remote audio playback</td>
+								<td><select name="playSound">
+										<option value="0">Play on this computer</option>
+										<option value="1">Do not play</option>
+										<option value="2">Play on remote computer</option>
+									</select> Quality 
+									<select name="soundPref">
+										<option value="0">Low</option>
+										<option value="1">High</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Remote audio recording</td>
+								<td><input type="checkbox" name="audioRecord"/></td>
+							</tr>
+							<tr>
+								<td colspan="2">Choose the devices and resources that you want to use in remote session.</td>
+							</tr>
+							<tr>
+								<td>Clipboard</td><td><input type="checkbox" name="mapClipboard" checked/>Enable (Copy text, image, html between local and remote)</td>
+							</tr>
+							<tr>
+								<td>Printer</td><td><input type="checkbox" name="mapPrinter" checked/>Enable; Name<input type="text" name="printer" size="22" placeholder="Remote Printer from Client" /></td>
+							</tr>
+							<tr>
+								<td></td><td><input type="checkbox" name="mapDisk" id="mapDisk" checked/>Uploading/Downloading files. (Drag files to your screen after connected).</td>
+							</tr>
+							<tr>
+								<td>Shared Disk Name</td><td><input type="text" name="disk" />Default is "Cloud Storage"</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table>
+							<tr>
+								<td colspan="2"><input type="radio" name="startProgram" id="shell" value="shell"/>Start the following program on connection:</td>
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;Program path and file name</td>
+								<td>&nbsp;&nbsp;<input type="text" name="command" /></td>
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;Start in following folder</td>
+								<td>&nbsp;&nbsp;<input type="text" name="directory" /></td>
+							</tr>
+							<tr>
+								<td colspan="2"><hr/></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="radio" name="startProgram" id="app" value="app"/>RemoteApp:</td>
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;Exe or file</td>
+								<td>&nbsp;&nbsp;<input type="text" name="exe" /></td>
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;Arguments</td>
+								<td>&nbsp;&nbsp;<input type="text" name="args" /></td>
+							</tr>
+							<tr>
+								<td colspan="2"><hr/></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="radio" name="startProgram" value="noapp" checked id="noapp"/>None</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table>
+							<tr>
+								<td><input type="checkbox" name="background" />Desktop
+									background</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="smoothfont" />Font
+									smoothing</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="composition" />Desktop
+									composition</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="contents" />Show window
+									contents while dragging</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="animation" />Menu and
+									window animation</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="styles" />Visual styles</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="bitmap" />Persistent
+									bitmap caching</td>
+							</tr>
+							<tr>
+								<td colspan="2"><hr/></td>
+							</tr>
+							<tr>
+							<td><input type="checkbox" name="remotefx" id="rfxOpt" />RemoteFX(32 bit color and lan only)</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="recording" id="recording" />Session Recording</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="decompressingRDP61"/>RDP6.1 decompression</td>
+							</tr>
+							<tr>
+							<td>Load Balancing:&nbsp;<input type="text" name="loadBalanceInfo" /></td>
+							</tr>
+							<tr>
+							<td>Hyper-V VM ID:&nbsp;<input type="text" name="vmid" />Connecting to Hyper-V console, default listening port of Hyper-V console is 2179</td>
+							</tr>
+							<tr>
+							<td>Computer Name:&nbsp;<input type="text" name="clientHost" /></td>
+							</tr>
+						</table>
+					</div>
+
+					<div>
+						<table>
+							<tr>
+								<td><b>You need a browser window for every monitor.</b></td>
+							</tr>
+							<tr>
+								<td>1. Please open another window for another monitor</td><td><input type="button" id="nextScr" value="Open" /></td>
+							</tr>
+							<tr>
+								<td>2. Repeat step 1 if you have more monitors</td>
+							</tr>
+							<tr>
+								<td>3. Make this window full screen (F11 or Command+Shift+F)</td>
+							</tr>
+							<tr>
+								<td>4. Enter your credentials and Connect</td>
+							</tr>
+						</table>
+					</div>
+
+
+
+				</div>
+			</div>
+			<input type="button" name="clear" id = "clear" value="Clear" />
+			<input type="button" name="delete" id = "delete" value="Delete" />
+			<input type="button" name="save" id = "save" value="Save" />
+			<input type="submit" name="connect" value="Connect" />
+			<span id="sameParent">
+			  <input type="checkbox" id="sameWindow" />Open in existing window
+			</span>
+		</form>
+		
+		<div>
+			Copyright &copy; Remote Spark Corp. 2011 - 2018 <a href="http://www.remotespark.com" target="_blank">www.remotespark.com</a>
+		</div>
+	</div>
+	<!-- filecontainer is used for file share -->
+	<div id="filecontainer" style="overflow:auto;display:none; width:80%">
+	</div>
+	<div id="appinfo" class="appdlg">
+		<img alt="" src="info.png" style="float:left">	
+		<table>
+		<tbody>
+		  <tr><td align="right"><b>Connected to:</b></td><td><span id="connectingTo"></span>&nbsp;&nbsp;<input type="button" value="Disconnect" id="disconnect"><br></td></tr>
+		  <tr><td align="right"><b>Session id:</b></td><td><span id="numericId"></span><br></td></tr>
+		</tbody>
+		<tbody id="shadowing">
+		  <tr><td align="right"><b>Join mode:</b></td><td>
+		  <select id="joinSelect">
+			<option value="0">Every one can control</option>
+			<option value="1">Only one can control</option>
+			<option value="2">Only one can control (others can move mouse)</option>
+		  </select><br></td></tr>
+		  <tr><td></td><td><input type="checkbox" id="joinOpen">Leave joined sessions open when close</td></tr>
+		  <tr><td colspan="2"><b>Join this session with following link:</b><br><a id="joinLink" target="_blank"></a></td></tr>
+		  <tr><td></td><td align="right"><input type="button" id="requestControl" value="Request Control" disabled="disabled" /></td></tr>
+		</tbody>
+		</table>
+		<div id="ssParent"><input type="checkbox" id="saveSession">Leave session on and reconnect to it from other devices.</div>
+		<div id="keyParent"><input type="checkbox" id="shortcuts">Keyboard shortcuts</div>
+		<div style="overflow:auto;height:150px;display:none" id="touchGesture">
+        <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)
+        <input type="checkbox" name="extKeyboard" id="extKBD" />External Keyboard
+        </div>
+        Tap <img src="kbd.png" align="middle"> to activate soft keyboard. IE doesn't support 3 finger gestures and 2 finger scroll (mouse wheel).
+        <table>
+            <tr><td><img src="longpress.png"></td><td>Long press</td><td>Right click</td></tr>
+            <tr><td><img src="flick.png"></td><td>Flick</td><td>Scroll screen if remote desktop resolution is bigger, <br>otherwise, drag</td></tr>
+            <tr><td><img src="pan.png"></td><td>Pan</td><td>Drag</td></tr>
+            <tr><td><img src="2tap.png"></td><td>2 finger tap</td><td>Right click</td></tr>
+            <tr><td><img src="2scroll.png"></td><td>2 finger scroll</td><td>Mouse wheel</td></tr>
+            <tr><td><img src="3tap.png"></td><td>3 finger tap</td><td>Show software keyboard (iOS only)</td></tr>
+            <tr><td><img src="3open.png"></td><td>3 finger pinch open</td><td>Maximize window</td></tr>
+            <tr><td><img src="3close.png"></td><td>3 finger pinch close</td><td>Restore window</td></tr>
+            <tr><td><img src="3left.png"></td><td>3 finger flick left</td><td>Previous window</td></tr>
+            <tr><td><img src="3right.png"></td><td>3 finger flick right</td><td>Next window</td></tr>
+            <tr><td><img src="3down.png"></td><td>3 finger flick down</td><td>Minimize all windows</td></tr>
+            <tr><td><img src="3up.png"></td><td>3 finger flick up</td><td>Restore all windows</td></tr>
+        </table>
+		</div>
+	</div>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="rdpcore_min.js"></script>
+<script type="text/javascript" src="rdp_min.js"></script>
+<script type="text/javascript" src="recording_min.js"></script>
+<script type="text/javascript" src="rdp_exbar.page.js"></script>
+
+</body>
+
+</html>

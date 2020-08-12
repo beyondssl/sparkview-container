@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "name": "user1",
+      "password":"user1",
+      "servers":[
+        "demo1",
+        "demo2"
+      ]
+    },
+    {
+      "name": "user2",
+      "password":"user2",
+      "servers":[
+        "demo2"
+      ]
+    },
+    {
+      "name": "user3",
+      "password":"user3",
+      "servers":[
+		"demo1",
+        "demo2",
+        "demo3",
+		"demo4"
+      ]
+    },
+    {
+      "name": "user4",
+      "password":"user4",
+      "servers":[
+		"demo4",
+		"RemoteAppWord",
+        "RemoteAppWordpad",
+        "RemoteAppExcel"
+      ]
+    }
+  ]
+}

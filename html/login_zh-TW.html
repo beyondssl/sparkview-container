@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spark View</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="Spark RDP" />
+<link rel="apple-touch-icon" href="rdp.png" />
+<meta name="application-name" content="Spark View" />
+<meta name="description"
+	content="Remotely view and contrl your computer with RDP protocol" />
+<link rel="SHORTCUT ICON" href="rdp.ico" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="rdp_min.js"></script>
+<script type="text/javascript" src="login_min.js"></script>
+<style type="text/css">
+.container {
+	background-color: #EEE;
+	border-radius: 10px;
+	box-shadow: 2px 2px 10px #888;
+	padding: 2em;
+	margin-top: 2em;
+}
+
+.icon {
+	display: inline-block;
+	text-align: center;
+	padding: 1.5em;
+}
+
+.icon:hover{
+	background:#CCC;
+}
+</style>
+</head>
+<body>
+  <!--[if IE]>
+    <script type="text/javascript" 
+     src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+
+    <style>
+     .chromeFrameInstallDefaultStyle {
+       width: 70%; 
+       border: 5px solid blue;
+     }
+    </style>
+
+    <script>
+     // The conditional ensures that this code will only execute in IE,
+     // Therefore we can use the IE-specific attachEvent without worry
+     window.attachEvent("onload", function() {
+       CFInstall.check({
+       mode: "overlay"
+       });
+     });
+    </script>
+  <![endif]-->
+  
+<script type="text/javascript"> 
+  window.$id = function (id){
+	return document.getElementById(id);
+  };
+
+  function checkBrowser(){
+	var hasCanvas = false;
+	var msg = "";
+	try { 
+		document.createElement("canvas").getContext("2d");
+		hasCanvas = true;
+	} catch (e) {
+		msg = "浏覽器不支持Canvas.\n\n";
+	};
+	
+	var noWebSocket = !("WebSocket" in window) && !("MozWebSocket" in window);
+	var userAgent = navigator.userAgent;
+	var isFirefox = userAgent.indexOf("Firefox") != -1;
+		
+	if (noWebSocket){
+		msg += "浏覽器不支持WebSocket.\n\n";
+		if (isFirefox){
+			msg += "請更新到 Firefox 6或以後的版本\n\n";
+		}
+		else if (userAgent.indexOf("Opera") != -1){
+			msg += "請在地址欄打開'opera:config#Enable WebSockets'，選擇'Enable WebSockets'並重新啓動 Opera.\n\n";
+		}
+		else if (userAgent.indexOf("MSIE") != -1){
+			msg += "請安裝Google Chrome Frame.\n\n";
+		}
+	}
+	
+	if (msg.length > 0)
+		alert(msg);
+	
+	var ready = !noWebSocket && hasCanvas;
+	
+	return ready;
+};
+
+function initUI(){
+	var gateway = $id("gateway");
+	var h =  gateway.value;
+	if (h.length > 0) return;
+	h = window.location.host;
+	if (h.length == 0)
+		h = "localhost";
+	gateway.value = h;
+	checkBrowser();
+}
+
+function start(addr){
+	var es = $id("frmLogin").elements;
+	var gw = es["gateway"].value;
+	var user = es["user"].value;
+	var pwd = es["pwd"].value;
+	var p = ("https:" == location.protocol) ? "wss://" : "ws://";
+	var addr = p + gw + "/LOGIN?" + "user=" + encodeURIComponent(user) + "&pwd="+encodeURIComponent(pwd);
+	return login(addr);
+}
+	
+window.addEventListener('load', initUI, false);
+
+</script> 
+
+	<div id="login">
+		<form id="frmLogin" onsubmit="return start()">
+			<table align="center"
+				class="container">
+				<tr>
+					<td colspan="2" align="center"><h3>Spark View <span class="ver">1</span></h3>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">管理服務器:</td>
+					<td><input type="text" name="gateway" id="gateway" required/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">域名\用戶名:</td>
+					<td><input type="text" name="user" id="user" required/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">密碼:</td>
+					<td><input type="password" name="pwd" required autocomplete="off"/>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td align="right"><input type="submit" name="usrlogin"
+						value="登錄" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">管理服務器的默認端口是80，地址後面加端口號(:8080)來指定端口。</td>
+				</tr>
+				<tr>
+					<td colspan="2"><a href="new.html">版本信息</a>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+				Copyright &copy; Remote Spark Corp. 2011 <a href="http://www.remotespark.com" target="_blank">www.remotespark.com</a>
+				</td></tr>
+			</table>
+		</form>
+		<div class="container" id="frmConn"  style="display:none">
+		<div><strong>我的計算機及程序:&nbsp;&nbsp;&nbsp;</strong><input type="button" name="showlogin" value="返回" onclick="showLogDlg();"/></div>
+			<div id="programs"></div>
+			<div>Copyright &copy; Remote Spark Corp. 2011 <a href="http://www.remotespark.com" target="_blank">www.remotespark.com</a></div>
+		</div>
+	</div>
+	
+</body>
+</html>

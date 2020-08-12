@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Spark View (RDP)</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 1.0, maximum-scale = 8"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="stylesheet" href="hi5.css" />
+    <link rel="stylesheet" href="rdp.css" />
+
+    <script type="text/javascript" src="appcfg.js"></script>
+    <script type="text/javascript" src="resource.js"></script>
+    <script type="text/javascript" src="hi5core_min.js"></script>
+    <script type="text/javascript" src="hi5_min.js"></script>
+    <script type="text/javascript" src="surface_min.js"></script>
+    <script type="text/javascript" src="rdpcore_min.js"></script>
+    <script type="text/javascript" src="rdp_min.js"></script>
+
+
+</head>
+
+<body>
+    <div style="position: relative; clear: both">
+        <canvas id="remotectrl" width="1" height="1"></canvas>
+        <div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+            <textarea id="svTouchInput"></textarea>
+            <img src="cloud.png" title="My Files" id="svCloud">
+            <img src="info.png" title="Information" id="svInfo">
+        </div>
+        <div id="pc_key"><span>Ctrl</span><span>Alt</span><span>Shift</span><span>Del</span><span>Esc</span><span>...</span>
+            <div id="pc_key_more">
+                <span>F1</span><span>&larr;</span><span>&uarr;</span><span>&rarr;</span><span>&darr;</span><span>Start</span><span>Alt+F4</span><span>Ctrl+Alt+Del</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    function httpGet(theUrl) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open('GET', theUrl, false);
+        xmlHttp.withCredentials = true;
+        xmlHttp.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+        xmlHttp.send(null);
+        return xmlHttp;//.responseText;
+    };
+
+    function connect(){
+        //create a symlink on the gateway which will expire after 20 minutes, please do this on sever side (on your portal with JSP, PHP etc)
+        //http://gatewayAddress/SYMLINK?symlink=symlinkId&server=existingServerId&validTime=20m& gatewayPwd=passwordInGateway.conf
+        var gateway = '127.0.0.1',//change this to your Spark gateway address
+            symlinkId = hi5.tool.uuid(),
+            serverId = '176',
+            parameters = encodeURIComponent('user=vmuser&pwd=password');
+            request = httpGet('http://' + gateway +'/SYMLINK?symlink=' + symlinkId + '&server=' + serverId 
+                    + '&validTime=20m&gatewayPwd=21232f297a57a5a743894a0e4a801fc3&parameters=' + parameters);
+        if (request.status == 200){
+            url = 'ws://' + gateway + '/RDP?symlink=' + symlinkId;
+            var r = new svGlobal.Rdp(url);
+            r.addSurface(new svGlobal.LocalInterface());
+            r.run();
+        }else{
+            hi5.notifications.notify('Faield to create symlink');
+        }
+    }
+
+    window.onload = connect;
+
+    </script>
+</body>
+
+</html>

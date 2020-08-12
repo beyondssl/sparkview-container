@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Spark View (Telnet)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 0.1, maximum-scale = 8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="Spark RDP" />
+<link rel="apple-touch-icon" href="rdp.png" />
+<meta name="application-name" content="Spark View" />
+<meta name="description"
+	content="Remotely view and contrl your computer with Telnet protocol" />
+<link rel="SHORTCUT ICON" href="rdp.ico" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="appcfg.js"></script>
+<script type="text/javascript" src="hi5core_min.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="telnet_min.js"></script>
+<script type="text/javascript" src="recording_min.js"></script>
+</head>
+<body>
+	<div>
+		<canvas id="remotectrl" width="1" height="1"></canvas>
+	</div>
+  	<div id="cursorID" class="cursor-node" focus="false" title="(10, 24)" style="position: absolute; top: 10px; display: none; width: 10px; height: 16px; -webkit-transition: opacity, background-color 100ms linear; transition: opacity, background-color 100ms linear; border-color: rgba(255, 0, 0, 0.498039); left: 0px; opacity: 1; background-color: rgba(255, 0, 0, 0.498039);"></div>
+  	<div id="copydialog" style="display:none; width:80%; height:80%">
+		<textarea  id="copytextarea" style="width:100%;height:100%;resize:none;">
+			
+		</textarea>
+	</div>
+<!-- following is for login dialog only -->
+
+	<div id="login" style="padding: 0.5em;">
+		<h2>Spark View (TELNET) <span class="ver"></span></h2>
+		<div><a href="rdp.html" target="_blank" class="hi5_app">Spark View (RDP)</a><a href="vnc.html" target="_blank" class="hi5_app">Spark View (VNC)</a>
+			<a href="ssh.html" target="_blank" class="hi5_app">Spark View (SSH)</a>
+			<a href="assist.html" target="_blank" class="hi5_app">Spark View (Remote Assistance)</a>
+			<a href="file.html" target="_blank" class="hi5_app">Spark View (SMB/SFTP)</a>
+		</div>
+		<br>
+		<form id="frmConn">
+			<div>
+				Spark Gateway: <input type="text" name="gateway" id="gateway" required/>*default port is 80 if it's not specified (ip:port).  
+			</div>
+			<div class="tab_all" id="tab_demo">
+				<div class="tab">
+					<div class="tab_title">
+						<span tabIndex="0">General</span><span tabIndex="1">Advanced</span>
+					</div>
+				</div>
+				<div class="tab_body" id="dropZone">
+					<div>
+						<table>
+							
+							
+							<tr>
+								<td>Computer</td>
+								<td>
+									<input type="hidden" name="id" />
+									<input type="text" name="server" id="server" required class="Hi5Select"/>
+								</td>
+							</tr>
+							<tr>
+								<td>Port</td>
+								<td><input type="number" name="port" value="23" /></td>
+							</tr>
+							
+							
+							<tr style="display:none" id="touchrow">
+								<td></td>
+								<td><input type="checkbox" name="touchpad" />Touchpad mode(Relative mouse movement)</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table>
+							<tr>
+								<td>Clipboard</td><td class="groupborder"><input type="checkbox" name="mapClipboard" checked/></td>
+							</tr>
+							<tr>
+								<td>Font Size</td>
+								<td><input type="number" name="fontSize" id="fontsize" value="13"/>(pixels)</td>
+							</tr>
+							<tr>
+								<td>Session Recording</td><td class="groupborder"><input type="checkbox" name="recording"/></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<input type="button" name="clear" id = "clear" value="Clear" />
+			<input type="button" name="clear" id = "delete" value="Delete" />
+			<input type="button" name="save" id = "save" value="Save" />
+			<input type="submit" name="connect" value="Connect" />
+		</form>
+		
+
+		<div>
+			<div>
+				Copyright &copy; Remote Spark Corp. 2011 - 2019 <a href="http://www.remotespark.com" target="_blank">www.remotespark.com</a>
+			</div>
+		</div>
+	</div>
+    <div id="appinfo" class="appdlg">
+        <img alt="" src="info.png" style="float:left">  
+        <table>
+        <tbody>
+          <tr><td align="right"><b>Connected to:</b></td><td><span id="connectingTo"></span><br></td></tr>
+          <tr><td align="right"><b>Session id:</b></td><td><span id="numericId"></span><br></td></tr>
+        </tbody>
+        <tbody id="shadowing">
+          <tr><td align="right"><b>Join mode:</b></td><td>
+          <select id="joinSelect">
+            <option value="0">Every one can control</option>
+            <option value="1">Only one can control</option>
+          </select><br></td></tr>
+          <tr><td colspan="2"><b>Join this session with following link:</b><br><a id="joinLink" target="_blank"></a></td></tr>
+          <tr><td></td><td align="right"><input type="button" id="requestControl" value="Request Control" disabled="disabled" /></td></tr>
+        </tbody>
+        </table>
+    </div>
+    <div id="pc_key"><span>Ctrl</span><span>Alt</span><span>Del</span><span>Esc</span><span>...</span>
+      <div id="pc_key_more">
+        <span>F1</span><span>&larr;</span><span>&uarr;</span><span>&rarr;</span><span>&darr;</span><span>Start</span><span>Alt+F4</span><span>Ctrl+Alt+Del</span>
+     </div>
+    </div>
+    <div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+        <input type="text" id="svTouchInput">
+        <img src="info.png" title="Information" id="svInfo">
+    </div>
+	<script type="text/javascript" src="telnet.page.js"></script>
+</body>
+</html>

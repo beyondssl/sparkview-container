@@ -1,0 +1,1257 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>What's new</title>
+<style type="text/css">
+article {
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	font: normal 13px Verdana,Arial,'Bitstream Vera Sans',Helvetica,sans-serif;
+}
+
+header, h2 {
+	font-size: 110%;
+	font-weight:bold;
+	font-family: tahoma, verdana, sans-serif;
+	border-bottom: 1px dotted #BBB;
+}
+
+</style>
+</head>
+<body>
+<h2>Version History and Release Notes for Spark View</h2>
+<article>
+	<header>5.9.0 July 13, 2020</header>
+	<ol>
+	<li>Supports Webcam redirection.</li>
+	<li>Supports Scanner redirection.</li>
+	<li>Supports ADFS OAuth2.</li>
+	<li>Get multi session information at a time with the HTTP session API: http://yourGateway/SESSION?ids=session1,sessions2&...</li>
+	<li>Fixed RemoteApp resizing issue.</li>
+	<li>Fixed a specific DIB format issue on clipboard redirection.</li>
+	<li>Fixed validTo parameter not working issue on HTTP SYMLINK API.</li>
+	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
+	<li><a href="SparkGateway.zip">Download</a></li>
+	</ol>
+	<header>Known issues</header> 
+	<ol>
+	<li>IE does't support audio recording (microphone redirection).</li>
+	<li>RemoteApp on separated Window doesn't work on IE because of IE bug.</li>
+	<li>Windows doesn't support NumpadEqual. Please use non-numpad or unicode keyboard instead.</li>
+	</ol>
+</article>
+
+
+<article>
+	<header>5.8.0 July 3, 2019</header>
+	<ol>
+	<li>File: SMB2 and SFTP access with file.html (SMB, SFTP proxy).</li>
+	<li>RDP: Recording, drive redriection etc can use SMB share.</li>
+	<li>RDP: Download (copy) files from RDP server directly without prompting (set fileUnprompted in gateway).</li>
+	<li>RDP: Async text, image copy/paste on Chrome (Image needs Ver 76 and later).</li>
+	<li>RDP: Don't zip file when download (copy) one file only.</li>
+	<li>RDP: Fixed transferCredential: false not working on domain user issue.</li>
+	<li>RDP: Set transferCredential on data source (AD, LDAP data source in servers.json)</li>
+	<li>RDP: Progress notification of PDF converting.</li>
+	<li>RDP: Fixed InvalidPathException when file name has zone identifier (Alternative Data Stream) on redirected drive</li>
+	<li>RDP: Increased default printing timeout to 20 minutes (set maxPrintTime in gateway.conf)</li>
+	<li>RDP: Fixed duplicated PrtScn key issue on Linux Chrome.</li>
+	<li>RDP: set box-sizing of PDF dialog as "content-box" to avoid boostrap css conflict.</li>
+	<li>RDP: Copy/paste file doesn't depend on mapDisk = true any more.</li>
+	<li>RDP: onloggedin event fired on XRDP too.</li>
+	<li>RDP: Fixed a PS to PDF converting error when printing big PDF files.</li>
+	<li>RDP: Fixed a high CPU usage issue caused by HTML to RTF converting (Copy/Paste).</li>
+	<li>RDP: Added Muti-Monitor option on login.html, login2.html, login3.html.</li>
+	<li>RDP: Fixed white screen issue when RDP session is redirected to a RDP server with multiple network cards.</li>
+	<li>RDP: Better timezone detection on non-IE browsers.</li>
+	<li>RDP: Send scancode instead for numbers on unicode keyboard.</li>
+
+	<li>VNC: Supports RFB3.7+</li>
+	<li>VNC: Supports TLS, VeNCrypt etc encryptions.</li>
+
+	<li>SSH: Deploy, test, run your application in the cloud with Spark Gateway and Spark Agent.</li>
+	<li>SSH: Supports ssh-rsa, ecdsa-sha2 certificates</li>
+	<li>SSH: User name can be undefined on certificate based authentication.</li>
+	<li>SSH: Improved SFTP file downloading performance.</li>
+	<li>SSH: Session can be paused too.</li>
+	<li>SSH: Can upload file bigger than 1GB (up to 8PB).</li>
+	<li>SSH: Display image or download file with base64 command.</li>
+	<li>SSH: Fixed a Keyboard Interactive authentication issue.</li>
+	<li>SSH: SSH: Fixed a dsiplay issue with PowerShell on Linux.</li>
+	<li>SSH: onusername and onauthprompt events to customize authentication UI.</li>
+	<li>SSH: Text selcteion in SSH improved, background color is cutomisiable with hi5.appcfg.selectionColor = "white" </li>
+	<li>SSH: onclose supports "expected" argument too.</li>
+	<li>SSH: fixed onerror not fired issue when gateway is down.</li>
+	<li>SSH: Option to disable auto resolution change (set reconnectOnResize as false, same as RDP).</li>
+	<li>SSH: Added reconnect(width, height) method (same as RDP).</li>
+	<li>SSH: Fixed \| key issue on UK keyboard</li>
+	<li>SSH: Fixed disconnection issue when click on "Your position".</li>
+
+	<li>Active Directory Integration: User can change the password from login.html and get notified when password will expire.</li>
+	<li>Added sso.html example for VPN integration.</li>
+	<li>Fixed a OpenLDAP authentication issue.</li>
+	<li>File Manager UI can be sorted by clicking on the table tile.</li>
+	<li>Increased default header size of HTTP to 16K from 8K (set maxRequestBytes in gateway.conf)</li>
+	<li>Improved performance on HTTP Sessin API.</li>
+
+	<li><a href="SparkGateway.zip">Download</a></li>
+	</ol>
+</article>
+
+<article>
+	<header>5.7.0 Januarary 12, 2019</header>
+	<ol>
+	<li>RDP: Automatically choose the best printer driver for target OS if printer driver is not configured.</li>
+	<li>RDP: Supports text only printers: Receipt, Label printers.</li>
+	<li>RDP: New native Smart Card Agent for Windows and macOS, replaced the old Java Applet.</li>
+	<li>RDP: Fixed a deadlock issue on session shadowing</li>
+	<li>RDP: Fixed unicode file name encoding issue when gateway running on Ubuntu.</li>
+	<li>RDP: Fixed file uploading issue when the file size is bigger than 6G (now up to 8PB).</li>
+	<li>RDP: Fixed Safari audio playing back issue when open RDP connection in an new window.</li>
+	<li>RDP: Fixed issue that people can download other user's file if they know the user GUID and file name (rdpcore_min.js, SparkGateway.jar). Cookie in browser must be enabled, otherwise, user can not download files.</li>
+	<li>RDP: Fixed encrypted PDF file printing issue.</li>
+	<li>RDP: Fixed 2 PDF files generated issue when printing multiple files.</li>
+	<li>RDP: Fixed IE RemoteApp resizing issue when running under Kiosk Mode.</li>
+	<li>RDP: Fixed reconnecting issue on Firefox when "You PDF file may not display correctly" toolbar appear.</li>
+	<li>RDP: Added Danish keyboard</li>
+	<li>RDP: Fixed paste image issue on IE</li>
+	<li>RDP: Send scancode instead for numbers on unicode keyboard(Some filted inputs only accept scancode)</li>
+	<li>VNC: Fixed VNC memory leak issue when keep connecting and disconnecting.</li>
+	<li>Fixed file uploading dialog becoming smaller bug after uploading files when bootstrap css is used.</li>
+	<li>Fixed file dialog disappear issue when resizing the browser (surface_min.js)</li>
+	<li>SSH: Select and copy text to local clipboard.</li>
+	<li>SSH: Fixed ping method an affect VIM editor input issue.</li>
+	<li>SSH: Fixed SSH display issue when connecting to Procurve and Aruba Switches.</li>
+	<li>SSH: Fixed SFTP(SSH) downloading issue when file path includes ..</li>
+	<li>SSH: reconnectOnResize proptery and reconnect(newWidth, newHeight) method are also available.</li>
+	<li>Okta integration.</li>
+	<li>Tested on Open JDK 11 and zulu Open JDK 11.</li>
+	<li><a href="5.7/SparkGateway.zip">Download</a></li>
+	</ol>
+</article>
+
+<article>
+	<header>5.6.0 March 31, 2018</header>
+	<ol>
+	<li>Supprts the newest credSSP version 6 (Microsoft CredSSP updates for CVE-2018-0886)</li>
+	<li>Supports sftp, curve25519-sha256 KexAlogorithms and ed25519 key file on SSH</li>
+	<li>Support server group, user group</li>
+	<li>Better concurrent session shdaowing when resetOnJoin = true</li>
+	<li>Better IME, mouse wheel gesture (2 finger) support on iOS and Andorid</li>
+	<li>New portCheckTimes, portCheckInterval parameters for server status checking.</li>
+	<li>New fontFamily, lineHeight parameters for SSH</li>
+	<li>New player.html (Playing local file) and playerremote.html (Playing files on gateway) </li>
+	<li>Fixed some RemoteApp windows are not centered issue</li>
+	<li>Fixed large file (>4GB) uploading issue</li>
+	<li>Fixed Convert/NonConvert key not working issue on Japanese keyboard</li>
+	<li>Fixed numlock sync issue after browser is resized</li>
+	<li>Fixed half hour timezone issue, such as IST.</li>
+	<li>Fixed some pages missing issue when priting multiple files together</li>
+	<li>Fixed some temporary files were not deleted issue</li>
+	<li>Fixed remote copy/paste issue when running in Electron</li>
+	<li>Fixed mouse wheel (2 fingers) moving too fast issue on iOS and Android</li>
+	<li>Fixed resolution change issue when switching back from other apps on iOS</li>
+	<li>Fixed VNC Command key stuck issue on Mac.</li>
+	<li><a href="5.6/SparkGateway.zip">Download</a></li>
+	</ol>
+</article>
+
+
+<article>
+	<header>5.5.0 Januarary 1, 2018</header>
+	<ol>
+	<li>File drag and drop. You can drag a file to remote desktop or file explorer directly. Need to set copyFile=true in gateway.conf to enable it. (RDP)</li>
+	<li>RDP 6.1 bulk compression support.</li>
+	<li>Supports microphone redirection on Safari (Ver 11 or later) too.</li>
+	<li>Better multiple files printing support (RDP).</li>
+	<li>RemoteApp task bar when running multiple RemoteApps in one browser window (login.html, exampleRemoteApp2.html) (RDP).</li>
+	<li>New copyToLocal, copyToRemote RDP parameters for fine control of clipbaord redirection.</li>
+	<li>New writeClipboard method to write text, html, image to remote clipboard (RDP).</li>
+	<li>New onLockKeyState event on RDP and VNC.</li>
+	<li>New sendKeyboardSynchronize(scroll, numlock, capital) (RDP).</li>
+	<li>Keyboard auto-detection.</li>
+	<li>Fixed "can not swtich focus back from addresssbar on IE" issue.</li>
+	<li>Fixed a conenction issue on Remote Assitance (assist.html).</li>
+	<li>Fixed double cursor issue on Remote Assistance (assit.html).</li>
+	<li>Fixed multiple monitor conenction issue when screen is scaled on Windows.</li>
+	<li>Fixed audio plack issue on Edge.</li>
+	<li>Fixed unicode keyboard issue on XRDP.</li>
+	<li>Fixed blurry screen issue when mouse move to Chrome toolbar.</li>
+	<li>Fixed extra text blink cursor issue on IE.</li>
+
+
+	<li>VNC supports Hextile encoding, QEMU extended key event and LED State Pseudo-encoding.</li>
+	<li>16 bit color support on Tight Encoding (VNC).</li>
+	<li>Fixed session shadowing issue when Tight Encoding is used on VNC.</li>
+	<li>Fixed Print and Pause key not working issue on QEMU VNC.</li>
+
+	<li>Better xterm terminla support on SSH.</li>
+	<li>Better performance on SSH.</li>
+	<li>Supports 24 bit color on SSH.</li>
+	<li>New terminlaType parameter for SSH.</li>
+	<li>Joined SSH user can see the historay data too.</li>
+
+	<li>Click special effect on session shadowing; also supported on playback.</li>
+	<li>UI streamlined and improved: show uploading speed, new hi5.ui.Lightbox, better hi5.Draggable etc.</li>
+	<li>Fixed extra key up message issue when working with Keepass Auto-Type.</li>
+	<li>Better keybaord handling. Including lock key synchronization, key down or key up not captured by browser etc.</li>
+	<li>writeText and writeKeyComb method added interval and callback arguments.</li>
+	<li>Supports Radius Acceept Challenge message.</li>
+	<li>syslog integration (Linux).</li>
+	<li>Supports SAML integration.</li>
+	<li>Fixed extra headers configured in gateway.conf are not applied on XMLHTTP Request issue.</li>
+	<li>Fixed file name encoding issue when file has unicode in it on IE.</li>
+	<li>Better compatibiity with Chromium Embedded Framework and Electron.</li>
+	<li><a href="5.5/SparkGateway.zip">Download</a></li>
+	</ol>
+</article>
+	
+
+<article>
+<header>5.0.0 February 15, 2017</header>
+<ol>
+<li>Better RDP performance on all browsers which makes Spark View absolutely faster than any other native or html5 clients in most senarioes</li>
+<li>Better UI response with Web Workers (JavaScript threads) on RDP which makes running multi-sessions on one web page faster and smooth. You can disable Web Workers by setting useWorker: false in appcfg.js.</li>
+<li>Multi-Monitor support</li>
+<li>Play sound (RDP) on IE too with flash fallback.</li>
+<li>Supports multi printers and multi printer drivers (PostScript, PCL, PDF) at the same time.</li>
+<li>Better preformance on RDP recording playback.</li>
+<li>Dragable toolbar</li>
+<li>Auto word wrap on Telnet session.</li>
+<li>User and domain variables can be used in the redirected drive path: "devicePath" in servers.json and tmpdir in gateway.conf. For example: You can set tmpdir= \tmp\${user}\ in gateway.conf.</li>
+<li>Fixed a crash issue when using unicode keyboard on Edge.</li>
+<li>Fixed "Create directory" button not working issue on the file loading interface.</li>
+<li>Fixed mapClipboard switch not working on cached session issue.</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="5.0/SparkGateway.zip">Download</a></li>
+<li><span style="color:yellow; font-size: 1.8em">&#9888;</span><strong>Incompatiblity warning: You need to include h5core_min.js and rdpcore_min.js in your web pages too since 5.0. 
+	You must configure hi5.libPath if you are using Spark View client side library in your portal and has Web Workers enabled.</strong></li>
+</ol>
+</article>
+
+
+<article>
+<header>4.8.9 November 20, 2016</header>
+<ol>
+<li>Better user interface, and user experience on mobile devices</li>
+<li>Better external keyboard handling on mobile devices</li>
+<li>IP filters (iptables) configuration on gateway. </li>
+<li>New session shadowing mode: Only one can control, but others can move mouse (setJoinMode(3)).</li>
+<li>Supports multiple cursors in session recording.</li>
+<li>SSH is 3-4 times faster.</li>
+<li>Added bgColor and fgColor parameters, writeText method, onoutput event for SSH.</li>
+<li>Wake On Lan with RDP session</li>
+<li>login.html supports HTTP Basic Authentication too.</li>
+<li>Configure recording filename on browser side too with __record_name parameter</li>
+<li>Option to allow gateway accept symlink connection only: symlinkOnly=true in gateway.conf</li>
+<li>Added blur() method and onfocus event for LocalInterface</li>
+<li>Fixed file uploading dialog visible issue when clipboard redirection is disabled in servers.json.</li>
+<li>Fixed file uploading issue on iOS.</li>
+<li>Fixed incorrect format issue when copying from PowerShell ISE to local computer.</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8.9/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+
+<article>
+<header>4.8.8 September 11, 2016</header>
+<ol>
+<li>User name and unique color will be diplayed under the cursor in session shadowing. Set noCursorName: true in appcfg.js to disable it</li>
+<li>Supports muti-factor authentication in RADIUS integration (tested on Azure MFA).</li>
+<li>Seamless session shadowing: no need to reconnet when user joining. The joining may take more time if network is slow. You can go back to the old way by setting resetOnJoin=true in gateway.conf</li>
+<li>Supports the following HTTP Header parameters: gw_user, gw_pwd, gw_server, gw_symlink</li>
+<li>VNC repeater support.</li>
+<li>Better RemoteApp support.</li>
+<li>Recording file auto rotation (limit the size of recording file): recFileSize in gateway.conf</li>
+<li>File type and size fileter for file uploading: file.fileter and file.maxSize in gaeteway.conf</li>
+<li>Option to keep the printing result (PDF) on gateway: keepPrinting in gateway.conf</li>
+<li>More parameters for VNC: trackCursorLocally, ignoreCursor.</li>
+<li>Default value of reconnectTimes is 3 instead of 0.</li>
+<li>Option to ignore useless/duplicate server updating: set updateFix: true in appcfg.js only when you have this kind of issue.</li>
+<li>Right Ctrl and right shift support.</li>
+<li>Fixed copy issue from PowerShell ISE and MS SQL Manager to local.</li>
+<li>Fixed xrdp session shadowing issue.</li>
+<li>Fixed window snap (left, top) issue.</li>
+<li>Fixed Ctrl+-, Cmd+D/E shorcuts issue</li>
+<li>Fixe screen not cleared issue on SSH</li>
+<li>Fixed \| key issue on Portuguese keyboard.</li>
+<li>Fixed incorrect color issue when joining a symlink.</li>
+<li>Fixed IBM SPSS Modeler RemoteApp closing issue.</li>
+<li>Fixes SSH connection issue on touch screen.</li>
+<li>Fixed text cursor not visible issue on black background.</li>
+<li>Fixed a deaklock issue when using joining a symlink and createif=on.</li>
+<li>Fixed mousewheel click issue on RDP, mousewheel scrolling issue on XRDP</li>
+<li>Fixed Ctrl+A, Ctrl+E, Ctrl+Shift+6, Ctrl+Break issue on SSH and Telnet</li>
+<li>Fixed getRecordingFile retured null issue in plugin's onSessionCreated.</li>
+<li>Fixed mousewheel peroformacne issue on VNC.</li>
+<li>Fixed Alt + NumPad issue on VNC.</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8.8/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+<article>
+<header>4.8.7 February 23, 2016</header>
+<ol>
+<li>Better performance, about 16% faster on RDP and VNC connection.</li>
+<li>Supports VRDP (VirtualBox RDP) video redirection.</li>
+<li>Better performance on joined sessions.</li>
+<li>Improved performance on session recording and CPU usage.</li>
+<li>Reduced garbage collection time.</li>
+<li>Added startPing method on VNC JS object too.</li>
+<li>Supports bgColor, fgColor, fontName on Telnet connection.</li>
+<li>Better RTF format support on RDP clipboard redirection.</li>
+<li>Set extra HTTP headers in gateway.conf (headers).</li>
+<li>Disabled HTML escaping on generated JSON.</li>
+<li>Symlink joining will check user name, domain name too other than ID.</li>
+<li>Can use java -cp ..\SparkGateway.jar com.toremote.gateway.Mailer to test email configuration</li>
+<li>Added listing server and symlink HTTP API.</li>
+<li>Can create folder, open current folder on file uploading UI.</li>
+<li>Fixed Alt + KyePad 137 not working on remote IE issue.</li>
+<li>Fixed copy issue between two RemoteApps in different sessions.</li>
+<li>Fixed second paste not working on Telnet and SSH issue.</li>
+<li>Fixed "Range error" caused RDP session crash issue (may happen when there is VNC server running in RDP server)</li>
+<li>Fixed RDP session crash issue when keep playing a video with VLC player several hours</li>
+<li>Fixed specific RemoteApp window could not be resized issue </li>
+<li>UPDATE: SparkGateway.jar, html directory.</li>
+</ol>
+</article>
+
+
+<article>
+<header>4.8.6 January 16, 2016</header>
+<ol>
+<li>Improved compatibility on Cisco, Juniper and Dell VPNs. included workaround for Cisco, Dell VPN JavaScript Rewriter bugs, SSO integration etc.</li>
+<li>Supports HTTP basic authentication which can be used on SSO integration</li>
+<li>Better copy experience.</li>
+<li>Fixed memory leak issue caused by multiple connection and disconnection.</li>
+<li>Fixed a drawing issue when connecting to VMWare Console VNC</li>
+<li>Fixed NumberFormat exception when parameters for symlink are configured on both client and gateway sides.</li>
+<li>Fixed a Excel copy issue between two connected sessions</li>
+<li>Fixed writeKeyComb('Ctrl+Alt+Del') not working on VNC.</li>
+<li>Fixed AltGr key stuck issue on embedded RDP session.</li> 
+<li>Fixed screen scrolling up issue when right click on Mac Chrome</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8.6/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+<article>
+<header>4.8.5 November 24, 2015</header>
+<ol>
+<li>LDAP and RADIUS support.</li>
+<li>Redirect http to https (set redirectToHttps = true in gateway.conf)</li>
+<li>Fewer delay time when joining a session.</li>
+<li>New beforemousedown, aftermouseup events.</li>
+<li>Password on report.html can be MD5 hashed.</li>
+<li>Fixed recording noise issue on VirtualBox RDP</li>
+<li>Fixed RTF format copying issue on Windows 2003.</li> 
+<li>Fixed AltGr key not working issue on Putty.</li>
+<li>Fixed mouse position issue when some extensions in use.</li>
+<li>Fixed context menu disappear issue when zoom in on Android.</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+
+<article>
+<header>4.8 October 12, 2015</header>
+<ol>
+<li>Prepare to be surprised: another great performance improvement.</li>
+<li>Better different Smart Cards support.</li>
+<li>Can join the session even main session is closed (if joined session can keep running after main session is closed)</li>
+<li>Improved the audio recording on VirtualBox RDP.</li>
+<li>Added Portuguese, Portuguese(Brazil), Turkish keyboard layouts</li>
+<li>Added symlink and thumbnail columns on session list (config.html).</li>
+<li>Adjust the size of RemoteApp child window to fit current browser window.</li>
+<li>Fixed a RemoteFX black screen issue on Windows 2012 R2.</li>
+<li>Fixed CapsLock sync issue.</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+<article>
+<header>4.7 September 8, 2015</header>
+<ol>
+<li>Smart Card redirection support (with Java Applet)</li>
+<li>Keep joined sessions open after the main session was closed: new JS method: rdp.setJoinCloseMode(mode)</li>
+<li>Reduced memory usage and threads on gateway.</li>
+<li>Supports WMF and RTF formats on clipboard redirection.</li>
+<li>Streamlined logging: fewer logs and better performance</li>
+<li>Limit the size of copying content (set copySize in gateway.conf).</li>
+<li>Fixed connection issue on Java 1.8.0_60 when NLA is enabled on RDP server.</li>
+<li>Fixed NumLock sync issue.</li>
+<li>Can join a symlink; And start a new connection if there is no existing connection on the symlink (disabled by default)</li>
+<li>Fixed a mouse position issue when a scaled session running in a div.</li>
+<li>New JS method: LocalSurface.scaleTo(newWidth, newHeight, ignoreAspectRatio), rdp.setVolume()</li>
+<li>Fixed a shift key not working issue on embedded session in Windows 2003.</li>
+<li>Fixed a drawing issue on Windows 2003 if legacy mode was not enabled.</li>
+<li>Get session thumbnail with new Java method in plugin: SessionInformation.getThumbnail()</li>
+<li>Can set up load balance token in appcfg.js which can be used for token based load balancing</li>
+<li>Fixed a exception when Safari in in private mode (iOS)</li>
+<li>Fixed screen auto scrolling issue when RDP session in a scrollable iframe</li>
+<li>Allow user to download the image if user is copying a image which is not supported by browser</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.7/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+
+<article>
+<header>4.6 July 19, 2015</header>
+<ol>
+<li>Microsoft Edge and Windows 10 support</li>
+<li>Right click (context menu) copy support on Chrome and IE, Right click paste support on IE</li>
+<li>Can add extra parameters for connection and comment on Symlink</li>
+<li>Can get header information using SessionInformation.getHeader() from plugin</li>
+<li>Can encrypt data files (servers.json, users.json, symlink.json) by setting dataEncrypted=true in gateway.conf</li>
+<li>Support audio recording on VirtualBox RDP too.</li>
+<li>SSH: No need to provide user name, password before connecting; Copy, history browsing support; Ctr+D to close the session; Parameters are not transfered with URL by default.</li>
+<li>Server list can be displayed in ssh.html, vnc.html and telnet.html too.</li>
+<li>Automatically start up the first or specific connection in login.html</li>
+<li>UI improvements: Disconnect button, On-Screen keys which allow Ctrl+Click and Shift+Click etc</li>
+<li>New onsessionpause event and allow user to set obj.warn = false to disable warning message.</li>
+<li>More customizable options for appcfg.js.</li>
+<li>rdp.sessionInfo.joinedSessions to get a list of joined sessions.</li>
+<li>Added clientHost parameter for RDP which allow user to specify the local host name.</li>
+<li>Allow sending extra parameters to client side in plugin: parameters.put(AbstractSessionHandler.ARG_CLIENT_PROPERTIES, "key=value&amp;name=value");</li>
+<li>com.toremote.recording.Merger can merge recored VNC session too.</li>
+<li>Disable key combinations in gateway.conf: disabledKeys=29+56+211,56+1 will disable Ctrl+Alt+Del and Alt+Esc</li>
+<li>Disable webfeed cache in gateway.conf: webfeedCache=false</li>
+<li>Fixed null pointer issue when getting recorded file name of VNC session in plugin</li>
+<li>Fixed Ctrl+Alt+Shift+* shortcut not working issue.</li>
+<li>Fixed work area size issue when RemoteApp running in a DIV.</li>
+<li>Fixed blinking dot issue on IE (touch screen only)</li>
+<li>Fixed duplicated characters issue when using voice input on Android.</li>
+<li>Fixed RemoteApp wrong title issue and partial painting issue.</li>
+<li>Fixed text cursor inverting issue on input fields with black background.</li>
+<li>Fixed Spanish `´ key issue on unicode keyboard</li>
+<li>Fixed a 'string is too big' issue when using big cursor on IE within CheckPoint VPN.</li>
+<li>Fixed non-breaking space issue one IE with unicode keyboard</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.6/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+
+<article>
+<header>4.5 January 12, 2015</header>
+<ol>
+<li>Remote audio recording (Microphone) support.</li>
+<li>Improved the performance and memory usage.</li>
+<li>RDP Dynamic Virtual Channel support.</li>
+<li>Better file uploading performance and bandwidth usage</li>
+<li>Can pause a session which can be used on shadowing sessions.</li>
+<li>Seeking support when playing recorded file from local.</li>
+<li>Ping support.</li>
+<li>Keyboard input was rewritten and perfect non-English keyboard support on Firefox.</li>
+<li>Fixed a Japanese keyboard issue.</li>
+<li>Fixed RemoteApp window resize issue when pinch zoom.</li>
+<li>Fixed Window scroll issue when pinch zoom on IE</li>
+<li>Fixed Ctrl+N opening new tab issue on Firefox when unicode keyboard is used.</li>
+<li>Fixed copying XML issue when using copy dialog</li>
+<li>Fixed bold font issue when copying RTF format.</li>
+<li>Incompatible change: file uploading and Virtual Channels doesn't work on Safari 5 anymore.</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.5/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+<article>
+<header>4.4 December 14, 2014</header>
+<ol>
+<li>Recording session directly on client side (add recording_min.js to your web page).</li>
+<li>Support continuous printing jobs.</li>
+<li>Better RTF format support when copying formated text from WordPad or other applications which only support RTF format.</li>
+<li>Fixed UPN name login issue on webfeed integration.</li>
+<li>Fixed copy button was not displayed issue when driver redirection and shadowing are disabled</li>
+<li>Fixed printing issue when PCL printer driver is used.</li>
+<li>Fixed seek not working issue on recording player on IE.</li>
+<li>Fixed onuploadingCancelled not fired issue.</li>
+<li>Fixed PDF display issue under Chrome WebApp.</li>
+<li>Fixed printer was not redirected issue on Windows 2012 R2 when drive and sound redirection are disabled.</li>
+<li>Fixed session terminated issue when using Photoshop CS.</li>
+<li>Fixed wrong recording duration issue on rare case.</li>
+<li>Other minor fixes and changes.</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.4/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+
+<article>
+<header>4.3 November 16, 2014</header>
+<ol>
+<li>OAuth2 integration, support Google, Microsoft Live Connect, Yahoo etc</li>
+<li>Keys filter on gateway (set disabledKeys in gateway.conf).</li>
+<li>Support more clipboard formats, including RTF and PNG, and better image copy/paste</li>
+<li>Improved log in performance on MS RD Web Integration.</li>
+<li>Option to replace the duplicated file directly during uploading (existingFile: "replace" in appcfg.js).</li>
+<li>Start up a remote a connection automatically when logged in using login.html (startup option in appcfg.js)</li>
+<li>Option to disable window resizing on joined remoteapp sessions (appcfg.js)</li>
+<li>Added onuploadingCancelled event for the JavaScript library.</li>
+<li>Added Spanish language.</li>
+<li>Don't resize the session when virtual keyboard is on on Window IE model UI.</li>
+<li>Fixed 16 bit and 8 bit image copy issue</li>
+<li>Fixed onSessionTerminate called twice issue in plugin</li>
+<li>Fixed recording file is not release before onSessionTerminate (plugin).</li>
+<li>Fixed connection issue when 32 bit color is forced in published RemoteApp (RD Web Integration)</li>
+<li>Fixes a pasting Chinese characters issue.</li>
+<li>Fixed copying image issue on Windows 8 with virtual keyboard.</li>
+<li>Fixed record warning not correctly displayed issue.</li>
+<li>Fixed multi line copying issue on Chrome (caused by incompatible API change on Chrome 38).</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.3/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+
+<article>
+<header>4.2 October 8, 2014</header>
+<ol>
+<li>Improved file uploading: can cancel and resume uploading, check free space before uploading etc.</li>
+<li>Improved copy, paste between sessions.</li>
+<li>New EchoHandler can be used for network testing; Added NetworkChecker tool in rdp.page.js</li>
+<li>Updated to Chrome Web App Version 2, now you can use Ctrl+N etc in Chrome Web App.</li>
+<li>More user friendly message when connection was refused.</li>
+<li>Added disableScrollbars option in hi5.appcfg.</li>
+<li>Disable context menu on Canvas only.</li>
+<li>Use single instance of AudioContext to avoid Chrome's AudioContext release bug</li>
+<li>Disable local IME when remote IME is used on Japanese keyboard.</li>
+<li>Fixed Previous/next button always visible issue on iOS 8.</li>
+<li>Fixed key "&lt;&gt;" issue on German Switzerland keyboard.</li>
+<li>Fixed paste issue when using soft keyboard on Windows 8 and iOS</li>
+<li>Fixed pasting image to MS Word not recognized issue.</li>
+<li>Fixed mouse button out of browser releasing issue.</li>
+<li>Fixed mouse wheel issue on newest version of Mac OS.</li>
+<li>Fixed wrong join link issue in Chrome Web App. </li>
+<li>Fixed a TELNET connection issue introduced in 4.1.</li>
+<li>Fixed duplicated RemoteApp closing notification issue (RemoteApp plugin)</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.2/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+<article>
+<header>4.1 September 12, 2014</header>
+<ol>
+<li>Recording and playback support on VNC, TELNET, SSH.</li>
+<li>Merge recorded files with com.toremote.recording.Merger.</li>
+<li>Better recording/playback support on resized RDP session.</li>
+<li>New HTTP API for creating server, symlink dynamically without writing plugin.</li>
+<li>credSSP option in gateway.conf can be true, false, or auto.</li>
+<li>Gateway id (configured in gateway.conf) or host name is included in the email notification.</li>
+<li>Can configure the style of PC Keys in rdp.css.</li>
+<li>Display license information in config.html</li>
+<li>Fixed wrong file name issue when uploaded file name includes ( or ), IE only.</li>
+<li>Fixed German (Swiss) keyboard input issue.</li>
+<li>Fixed a recording thread was not closed immediately issue.</li>
+<li>Fixed a cursor drawing issue on Hyper-V console session (before logged in)</li>
+<li>Fixed input cursor too big issue on Windows 8 with touch.</li>
+<li>Fixed Half/Full character key issue on Japanese keyboard.</li>
+<li>Fixed zoom level is not restored issue when remote assistance session was disconnected.</li>
+<li>Fixed a line drawing issue under embedded RDP sessions.</li>
+<li>Fixed copy image issue on Firefox and IE.</li>
+<li>Fixed a repeated character issue on Firefox.</li>
+<li>Fixed a OpenID issue.</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.1/SparkGateway.zip">Download</a></li>
+</ol>
+</article>
+
+
+<article>
+<header>4.0 July 20, 2014</header>
+<ol>
+<li>Support Remote Assistance.</li>
+<li>Support SSH and TELNET protocols.</li>
+<li>Support multiple Virtual Channels on browser side (only one allowed before 4.0).</li>
+<li>Support multiple Gateway Channel which can be used for communicaiton between browser and gateway.</li>
+<li>Support orientation change on IE11 too</li>
+<li>Fixed AltGr key issue on Chromebook with unicode keyboard.</li>
+<li>Fixed paste issue on Ubuntu Firefox</li>
+<li>Fixed wrong touch detection on Firefox 24</li>
+<li>Fixed repeated character issue on Firefox with unicode keyboard</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="4.0/SparkGateway.zip">Download 4.0</a></li>
+</ol>
+</article>
+
+
+<article>
+<header>3.6 January 12, 2014</header>
+<ol>
+<li>Support image and html copy/paste in all browsers.</li>
+<li>Support shared clipboard on gateway which allow you copy anything among connections.</li>
+<li>Support Alt E/V/A/T/H keys on IE (reserved for IE menu).</li>
+<li>Can leave session connected on gateway and connect back from other devices.</li>
+<li>Can set up supported SSL protocols and client authentication for SSL.</li> 
+<li>Audio playing performance improved.</li>
+<li>Workaround for IE11 cursor bug (IE11 bug 801833).</li>
+<li>Display print dialog directly</li>
+<li>CredSSP works on all Java versions.</li>
+<li>Use copy dialog to notify user when using copy menu instead of Ctrl+C. Set copyDialog: true in appcfg.js to force using copy dialog always.</li>
+<li>Support uploading directory in Chrome and Opera.</li>
+<li>Fixed zero size file uploading issue.</li>
+<li>Fixed minWidth/minHeight doesn't work after orientation changed</li>
+<li>Fixed Spanish keyboard (Unicode and non-unicode) issue.</li>
+<li>Fixed audio playback broken issue on Firefox 26.</li>
+<li>Fixed wrong html link issue on load banlanced gateway.</li>
+<li>Fixed null object issue on joined VNC conection.</li>
+<li>UPDATE: SparkGateway.jar, html directory. <a href="3.6.3/SparkGateway.zip">Download 3.6.3</a></li>
+</ol>
+<header>Incompatible changes</header> 
+<ol>
+<li>onTextReceived method is final in AbstractHandler, please use onText instead.</li>
+<li>remoteAppLogin in appcfg.js deprecated, please use hideLogin instead.</li> 
+</ol>
+</article>
+
+
+<article>
+<header>3.5 October 27, 2013</header>
+<ol>
+<li>Support VNC protocol (vnc.html) and shadowing.</li>
+<li>Support customized cursor on IE</li>
+<li>Support auto reconnect (set reconnectTimes in appcfg.js)</li>
+<li>Auto reload the last used connection settings on rdp.html</li>
+<li>Upload license file from config.html</li>
+<li>Fixed cross-domain trust issue when using webfeed integration</li>
+<li>Fixed drive redirection issue on particular RDP hosts.</li>
+<li>Fixed input issue on IE 11 (Windows 8.1 with touch)</li>
+<li>Fixed paste issue on IE with touch.</li>
+<li>Fixed copy issue when using unicode keyboard on Firefox</li>
+<li>Fixed stopped progress issue on the player.</li>
+<li>Fixed numpad key issue after window resized.</li>
+<li>Set up error code in ClientException (plugin)</li>
+<li>UPDATE: replace SparkGateway.jar, html directory.</li>
+</ol>
+<header>Incompatible changes</header> 
+<ol>
+<li>You need to recompile your plugin if you are using sessionInformation.getConfig(), now it returns SessionConfig which is the parent class of RdpConfig and VncConfig.</li>
+</ol>
+</article>
+
+<article>
+<header>3.4 Aug 30, 2013</header>
+<ol>
+<li>Support RemoteApp shadowing</li>
+<li>Support session thumbnail in plugin</li>
+<li>Support macro recording for software testing or automated jobs</li>
+<li>Better touch gesture support, better mouse wheel emulation</li>
+<li>Send any key combinations using writeKeyComb</li>
+<li>Can run as Chrome Packaged App</li>
+<li>Import OU from Active directory</li>
+<li>Configure default domain in appcfg.js</li>
+<li>Fixed copy issue on Safari 6</li>
+<li>Fixed plugin loading issue when using RD Web Access Portal integration</li>
+<li>File share will be disabled if the browser doesn't support FileReader</li>
+<li>Fixed invisible file browser after drag a file to desktop</li>
+<li>Fixed extra mouse down issue when pinch zoom on IE</li>
+<li>UPDATE: SparkGateway.jar, html directory.</li>
+<li>Warning: You may need to recompile your plugin</li>
+</ol>
+</article>
+
+<article>
+<header>3.3.3 June 27, 2013</header>
+<ol>
+<li>Fixed a security issue.</li>
+<li>Fixed a paste issue introduced in 3.3.2</li>
+<li>Fixed screen position change issue when copying and remote resolution is bigger than local browser window</li>
+<li>Width=height=0 means using full browser window</li>
+<li>UPDATE: SparkGateway.jar, html directory.</li>
+</ol>
+</article>
+
+<article>
+<header>3.3.2 June 16, 2013</header>
+<ol>
+<li>Better installer for Windows.</li>
+<li>Fixed RemoteApp issue when app is not closed from the file menu.</li>
+<li>Fixed a freeze issue when copying on Excel</li>
+<li>Added "Open in existing Window" option in rdp.html, default is true for iOS.</li>
+<li>Fixed a Chinese input issue on Android Firefox</li>
+<li>Added onclientactivity and onremoteappstart event</li>
+<li>Fixed a connection issue on Firefox 10</li>
+<li>Fixed a copy/paste issue on Yozo Office</li>
+<li>UPDATE: SparkGateway.jar, html directory.</li>
+</ol>
+</article>
+
+<article>
+<header>3.3.1 May 30, 2013</header>
+<ol>
+<li>Fixed a stick key alert issue (introduced in 3.3)</li>
+<li>Fixed a wrong RemoteApp position issue(introduced in 3.3)</li>
+<li>Fixed RemoteApp symlink issue.</li>
+<li>Fixed a paste issue on Firefox (introduced in 3.3)</li>
+<li>Better non-unicode keyboard support on Mobile OS.</li>
+<li>Added "Open in existing window" option in login.html</li>
+<li>UPDATE: SparkGateway.jar, *.js files, config.html, login.html.</li>
+</ol>
+</article>
+
+
+<article>
+<header>3.3 May 22, 2013</header>
+<ol>
+<li>Streamlined for Windows 8 touch interface (including Surface, RT tablets)</li>
+<li>Symlink support, you can create a temporary or permanent access link for a RDP host.</li>
+<li>Can paste image from local to remote (Chrome only).</li>
+<li>Fixed a drawing issue on specific load balanced RDP server.</li>
+<li>Better IME compatibility (Hand writing etc) on Android Firefox.</li>
+<li>Can hide RemoteApp login screen by set remoteAppLogin = false</li>
+<li>Added onsessionlogin interface in session plugin (Warning: Plugin interface changed)</li>
+<li>Can use config.html remotely (set password and enable remoteManage in gateway.conf).</li>
+<li>Added logged in user name information to report.html.</li>
+<li>Don't need to restart the gateway when license file is updated.</li>
+<li>Fixed handshake error is not delivered to client issue.</li>
+<li>Fixed the &#60;&#62; key issue on Italian keyboard.</li>
+<li>Fixed mouse input issue when remote resolution is bigger than local browser Window.</li>
+<li>Fixed shift+click issue.</li>
+<li>Fixed Windows/shift key release issue.</li>
+<li>Better UI for config.html.</li>
+<li>Fixed a RemoteApp issue on iOS5.</li>
+<li>Fixed printing dialog (PDF dialog) closing issue on IE10</li>
+<li>Fixed onclose not fired issue on Mac Safari and Chrome.</li>
+<li>Fixed non-standar RDP port issue on RD Web Access Portal Integration.</li>
+<li>UPDATE: SparkGateway.jar, all files in html directory.</li>
+</ol>
+</article>
+
+
+<article>
+<header>3.2 April 11, 2013</header>
+<ol>
+<li>Better performance on Chrome and Safari.</li>
+<li>Support external plugin jar file, specify pluginFile in gateway.conf.</li>
+<li>Better Android Chrome and Firefox support. Work around for <a href="https://code.google.com/p/chromium/issues/detail?id=118639">Android Chrome bug 118639.</a></li>
+<li>Better IME support on desktop and mobile browsers, Better Chinese IME support on Firefox and IE10.</li>
+<li>Toolbar can be customized. Incompatibility Warning: toolbar definition must be in your web page, otherwise, it will not be displayed.</li>
+<li>Email notification when license expire etc.</li>
+<li>Better function key mapping and Windows(Search) key support on Chrome OS.</li>
+<li>Fixed a RemoteApp window resize issue.</li>
+<li>Fixed AltGr key issue on unicode keyboard</li>
+<li>UPDATE: SparkGateway.jar, all files in html directory.</li>
+</ol>
+</article>
+
+
+<article>
+<header>3.1.1 March 17, 2013</header>
+<ol>
+<li>Fixed image drawing issue introduced in 3.1</li>
+<li>Control key on Mac will be translated to Windows key</li>
+<li>Ctrl+Alt+Backspace (Command+Alt+Delete on Mac) will be translated to Ctr+Alt+Del.</li>
+<li>Can use browser's copy/paste menu for clipboard redirection.</li>
+<li>Fixed adding server issue on config.html, introduced in 3.1</li>
+<li>Fixed a no reponse issue when pasting.</li>
+<li>Fixed shift+Arrow keys issue on unicode keyboard, introdeced in 3.1.</li>
+<li>Fixed a null pointer issue on expired evaluation license.</li>
+<li>UPDATE: SparkGateway.jar, all files in html directory.</li>
+</ol>
+</article>
+
+
+<article>
+<header>3.1 March 06, 2013</header>
+<ol>
+<li>Another 20%-30% performance improvement, which makes Spark View faster than any native RDP clients.</li>
+<li>Better quality, faster processing on sound.</li>
+<li>Better RemoteApp support.</li>
+<li>Session Prelaunch/cache allow user see desktop/RemoteApp right away (check example7.html).</li>
+<li>User session idle timeout support, set idleUserSession in gateway.conf.</li>
+<li>Can open RemtoeApp in multipel tabs on iOS (slower than opening in same window).</li>
+<li>Auto scale on joined sessions.</li>
+<li>Better IME processing.</li>
+<li>Can delete file directly in the File uploading/downloading dialog.</li>
+<li>Can enable/disable DNS lookups in gateway.conf.</li>
+<li>Improved page loading speed.</li>
+<li>Fixed "Can not keep uploading same file" issue.</li>
+<li>Fixed text drawing issue when scrolling screen on some applications.</li>
+<li>Fixed text drawing issue when loging in to an existed session.</li> 
+<li>Fixed sticky key alert issue when using unicode keyboard.</li>
+<li>Fixed relogin issue when resizing the browser Window.</li>
+<li>Fixed "can not disable clipboard redirection issue"".</li>
+<li>Fixed extra "A" issue when pasting data.</li>
+<li>Fixed data size issue on client side VirtualChannel extension.</li>
+<li>Fixed -=+ key issue on Firefox</li>
+<li>Fixed Chinese input issue on duplicated characters.</li>
+<li>UPDATE: SparkGateway.jar, all files in html directory.</li>
+<li>Warning: DNS lookups is disabled by default.</li>
+</ol>
+</article>
+
+
+<article>
+<header>3.0 Jan 06, 2013</header>
+<ol>
+<li>RemoteFX (Video Acceleration) support.</li>
+<li>Better performance. It's even faster than native RDP clients.</li>
+<li>Reduced memory usage on Firefox. Firefox 18 is recommended.</li> 
+<li>UPDATE: SparkGateway.jar, all files in html directory</li>
+</ol>
+</article>
+
+
+<article>
+<header>2.8.5 November 03, 2012</header>
+<ol>
+<li>Active directory integration.</li>
+<li>Can listen on 2 ports at the same time (e.g. http and https).</li>
+<li>Better Network Level Authentication (CredSSP, don't need to enter credentials when login) and load balancing support.</li>
+<li>Fixed a sound playing issue on Mobile Safari 6 (iOS6).</li>
+<li>Fixed a 32 bit color issue.</li>
+<li>Fixed a printing dialog closing issue on Safari.</li>
+<li>Fixed a Ctrl, Alt key (external keyboard) issue on touch OS</li>
+<li>Client host name can be customized.</li>
+<li>Fixed a Japanese IME issue.</li>
+<li>Fixed an AltGr key issue on xrdp and some applications.</li>
+<li>Slightly improved the performance.</li>
+<li>UPDATE: SparkGateway.jar, all files in html directory</li>
+</ol>
+</article>
+
+
+<article>
+<header>2.8 September 30, 2012</header>
+<ol>
+<li>Supports Windows 8, Windows 2012 and touch remoting, can turn any tablets into Windows 8 tablets.</li>
+<li>Supports Hyper-V console</li>
+<li>Better pinch zoom, on-screen PC keys on touch interface</li>
+<li>Auto scale when in player or join mode.</li>
+<li>Fixed a force close issue when opening few RemoteApps</li>
+<li>Fixed an uploading file size issue.</li>
+<li>Fixed a iOS crash issue when submit the request.</li>
+<li>Fixed a password display issue on config.html</li>
+<li>Fixed a mouse position issue when when you have some third party toolbars installed.</li>
+<li>Better IME support</li>
+<li>Performance improvement, especially on Safari 6 (iOS 6).</li>
+<li>UPDATE: SparkGateway.jar, all files in html directory</li>
+</ol>
+</article>
+
+
+<article>
+<header>2.6.5 August 12, 2012</header>
+<ol>
+<li>OpenID integration, you can log in with your Google Account.</li>
+<li>Streamlined for IE 10.</li>
+<li>Streamlined for smart phones, support pinch zoom, scrolling screen when typing etc.</li>
+<li>Drag file from the file browser directly to you local desktop (Chrome Only)</li>
+<li>Can pass parameters to SparkGateway.init(Properties params) instead of using gateway.conf file</li>
+<li>Can get session information from client side(JS library).</li>
+<li>Can control recording in Handshake plugin.</li>
+<li>Webfedd URL can use non-443 port.</li>
+<li>Join link can use gateway address configured on server side.</li>
+<li>Fixed a RemoteApp display problem on MS Office 2013</li>
+<li>Fixed a typo on the name of ShadowingInterface(plugin)</li>
+<li>UPDATE: SparkGateway.jar, all files in html directory</li>
+</ol>
+</article>
+
+
+<article>
+<header>2.6 July 20, 2012</header>
+<ol>
+<li>Support more audio decodings. 80% less bandwidth usage (when playing audio) compared with previous version and other HTML5 solutions.</li>
+<li>Support audio recording too.</li>
+<li>Support screen scrolling when remote desktop is bigger than local window.</li>
+<li>More gestures on touch interface, you can use touch pad mode (relative mouse movement) any time with 2 finger operation. Swipe for scrolling screen, Swipe from bottom for Page Down, Swipe from top for Page Up, 3 finger tap for displaying keyboard, 3 finger move for mouse wheel emulation</li>
+<li>Improved RemoteApp support</li>
+<li>Performance and compatibility improved on RD Web Access Integration</li>
+<li>Support RDP virtual channel extension on client side too (Using JavaScript).</li>
+<li>Performance improved on Safari, Opera</li>
+<li>Fixed a line drawing issue on specific applications</li>
+<li>Fixed a file uploading issue when using RemoteApp</li>
+<li>UPDATE: SparkGateway.jar, html directory</li>
+</ol>
+</article>
+
+
+<header>2.5 June 16, 2012</header>
+<ol>
+<li>RDP Session shadowing support. Multiple users can join/share one existing session via one click.</li>
+<li>RDP Session shadowing plugin.</li>
+<li>Notification UI improved.</li>
+<li>Fixed an autoreconnect issue on load balanced VM.</li>
+<li>Support loadbalanceinfo.</li>
+<li>Back up gateway.conf before it's saved by config.html.</li>
+<li>Config UI improved.</li>
+<li>More international keyboards</li>
+<li>UPDATE: SparkGateway.jar, html directory</li>
+</ol>
+</article>
+
+
+<article>
+<header>2.1.3 May 23, 2012</header>
+<ol>
+<li>Fixed a performance issue on multiple connections(introduced in 2.1.2)</li>
+<li>Fixed auto reconnection issue (don't need to enter user name and password again when reconnect).</li>
+<li>Fixed undefined value issue on config.html</li>
+<li>Fixed file handle lock issue on sessionTerminat event (Plugin)</li>
+<li>UPDATE: SparkGateway.jar, rdp_min.js and config_min.js</li>
+</ol>
+</article>
+
+<article>
+<header>2.1.2 May 16, 2012</header>
+<ol>
+<li>User and server configuration UI: config.html</li>
+<li>Fixed a whitespace issue when setting cookies with PHP(Use rawurlencode instead of urlencode can avoid this issue)</li>
+<li>Can choose printer driver and use PCL printer driver.</li>
+<li>New handler plugin, can be used to adding new features to gateway (support new protocol etc)</li>
+<li>A self-signed certificagte added to the installer</li>
+<li>UPDATE: SparkGateway.jar, all .js files and config.html</li>
+</ol>
+</article>
+
+<article>
+<header>2.1.1 May 06, 2012</header>
+<ol>
+<li>Gateway allow host name mismatched certificate on RD Web feed.</li>
+<li>Fixed a "Not authorised" issue when using RemoteApp.</li>
+<li>Fixed a "Access Permission" issue when using the client library in iframe</li>
+<li>Resource file path can be recognized correctly</li>
+<li>Can config image path in appcfg.js(You usually don't need to do this because of the previous fix).</li>
+<li>UPDATE: SparkGateway.jar, all .js files</li>
+</ol>
+</article>
+
+<article>
+<header>2.1 May 02, 2012</header>
+<ol>
+<li>We managed to improve the performance again, especially on applications like Excel, Word etc</li>
+<li>Improved the compatibility of RD Web Access Portal Integration. You can use this feature even on Linux now</li>
+<li>Can use ip range in serves.json</li>
+<li>Configuration UI for gateway.conf: config.html</li>
+<li>Allow logged in user access not-in-list computers, must set accessNotInList = true in gateway.conf</li>
+<li>Don't show "End of transmission" error anymore</li>
+<li>A new Java command line tool for reporting and license checking</li>
+<li>A WebSocket client (supports wss) which can be used to communicate with gateway directly</li>
+<li>Show server address on browser title</li>
+<li>Fixed "Size undefined" error when playing file on server.</li>
+<li>Fixed a black cursor issue on Linux Terminal Windows(xrdp)</li>
+<li>Display a web link button when user copy a web link in remote computer, disable it by setting rdp.openLink = false (Client side JS)</li>
+<li>New player plugin which allow playing file from any storage</li>
+<li>Can disable console log by setting svGlobal.log = 0 (Client side JS)</li>
+<li>Gateway works on non-Oracle JDK too</li>
+<li>UPDATE: SparkGateway.jar, html directory</li>
+</ol>
+</article>
+
+<article>
+<header>2.0.4 April 13, 2012</header>
+<ol>
+<li>File uploading/downloading enhancement, you can set up download only directory.</li>
+<li>Play/broadcast recorded session on server.</li>
+<li>Fixed a line drawing issue.</li>
+<li>Plugin enhancement: new virtual channel plugin and RemoteApp plugin, session management in plugin etc. Please download the new plugin example.</li>
+<li>Fixed a backslash issue on UK keyboard and support user defined keyboard layout.</li>
+<li>UPDATE: SparkGateway.jar, rdp.html, player.html and js files only.</li>
+</ol>
+</article>
+
+<article>
+<header>2.0.3 Apr 1, 2012</header>
+<ol>
+<li>RemoteApp improvement, works better when open another RemoteApp in current app.</li>
+<li>Can set up session recording in serers.json (per sever level).</li>
+<li>3 finger tap to activate software keyboard on touch interface.</li>
+<li>Notification when user don't use keyboard for copy/paste.</li>
+<li>Plugin example. Please download this Eclipse project from our web site.</li>
+<li>UPDATE: SparkGateway.jar and js files only</li>
+</ol>
+</article>
+
+
+<article>
+<header>2.0.2 Mar 27, 2012</header>
+<ol>
+<li>Fixed a RemoteApp drawing issue.</li>
+<li>Exposed recording file path to plugin</li>
+<li>Chinese language translation.</li>
+<li>UPDATE: html directory and SparkGateway.jar</li>
+</ol>
+</article>
+
+
+<article>
+<header>2.0 Mar 21, 2012</header>
+<ol>
+<li>Session recording and playback. Recorded in RDP stream format for auditing and monitoring purpose.</li>
+<li>Recorded file has smallest size and best quality which can be played anywhere and any devices.</li>
+<li>Rotation support on iPad</li>
+<li>Blackberry Playbook OS 2.0 support</li>
+<li>New session, users and servers plugins.</li>
+<li>Can set up auto reconnect times.</li>
+<li>Downloading/uploading UI tuning</li>
+<li>Downloading/uploading files on mobile OS(download only in iOS).</li> 
+<li>Don't save password to local storage</li>
+<li>User can choose a correct time zone name if time zone redirection is enabled on RDP host.</li>
+<li>User can specify the name of the shared disk.</li>
+<li>Better compatibility to applications which don't support unicode</li>
+<li>Shared disk can report correct free space.</li>
+<li>Support printing and disk mapping on Ulteo xrdp.</li>
+<li>Can make tool bar always displayed</li>
+<li>Can put your customization code in a seperated js file: appcfg.js.</li>
+<li>Fixed a drawing issue on some reporting software and xrdp</li>
+<li>Fixed a copy/paste issue when using Unicode keyboard</li>
+<li>Fixed uploading issue on Firefox</li>
+<li>Fixed a RemoteApp connection issue on Opera.</li>
+<li>UPDATE: html directory and SparkGateway.jar</li>
+</ol>
+</article>
+
+
+<article>
+<header>1.9.5 Feb 29, 2012</header>
+<ol>
+<li>RD Web Access Portal integration.(Administrator's Manual 3.3)</li>
+<li>Fixed a line drawing issue.</li>
+<li>Fixed a display issue which only happens on some RemoteApps.</li>
+<li>Fixed a stick key issue.</li>
+<li>UPDATE: html directory and SparkGateway.jar</li>
+</ol>
+</article>
+
+<article>
+<header>1.9.2 Feb 13, 2012</header>
+<ol>
+<li>Fixed a printing issue introduced in 1.9.1</li>
+<li>Fixed a connection issue when resizing the browser window</li>
+<li>Fixed a connection issue on Firefox when ssl enabled.</li>
+<li>UPDATE: rdp_min.js, hi5_min.js, surface_min.js and SparkGateway.jar</li>
+</ol>
+</article>
+
+<article>
+<header>1.9.1 Feb 08, 2012</header>
+<ol>
+<li>Bandwidth reduced by 30% on Chrome 16 and IE 10, performance is also improved</li>
+<li>Create temporary directory automatically for file uploading/downloading.</li>
+<li>Check license status with reporting API.</li>
+<li>Cloud button will be hidden if file sharing is disabled on gateway</li>
+<li>onerror event for JavaScript RDP object.</li>
+<li>Works on IE10</li>
+<li>UPDATE: html directory and SparkGateway.jar</li>
+</ol>
+</article>
+
+
+<article>
+<header>1.9 January 16, 2012</header>
+<ol>
+<li>File downloading/uploading support.</li>
+<li>Touchpad mode (Relative mouse movement) on touch interface.</li>
+<li>New gateway plug-in make integration easier</li>
+<li>Reporting API for querying server status.</li>
+<li>New Administrator's manual</li>
+<li>Fixed a copy/paste issue on Mac</li>
+<li>Pass cookie to Rdp JS library.</li>
+<li>Added reconnectOnResize and showMsg properties on Rdp JS library</li>
+<li>UPDATE: html directory and SparkGateway.jar</li>
+</ol>
+</article>
+
+
+<article>
+<header>1.8.1 Nov 26, 2011</header>
+<ol>
+<li>Android tablets support (Please use Firefox), now we officially support all tablets in market.</li>
+<li>Timezone redirection support.</li>
+<li>servers.json and users.json modification detect and reload automatically.</li>
+<li>Support following shortcut key:
+<ul>
+<li>CTRL+ALT+END	Brings up the Windows Security dialog box.</li>
+<li>ALT+PAGE UP	Switches between programs from left to right.</li>
+<li>ALT+PAGE DOWN	Switches between programs from right to left.</li>
+<li>ALT+INSERT	Cycles through the programs in the order they were started.</li>
+<li>ALT+HOME	Displays the Start menu.</li>
+<li>ALT+DELETE	Displays the Windows menu.</li>
+</ul></li>
+<li>Can disable HTTP header logging, set logHttpHeader = false in gateway.conf</li>
+<li>Fixed a "display": false doen't work issue when servers.json is a WHITELIST</li>
+<li>UPDATE: html directory and SparkGateway.jar</li>
+<li>API Changes:
+<ul>
+  <li>There is a new namespace before all API: svGlobal. Old API will still work in six months</li>
+  <li>var r = new svGlobal.Rdp()</li>
+  <li>var r = new svGlobal.Rdp2()</li>
+  <li>var ui = new svGlobal.LocalInterface()</li>
+  <li>svGlobal.util.initDragDrop</li>
+</ul>
+</li>
+</ol>
+</article>
+
+
+<article>
+<header>1.8 Nov 21, 2011</header>
+<ol>
+<li>RemoteApp support. Please check <a href="AdminManual.pdf">Administrator's Guide</a> for more information</li>
+</ol>
+</article>
+
+
+<article>
+<header>1.7.3.1 Nov 6, 2011</header>
+<ol>
+<li>Fixed a drawing issue when using command prompt window</li>
+<li>Added Fast copy option which works better when doing a lot of copy/past</li>
+<li>Only need to replace rdp.html and rdp_min.js for updating.</li>
+</ol>
+</article>
+
+
+<article>
+<header>1.7.3 Nov 1, 2011</header>
+<ol>
+<li>Performance improved a lot on Chrome 15 (GPU Accelerated Canvas 2D) and other browsers.</li>
+<li>Fixed a drawing problem (Font cache issue).</li>
+<li>Support non-unicode .rdp file.</li>
+<li>Fixed a copy/paste issue</li>
+</ol>
+</article>
+
+
+<article>
+<header>1.7.2 Oct 11, 2011</header>
+<ol>
+<li>Another great performance improvement.</li>
+<li>.rdp file drag and drop support.</li>
+<li>Auto reconnection support.</li>
+<li>Remote screen resolution change automatically after browser window is resized.</li>
+<li>Unicode keyboard added, which works on almost all non-English keyboard layouts.</li>
+<li>SparkView can be registered as a protocol handler, so you can open a link like <a href="web+rdp:192.168.8.8"  target="_blank">web+rdp:192.168.8.8</a></li>
+<li>Support context menu copy/paste on Firefox too (<a href="https://developer.mozilla.org/en/Midas/Security_preferences" target="_blank">Must modify Firefox preferences</a>).</li>
+<li>More ways to integrate with rdpdirect.html.</li>
+</ol>
+</article>
+
+
+<article>
+<header>1.7.1 Sep 28, 2011</header>
+<ol>
+<li>Local storage support, user can save connection to local.</li>
+<li>Fixed a copy/paste issue on Chrome, a recent Chrome update broke this and we have a workaround.</li>
+<li>More international keyboard layouts</li>
+<li>Windows X64 service wrapper and Linux/Unix daemon wrapper</li>
+<li>Https and wss(WebScoket secure connection) support</li>
+<li>Support context menu copy/paste if it's a Chrome Web Store app (Chrome only)</li>
+<li>Login.html page refactored and better for integration</li>
+</ol>
+</article>
+
+<article>
+<header>1.7 Sep 18, 2011</header>
+<ol>
+<li>Playing sound on local works perfectly(Paid version only)</li>
+<li>Seamless plain text and unicode copy/paste</li>
+<li>International keyboard support</li>
+<li>Fixed a connection issue on xrdp</li>
+<li>Login UI improved, able to specify icon for connection</li>
+<li>Fixed a NumLock key issue, synchronize NumLock key status automatically</li>
+<li>Able to suppress client message, add "showMessage = false" in gateway.conf</li>
+<li>Windows installer will stop installation if Java is not detected</li>
+<li>Default is on for Clipboard, Printer and Sound redirection</li>
+<li>More APIs exposed on client side: writeText, writeUnicode, writeKeyCode, mouseMove, mouseDown, mouseUp, onopen event</li>
+<li>Easy Chrome Frame installation on IE, better browser check</li>
+</ol>
+</article>
+
+
+<article>
+<header>1.6.4 Sep 2, 2011</header>
+<ol>
+<li>BlackBerry Playbook support</li>
+<li>Fixed a "Session not disconnected issue" when using TLS</li>
+<li>Fixed a connection issue when password has special characters.</li>
+<li>New Windows installer and service wrapper.</li>
+</ol>
+</article>
+
+<article>
+<header>1.6.1 Aug 24, 2011 (Work with Spark Gateway 1.6 and above)</header>
+<ol>
+<li>Better copy support on Chrome (Only if it's a Web Store App)</li>
+<li>Default directory page for Web Server.</li>
+<li>Gateway can bind to one of multiple IPs.</li>
+<li>Better error page for Web Server</li>
+</ol>
+</article>
+
+<article>
+<header>1.6 Aug 12, 2011 (Work with Spark Gateway 1.6)</header>
+<ol>
+<li>Printing support(Paid version only)</li>
+<li>Spark View can be hosted by SparkGateway which supports simple web server.</li>
+<li>Client IP as connection name.</li>
+<li>DDoS attack check and prevention(Paid version only)</li>
+<li>Use configuration file instead of arguments.</li>
+<li>log to file.</li>
+<li>Fixed Ctr+C, Ctr+X bug on Firefox</li>
+<li>Other improvements and bug fixes</li>
+</ol>
+</article>
+
+<article>
+<header>1.5.2 July 27, 2011 (Work with Spark Gateway 1.5)</header>
+<ol>
+<li>Fixed a cursor issue on Opera.</li>
+<li>Fixed a international character issue on Opera.</li>
+</ol>
+</article>
+
+<article>
+<header>1.5.1 July 20, 2011 (Work with Spark Gateway 1.5)</header>
+<ol>
+<li>Fixed a disconnection issue on Windows 7.</li>
+</ol>
+</article>
+
+<article>
+<header>1.5 July 12, 2011 (Need update Spark Gateway to 1.5)</header>
+<ol>
+<li>Speed increased by 20%(LAN) to 300%(WAN, bad condition).</li>
+<li>Bandwidth usage reduced by 30%(Image, Video) to 70%</li>
+<li>Less CPU and RAM usage on Gateway.</li>
+<li>Ctrl+C, Ctrl+V support(Paid version only).</li>
+<li>Added "displayName" property for server configuration(servers.json).</li>
+<li>UNICODE(UTF-8) support.</li>
+<li>Client side IME support.</li>
+<li>Auto capitalization support on iPad.</li>
+<li>Fixed a color scheme issue on Windows 2008 R2</li>
+</ol>
+</article>
+
+<article>
+<header>1.1.1 June 25, 2011</header>
+<ol>
+<li>Fixed a cursor issue on 2008 R2</li>
+<li>The default size of remote desktop is to fit the browser window.</li>
+<li>Don't show the scroll bar</li>
+<li>More user friendly error message</li>
+<li>Fixed a user release issue when using user management.</li>
+</ol>
+</article>
+
+<article>
+<header>1.1.0 June 14, 2011</header>
+<ol>
+<li>User management on Gateway</li>
+<li>Map directories on Gateway to RDP host for each connection(Full version only).</li>
+<li>Play sound on remote computer</li>
+<li>iPad usability improvement.</li>
+</ol>
+</article>
+
+<article>
+<header>1.0.5 June 6, 2011</header>
+<ol>
+<li>Can define server list(can be a normal list, whitelist or blacklist) on Gateway</li>
+<li>Can fetch servers from the Gateway on the client</li>
+<li>Can also input computer id for connection, id is defined on the server list.</li>
+<li>Fixed non-standard RDP port issue.</li>
+<li>Fixed start program issue.</li>
+</ol>
+</article>
+
+<article>
+<header>1.0.0 May 4, 2011</header>
+</article>
+</body>
+</html>

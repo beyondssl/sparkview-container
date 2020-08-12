@@ -1,0 +1,61 @@
+1. DEFINITIONS
+
+A. "License" shall mean the terms and conditions for use, reproduction, and distribution as defined by this document.
+B. "Licensor" means Remote Spark Corp.
+C. "Legal Entity" shall mean the union of the acting entity and all other entities that control, are controlled by, or are under common control with that entity. For the purposes of this definition,  "control" means (i) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the  outstanding shares, or (iii) beneficial ownership of such entity.
+D. "You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.
+E. "Integrated Products" means the bundles consisting of Your Products and Spark View.
+F. "Spark View" means the HTML5 remote desktop access software developed by Remote Spark Corp. and distributed under the name "Spark View", including any upgrades and updates released by Remote Spark Corp.
+G. "Gateway" means the server side component of Spark View, which is a WebSocket and web server.
+H. "Concurrent RDP sessions" means running RDP sessions at the Gateway.
+I. "Concurrent gateway instances" means running Gateway instances at same or different locations.
+
+2. LICENSE GRANT
+
+Licensor hereby grants you a nonexclusive license to:
+A. integrate Spark View, with or without modifications, in Integrated Products;
+B. reproduce, distribute, market and license Spark View as part of the Integrated to End Users either directly or through Your distributors and OEM partners; and
+C. use Spark View as part of the Integrated Product in a hosted environment and make Spark View's functionalities available to End Users.
+
+3. LICENSE RESTRICTION. 
+
+The license granted to you under Section 2 above is subject to the following restrictions.
+A. You shall not reverse engineer, decompile, disassemble or otherwise attempt to derive the source code of Spark View.
+B. You shall not copy or otherwise reproduce Spark View, in whole or in part, except in connection with exercising the license rights granted in Section 2 above.
+C. You shall not (and will not permit others to) modify, adapt, alter, translate, or create derivative works of Spark View in any manner, except for customizing or enhancing Spark View for the purpose of integrating, distributing or hosting the customized/enhanced Spark View as part of Integrated Products.
+D. You shall not subject the Product in whole or in part to any of the terms of an Excluded License. An "Excluded License" means any "open source" or other license that requires as a condition of use, modification and/or distribution of software subject to the Excluded License, that such software or other software combined and/or distributed with such software be: (a) disclosed or distributed in source code form; (b) licensed for the purpose of making derivative works; or (c) redistributable at no charge.
+
+4. YOUR RIGHTS AND OBLIGATIONS
+
+You may:
+A. Make copies of the Software for backup or archival purposes.
+
+B. Get free support and update during subscription period.
+
+C. Do not decompile, reverse engineer, disassemble, and attempt to derive the source code of, modify, or create derivative works of the Software, any updates, or any part thereof.
+
+5. NO WARRANTY
+
+YOU EXPRESSLY ACKNOWLEDGE AND AGREE THAT USE OF THE SOFTWARE IS AT YOUR SOLE RISK AND THAT THE ENTIRE RISK AS TO SATISFACTORY QUALITY, PERFORMANCE, ACCURACY AND EFFORT IS WITH YOU. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE AND ANY SERVICES PERFORMED OR PROVIDED BY THE SOFTWARE ("SERVICES") ARE PROVIDED "AS IS" AND "AS AVAILABLE", WITH ALL FAULTS AND WITHOUT WARRANTY OF ANY KIND, AND LICENSOR HEREBY DISCLAIMS ALL WARRANTIES AND CONDITIONS WITH RESPECT TO THE SOFTWARE AND ANY SERVICES, EITHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES AND/OR CONDITIONS OF MERCHANTABILITY, OF SATISFACTORY QUALITY, OF FITNESS FOR A PARTICULAR PURPOSE, OF ACCURACY, OF QUIET ENJOYMENT, AND NON-INFRINGEMENT OF THIRD PARTY RIGHTS. LICENSOR DOES NOT WARRANT AGAINST INTERFERENCE WITH YOUR ENJOYMENT OF THE SOFTWARE, THAT THE FUNCTIONS CONTAINED IN, OR SERVICES PERFORMED OR PROVIDED BY, THE SOFTWARE WILL MEET YOUR REQUIREMENTS, THAT THE OPERATION OF THE SOFTWARE OR SERVICES WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT DEFECTS IN THE SOFTWARE OR SERVICES WILL BE CORRECTED. NO ORAL OR WRITTEN INFORMATION OR ADVICE GIVEN BY LICENSOR OR ITS AUTHORIZED REPRESENTATIVE SHALL CREATE A WARRANTY. SHOULD THE SOFTWARE OR SERVICES PROVE DEFECTIVE, YOU ASSUME THE ENTIRE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES OR LIMITATIONS ON APPLICABLE STATUTORY RIGHTS OF A CONSUMER, SO THE ABOVE EXCLUSION AND LIMITATIONS MAY NOT APPLY TO YOU.
+
+6. LIMITATION OF LIABILITY 
+
+TO THE EXTENT NOT PROHIBITED BY LAW, IN NO EVENT SHALL LICENSOR BE LIABLE FOR PERSONAL INJURY, OR ANY INCIDENTAL, SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES WHATSOEVER, INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, LOSS OF DATA, BUSINESS INTERRUPTION OR ANY OTHER COMMERCIAL DAMAGES OR LOSSES, ARISING OUT OF OR RELATED TO YOUR USE OR INABILITY TO USE THE SOFTWARE, HOWEVER CAUSED, REGARDLESS OF THE THEORY OF LIABILITY (CONTRACT, TORT OR OTHERWISE) AND EVEN IF LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. SOME JURISDICTIONS DO NOT ALLOW THE LIMITATION OF LIABILITY FOR PERSONAL INJURY, OR OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THIS LIMITATION MAY NOT APPLY TO YOU. 
+7. REPRESENTATIONS AND WARRANTIES
+
+Licensor hereby represents and warrants to you that:
+A. Licensor is the owner of all right, title and interest, including copyright, in all the Licensed Materials, or has the authority to enter into this Agreement on behalf of the owner. 
+
+B. Licensor has not granted any rights or licenses to the Licensed Materials that would conflict with Licensor's obligations under this Agreement. 
+
+C. Licensor will not enter into any agreement with any third party which would affect Your rights under this.
+
+D. Your use of the Licensed Materials as authorized by this Agreement will not infringe any existing copyright, trade secret, patent or trademark rights of any third party.
+
+8. TERMINATION
+
+Licensor shall have the right to immediately terminate this License if you fails to perform any obligation required of you under this Agreement or if you become bankrupt or insolvent. This License Agreement takes effect upon your use of the software and remains effective until terminated. You may terminate it at any time by destroying all copies of the Software and Documentation in its possession. It will also automatically terminate if you fails to comply with any term or condition of this License Agreement.
+LICENSE AGREEMENT
+
+
+                                                         Remote Spark Corp.

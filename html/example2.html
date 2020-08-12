@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RemoteApp Example</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="Spark RDP" />
+<link rel="apple-touch-icon" href="rdp.png" />
+<meta name="application-name" content="Spark View" />
+<meta name="description"
+	content="Remotely view and contrl your computer with RDP protocol" />
+<link rel="SHORTCUT ICON" href="rdp.ico" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="appcfg.js"></script>
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="hi5core_min.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="rdpcore_min.js"></script>
+<script type="text/javascript" src="rdp_min.js"></script>
+
+</head>
+<body>
+  <!-- Install ChromeFrame if IE ->
+  <!--[if IE]>
+    <script type="text/javascript" 
+     src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+
+    <style>
+     .chromeFrameInstallDefaultStyle {
+       width: 70%; 
+       border: 5px solid blue;
+     }
+    </style>
+
+    <script>
+     // The conditional ensures that this code will only execute in IE,
+     // Therefore we can use the IE-specific attachEvent without worry
+     window.attachEvent("onload", function() {
+       CFInstall.check({
+       mode: "overlay"
+       });
+     });
+    </script>
+  <![endif]-->
+  
+<script type="text/javascript"> 
+  window.$id = function (id){
+	return document.getElementById(id);
+  };
+
+  function checkBrowser(){
+	var hasCanvas = false;
+	var msg = "";
+	try { 
+		document.createElement("canvas").getContext("2d");
+		hasCanvas = true;
+	} catch (e) {
+		msg = "This browser does not support Canvas.\n\n";
+	};
+	
+	var noWebSocket = !("WebSocket" in window) && !("MozWebSocket" in window);
+	var userAgent = navigator.userAgent;
+	var isFirefox = userAgent.indexOf("Firefox") != -1;
+		
+	if (noWebSocket){
+		msg += "This browser doesn't support WebSocket.\n\n";
+		if (isFirefox){
+			msg += "Please update to Firefox 6 or later.\n\n";
+		}
+		else if (userAgent.indexOf("Opera") != -1){
+			msg += "Please open 'opera:config#Enable WebSockets' (type it in the link field) make 'Enable WebSockets' selected and restart Opera.\n\n";
+		}
+		else if (userAgent.indexOf("MSIE") != -1){
+			msg += "Please install Google Chrome Frame.\n\n";
+		}
+	}
+	
+	var hasAudio = ("webkitAudioContext" in window) || ("AudioContext" in window) || isFirefox;
+	
+	if (!hasAudio && (userAgent.indexOf("Chrome") != -1)){
+		msg += "Please enable Web Audio by going to 'about:flags' (type it in the link field), enabling 'Web Audio', clicking the restart button at the bottom of the page.\n\n";
+	}
+	
+	if (msg.length > 0)
+		alert(msg);
+	
+	var ready = !noWebSocket && hasCanvas;
+	
+	return ready;
+};
+
+function initUI(){
+	<!-- check if HTML5 browser ->
+	checkBrowser();
+}
+
+window.addEventListener('load', initUI, false);
+
+function exeRemoteApp(){
+	var app = document.getElementById("appName").value;
+	
+	<!-- should use php set following cookies on server side, so user will not see sensitive information ->
+	document.cookie = "gateway=w-think";
+	document.cookie = "server=192.168.56.102";
+	document.cookie = "user=Administrator";
+	document.cookie = "pwd=password";
+	
+	<!-- set following cookies on client side using Javascript ->
+	document.cookie = "startProgram=app";
+	document.cookie = "exe=" + app;
+	
+	var newWin = svGlobal.isMultitask;//open in new window, iPad is not multitask and can not run multiple RemoteApps at the same time
+
+	var r = svManager.getInstance(); 
+	if (r == null){
+		r = new svGlobal.Rdp2();
+		if (!newWin){
+			r.addSurface(new svGlobal.LocalInterface());
+			r.onclose = function(){
+				r.hide();
+			};
+		}
+	}
+	
+	
+	if (newWin){
+		var rail = window.open("rail.html");
+		function onSurfaceReady(surface){
+			r.addSurface(surface);
+			r.startApp(app, "", "");
+		};
+		rail.svOnSurfaceReady = onSurfaceReady;
+		r.run();
+	}else{
+		//hide other elements in this page, except the canvas element
+		if (r.running()){
+			r.startApp(app, "", "");
+		}else{
+			r.run();
+		}
+	}
+	
+
+}
+
+</script> 
+RemoteApp:<input type="text" value="||WINWORD" id = "appName" />
+<input type="button" value="Run" onclick="exeRemoteApp()" />
+	<div>
+		<canvas id="remotectrl" width="1" height="1"></canvas>
+	</div>
+	
+</body>
+</html>

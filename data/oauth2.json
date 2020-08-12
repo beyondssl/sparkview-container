@@ -1,0 +1,22 @@
+{
+	"providers" : [{
+			"name" : "Google",
+			"client_id" : "650561938988-t2r66k1ms3hpoi3k1e2g7l2adlarau8s.apps.googleusercontent.com",
+			"client_secret" : "-D-nhxWn2E97tZWWLg5IQ6Ak",
+			"request_uri" : "https://accounts.google.com/o/oauth2/auth",
+			"redirect_uri" : "http://localhost/oauth2callback",
+            "access_token_uri": "https://accounts.google.com/o/oauth2/token",
+            "scope": "openid email"
+		},
+        {
+			"name" : "Live",
+			"client_id" : "0000000040133A31",
+			"client_secret" : "p9WwBr2Pyrq6mtaeZCwTSwqbIF39Br3Z",
+			"request_uri" : "https://login.live.com/oauth20_authorize.srf",
+			"redirect_uri" : "http://www.remotespark2.com/oauth2callback",
+            "access_token_uri": "https://login.live.com/oauth20_token.srf",
+            "scope": "wl.emails",
+            "profile_uri": "https://apis.live.net/v5.0/me"
+		}
+	]
+}

@@ -1,0 +1,350 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<title>Spark配置管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="Spark View Config" />
+<link rel="apple-touch-icon" href="rdp.png" />
+<meta name="application-name" content="Spark View Config" />
+<link rel="SHORTCUT ICON" href="rdp.ico" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+<link rel="stylesheet" href="hi5.css" />
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="config_min.js"></script>
+
+<style type="text/css">
+article {
+	display: block;
+	margin: 10px;
+	padding: 10px;
+	font: normal 13px Verdana, Arial, 'Bitstream Vera Sans', Helvetica,
+		sans-serif;
+	display: none;
+}
+
+header,h2 {
+	padding: 5px;
+	font-size: 110%;
+	font-family: tahoma, verdana, sans-serif;
+	border-bottom: 1px dotted #BBB;
+}
+</style>
+</head>
+<body>
+<div id="info"></div>
+	<article id="conf0">
+		<header>
+			管理服务器<input type="text" id="gateway" />
+		</header>
+	</article>
+
+	<article id="conf1">
+		<header>
+			Spark绑定在 <span id="sparkAddr"></span> <span id="expect"
+				style="display: none">, 根据配置文件，应该绑定在 <span id="expectAddr"></span></span>
+		</header>
+	</article>
+	<article style="display:block">
+		<input type="button" value="开始配置" onclick="sparkConfig.getAll();" />
+		<span id="message"></span>
+	</article>
+	<div class="tab_all" id="conf3" style="margin-left:20px;display:none">
+		<div class="tab">
+			<div class="tab_title">
+				<span tabIndex="0">管理服务器地址</span> <span tabIndex="1">RDP服务器</span><span
+					tabIndex="2">用户</span>
+			</div>
+		</div>
+		<div class="tab_body">
+			<div>
+				<header>
+					管理服务器配置 (保存在gateway.conf)<input type="button"
+						name="saveGateway" value="保存" onclick="sparkConfig.saveGateway();"/>
+				</header>
+				<form action="" id="frmGateway">
+					<table>
+						<tr>
+							<td>SSL (https及 wss)</td>
+							<td><input type="checkbox" name="ssl" /></td>
+						</tr>
+						<tr>
+							<td>端口号(默认 80或443(SSL))</td>
+							<td><input type="number" name="port" placeholder="80 or 443" /></td>
+						</tr>
+						<tr>
+							<td>绑定地址</td>
+							<td><input type="text" name="bindAddr" /></td>
+						</tr>
+						<tr>
+							<td>网络级身份验证(NLA)</td>
+							<td><input type="checkbox" name="credSSP" /></td>
+						</tr>
+						<tr>
+							<td>授权文件（license）路径</td>
+							<td><input type="text" name="license" /></td>
+						</tr>
+						<tr>
+							<td>HTML根目录</td>
+							<td><input type="text" name="html" /></td>
+						</tr>
+						<tr>
+							<td>默认索引页</td>
+							<td><input type="text" name="directoryIndex" placeholder="rdp.html;index.html" /></td>
+						</tr>
+						<tr>
+							<td>日志文件路径</td>
+							<td><input type="text" name="logfile" /></td>
+						</tr>
+						<tr>
+							<td>日志文件大小(字节数)</td>
+							<td><input type="number" name="maxbytes" placeholder="30720000" /></td>
+						</tr>
+						<tr>
+							<td>日志文件数量</td>
+							<td><input type="number" name="maxfiles" placeholder="99" /></td>
+						</tr>
+						<tr>
+							<td>记录HTTP头信息</td>
+							<td><input type="checkbox" name="logHttpHeader" checked="checked"/></td>
+						</tr>
+
+						<tr>
+							<td>PDF转换器</td>
+							<td><input type="text" name="converter"
+								value="C:\\Program Files\\gs\\gs9.05\\bin\\gswin64c.exe" /></td>
+						</tr>
+						<tr>
+							<td>PDF转换器参数</td>
+							<td><input type="text" name="arguments"
+								value="-dBATCH -dNOPAUSE -dUseCIEColor -dPDFSETTINGS=/printer -sDEVICE=pdfwrite -q -sOutputFile=%1 %2" /></td>
+						</tr>
+						<tr>
+							<td>插件类名</td>
+							<td><input type="text" name="arguments" /></td>
+						</tr>
+						<tr>
+							<td>管理密码 (用于报表等)</td>
+							<td><input type="text" name="password" autocomplete="off" /></td>
+						</tr>
+						<tr>
+							<td>长传下载临时目录</td>
+							<td><input type="text" name="tmpdir" /></td>
+						</tr>
+						<tr>
+							<td>临时文件保存天数</td>
+							<td><input type="number" name="keepDays" value="3" /></td>
+						</tr>
+						<tr>
+							<td>RD Web Access Webfeed</td>
+							<td><input type="text" name="webfeed" /></td>
+						</tr>
+						<tr>
+							<td>会话录制</td>
+							<td><select name="recording">
+									<option value="0">No Recording</option>
+									<option value="1">Recording Graphic only</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>会录制存放目录</td>
+							<td><input type="text" name="recdir" /></td>
+						</tr>
+						<tr>
+							<td>警告被录制的用户</td>
+							<td><input type="checkbox" name="recwarning" /></td>
+						</tr>
+						<tr>
+							<td>允许登陆用户存取不再列表和webfeed上的计算机</td>
+							<td><input type="checkbox" name="accessNotInList" /></td>
+						</tr>
+						<tr>
+							<td>映射磁盘名称</td>
+							<td><input type="text" name="disk" placeholder="Storage" /></td>
+						</tr>
+						<tr>
+							<td>映射打印机名称</td>
+							<td><input type="text" name="printer" placeholder="Remote Printer from Client"/></td>
+						</tr>
+
+						<tr>
+							<td>连接队列大小(Backlog)</td>
+							<td><input type="number" name="backlog" value="50" /></td>
+						</tr>
+						<tr>
+							<td>文虎定义文件位置</td>
+							<td><input type="text" name="user" placeholder="path of users.json"/></td>
+						</tr>
+						<tr>
+							<td>RDP服务器文件定义位置</td>
+							<td><input type="text" name="server" placeholder="path of servers.json"/></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div>
+				<header>
+					RDP服务器配置(保存到servers.json)
+					<input type="button" name="addServer" value="添加" id="servers.add" onclick="sparkConfig.editServer();"/>
+					<input type="button" name="refresh" value="刷新" onclick="sparkConfig.refreshServers();"/> 
+				</header>
+				<div id ="servers" class="data-source">
+					<label for="servers.type">Type</label> 
+					<select name="type" id="servers.type">
+							<option value="NORMALLIST">一般列表</option>
+							<option value="WHITELIST">白名单</option>
+							<option value="BLACKLIST">黑名单</option>
+					</select>
+					<label for="servers.display">最终用户可见</label> <input type="checkbox" name="display" id="servers.display" checked />
+					<table id="servers.rows" class="table">
+						<thead>
+							<tr>
+							<th scope="col">代码</th>
+							<th scope="col">显示名称</th>
+							<th scope="col">服务器</th>
+							<th scope="col">动作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr style="cursor: pointer">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><img src="view.png" name="view" title="编辑"><img src="del.png" name="remove" title="删除"></td>
+							</tr>
+						</tbody>
+					</table>
+					<form name="server" id="servers.view" style="display:none" onsubmit="return sparkConfig.saveServer();">
+					  <table style="border:1px solid #222;padding:2em;border-radius:8px;background-color:white">
+					    <tr><td colspan="2"><input type="submit" value="保存"/></td></tr>
+						<tr><td>代码</td><td><input type="text" name="id" required/>
+						<tr><td>显示名称</td><td><input type="text" name="displayName" required/></td></tr>
+						
+						<tr><td>服务器</td><td><input type="text" name="server"/></td></tr>
+						<tr><td>图标</td><td><input type="text" name="icon"/></td></tr>
+						<tr><td>用户名</td><td><input type="text" name="username"/></td></tr>
+						<tr><td>密码</td><td><input type="text" name="password" autocomplete="off"/></td></tr>
+						<tr><td>域</td><td><input type="text" name="domain"/></td></tr>
+						<tr><td></td><td><input type="checkbox" name="console" />管理模式</td></tr>
+						<tr><td></td><td><input type="checkbox" name="legacyMode" />VirtualBox RDP或xrdp</td></tr>
+						<tr><td>键盘布局</td><td><input type="number" name="keyboard" id="server.keyboard"/></td></tr>
+						<tr><td>颜色深度</td><td><select name="color">
+										<option value="8">256</option>
+										<option value="15">高彩（15位）</option>
+										<option value="16" selected>高彩（16位）</option>
+										<option value="24">真彩(24位)</option>
+										<option value="32">最高质量（32位）</option>
+								</select></td></tr>
+						<tr>
+								<td>连接时启动程序</td>
+								<td><input type="text" name="command" /></td>
+							</tr>
+							<tr>
+								<td>启动程序目录</td>
+								<td><input type="text" name="directory" /></td>
+						</tr>
+						<tr>
+								<td>RemoteApp别名或文件名</td>
+								<td><input type="text" name="remoteProgram" /></td>
+							</tr>
+							<tr>
+								<td>RemoteApp参数</td>
+								<td><input type="text" name="remoteArgs" /></td>
+						</tr>
+						
+						
+						<tr><td>剪贴板映射</td><td><input type="checkbox" name="mapClipboard"/></td></tr>
+						<tr><td>声音映射</td><td>
+						<select name="playSound" id="server.playSound">
+							<option value="0">在本地播放</option>
+							<option value="1">不播放</option>
+							<option value="2">在远程计算上播放</option>
+						</select></td></tr>
+						<tr><td>打印机映射</td><td><input type="checkbox" name="mapPrinter"/></td></tr>
+						<tr><td>会话录制</td><td><select name="sessionRecord">
+							<option value="0">不录制</option>
+							<option value="1">仅录制图像</option>
+						</select></td></tr>
+						<tr><td>磁盘映射</td><td><input type="checkbox" name="mapDisk" id="server.mapDisk"/></td></tr>
+						<tr><td>磁盘 0</td><td>
+							<table>
+								<tr><td>Dos名称</td><td><input type="text" name="dosName0" onchange="document.getElementById('server.mapDisk').checked=true;" /></td></tr>
+								<tr><td>路径</td><td><input type="text" name="devicePath0" /></td></tr>
+								<tr><td>动作</td><td><input type="checkbox" name="actUpload0" checked/>上传<input type="checkbox" value="Download" name="actDownload0" checked/>
+								下载<input type="checkbox" name="actRedirect0" checked/>映射</td></tr>
+							</table>
+						</td></tr>
+						<tr><td>磁盘 1</td><td>
+							<table>
+								<tr><td>Dos名称</td><td><input type="text" name="dosName1" /></td></tr>
+								<tr><td>路径</td><td><input type="text" name="devicePath1" /></td></tr>
+								<tr><td>动作</td><td><input type="checkbox" name="actRedirect1" checked/>映射</td></tr>
+							</table>
+						</td></tr>
+						<tr><td>磁盘 2</td><td>
+							<table>
+								<tr><td>Dos名称</td><td><input type="text" name="dosName2"/></td></tr>
+								<tr><td>路径</td><td><input type="text" name="devicePath2"/></td></tr>
+								<tr><td>动作</td><td><input type="checkbox" name="actRedirect2" checked/>映射</td></tr>
+							</table>
+						</td></tr>
+						<tr><td>性能参数</td><td><input type="number" name="performanceflags" value="111" /></td></tr>
+						<tr><td>网络级身份验证(NLA)</td><td><input type="checkbox" name="credSSP" /></td></tr>
+						<tr><td colspan="2"><input type="button" value="保存" onclick="sparkConfig.saveServer()" /></td></tr>
+						
+					  </table>
+					</form>
+				</div>
+			</div>
+			<div>
+				<header>
+					用户配置(保存到users.json)
+					<input type="button" name="addUser" value="添加" id="users.add" onclick="sparkConfig.editUser();"/>
+					<input type="button" name="refresh" value="刷新" onclick="sparkConfig.refreshUsers();"/> 
+				</header>
+				<table id="users.rows" class="table">
+					<thead>
+						<tr>
+							<th scope="col">名称</th>
+							<th scope="col">密码</th>
+							<th scope="col">服务器</th>
+							<th scope="col">动作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="cursor: pointer">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><img src="view.png" name="view" title="编辑"><img
+								src="del.png" name="remove" title="删除"></td>
+						</tr>
+					</tbody>
+				</table>
+				<form name="user" id="users.view" style="display: none" onsubmit="return sparkConfig.saveUser();">
+					<table
+						style="border: 1px solid #222; padding: 2em; border-radius: 8px; background-color: white">
+						<tr>
+							<td colspan="2"><input type="submit" value="保存" /></td>
+						</tr>
+						<tr>
+							<td>名称</td>
+							<td><input type="text" name="name" required/>
+						<tr>
+							<td>密码</td>
+							<td><input type="text" name="password" required autocomplete="off"/></td>
+						</tr>
+						<tr>
+							<td>服务器</td>
+							<td><input type="text" name="servers" size="60" /><br/>多个服务器用","分割，如: server1,server2]</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

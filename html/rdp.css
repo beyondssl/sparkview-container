@@ -1,0 +1,245 @@
+body, .noborder{margin:0;border:0;
+text-size-adjust:100%;
+-moz-text-size-adjust:100%;
+-webkit-text-size-adjust:100%;
+-ms-text-size-adjust:100%;
+-webkit-touch-callout: none;
+-webkit-tap-highlight-color: transparent;
+-ms-touch-action: pinch-zoom !important; /* DISABLE DOUBLE-TAP-ZOOM */
+overscroll-behavior: none;
+-ms-scroll-chaining: none;
+}
+.dialog{padding:1em;position:absolute;left:50px;top:50px;border:2px solid black;font-size:1.2em;background:#FFF3B3;z-index:99;}
+.touchin{margin:0;border:0;width:25px}
+.path{cursor:pointer;}
+.path:hover{background-color: #2e6da4}
+.progressback{
+position:relative;
+width:100%;
+height:1em;
+background-color:white;
+border:1px solid #ccc;
+text-align:right
+}
+.progressfront{
+position:absolute;
+left:0;top:0;
+width:0;height:1em;
+background-color:#0F0;
+}
+#filecontainer
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 0.8em;
+	background: #fff;
+	width: 80%;
+	height: 80%;
+	border-collapse: collapse;
+	text-align: left;
+	overflow: auto;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+.th, #filelist th
+{
+	font-size: 1em;
+	font-weight: normal;
+	color: #039;
+	padding: 10px 8px;
+	border-bottom: 2px solid #A7DBD8;
+}
+#filelist td
+{
+	border-bottom: 1px solid #ccc;
+	color: #669;
+	padding: 6px 8px;
+}
+
+#filecontainer img:hover{
+	background-color: lightslategrey;
+}
+/*
+#filelist tbody tr:hover td
+{
+	background: #d0dafd;
+	color: #339;
+}
+*/
+
+.appdlg, .h5-form{
+	padding: 2em;background-color: white;
+	font: normal 13px "Droid Sans", sans-serif;
+    border:1px solid #61D2D6;display: none;
+}
+
+.appdlg table, .h5-form table{
+	border-spacing: 0;
+}
+
+#pc_key{
+	position:fixed; top: 0; left: 2px; z-index:89;display:none;
+}
+
+.button{
+	min-width:36px;padding:1px;margin:1px;text-align:center;font-family:tahoma,verdana,sans-serif;
+	display:inline-block;
+	background-color:#666;
+	color:white;
+	border: 1px solid #ccc;
+	opacity:0.7;
+	font-size: 16px;
+	cursor: default;
+}
+
+.button_selected{
+	color:red;
+}
+
+.button:active{
+    box-shadow:1px 1px 2px rgba(0,0,0,0.4) inset;
+    border-color: #222;
+    color:red;
+}
+
+
+#pc_key div{
+	display:none;
+}
+
+/*
+#svTouchInput{
+	autocorrect:off; autocomplete:off; autocapitalize:none; spellcheck:false; background:url(kbd.png) no-repeat left top; 
+	border:none; width:35px; height:35px; resize:none; color:rgba(0, 0, 0, 0); overflow: hidden; display:inline-block;
+	vertical-align: top;
+}
+*/
+
+#wsinput{
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	outline: none;
+	border: none;
+	resize: none;
+	position: absolute;
+	opacity: 0;
+	margin: 0;
+	cursor: default;
+	overflow: hidden;
+	font-weight: normal;
+	font-style: normal;
+}
+
+#wsinput::selection{
+	background:rgba(0, 0, 0, 0);
+}
+
+#wsinput:read-write:focus {
+	outline: none;
+}
+
+.copyDialog{
+	padding: 12px;margin: 0 0 6px 0;background-color: white; max-width: 80%;max-height:80%;
+	opacity: 0.9;border-radius: 3px; box-shadow: #999 0 0 12px; overflow:scroll;
+}
+
+/*
+.copyDialog ::selection{
+    background:rgba(255, 255, 255, 0);
+}
+*/
+.chat_all{
+	position:fixed; bottom: 0; left: 6px; z-index:9998;width:450px; background-color: black; 
+	opacity:0.7;color:white; font-size: 12px; display: none;border: 1px solid white;
+}
+.chat_msg{
+	position:relative; top: 0; left: 0; width:100%; height:160px;overflow: auto;
+}
+.chat_send{
+	position:relative; bottom: 0; left: 0; width:320px; border: 1px green solid;overflow: hidden;
+}
+.chatFrom{
+	font-family: Antiqua, Blackletter;color:green;
+}
+
+.chatMsg{
+	font-family: Verdana,Arial; padding-left: 8px; padding-right: 8px;
+}
+
+.chatTime{
+	font-size: 10px;	
+}
+
+.fillwidth{
+	width:100%;
+}
+
+
+#deployJavaPlugin{position:absolute; left: -1000px;height:1px;width:1px}
+
+.svToolbar{
+	position: fixed;
+	top: 0;
+	display: table;
+	margin: 0 auto;
+}
+
+*:focus {
+    outline: none;
+}
+
+.h5-btn, .h5-form input[type="button"], .h5-form button, .h5-form input[type="submit"]{
+    background-color: #337ab7 ; 
+    border: 1px solid #2e6da4;
+	border-radius: 4px;
+	color:#FFF;
+	margin: 3px;
+}
+
+.h5-btn:active, .h5-form input[type="button"]:active, .h5-form button:active, .h5-form input[type="submit"]:active{
+	transform: translateY(2px);
+}
+
+.h5-btn:disabled, .h5-form input[type="button"]:disabled, .h5-form button:disabled, .h5-form input[type="submit"]:disabled{
+	cursor: not-allowed;
+	opacity: .65;
+}
+
+.h5-btn:hover, .h5-form input[type="button"]:hover, .h5-form button:hover, .h5-form input[type="submit"]:hover{
+	background-color: #2e6da4;
+}
+
+
+#__sv_folder__{
+	vertical-align: bottom;
+}
+
+.pc_key_box{
+    display: flex;
+    position: fixed;
+	cursor: default;
+	left:0;
+	top: 0;
+	z-index:89;
+	clear: both;
+}
+
+.pc_key_keys{
+	display: flex;
+	justify-content: space-between;
+}
+
+.pc_key_handle{
+    width: 15px;
+    background-color: lightblue;
+	background-image: url('handle.png');
+	background-repeat: no-repeat;
+    background-position: center; 
+    cursor: move;
+}
+.pc_key_hidden{
+	display: none;
+}
+
+/*canvas { background:url(rdp128.png) }*/

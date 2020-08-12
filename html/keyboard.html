@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<script type="text/javascript">
+	var preCode = 0;
+	function handlekey(e){
+		// console.log(e);
+		var down = e.type == "keydown";
+		var code = e.keyCode;
+		var s = String.fromCharCode(code);
+		var msg = "key type=" + e.type +" shift=" + e.shiftKey + " ctrl=" + e.ctrlKey + " alt=" + e.altKey + " meta=" + e.metaKey 
+		+ " c=" + code + " key=" + e.key + " char=" + e.char + " location=" + e.location + " time:" + new Date().getTime();
+		// console.log(msg);
+		
+		var mapping = document.getElementById("mapping");
+		mapping.value = mapping.value + "\n" + msg;
+		
+		// e.preventDefault();
+		// e.stopPropagation();
+	}
+	
+	function handlepress(e){
+		var code = e.keyCode;
+		var s = String.fromCharCode(code);
+		var msg = "--- key type=" + e.type +" shift=" + e.shiftKey + " ctrl=" + e.ctrlKey + " alt=" + e.altKey + " meta=" + e.metaKey 
+		+ " c=" + code + " key=" + e.key + " char=" + e.char + " location=" + e.location + " time:" + new Date().getTime();
+		// console.log(msg);
+		// e.preventDefault();
+		// e.stopPropagation();
+	}
+
+	function _handleWheel(e){
+		console.log(e);
+	}
+/*
+	function handlekey2(e){
+		console.log(e);
+		var down = e.type == "keydown";
+		var code = e.keyCode;
+		var s = String.fromCharCode(code);
+		var msg = "key type=" + e.type +" shift=" + e.shiftKey + " ctrl=" + e.ctrlKey + " alt=" + e.altKey + " meta=" + e.metaKey 
+		+ " c=" + code + " key=" + e.key + " char=" + e.char + " location=" + e.location + " time:" + new Date().getTime();
+		console.log(msg);
+		
+		var mapping = document.getElementById("mapping");
+		mapping.value = mapping.value + "\n" + msg;
+		
+		e.preventDefault();
+	}
+	*/
+	
+	window.onload = function() {
+		//sinewave.play();
+		var txt = document.getElementById("text");
+		document.addEventListener('keydown', handlekey, false);
+		document.addEventListener('keyup', handlekey, false);
+		document.addEventListener('keypress', handlepress, false);
+		document.addEventListener('mousewheel', _handleWheel, true);
+		// txt.addEventListener("textInput", function(e){
+		// 	console.log("textInput:" + e.data);
+		// 	// e.preventDefault();
+		// }, false);
+		// txt.addEventListener("textinput", function(e){
+		// 	console.log("textinput:" + e.data);
+		// 	// e.preventDefault();
+		// }, false);
+
+		txt.addEventListener("input", function(e){
+			console.log("input:" + e.target.value + " data:" + e.data);
+		}, false);
+		
+		/*
+		txt.addEventListener("compositionstart", function(e){
+			console.log("compositionstart:" + e.data);
+		}, false);
+		txt.addEventListener("compositionend", function(e){
+			console.log("compositionend:" + e.data);
+		}, false);
+		*/
+		//document.onkeydown = handlekey2;
+		//document.onkeypress = handlekey2;
+		/*
+		var text2 = document.getElementById("text2");
+		var ie = new hi5.browser.InputEvent(text2);
+		var mapping = document.getElementById("mapping");
+		ie.onkeydown = ie.onkeyup = function(e){
+			mapping.value += "ie kkk: type:" + e.type + " keyCode:" + e.keyCode +"\n";
+			//return false;
+		};
+		
+		ie.oninput = function(e){
+			mapping.value += "ie input:" + e.data +"\n";
+		}
+		*/
+		
+	};
+
+	
+    </script>
+</head>
+<body>
+Type keys one by one here(left to right, top to bottom):
+<input type="text" id="text"/><br>
+<input type="text" id="text2"/><br>
+<textarea id="mapping" rows="22" cols="100"></textarea>
+</body>
+</html>

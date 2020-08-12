@@ -1,0 +1,657 @@
+<!doctype html>
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="chrome=1">
+<title>Spark View</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="google-site-verification"
+	content="MIFiVsZ89WxCtPsvYT1rboUGMpxTLXJ5xTCGkqumhlc" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="Spark RDP" />
+<link rel="apple-touch-icon" href="rdp.png" />
+<meta name="application-name" content="Spark View" />
+<meta name="description"
+	content="Remotely view and contrl your computer with RDP protocol" />
+<link rel="SHORTCUT ICON" href="rdp.ico" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="rdp_min.js"></script>
+
+</head>
+<body>
+
+  <!--[if IE]>
+    <script type="text/javascript" 
+     src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+
+    <style>
+     .chromeFrameInstallDefaultStyle {
+       width: 70%; 
+       border: 5px solid blue;
+     }
+    </style>
+
+    <script>
+     // The conditional ensures that this code will only execute in IE,
+     // Therefore we can use the IE-specific attachEvent without worry
+     window.attachEvent("onload", function() {
+       CFInstall.check({
+       mode: "overlay"
+       });
+     });
+    </script>
+  <![endif]-->
+
+	<div>
+		<canvas id="remotectrl" width="1" height="1"></canvas>
+	</div>
+
+
+<!-- following is for login dialog only -->
+<script type="text/javascript">
+
+window.$id = function (id){
+	return document.getElementById(id);
+};
+
+function checkBrowser(){
+	var hasCanvas = false;
+	var msg = "";
+	try { 
+		document.createElement("canvas").getContext("2d");
+		hasCanvas = true;
+	} catch (e) {
+		msg = "浏覽器不支持 Canvas.\n\n";
+	};
+	
+	
+	var noWebSocket = !("WebSocket" in window) && !("MozWebSocket" in window);
+	var userAgent = navigator.userAgent;
+	var isFirefox = userAgent.indexOf("Firefox") != -1;
+		
+	if (noWebSocket){
+		msg += "浏覽器不支持WebSocket.\n\n";
+		if (isFirefox){
+			msg += "請更新到 Firefox 6或以後的版本\n\n";
+		}
+		else if (userAgent.indexOf("Opera") != -1){
+			msg += "請在地址欄打開'opera:config#Enable WebSockets'，選擇'Enable WebSockets'並重新啓動 Opera.\n\n";
+		}
+		else if (userAgent.indexOf("MSIE") != -1){
+			msg += "請安裝Google Chrome Frame.\n\n";
+		}
+	}
+	
+	if (msg.length > 0)
+		alert(msg);
+	
+	var ready = !noWebSocket && hasCanvas;
+	
+	return ready;
+};
+
+function initTimezone(){
+	var off = new Date().getStdTimezoneOffset()
+	var h = (off / 60) >> 0;
+	var zone, m = off - h * 60;
+	
+	if (h == 0){
+		zone = "(GMT)";
+	}else{
+		zone = (h < 0) ? "(GMT+" : "(GMT-";
+		h = Math.abs(h);
+		if (h < 10){
+			zone += "0";
+		}
+		zone += (h + ":" + m);
+	}
+	var tzSelect = $id("timezone");
+	var ops = tzSelect.options;
+	h = ops.length;
+	for (var i = 0; i < h; i++){
+		if (ops[i].text.indexOf(zone) == 0){
+			tzSelect.selectedIndex = i;
+			break;
+		}
+	}
+}
+
+function initUI(){
+	checkBrowser();
+	if (hi5.browser.isTouch){
+		$id("touchrow").style.display = "table-row";
+	}
+	svGlobal.util.initDragDrop($id("dropZone"), $id("frmConn"));
+	useFullBrowser();
+	initTimezone();
+	initServers();
+}
+	
+window.addEventListener('load', initUI, false);
+
+function initServers(){
+	var gw = $id("gateway"); 
+	var h = gw.value;
+	if (h.length < 1){
+		h = window.location.host;
+		if (h.length < 1) h = "localhost";
+		gw.value = h;
+	}
+
+	var server = $id("server");
+	
+	var save = $id("save");
+	var clear = $id("clear");
+	var remove = $id("delete");
+	
+	if (!Connection.hasStorage){
+		save.style.visibility="hidden";
+		clear.style.visibility="hidden";
+		remove.style.visibility="hidden";
+		return;
+	}
+	
+	loadServers().onchange = function(){
+		var key = server.value;
+		Connection.loadToForm($id("frmConn"), key);
+	};
+	
+	save.onclick = function(){
+		if (server.value.length < 1){
+			alert("Please enter computer name.");
+			return null;
+		}
+
+		var key =Connection.saveForm($id("frmConn"));
+		loadServers();
+	};
+
+	clear.onclick = function(){
+		if (confirm("All saved data will be removed?")){
+			Connection.clear();
+			loadServers();
+			server.value = "";
+		}
+	};
+	
+	remove.onclick = function(){
+		var key = $id("server").value;
+		if (key.length < 1){
+			alert("Please select a computer first.");
+			return;
+		}
+		Connection.remove(key);
+		loadServers();
+		server.value = "";
+	}
+	
+	//syncronize computers with gateway, remove following two lines and serverListCallback if you don't want to do so.
+	var addr = (("https:" == location.protocol) ?  "wss://" : "ws://") + gw.value + "/LIST";
+	getServers(addr, serverListCallback);
+
+}
+
+function loadServers(){
+	var svrs = Connection.getAll();
+	var srvs = $id("server");
+	var ops = $id("server").options;
+	ops.length = 0;
+	for (var i = 0, l = svrs.length; i < l; i++){
+		ops[i] = new Option(svrs[i]);		
+	}
+	return srvs;	
+}
+
+function useFullScreen(){
+	$id("width").value = screen.width;
+	$id("height").value = screen.height;
+};
+
+function useFullBrowser(){
+	$id("width").value = window.innerWidth;
+	$id("height").value = window.innerHeight;
+};
+
+function registerRdp(){
+	if ("registerProtocolHandler" in navigator){
+		navigator.registerProtocolHandler("web+rdp", location.protocol +"//" + location.host + "/rdpdirect.html?%s", "Spark View");
+	}
+	else{
+		alert("Sorry, your browser doesn't support this.");
+	}
+}
+
+function connectRDP(){
+	$id("server").hide();
+	var frms = $id("frmConn").elements;
+	var l = frms.length;
+	var s = "";
+	var gw;
+	var w = window.innerWidth, h = window.innerHeight, server_bpp = 16;
+	for (var i = 0; i < l; i++){
+		var field = frms[i];
+		if ((field.type=="radio" || field.type=="checkbox") && !field.checked) continue;
+		var v = field.value;
+		if (v == "")continue;
+		var n = field.name;
+		if (n == "gateway"){
+			gw = v;
+			continue;
+		}
+		else if (n == "width"){
+			w = v;
+			continue;
+		}
+		else if (n == "height"){
+			h = v;
+			continue;
+		}
+		else if (n == "server_bpp"){
+			server_bpp = v;
+			continue;
+		}
+		
+		if (s != "") s += "&";
+		s += (n + "=" + encodeURIComponent(v));
+	}
+	
+	var protocol = ("https:" == location.protocol) ? "wss://" : "ws://";
+	var frmConn = $id("frmConn");
+	var r = svManager.getInstance(); 
+	if (r == null){
+		r = new svGlobal.Rdp(protocol + gw + "/RDP?" + s, w, h, server_bpp);
+		//r.reconnectTimes = 3;
+	}else{
+		var apps = r.getRunninApps();
+		var len = apps.length;
+		var isApp = $id("app").checked;
+		var warn = r.isRemoteApp() && (!isApp); 
+		if (warn){
+			var s = "警告：一個RemoteApp連接還在運行中。\n\n";
+			for (var i = 0; i < len; i++){
+				s += apps[i] + "\n";
+			}
+			s += "\n請新開一個窗口建立新的連接。\n";
+			alert(s);
+			return;
+		}
+	}
+	
+	var newWin = r.isRemoteApp() && svGlobal.isMultitask;//open in new window
+	if (newWin){
+		function onSurfaceReady(surface){
+			r.addSurface(surface);
+			console.log("remoteApp: " + frmConn["exe"].value + " arg=" + frmConn["args"].value);
+			if (r.running())
+				r.startApp(frmConn["exe"].value, frmConn["args"].value, "");
+		};
+		window.svOnSurfaceReady = onSurfaceReady;
+		var rail = window.open("rail.html");
+		rail.svOnSurfaceReady = onSurfaceReady;
+	}else{
+		$id("login").style.display = "none";
+		r.onclose = function(){
+			r.hide();
+			$id("login").style.display = "block";
+		};
+		r.addSurface(new svGlobal.LocalInterface());
+	}
+	
+	r.onerror = function(e){
+		console.log(e.name + ":" + e.message);
+	};
+
+	r.run();
+	
+	
+	
+	return false;
+};
+
+function serverListCallback(hasNew, connected){
+	if (!connected){
+		alert("不能連接到服務器進行同步。");
+		return;
+	};
+	
+	if (!hasNew) return;
+	loadServers();
+	alert("服務器同步結束，發現新的連接並保存到了本地。");
+}
+
+</script>
+
+	<div id="login" style="padding: 0.5em;">
+		<h2>Spark View <span class="ver">1</span></h2>
+		<div>世界上第一個HTML5 RDP客戶端及管理服務器程序 <a href="new.html">版本信息</a></div>
+		<br>
+		<form id="frmConn" onsubmit="connectRDP(); return false;">
+			<div>
+				管理服務器: <input type="text" name="gateway" id="gateway" required/>*默認端口80，地址後面加端口號(:8080)來指定端口。 
+			</div>
+			<div class="tab_all" id="tab_demo">
+				<div class="tab">
+					<div class="tab_title">
+						<span tabIndex="0">常規</span> <span tabIndex="1">顯示</span><span tabIndex="2">本地</span>
+						<span tabIndex="2">程序</span> <span tabIndex="3">高級</span>
+					</div>
+				</div>
+				<div class="tab_body" id="dropZone">
+					<div>
+						<table>
+							<tr>
+								<td colspan="2">輸入遠程計算機的名稱或將一個.rdp文件拖放此處：</td>
+							</tr>
+							<tr>
+								<td>計算機</td>
+								<td>
+									<input type="hidden" name="id" />
+									<input type="text" name="server" id="server" required class="Hi5Select"/>
+								</td>
+							</tr>
+							<tr>
+								<td>端口</td>
+								<td><input type="number" name="port" value="3389" /></td>
+							</tr>
+							<tr>
+								<td>用戶名</td>
+								<td><input type="text" name="user" /></td>
+							</tr>
+							<tr>
+								<td>密碼</td>
+								<td><input type="password" name="pwd" autocomplete="off"/></td>
+							</tr>
+							<tr>
+								<td>域</td>
+								<td><input type="text" name="domain" /></td>
+							</tr>
+							<tr>
+								<td>鍵盤</td>
+								<td>
+								<select name="keyboard"> 
+										<option value="1033">English (United States)</option>
+										<option value="2057">English (United Kingdom)</option>
+										<option value="99999">Unicode (Universal)</option>
+										<option value="2060">French (Belgium)</option>
+										<option value="3084">French (Canada)</option>
+										<option value="1036">French (France)</option>
+										<option value="4108">French (Switzerland)</option>
+										<option value="1031">German (Germany)</option>
+										<option value="2055">German (Switzerland)</option>
+										<option value="1049">Russian (Russia)</option>
+								</select> </td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="checkbox" name="useConsole" />管理模式</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="checkbox" name="legacyMode" />VirtualBox RDP或xrdp</td>
+							</tr>
+							<tr style="display:none" id="touchrow">
+								<td></td>
+								<td><input type="checkbox" name="touchpad" />觸摸板模式（鼠標相對位置移動）</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table>
+							<tr>
+								<td colspan="2">遠程桌面大小：</td>
+							</tr>
+							<tr>
+								<td>寬度</td>
+								<td><input type="number" name="width" id="width"
+									value="800" /></td>
+							</tr>
+							<tr>
+								<td>高度</td>
+								<td><input type="number" name="height" id="height"
+									value="600" /></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="button" name="fullBrowser"
+									value="全浏覽器窗口" onclick="useFullBrowser()" /><input type="button" name="fullScreen"
+									value="全屏幕" onclick="useFullScreen()" /></td>
+							</tr>
+							<tr>
+								<td>顔色</td>
+								<td><select name="server_bpp">
+										<option value="8">256</option>
+										<option value="15">高彩（15位）</option>
+										<option value="16" selected>高彩（16位）</option>
+										<option value="24">真彩(24位)</option>
+										<option value="32">最高質量（32位）</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="checkbox" name="nocursor" />不顯示遠程光標</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table>
+							<tr><td>時區</td><td>
+							<select name="timezone" id="timezone">
+<option>(GMT-12:00) Dateline Standard Time</option>
+<option>(GMT-11:00) Samoa Standard Time</option>
+<option>(GMT-10:00) Hawaiian Standard Time</option>
+<option>(GMT-09:00) Alaskan Standard Time</option>
+<option>(GMT-08:00) Pacific Standard Time</option>
+<option>(GMT-07:00) US Mountain Standard Time</option>
+<option>(GMT-07:00) Mountain Standard Time</option>
+<option>(GMT-07:00) Mountain Standard Time (Mexico)</option>
+<option>(GMT-06:00) Central Standard Time</option>
+<option>(GMT-06:00) Central Standard Time (Mexico)</option>
+<option>(GMT-06:00) Central America Standard Time</option>
+<option>(GMT-06:00) Canada Central Standard Time</option>
+<option>(GMT-05:00) US Eastern Standard Time</option>
+<option>(GMT-05:00) SA Pacific Standard Time</option>
+<option>(GMT-05:00) Eastern Standard Time</option>
+<option>(GMT-04:00) SA Western Standard Time</option>
+<option>(GMT-04:00) Pacific SA Standard Time</option>
+<option>(GMT-04:00) Central Brazilian Standard Time</option>
+<option>(GMT-04:00) Atlantic Standard Time</option>
+<option>(GMT-03:30) SA Eastern Standard Time</option>
+<option>(GMT-03:30) Newfoundland Standard Time</option>
+<option>(GMT-03:30) Greenland Standard Time</option>
+<option>(GMT-03:30) E. South America Standard Time</option>
+<option>(GMT-02:00) Mid-Atlantic Standard Time</option>
+<option>(GMT-01:00) Cape Verde Standard Time</option>
+<option>(GMT-01:00) Azores Standard Time</option>
+<option>(GMT+13:00) Tonga Standard Time</option>
+<option>(GMT+12:00) New Zealand Standard Time</option>
+<option>(GMT+12:00) Fiji Standard Time</option>
+<option>(GMT+11:00) Central Pacific Standard Time</option>
+<option>(GMT+10:00) West Pacific Standard Time</option>
+<option>(GMT+10:00) Vladivostok Standard Time</option>
+<option>(GMT+10:00) Tasmania Standard Time</option>
+<option>(GMT+10:00) E. Australia Standard Time</option>
+<option>(GMT+10:00) AUS Eastern Standard Time</option>
+<option>(GMT+09:30) Cen. Australia Standard Time</option>
+<option>(GMT+09:30) AUS Central Standard Time</option>
+<option>(GMT+09:00) Yakutsk Standard Time</option>
+<option>(GMT+09:00) Tokyo Standard Time</option>
+<option>(GMT+09:00) Korea Standard Time</option>
+<option>(GMT+08:00) W. Australia Standard Time</option>
+<option>(GMT+08:00) Taipei Standard Time</option>
+<option>(GMT+08:00) Singapore Standard Time</option>
+<option>(GMT+08:00) North Asia East Standard Time</option>
+<option>(GMT+08:00) China Standard Time</option>
+<option>(GMT+07:00) SE Asia Standard Time</option>
+<option>(GMT+07:00) North Asia Standard Time</option>
+<option>(GMT+06:30) Myanmar Standard Time</option>
+<option>(GMT+06:00) Sri Lanka Standard Time</option>
+<option>(GMT+06:00) N. Central Asia Standard Time</option>
+<option>(GMT+06:00) Central Asia Standard Time</option>
+<option>(GMT+05:45) Nepal Standard Time</option>
+<option>(GMT+05:30) India Standard Time</option>
+<option>(GMT+05:00) West Asia Standard Time</option>
+<option>(GMT+05:00) Ekaterinburg Standard Time</option>
+<option>(GMT+04:30) Afghanistan Standard Time</option>
+<option>(GMT+04:00) Georgian Standard Time</option>
+<option>(GMT+04:00) Caucasus Standard Time</option>
+<option>(GMT+04:00) Azerbaijan Standard Time</option>
+<option>(GMT+04:00) Arabian Standard Time</option>
+<option>(GMT+03:30) Iran Standard Time</option>
+<option>(GMT+03:00) Russian Standard Time</option>
+<option>(GMT+03:00) E. Africa Standard Time</option>
+<option>(GMT+03:00) Arabic Standard Time</option>
+<option>(GMT+03:00) Arab Standard Time</option>
+<option>(GMT+02:00) South Africa Standard Time</option>
+<option>(GMT+02:00) Namibia Standard Time</option>
+<option>(GMT+02:00) Israel Standard Time</option>
+<option>(GMT+02:00) GTB Standard Time</option>
+<option>(GMT+02:00) FLE Standard Time</option>
+<option>(GMT+02:00) Egypt Standard Time</option>
+<option>(GMT+02:00) E. Europe Standard Time</option>
+<option>(GMT+01:00) W. Europe Standard Time</option>
+<option>(GMT+01:00) W. Central Africa Standard Time</option>
+<option>(GMT+01:00) Romance Standard Time</option>
+<option>(GMT+01:00) Central European Standard Time</option>
+<option>(GMT+01:00) Central Europe Standard Time</option>
+<option>(GMT) Greenwich Standard Time</option>
+<option>(GMT) GMT Standard Time</option>
+							</select>
+							</td></tr>
+							<tr>
+								<td>音頻播放</td>
+								<td><select name="playSound">
+										<option value="0">在本地播放</option>
+										<option value="1">不播放</option>
+										<option value="2">在遠程計算機播放</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">選擇需要在遠程計算機上使用的本地設備和資源</td>
+							</tr>
+							<tr>
+								<td></td><td><input type="checkbox" name="mapClipboard" checked/>剪貼板<input type="checkbox" name="mapPrinter" checked/>打印機</td>
+							</tr>
+							<tr>
+								<td>打印機名稱</td><td><input type="text" name="printer" />默認"Remote Printer from Client"</td>
+							</tr>
+							<tr>
+								<td></td><td><input type="checkbox" name="fastCopy" id="fastCopy"/>快速拷貝（Ctrl+C在遠程計算機內拷貝，Ctrl+C兩次拷貝到本地）</td>
+							</tr>
+							<tr>
+								<td></td><td><input type="checkbox" name="mapDisk" id="mapDisk" checked/>上下載文件（連接成功後拖放文件到妳的屏幕上）</td>
+							</tr>
+							<tr>
+								<td>共享磁盤名稱</td><td><input type="text" name="disk" />默認"Storage"</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table>
+							<tr>
+								<td colspan="2"><input type="radio" name="startProgram" id="shell" value="shell"/>連接時打開下面程序：</td>
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;程序路徑及名稱</td>
+								<td>&nbsp;&nbsp;<input type="text" name="command" /></td>
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;在下面文件夾內啓動程序</td>
+								<td>&nbsp;&nbsp;<input type="text" name="directory" /></td>
+							</tr>
+							<tr>
+								<td colspan="2"><hr/></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="radio" name="startProgram" id="app" value="app"/>RemoteApp:</td>
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;別名或程序名</td>
+								<td>&nbsp;&nbsp;<input type="text" name="exe" /></td>
+							</tr>
+							<tr>
+								<td>&nbsp;&nbsp;參數</td>
+								<td>&nbsp;&nbsp;<input type="text" name="args" /></td>
+							</tr>
+							<tr>
+								<td colspan="2"><hr/></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="radio" name="startProgram" value="noapp" checked id="noapp"/>不選</td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<table>
+							<tr>
+								<td>允許以下選項</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="background" />桌面背景</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="smoothfont" />平滑字體</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="composition" />桌面組成</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="contents" />拖拽時顯示窗口內容</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="animation" />菜單及窗口動畫</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="styles" />高級視效</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="bitmap" />緩存位圖到本地</td>
+							</tr>
+						</table>
+					</div>
+
+				</div>
+			</div>
+			<input type="button" name="clear" id = "clear" value="清空" />
+			<input type="button" name="clear" id = "delete" value="刪除" />
+			<input type="button" name="save" id = "save" value="保存" />
+			<input type="submit" name="connect" value="連接" />
+		</form>
+		
+
+		<div>
+			<h3>技巧</h3>
+			<ul>
+				<li>如果想得到全屏效果，可以在妳的計算機或iPad上創建一個程序快捷方式。</li>
+			</ul>
+			<div>
+				版權所有 &copy; Remote Spark Corp. 2012 <a href="http://www.remotespark.com" target="_blank">www.remotespark.com</a>
+			</div>
+		</div>
+	</div>
+	<!-- filecontainer is used for file share -->
+	<div id="filecontainer" style="overflow:auto;display:none; width:85%">
+	</div>
+	<div id="appinfo" class="appdlg">
+		<img alt="" src="info.png" style="float:left">	
+		<table>
+		<tr><td align="right"><b>Connected to:</b></td><td><span id="connectingTo"></span><br></td></tr>
+		<tr><td align="right"><b>Session id:</b></td><td><span id="numericId"></span><br></td></tr>
+		<tr><td align="right"><b>Join mode:</b></td><td>
+		<select id="joinSelect">
+			<option value="0">Every one can control</option>
+			<option value="1">Only one can control</option>
+		</select><br></td></tr>
+		<tr><td colspan="2"><b>Join this session with following link:</b><br><a id="joinLink" target="_blank"></a></td></tr>
+		<tr><td></td><td align="right"><input type="button" id="requestControl" value="Request Control" disabled="disabled" /></td></tr>
+		</table>
+	</div>
+</body>
+</html>

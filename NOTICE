@@ -1,0 +1,23 @@
+Spark Gateway
+Copyright 1999-2019 Remote Spark Corp.
+
+This product includes software developed by
+The Apache Software Foundation (http://www.apache.org/).
+
+The Windows Installer is built with the Nullsoft
+Scriptable Install System (NSIS). http://nsis.sourceforge.net.
+
+This product included following libraries:
+
+Gson: Google Gson, https://code.google.com/p/google-gson/
+
+Bouncycastle: http://www.bouncycastle.org/
+
+Apache HttpClient: http://hc.apache.org/httpcomponents-client-ga/
+
+ganymed ssh2 http://www.ganymed.ethz.ch/ssh2/
+Copyright (c) 2006 - 2011 Christian Plattner. All rights reserved.
+
+TinyRadius: http://tinyradius.sourceforge.net/
+
+agafua-syslog https://code.google.com/archive/p/agafua-syslog/

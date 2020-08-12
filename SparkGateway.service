@@ -1,0 +1,11 @@
+[Unit]
+Description=RemoteSpark Service
+After=network.target
+[Service]
+User=yourUserName
+Type=forking
+ExecStart=/usr/local/bin/SparkGateway/SparkGateway.sh start
+ExecStop=/usr/local/bin/SparkGateway/SparkGateway.sh stop
+TimeoutSec=300
+[Install]
+WantedBy=multi-user.target

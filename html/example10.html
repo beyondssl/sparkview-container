@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Connect to Hyper-V console</title>
+</head>
+
+<h2>Connect to Hyper-V console</h2>
+<form  onsubmit="return connect()">
+	<table>
+		<tr><td>Spark Gateway</td><td> <input type="text" name="gateway" id="gateway"
+			required="true" /></td></tr>
+		<tr>
+			<td colspan="2">Enter the name of the remote computer:</td>
+		</tr>
+		<tr>
+			<td>Computer</td>
+			<td><input type="hidden" name="id" /> <input type="text"
+				name="server" id="server" required="true" /></td>
+		</tr>
+		<tr>
+			<td>Port</td>
+			<td><input type="number" name="port" value="2179" />
+			</td>
+		</tr>
+		<tr>
+			<td>User Name</td>
+			<td><input type="text" name="user" id = "user"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="pwd" id = "pwd" autocomplete="off"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Domain</td>
+			<td><input type="text" name="domain" id = "domain" />
+			</td>
+		</tr>
+		<tr>
+			<td>Hyper-V VM ID</td> 
+			<td><input type="text" name="vmid" id="vmid" /><br>Make sure credSSP is enabled on gateway</td>
+		</tr>
+		
+	</table>
+	<input type="submit" name="remoting" value="Connect" />
+</form>
+
+<script type="text/javascript">
+function connect(){
+	var gateway = document.getElementById("gateway").value;
+	var server = document.getElementById("server").value;
+	var user = document.getElementById("user").value;
+	var pwd = document.getElementById("pwd").value;
+	var domain = document.getElementById("domain").value;
+	var vmid = document.getElementById("vmid").value;
+	var	w = window.innerWidth;
+	var	h = window.innerHeight;
+	
+	
+	
+	var url = "rdpdirect.html?gateway=" + gateway + "&server=" + server + "&width=" + w + "&height=" + h 
+			+ "&color=16" + "&vmid=" + vmid;
+	//using cookie to transfer parameter is recommended, please check manual for all the parameters you can use
+	//document.cookie = "gateway=admin-pc";
+	//document.cookie = "server=192.168.0.8";
+
+	
+	if (user.length > 0){
+		url += "&user=" + user;
+	}
+	
+	if (pwd.length > 0){
+		url += "&pwd=" + encodeURIComponent(pwd);
+	}
+	
+	if (domain.length > 0){
+		url += "&domain=" + domain;
+	}
+	
+	window.open(url);
+	return false;
+}
+
+</script>
+
+<body>
+
+</body>
+</html>

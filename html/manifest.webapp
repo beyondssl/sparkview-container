@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "name": "Spark View (RDP)",
+  "description": "Word's first and fastest html5 RDP",
+  "launch_path": "/view/rdp.html",
+  "icons": {
+    "48": "/view/rdp48.png",
+    "60": "/view/rdp60.png",
+    "128": "/view/rdp128.png"
+  },
+  "developer": {
+    "name": "Remote Spark Corp.",
+    "url": "http://www.remotespark.com/html5.html"
+  },
+  "installs_allowed_from": ["*"],
+  "appcache_path": "/view/rdp.appcache",
+  "locales": {
+  },
+  "default_locale": "en"
+}

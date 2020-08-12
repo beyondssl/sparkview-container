@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Spark View VPN Integration</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width = device-width, initial-scale = 1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Spark RDP" />
+<link rel="apple-touch-icon" href="rdp60.png" sizes="60x60" />
+<meta name="application-name" content="Spark View" />
+<meta name="description"
+	content="Remotely view and contrl your computer with RDP protocol" />
+<link rel="shortcut icon" href="rdp.ico" />
+<link rel="shortcut icon" sizes="60x60" href="rdp60.png" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="appcfg.js"></script>
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="hi5core_min.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="rdpcore_min.js"></script>
+<script type="text/javascript" src="rdp_min.js"></script>
+
+<style type="text/css">
+.groupborder{border:solid 1px #888;}
+</style>
+
+</head>
+<body>
+
+	<div>
+		<canvas id="remotectrl" width="1" height="1"></canvas>
+	</div>
+
+
+<!-- following is for login dialog only -->
+
+	<div id="login" style="padding: 0.5em;">
+		<form id="frmConn" action="/" method="GET" name="logonForm" >
+						<table>
+							<tr><td>Spark Gateway</td> <td> <input type="text" name="gateway" id="gateway" required/></td></tr>
+							<tr>
+								<td>Computer</td>
+								<td>
+									<input type="text" name="server" id="server" value="192.168.12.222" required/>
+								</td>
+							</tr>
+							<tr>
+								<td>Port</td>
+								<td><input type="number" name="port" value="3389" /></td>
+							</tr>
+							<tr>
+								<td>User Name</td>
+								<td><input type="text" name="username" id="username" /></td>
+							</tr>
+							<tr>
+								<td>Password</td>
+								<td><input type="password" name="password"  id="password" autocomplete="off"/>
+								</td>
+							</tr>
+							<tr>
+								<td>Domain</td>
+								<td><input type="text" name="domain" id="domain" /></td>
+							</tr>
+							<tr>
+								<td>Keyboard</td>
+								<td>
+								<select name="keyboard"> 
+										<option value="1033">English (United States)</option>
+										<option value="2057">English (United Kingdom)</option>
+										<option value="4105">English (Canadian French)</option>
+										<option value="99999">Unicode (Universal QWERTY)</option>
+										<option value="99998">Unicode (Universal AZERTY)</option>
+										<option value="99997">Unicode (Universal QWERTZ)</option>
+										<option value="2060">French (Belgium)</option>
+										<option value="3084">French (Canada Legacy)</option>
+										<option value="1036">French (France)</option>
+										<option value="4108">French (Switzerland)</option>
+										<option value="1031">German (Germany)</option>
+										<option value="2055">German (Switzerland)</option>
+										<option value="66567">German (IBM)</option>
+										
+										<option value="1040">Italian (Italy)</option>
+										<option value="66576">Italian (142) (Italy)</option>
+										<option value="3758162961">Japanese (Japan)</option>
+										<option value="3758162962">Korean (Korea)</option>
+										<option value="1044">Norwegian (Bokmal)</option>
+										<option value="1083">Norwegian with Sami</option>
+										<option value="2070">Portuguese</option>
+										<option value="66582">Portuguese (Brazil)</option>
+										<option value="1049">Russian (Russia)</option>
+										<option value="1034">Spanish (International Sort)</option>
+										<option value="66570">Spanish (Variation)</option>
+										<option value="2058">Spanish (Mexico)</option>
+										<option value="1053">Swedish (Sweden)</option>
+										<option value="1055">Turkish</option>
+								</select> </td>
+							</tr>
+						</table>
+			<input type="submit" name="connect" value="Connect" />
+		</form>
+	</div>
+	<!-- filecontainer is used for file share -->
+	<div id="filecontainer" style="overflow:auto;display:none; width:80%">
+	</div>
+	<div id="appinfo" class="appdlg">
+		<img alt="" src="info.png" style="float:left">	
+		<table>
+		<tbody>
+		  <tr><td align="right"><b>Connected to:</b></td><td><span id="connectingTo"></span>&nbsp;&nbsp;<input type="button" value="Disconnect" id="disconnect"><br></td></tr>
+		  <tr><td align="right"><b>Session id:</b></td><td><span id="numericId"></span><br></td></tr>
+		</tbody>
+		<tbody id="shadowing">
+		  <tr><td align="right"><b>Join mode:</b></td><td>
+		  <select id="joinSelect">
+			<option value="0">Every one can control</option>
+			<option value="1">Only one can control</option>
+		  </select><br></td></tr>
+		  <tr><td></td><td><input type="checkbox" id="joinOpen">Leave joined sessions open when close</td></tr>
+		  <tr><td colspan="2"><b>Join this session with following link:</b><br><a id="joinLink" target="_blank"></a></td></tr>
+		  <tr><td></td><td align="right"><input type="button" id="requestControl" value="Request Control" disabled="disabled" /></td></tr>
+		</tbody>
+		</table>
+		<div id="ssParent"><input type="checkbox" id="saveSession">Leave session on and reconnect to it from other devices.</div>
+		<div id="keyParent"><input type="checkbox" id="shortcuts">Keyboard shortcuts</div>
+		<div style="overflow:auto;height:150px;display:none" id="touchGesture">
+        <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)
+        <input type="checkbox" name="extKeyboard" id="extKBD" />External Keyboard
+        </div>
+        Tap <img src="kbd.png" align="middle"> to activate soft keyboard. IE doesn't support 3 finger gestures and 2 finger scroll (mouse wheel).
+        <table>
+            <tr><td><img src="longpress.png"></td><td>Long press</td><td>Right click</td></tr>
+            <tr><td><img src="flick.png"></td><td>Flick</td><td>Scroll screen if remote desktop resolution is bigger, <br>otherwise, drag</td></tr>
+            <tr><td><img src="pan.png"></td><td>Pan</td><td>Drag</td></tr>
+            <tr><td><img src="2tap.png"></td><td>2 finger tap</td><td>Right click</td></tr>
+            <tr><td><img src="2scroll.png"></td><td>2 finger scoll</td><td>Mouse wheel</td></tr>
+            <tr><td><img src="3tap.png"></td><td>3 finger tap</td><td>Show software keyboard (iOS only)</td></tr>
+            <tr><td><img src="3open.png"></td><td>3 finger pinch open</td><td>Maximize window</td></tr>
+            <tr><td><img src="3close.png"></td><td>3 finger pinch close</td><td>Restore window</td></tr>
+            <tr><td><img src="3left.png"></td><td>3 finger flick left</td><td>Previous window</td></tr>
+            <tr><td><img src="3right.png"></td><td>3 finger flick right</td><td>Next window</td></tr>
+            <tr><td><img src="3down.png"></td><td>3 finger flick down</td><td>Minimize all windows</td></tr>
+            <tr><td><img src="3up.png"></td><td>3 finger flick up</td><td>Restore all windows</td></tr>
+        </table>
+		</div>
+	</div>
+	<div id="pc_key"><span>Ctrl</span><span>Alt</span><span>Shift</span><span>Del</span><span>Esc</span><span>...</span>
+	  <div id="pc_key_more">
+		<span>F1</span><span>&larr;</span><span>&uarr;</span><span>&rarr;</span><span>&darr;</span><span>Start</span><span>Alt+F4</span><span>Ctrl+Alt+Del</span>
+	 </div>
+	</div>
+	<div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+		<textarea id="svTouchInput"></textarea>
+		<img src="cloud.png" title="My Files" id="svCloud">
+		<img src="info.png" title="Information" id="svInfo">
+	</div>
+
+<script>
+
+	var gw = document.getElementById("gateway");
+	gw.value = hi5.browser.getHost();
+
+	function connect(e){
+		if (e){
+			e.preventDefault();
+		}
+		var gateway = gw.value,
+		server = document.getElementById("server").value,
+		user = document.getElementById("username").value,
+		pwd = document.getElementById("password").value,
+		domain = document.getElementById("domain").value,
+		w = window.innerWidth,
+		h = window.innerHeight,
+		color = 16,
+
+		protocol = ('https:' == location.protocol) ? 'wss://' : 'ws://',
+		url = protocol + gateway + "/RDP?server=" + server + "&width=" + w
+				+ "&height=" + h + "&color=" + color,
+		cookie = document.cookie;
+
+		//For SonicWall, make sure SSO enabled in VPN (don't use form authentication) and authorization = Basic in gateway.conf
+		//For Juniper, you can use "Remote SSO" and set following headers: 
+			//Cookie user=<USER>
+		    //Cookie pwd=<PASSWORD>
+		var index = cookie.indexOf('__proxy_ssl_vpn__AUTH__'), 
+		end = 0;
+		
+		if (index != -1){
+			index = cookie.indexOf('Basic ', index);
+			if (index){
+				end = cookie.indexOf(';', index);
+				if (end == -1){
+					end = cookie.length;
+				}
+				user = atob(cookie.substring(index + 6, end));
+				index = user.indexOf(':');
+				pwd = user.substring(index + 1);
+				user = user.substring(0, index);
+			}
+		}else{//check Juniper Cookie;
+			var obj = hi5.browser.cookie2Obj()
+			if (obj.pwd && obj.user){
+				user = obj.user;
+				pwd = obj.pwd;
+			}
+		}
+		
+		
+		if (user.length > 0) {
+			url += "&user=" + user;
+		}
+
+		if (pwd.length > 0) {
+			url += "&pwd=" + encodeURIComponent(pwd);
+		}
+
+		if (domain.length > 0) {
+			url += "&domain=" + domain;
+		}
+		document.getElementById('login').style.display = 'none';
+		var r = new svGlobal.Rdp(url, w, h, color);
+		r.addSurface(new svGlobal.LocalInterface());
+		r.run();
+
+		return false;
+	}
+
+	var frm = document.getElementById('frmConn');
+	frm.onsubmit = frm.submit = connect;
+</script>
+</body>
+</html>

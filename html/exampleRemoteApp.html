@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>RemoteApp Example</title>
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 0.1, maximum-scale = 8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="Spark RDP" />
+<link rel="apple-touch-icon" href="rdp.png" />
+<meta name="application-name" content="Spark View" />
+<meta name="description"
+	content="Remotely view and contrl your computer with RDP protocol" />
+<link rel="SHORTCUT ICON" href="rdp.ico" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="appcfg.js"></script>
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="hi5core_min.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="rdpcore_min.js"></script>
+<script type="text/javascript" src="rdp_min.js"></script>
+
+<style type="text/css">
+.container {
+	background-color: #EEE;
+	border-radius: 10px;
+	box-shadow: 2px 2px 10px #888;
+	padding: 2em;
+	margin-top: 2em;
+}
+
+.icon {
+	display: inline-block;
+	text-align: center;
+	padding: 1.5em;
+}
+
+.icon:hover{
+	background:#CCC;
+}
+</style>
+
+</head>
+<body>
+	<div id = "appList" class="container">
+		<div class="icon">
+			<img alt="" src="rdp48.png" onclick="exeRemoteApp('||wordpad')"><br>WordPad
+		</div>
+		<div class="icon">
+			<img alt="" src="rdp48.png" onclick="exeRemoteApp('||mspaint')"><br>Paint
+		</div>
+		<div class="icon">
+			<img alt="" src="rdp48.png" onclick="exeRemoteApp('||notepad')"><br>Notepad
+		</div>
+	</div>
+
+	<div>
+		<canvas id="remotectrl" width="1" height="1"></canvas>
+		<div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+            <textarea id="svTouchInput"></textarea>
+            <img src="cloud.png" title="My Files" id="svCloud">
+            <img src="info.png" title="Information" id="svInfo">
+        </div>
+        <div id="pc_key"><span>Ctrl</span><span>Alt</span><span>Shift</span><span>Del</span><span>Esc</span><span>...</span>
+            <div id="pc_key_more">
+                <span>F1</span><span>&larr;</span><span>&uarr;</span><span>&rarr;</span><span>&darr;</span><span>Start</span><span>Alt+F4</span><span>Ctrl+Alt+Del</span>
+            </div>
+        </div>
+	</div>
+
+	<!-- filecontainer is used for file share -->
+	<div id="filecontainer" style="overflow:auto;display:none; width:85%">
+	</div>
+	
+	<script type="text/javascript">
+		var appDlg = null;
+
+		function exeRemoteApp(app){
+			var r = svManager.getInstance(); 
+			if (r == null || !r.running()){
+				var appsDiv = document.getElementById('appList');
+				appsDiv.style.display = 'none';
+
+				r = new svGlobal.Rdp2({gateway: '127.0.0.1', server: '192.168.0.176', user: 'vmuser', pwd: 'password', startProgram: 'app', exe: app});
+				var sur = new svGlobal.LocalInterface();
+				sur.showToolbar = true;
+				r.addSurface(sur);
+
+				function addHomeBtn(sur){
+						var id = "__sv_btn_home",
+							img = sur.toolbar.querySelector('#' + id);
+
+						function homeClick(){
+							if (appDlg == null){
+								appDlg = new hi5.ui.Lightbox(hi5.$('appList'));
+							}
+							if (appDlg.visible()){
+								appDlg.dismiss();
+							}else{
+								appDlg.show();
+							}
+						}
+
+						if (!img){
+							img = sur.toolbar.addButton(hi5.appcfg.img.home || 'home.png', homeClick);
+							img.id = id;
+						}
+				}
+
+				sur.onremoteappicon = function(win, bitmap){
+					if (sur.toolbar && win.isMainWin() && bitmap.getWidth() == 32){
+						var id = 'win'+ win.id;
+						if (sur.toolbar.querySelector('#' + id)){
+							return;
+						}
+						addHomeBtn(sur);
+						var img = sur.toolbar.addButton(bitmap.getDataURL(), function(){
+							win.activate(1);
+						});
+						img.id = id;
+						img.title = win.titleInfo;
+						img.style.width = '32px';
+						img.style.height = '32px';
+						img.addEventListener('mouseover', function(){
+							img.title = win.titleInfo;
+						}, false);
+
+						setTimeout(function(){
+							win.activate(1);
+						}, 333);
+					}
+					
+				};
+
+				sur.onremoteappclose = function(win){
+					if (sur.toolbar){
+						var id = 'win'+ win.id;
+						var img = sur.toolbar.querySelector('#' + id);
+						if (img){
+							sur.toolbar.removeChild(img);
+						}
+					}
+				};
+
+				
+				r.onclose = function(){
+					r.hide();
+					appsDiv.style.display = 'block';
+				};
+				r.run();
+			}else{
+				r.startApp(app, '', '');
+			}
+			if (appDlg && appDlg.visible()){
+				appDlg.dismiss();
+			}
+		}
+	</script> 
+	
+</body>
+</html>

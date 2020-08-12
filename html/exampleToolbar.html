@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Spark View (RDP)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Spark RDP" />
+<link rel="apple-touch-icon" href="rdp60.png" sizes="60x60" />
+<meta name="application-name" content="Spark View" />
+<meta name="description"
+	content="Remotely view and contrl your computer with RDP protocol" />
+<link rel="shortcut icon" href="rdp.ico" />
+<link rel="shortcut icon" sizes="60x60" href="rdp60.png" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="appcfg.js"></script>
+
+<script type="text/javascript" src="hi5core_min.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="toolbar.js"></script>
+
+<style type="text/css">
+
+</style>
+
+</head>
+<body>
+	<section id = "pc_key_box" class="pc_key_box" style="left:200px;top:200px">
+		<section id ="pc_key_left">
+			<section id = "pc_key_top" class="pc_key_keys">
+				<span>Alt+Tab</span><span>Alt+F4</span><span>Shift</span><span>Ctrl</span><span>Start</span>
+            </section>
+            <section id="pc_key_extra" class="pc_key_hidden">
+                <section class="pc_key_keys">
+                    <span>Ctrl+C</span><span>Ctrl+V</span><span>Ctrl+Z</span><span>Esc</span><span>Tab</span><span>Alt</span>
+                </section>
+                <section class="pc_key_keys">
+                    <span>Windows+D</span><span>Windows+E</span><span>Back</span><span>&uarr;</span><span>Del</span>
+                </section>
+                <section class="pc_key_keys">
+                    <span>Windows+S</span><span>Ctrl+Alt+Del</span><span>&larr;</span><span>&darr;</span><span>&rarr;</span>
+                </section>
+            </section>
+		</section>
+		<section id = "pc_key_right" class="pc_key_handle">
+		</section>
+    </section>
+    <script type="text/javascript">
+        var toolbar = new MyToolbar({writeScancode: function(){}, writeKeyComb: function(){}});//rdp mock object
+
+        //optional let Spark View know the modifier status when entering unicode
+        surface.onunicode = function(s){
+            //We reset the modifier key automatically when user pressed ctrl button, then any character.
+            //Don't need to do this if you want to mak this key sticky 
+            setTimeout(toolbar.resetModifier, 50);
+            return toolbar.getModifiers();
+        };
+        surface.aftermouseup = function(x, y, button){
+            setTimeout(toolbar.resetModifier, 50);
+        };
+    </script>
+</body>
+</html>

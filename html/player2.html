@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Spark Player</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 0.1, maximum-scale = 8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="Spark Player" />
+<link rel="apple-touch-icon" href="rdp.png" />
+<meta name="application-name" content="Spark Player" />
+<link rel="SHORTCUT ICON" href="rdp.ico" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="appcfg.js"></script>
+<script type="text/javascript" src="hi5core_min.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="player2.page.js"></script>
+
+<style>
+
+.seekbar {
+    padding: 1px;
+    border: 1px solid #222;
+    height: 4px;
+    width: 800px;
+    background-color: #ddd;
+}
+
+.seekpos {
+    height: 100%;
+    float: left;
+    width: 100%;
+    background-color: #8c3;
+}
+</style>
+
+</head>
+<body>
+    <div>
+        <canvas id="remotectrl" width="800" height="600" style="border: 1px solid #222"></canvas>
+        <div id="cursorID" class="cursor-node" focus="false" title="(10, 24)" style="position: absolute; top: 10px; display: none; width: 10px; height: 16px; -webkit-transition: opacity, background-color 100ms linear; transition: opacity, background-color 100ms linear; border-color: rgba(255, 0, 0, 0.498039); left: 0px; opacity: 1; background-color: rgba(255, 0, 0, 0.498039);"></div>
+        <div id="seekbar" class="seekbar">
+            <div id="seekpos" class="seekpos"></div>
+        </div>
+      	<div id="copydialog" style="display:none; width:80%; height:80%">
+        	<textarea  id="copytextarea" style="width:100%;height:100%;resize:none;">
+			
+		    </textarea>
+	    </div>
+
+    </div>
+
+<p>
+<!--<input type="button" value="Play a file on server" id="playserver" />-->
+<select id="playserver"> 
+	<option value="">select a play file on server</option>
+	<option value="RDP">Play a RDP file on server</option>
+	<option value="VNC">Play a VNC file on server</option>
+	<option value="SSH">Play a SSH file on server</option>
+	<option value="TELNET">Play a TELNET file on server</option>
+</select> 
+<input type="button" value="Play" id="play" /> 
+<input type="button" value="Pause" id="pause" />
+<input type="button" value="Stop" id="stop" />  
+<input type="button" value="Normal Mode" id="playMode" />
+<input type="file" id="rdpv" name="rdpv" /> or drag and drop a play file(.rdpv、.vnc、.sshv、.telnetv)</p>
+<p id="fileInfo"></p>
+
+
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="telnet_min.js" ></script>
+<script type="text/javascript" src="ssh_min.js" ></script>
+<script type="text/javascript" src="vnc_min.js" ></script>
+<script type="text/javascript" src="vncutil_min.js"></script>
+<script type="text/javascript" src="rdpcore_min.js" async="async"></script>
+<script type="text/javascript" src="rdp_min.js" async="async"></script>
+<script type="text/javascript" src="player_min.js"></script>
+
+
+</body>
+</html>

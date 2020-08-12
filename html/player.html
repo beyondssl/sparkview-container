@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Spark Player</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 0.1, maximum-scale = 8" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="Spark Player" />
+<link rel="apple-touch-icon" href="rdp.png" />
+<meta name="application-name" content="Spark Player" />
+<link rel="SHORTCUT ICON" href="rdp.ico" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+<link rel="stylesheet" href="player.css" />
+
+<script type="text/javascript" src="appcfg.js"></script>
+<script type="text/javascript" src="hi5core_min.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<script type="text/javascript" src="player.page.js"></script>
+
+</head>
+<body>
+    <div id="playerZone" style="height:100%">
+		<div style="width:16em;margin:0 auto;top:16em;position:relative" id="openFile">
+			<label for="recordFile"><img src="folder.png" style="display:block;padding:1em"><span>Open or drag and drop a file (.rdpv, .sshv, .vncv, .telntev)</span></label>
+			<input type="file" id="recordFile" style="opacity: 1">
+		</div>
+        <div id="sessionZone" style="position: relative;">
+            <canvas id="remotectrl" width="1" height="1"></canvas>
+            <div id="cursorID" class="cursor-node" focus="false" title="(10, 24)" style="position: absolute; top: 10px; display: none; width: 10px; height: 16px; -webkit-transition: opacity, background-color 100ms linear; transition: opacity, background-color 100ms linear; border-color: rgba(255, 0, 0, 0.498039); left: 0px; opacity: 1; background-color: rgba(255, 0, 0, 0.498039);"></div>
+            <div id="copydialog" style="display:none; width:80%; height:80%">
+                <textarea  id="copytextarea" style="width:100%;height:100%;resize:none;">
+                </textarea>
+            </div>
+        </div>
+		<div id="video-controls" class="controls" data-state="visible">
+			<button id="sv_pl_play" type="button" data-state="play">Play/Pause</button>
+			<button id="sv_pl_stop" type="button" data-state="stop" title="Stop">Stop</button>
+			<div class="progress">
+				<progress id="seekpos" value="0" min="0" max="100">
+				</progress>
+			</div>
+			<button id="sv_pl_mute" type="button" data-state="mute">Mute/Unmute</button>
+			<button id="sv_pl_scan" type="button" data-state="scanmode" title="Scan Mode">Vol+</button>
+			<!-- <button id="sv_pl_fullscreen" type="button" data-state="go-fullscreen">Fullscreen</button> -->
+		</div>
+
+    </div>
+
+
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="telnet_min.js" ></script>
+<script type="text/javascript" src="ssh_min.js" ></script>
+<script type="text/javascript" src="vnc_min.js" ></script>
+<script type="text/javascript" src="vncutil_min.js"></script>
+<script type="text/javascript" src="rdpcore_min.js" async="async"></script>
+<script type="text/javascript" src="rdp_min.js" async="async"></script>
+<script type="text/javascript" src="player_min.js"></script>
+
+
+</body>
+</html>

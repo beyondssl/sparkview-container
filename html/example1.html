@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html>
+<header>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Spark View (RDP)</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 1.0, maximum-scale = 8"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="stylesheet" href="hi5.css" />
+    <link rel="stylesheet" href="rdp.css" />
+
+    <script type="text/javascript" src="appcfg.js"></script>
+    <script type="text/javascript" src="resource.js"></script>
+    <script type="text/javascript" src="hi5core_min.js"></script>
+    <script type="text/javascript" src="hi5_min.js"></script>
+    <script type="text/javascript" src="surface_min.js"></script>
+    <script type="text/javascript" src="rdpcore_min.js"></script>
+    <script type="text/javascript" src="rdp_min.js"></script>
+</header>
+
+
+<form  onsubmit="return connect()" id="login">
+	<table>
+		<tr><td>Spark Gateway</td><td> <input type="text" name="gateway" id="gateway"
+			required="true" /></td></tr>
+		<tr>
+			<td colspan="2">Enter the name of the remote computer:</td>
+		</tr>
+		<tr>
+			<td>Computer</td>
+			<td><input type="hidden" name="id" /> <input type="text"
+				name="server" id="server" required="true" /></td>
+		</tr>
+		<tr>
+			<td>Port</td>
+			<td><input type="number" name="port" value="3389" />
+			</td>
+		</tr>
+		<tr>
+			<td>User Name</td>
+			<td><input type="text" name="user" id = "user"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="pwd" id = "pwd" autocomplete="off"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Domain</td>
+			<td><input type="text" name="domain" id = "domain" />
+			</td>
+		</tr>
+	</table>
+	<input type="submit" name="remoting" value="Connect" />
+</form>
+
+<script type="text/javascript">
+var gw = document.getElementById("gateway");
+gw.value = location.host;
+function connect(){
+	document.getElementById('login').style.display = 'none';
+	var gateway = gw.value;
+	var server = document.getElementById("server").value;
+	var user = document.getElementById("user").value;
+	var pwd = document.getElementById("pwd").value;
+	var domain = document.getElementById("domain").value;
+	var	w = window.innerWidth;
+	var	h = window.innerHeight;
+	var color = 16;
+	
+	
+	
+	var url = "ws://" + gateway + "/RDP?" +  "gateway=" + gateway + "&server=" + server + "&width=" + w + "&height=" + h + "&color=" + color;
+	
+	if (user.length > 0){
+		url += "&user=" + user;
+	}
+	
+	if (pwd.length > 0){
+		url += "&pwd=" + encodeURIComponent(pwd);
+	}
+	
+	if (domain.length > 0){
+		url += "&domain=" + domain;
+	}
+	
+	var r = new svGlobal.Rdp(url, w, h, color);
+	var surface = new svGlobal.LocalInterface();
+	
+	r.onclose = function(){
+		document.getElementById('login').style.display = 'block';
+	};
+	r.addSurface(surface);
+	r.run();
+
+	return false;
+}
+
+</script>
+
+<body>
+    <div style="position: relative; clear: both">
+        <canvas id="remotectrl" width="1" height="1"></canvas>
+        <div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+            <textarea id="svTouchInput"></textarea>
+            <img src="cloud.png" title="My Files" id="svCloud">
+            <img src="info.png" title="Information" id="svInfo">
+        </div>
+        <div id="pc_key"><span>Ctrl</span><span>Alt</span><span>Shift</span><span>Del</span><span>Esc</span><span>...</span>
+            <div id="pc_key_more">
+                <span>F1</span><span>&larr;</span><span>&uarr;</span><span>&rarr;</span><span>&darr;</span><span>Start</span><span>Alt+F4</span><span>Ctrl+Alt+Del</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="mutiMonitor" class="appdlg">
+        <table>
+            <tr>
+                <td><b>You need a browser window for every monitor.</b></td>
+            </tr>
+            <tr>
+                <td>1. Please open another window for another monitor</td>
+                <td><input type="button" id="nextScr" value="Open" /></td>
+            </tr>
+            <tr>
+                <td>2. Repeat step 1 if you have more monitors</td>
+            </tr>
+            <tr>
+                <td>3. Make this window full screen (F11 or Command+Shift+F)</td>
+            </tr>
+            <tr>
+                <td>4. <input type="button" id="connectMultiMonitor" value="Connect" /></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <!-- filecontainer is used for file share -->
+    <div id="filecontainer" style="overflow:auto;display:none; width:85%">
+    </div>
+    <div id="appinfo" class="appdlg">
+        <img alt="" src="info.png" style="float:left">
+        <table>
+            <tbody>
+                <tr>
+                    <td align="right"><b>Connected to:</b></td>
+                    <td><span id="connectingTo"></span><br></td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Session id:</b></td>
+                    <td><span id="numericId"></span><br></td>
+                </tr>
+            </tbody>
+            <tbody id="shadowing">
+                <tr>
+                    <td align="right"><b>Join mode:</b></td>
+                    <td>
+                        <select id="joinSelect">
+            <option value="0">Every one can control</option>
+            <option value="1">Only one can control</option>
+            <option value="2">Only one can control (others can move mouse)</option>
+          </select><br></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Join this session with following link:</b><br>
+                        <a id="joinLink" target="_blank"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="right"><input type="button" id="requestControl" value="Request Control" disabled="disabled" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="ssParent"><input type="checkbox" id="saveSession">Leave session on and reconnect to it from other devices.</div>
+        <div id="keyParent"><input type="checkbox" id="shortcuts">Keyboard shortcuts</div>
+        <div style="overflow:auto;height:150px;display:none" id="touchGesture">
+            <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)</div>
+            Tap <img src="kbd.png" align="middle"> to activate soft keyboard. IE doesn't support 3 finger gestures and 2
+            finger scroll (mouse wheel).
+            <table>
+                <tr>
+                    <td><img src="longpress.png"></td>
+                    <td>Long press</td>
+                    <td>Right click</td>
+                </tr>
+                <tr>
+                    <td><img src="flick.png"></td>
+                    <td>Flick</td>
+                    <td>Scroll screen if remote desktop resolution is bigger, <br>otherwise, drag</td>
+                </tr>
+                <tr>
+                    <td><img src="pan.png"></td>
+                    <td>Pan</td>
+                    <td>Drag</td>
+                </tr>
+                <tr>
+                    <td><img src="2tap.png"></td>
+                    <td>2 finger tap</td>
+                    <td>Right click</td>
+                </tr>
+                <tr>
+                    <td><img src="2scroll.png"></td>
+                    <td>2 finger scoll</td>
+                    <td>Mouse wheel</td>
+                </tr>
+                <tr>
+                    <td><img src="3tap.png"></td>
+                    <td>3 finger tap</td>
+                    <td>Show software keyboard (iOS only)</td>
+                </tr>
+                <tr>
+                    <td><img src="3open.png"></td>
+                    <td>3 finger pinch open</td>
+                    <td>Maximize window</td>
+                </tr>
+                <tr>
+                    <td><img src="3close.png"></td>
+                    <td>3 finger pinch close</td>
+                    <td>Restore window</td>
+                </tr>
+                <tr>
+                    <td><img src="3left.png"></td>
+                    <td>3 finger flick left</td>
+                    <td>Previous window</td>
+                </tr>
+                <tr>
+                    <td><img src="3right.png"></td>
+                    <td>3 finger flick right</td>
+                    <td>Next window</td>
+                </tr>
+                <tr>
+                    <td><img src="3down.png"></td>
+                    <td>3 finger flick down</td>
+                    <td>Minimize all windows</td>
+                </tr>
+                <tr>
+                    <td><img src="3up.png"></td>
+                    <td>3 finger flick up</td>
+                    <td>Restore all windows</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

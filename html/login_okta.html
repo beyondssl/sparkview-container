@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spark View</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="Spark RDP" />
+<link rel="apple-touch-icon" href="rdp.png" />
+<meta name="application-name" content="Spark View" />
+<meta name="description"
+	content="Remotely view and contrl your computer with RDP protocol" />
+<link rel="SHORTCUT ICON" href="rdp.ico" />
+<link rel="icon" href="rdp32.png" sizes="32x32" />
+<link rel="icon" href="rdp48.png" sizes="48x48" />
+
+<link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="rdp.css" />
+
+<script type="text/javascript" src="appcfg.js"></script>
+<script type="text/javascript" src="hi5core_min.js"></script>
+<script type="text/javascript" src="hi5_min.js"></script>
+<style type="text/css">
+	.container {
+		background-color: #EEE;
+		border-radius: 10px;
+		box-shadow: 2px 2px 10px #888;
+		padding: 2em;
+		margin-top: 2em;
+	}
+	
+</style>
+	
+</head>
+<body>
+	<div id="login" style="background-color:white">
+		<form id="frmLogin">
+			<table align="center" class="container">
+				<tr>
+					<td align="right">Spark Gateway:</td>
+					<td><input type="text" name="gateway" id="gateway" required/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Domain\user name:</td>
+					<td><input type="text" name="user" id="user" required/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Password:</td>
+					<td><input type="password" name="pwd" required autocomplete="off"/>
+					</td>
+				</tr>
+				<tr><td></td><td>
+					<select name="keyboard" id="keyboard" style="width: 12em;"> 
+						<option value="1033">English (United States)</option>
+						<option value="2057">English (United Kingdom)</option>
+						<option value="4105">English (Canadian French)</option>
+						<option value="99999">Unicode (Universal QWERTY)</option>
+						<option value="99998">Unicode (Universal AZERTY)</option>
+						<option value="99997">Unicode (Universal QWERTZ)</option>
+						<option value="1025">Arabic (Saudi Arabia)</option>
+						<option value="1043">Dutch (Netherlands)</option>
+						<option value="2067">Dutch (Belgium)</option>
+						<option value="2052">Chinese (Simplified)</option>
+						<option value="1028">Chinese (Traditional)</option>
+						<option value="3759015940">Chinese (Traditional) Microsoft Pinyin IME 3.0</option>
+						<option value="2060">French (Belgium)</option>
+						<option value="3084">French (Canada Legacy)</option>
+						<option value="1036">French (France)</option>
+						<option value="4108">French (Switzerland)</option>
+						<option value="1031">German (Germany)</option>
+						<option value="2055">German (Switzerland)</option>
+						<option value="66567">German (IBM)</option>
+						<option value="1037">Hebrew</option>
+						<option value="1039">Icelandic</option>
+						<option value="6153">Irish (Ireland)</option>
+						<option value="1040">Italian (Italy)</option>
+						<option value="66576">Italian (142) (Italy)</option>
+						<option value="3758162961">Japanese (Japan)</option>
+						<option value="3758162962">Korean (Korea)</option>
+						<option value="1044">Norwegian (Bokmal)</option>
+						<option value="1083">Norwegian with Sami</option>
+						<option value="1045">Polish</option>
+						<option value="2070">Portuguese</option>
+						<option value="1046">Portuguese (Brazil ABNT)</option>
+						<option value="66582">Portuguese (Brazil ABNT2)</option>
+						<option value="1049">Russian (Russia)</option>
+						<option value="1034">Spanish (International Sort)</option>
+						<option value="66570">Spanish (Variation)</option>
+						<option value="2058">Spanish (Mexico/Latin American)</option>
+						<option value="1053">Swedish (Sweden)</option>
+						<option value="1055">Turkish</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td align="right"><input type="submit" name="usrlogin"
+						value="Sign in" />
+					</td>
+				</tr>
+
+			</table>
+		</form>
+	</div>
+	<div>
+		<canvas id="remotectrl" width="1" height="1"></canvas>
+		<div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+			<textarea id="svTouchInput"></textarea>
+			<img src="cloud.png" title="My Files" id="svCloud">
+			<img src="info.png" title="Information" id="svInfo">
+		</div>
+		<div id="pc_key"><span>Ctrl</span><span>Alt</span><span>Shift</span><span>Del</span><span>Esc</span><span>...</span>
+			<div id="pc_key_more">
+				<span>F1</span><span>&larr;</span><span>&uarr;</span><span>&rarr;</span><span>&darr;</span><span>Start</span><span>Alt+F4</span><span>Ctrl+Alt+Del</span>
+	    	</div>
+		</div>
+	</div>
+	<!-- filecontainer is used for file share -->
+	<div id="filecontainer" style="overflow:auto;display:none; width:85%">
+	</div>
+    <div id="appinfo" class="appdlg">
+        <img alt="" src="info.png" style="float:left">  
+        <table>
+        <tbody>
+          <tr><td align="right"><b>Connected to:</b></td><td><span id="connectingTo"></span><br></td></tr>
+          <tr><td align="right"><b>Session id:</b></td><td><span id="numericId"></span><br></td></tr>
+        </tbody>
+        <tbody id="shadowing">
+          <tr><td align="right"><b>Join mode:</b></td><td>
+          <select id="joinSelect">
+            <option value="0">Every one can control</option>
+            <option value="1">Only one can control</option>
+			<option value="2">Only one can control (others can move mouse)</option>
+          </select><br></td></tr>
+          <tr><td colspan="2"><b>Join this session with following link:</b><br><a id="joinLink" target="_blank"></a></td></tr>
+          <tr><td></td><td align="right"><input type="button" id="requestControl" value="Request Control" disabled="disabled" /></td></tr>
+        </tbody>
+        </table>
+        <div id="ssParent"><input type="checkbox" id="saveSession">Leave session on and reconnect to it from other devices.</div>
+		<div id="keyParent"><input type="checkbox" id="shortcuts">Keyboard shortcuts</div>
+        <div style="overflow:auto;height:150px;display:none" id="touchGesture">
+        <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)</div>
+        Tap <img src="kbd.png" align="middle"> to activate soft keyboard. IE doesn't support 3 finger gestures and 2 finger scroll (mouse wheel).
+        <table>
+            <tr><td><img src="longpress.png"></td><td>Long press</td><td>Right click</td></tr>
+            <tr><td><img src="flick.png"></td><td>Flick</td><td>Scroll screen if remote desktop resolution is bigger, <br>otherwise, drag</td></tr>
+            <tr><td><img src="pan.png"></td><td>Pan</td><td>Drag</td></tr>
+            <tr><td><img src="2tap.png"></td><td>2 finger tap</td><td>Right click</td></tr>
+            <tr><td><img src="2scroll.png"></td><td>2 finger scoll</td><td>Mouse wheel</td></tr>
+            <tr><td><img src="3tap.png"></td><td>3 finger tap</td><td>Show software keyboard (iOS only)</td></tr>
+            <tr><td><img src="3open.png"></td><td>3 finger pinch open</td><td>Maximize window</td></tr>
+            <tr><td><img src="3close.png"></td><td>3 finger pinch close</td><td>Restore window</td></tr>
+            <tr><td><img src="3left.png"></td><td>3 finger flick left</td><td>Previous window</td></tr>
+            <tr><td><img src="3right.png"></td><td>3 finger flick right</td><td>Next window</td></tr>
+            <tr><td><img src="3down.png"></td><td>3 finger flick down</td><td>Minimize all windows</td></tr>
+            <tr><td><img src="3up.png"></td><td>3 finger flick up</td><td>Restore all windows</td></tr>
+        </table>
+        </div>
+    </div>
+	
+<script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="rdpcore_min.js" async="async"></script>
+<script type="text/javascript" src="rdp_min.js" async="async"></script>
+<script type="text/javascript" src="login_okta_min.js" async="async"></script>
+	
+</body>
+</html>
