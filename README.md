@@ -5,7 +5,7 @@ Current repository of SparkView for Docker, globally distributed by [beyond SSL 
 * [latest, 5.9, 5.9.0](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
 
 ## Dependencies
-* OpenJDK 14.0.2 buster
+* [OpenJDK 14.0.2 buster](https://github.com/docker-library/openjdk/blob/83fbf16d99f4094df192b4f07909b473ad1d8392/14/jdk/buster/Dockerfile)
 
 ## Quick usage guide
 ### For use with docker-compose
@@ -44,6 +44,6 @@ services:
 
 All specified environmental variables:
 
-* `{REMOTE_MANAGEMENT}` - boolean
-* `{REMOTE_PASSWORD}` - string
-* `{SSH}` - boolean
+* `{REMOTE_MANAGEMENT}`<br>**boolean**<br>default value: `true`<br>Allows remote access to SparkView, writes the `remoteManage = true/false` parameter to gateway.conf
+* `{REMOTE_PASSWORD}`<br>**string**<br>default value: `changeme`<br>Sets the default password for access, **should definitely be changed**, writes the `password = string` parameter to gateway.conf
+* `{SSH}`<br>**boolean**<br>default value: `true`<br>Allows ssh access to SparkView, writes the `ssh = true/false` parameter to gateway.conf
