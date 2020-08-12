@@ -8,7 +8,7 @@ volumes:
 
 services:
   sparkview:
-    image: 'beyondssl/sparkview:latest'
+    image: 'beyondssl/sparkview:5.9'
     volumes:
       - 'data:/usr/local/bin/SparkGateway/data'
       - 'conf:/usr/local/bin/SparkGateway/conf'
