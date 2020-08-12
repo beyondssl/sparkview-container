@@ -42,7 +42,7 @@ services:
       - '443:443'
 ```
 
-All sepcified environmental variables:
+All specified environmental variables:
 
 * `{REMOTE_MANAGEMENT}` - boolean
 * `{REMOTE_PASSWORD}` - string
