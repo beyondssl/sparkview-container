@@ -28,6 +28,7 @@ volumes:
   data:
   conf:
   keystore:
+  lic:
 
 services:
   sparkview:
@@ -36,10 +37,7 @@ services:
       - 'data:/usr/local/bin/SparkGateway/data'
       - 'conf:/usr/local/bin/SparkGateway/conf'
       - 'keystore:/usr/local/bin/SparkGateway/keystore'
-    environment:
-      REMOTE_MANAGEMENT: "true"
-      REMOTE_PASSWORD: "changeme"
-      SSH: "true"
+      - 'lic:/usr/local/bin/SparkGateway/lic'
     ports:
       - '80:80'
       - '443:443'
