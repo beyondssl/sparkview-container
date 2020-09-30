@@ -1,8 +1,11 @@
 # SparkView
+![beyond SSL](https://www.beyondssl.com/beyondssl-logo-small-color.png)
+
 Current repository of SparkView for Docker, globally distributed by [beyond SSL GmbH](https://www.beyondssl.com/).
 
 ## Possible tags
-* [latest, 5.9, 5.9.0](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
+* [latest](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
+* [5.9.0](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
 
 ## Dependencies
 * [OpenJDK 14.0.2 buster](https://github.com/docker-library/openjdk/blob/83fbf16d99f4094df192b4f07909b473ad1d8392/14/jdk/buster/Dockerfile)
@@ -42,8 +45,18 @@ services:
       - '443:443'
 ```
 
-All specified environmental variables:
+## About SparkView
+SparkView was developed by RemoteSpark, a pioneer in the world of HTML5. It is a smart and easy remote access solution that reduces complexity, allows your employees to work effectively and, therefore, helps to better position your company within the market in the long run. The secure remote access solution works with every browser, no VPN client needs to be installed and works using a server installed in the DMZ. It is also scalable for a great number of users (>10,000). Access your VMs, desktops, servers or applications anytime and from anywhere.
 
-* `{REMOTE_MANAGEMENT}`<br>**boolean**<br>default value: `true`<br>Allows remote access to SparkView, writes the `remoteManage = true/false` parameter to gateway.conf
-* `{REMOTE_PASSWORD}`<br>**string**<br>default value: `changeme`<br>Sets the default password for access, **should definitely be changed**, writes the `password = string` parameter to gateway.conf
-* `{SSH}`<br>**boolean**<br>default value: `true`<br>Allows ssh access to SparkView, writes the `ssh = true/false` parameter to gateway.conf
+**Benefits of SparkView**
+* Secure remote access to applications, desktops and servers from any device via browser
+* No installation on clients or target systems
+* A central point of administration and authorization
+* HTML5-technology
+* Flexible, stable and highly scalable
+* Very low support effort
+* Optional integration of multi-factor authentication
+* Supports common protocols like RDP, SSH, Telnet and VNC
+* No Java, No Flash, No ActiveX, No Plugin, No Rollout
+
+[Click here](https://www.beyondssl.com/en/products/sparkview/) for more information on SparkView.
