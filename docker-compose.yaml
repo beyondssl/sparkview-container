@@ -15,10 +15,6 @@ services:
       - 'conf:/usr/local/bin/SparkGateway/conf'
       - 'keystore:/usr/local/bin/SparkGateway/keystore'
       - 'lic:/usr/local/bin/SparkGateway/lic'
-    environment:
-      REMOTE_MANAGEMENT: "true"
-      REMOTE_PASSWORD: "changeme"
-      SSH: "true"
     ports:
       - '80:80'
       - '443:443'
