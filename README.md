@@ -5,7 +5,6 @@ Current repository of SparkView for Docker, globally distributed by [beyond SSL 
 
 ## Possible tags
 * [latest](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
-* [5.9.0](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
 
 ## Dependencies
 * [OpenJDK 14.0.2 buster](https://github.com/docker-library/openjdk/blob/83fbf16d99f4094df192b4f07909b473ad1d8392/14/jdk/buster/Dockerfile)
