@@ -1,3 +1,31 @@
+Build 969
+1. Fixed servers.json serialization bug which was introduced in 968.
+
+Build 968
+1. Fixed copying directory to redirected drive not working issue when gateway is running on Linux.
+
+Build 967
+1. Fixed microphone audio quality issue on ZOOM meeting which happens on Windows 10.
+2. Fixed "You Position" button not working issue for file uploading.
+
+Build 966
+1. File content is allowed for keyfile parameter in SSH.
+2. Set rec.timestampSubDir = false to disable timestamp subdirectory for recording.
+3. rec.begin.exec and rec.end.exec for running an application before or after the session is recorded. Arguments: fileName, server, user, sessionId.
+4. Directories are allowed in __record_name parameter (recording file name).
+
+Build 965
+1. Don't save session information into session recording.
+
+Build 964
+1. Copy/Paste image, html formats with context menu in Chrome and Edge.
+2. Fixed non-ssh message displayed in playeremote.html issue.
+
+Build 963
+1. Fixed compressed audio codec not working on Zoom issue.
+2. Updated third party libraries: Apache HttpClient (4.5.13), PDFBOX (2.0.21), BouncyCastle (1.66), xmlsec (2.2.0). 
+3. Fixed Storage state error after resetting user two-factor authentication with HTTP API.
+
 Build 962
 1. Added errMsgCode and errMsgValue parameters, which can be used to send error information to users.
 2. Fixed session information is visible in recorded SSH session issue.
