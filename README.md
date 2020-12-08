@@ -3,6 +3,30 @@
 
 Current repository of SparkView for Docker, globally distributed by [beyond SSL GmbH](https://www.beyondssl.com/).
 
+## About SparkView
+SparkView is a smart and easy remote access solution that works from any device with a browser.
+
+No VPN client needs to be installed, simply deploy the Docker image in your DMZ.
+
+Access VMs, desktops, servers or applications anytime and from anywhere, without complex and costly client roll-outs or user management.
+
+**Key benefits of SparkView**
+* TLS security (SSL via RDP) and authentication on network level (NLA)
+* No data transmitted between client and application, just images
+* One single point of administration
+* Easy local printing, no installation and handling of printer drivers needed
+* Very fast and easy file transfer (drag & drop)
+* Copy and paste between the local client and remote applications
+* Supports Radius, SAML, SSO, 2FA
+* Flexible, stable and highly scalable (> 10k users)
+* RDP, SSH, VNC and Telnet protocols are supported
+* No Java, No Flash, No ActiveX, No Plugin
+* and more
+
+Check out this image for a first look and talk to us to learn about all the features and solutions offered by beyond SSL and SparkView (e.g. integrations with F5 and Pulse Secure)
+
+For more information, please [click here](https://www.beyondssl.com/en/products/sparkview/).
+
 ## Possible tags
 * [latest](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
 
@@ -41,19 +65,3 @@ services:
       - '80:80'
       - '443:443'
 ```
-
-## About SparkView
-SparkView was developed by RemoteSpark, a pioneer in the world of HTML5. It is a smart and easy remote access solution that reduces complexity, allows your employees to work effectively and, therefore, helps to better position your company within the market in the long run. The secure remote access solution works with every browser, no VPN client needs to be installed and works using a server installed in the DMZ. It is also scalable for a great number of users (>10,000). Access your VMs, desktops, servers or applications anytime and from anywhere.
-
-**Benefits of SparkView**
-* Secure remote access to applications, desktops and servers from any device via browser
-* No installation on clients or target systems
-* A central point of administration and authorization
-* HTML5-technology
-* Flexible, stable and highly scalable
-* Very low support effort
-* Optional integration of multi-factor authentication
-* Supports common protocols like RDP, SSH, Telnet and VNC
-* No Java, No Flash, No ActiveX, No Plugin, No Rollout
-
-[Click here](https://www.beyondssl.com/en/products/sparkview/) for more information on SparkView.
