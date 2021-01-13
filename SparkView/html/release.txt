@@ -1,3 +1,18 @@
+Build 971 (6.0.0)
+1. Supports native RDP shadowing. You can use <a href="shadow.html">shadow.html</a> to shadow any active RDP sessions.
+2. Better audio encoding with new thread.
+3. Better resolution change support in session recording.
+4. Fixed recorded session playback issue when the resolution is wrong.
+5. Spark View becomes free personal version by default (allow 2 concurrent sessions) if license file was not found.
+Incompatibility warning: audiorecorder_min.js is added and it'll be loaded by the library automatically. Make sure you deploy it along with other JS files.
+
+
+Build 970
+1. Fixed "Not able to execute command for SSH, TELNET" on iOS.
+2. Use "Submit" as the value of the "Submit" button on all browsers.
+3. Improved audio call quality in Zoom meeting.
+4. More debugging logs for printing.
+
 Build 969
 1. Fixed servers.json serialization bug which was introduced in 968.
 

@@ -154,7 +154,7 @@ var __svi18n = {
                 <input type="text" placeholder="Benutzername" id="loginUser"/><br>\
                 <input type="password" placeholder="Passwort" id="loginPassword" autocomplete="off"/><br>\
                 <input type="text" placeholder="Domain" id="loginDomain"/>\
-                <input type="submit" id="loginConnect"/>\
+                <input type="submit" value="einreichen" id="loginConnect"/>\
                 </form>',
             'loaded': false,
             'init': function() {

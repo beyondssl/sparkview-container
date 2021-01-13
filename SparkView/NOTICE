@@ -3,7 +3,7 @@ Copyright 1999-2020 Remote Spark Corp.
 
 This product includes software developed by:
 
-The Apache Software Foundation (http://www.apache.org/).
+The Apache Software Foundation (HttpClient, PDFBox, etc.) (http://www.apache.org/).
 
 The Windows Installer is built with the Nullsoft
 Scriptable Install System (NSIS). http://nsis.sourceforge.net.

@@ -23,6 +23,20 @@ header, h2 {
 <body>
 <h2>Version History and Release Notes for Spark View</h2>
 <article>
+	<header>6.0.0 Januarary 11, 2021</header>
+	<ol>
+	<li>Supports native RDP shadowing. You can use <a href="shadow.html">shadow.html</a> to shadow any active RDP sessions.</li>
+	<li>Better audio encoding with new thread.</li>
+	<li>Better resolution change support in session recording.</li>
+	<li>Fixed recorded session playback issue when the resolution is wrong.</li>
+	<li>Spark View becomes free personal version by default (allow 2 concurrent sessions) if license file was not found.</li>
+	<li><span style="color:orange; font-size: 1.8em">&#9888;</span><strong>Incompatibility warning:</strong> audiorecorder_min.js is added and it'll be loaded by the libaray automatically. Make sure you deploy it along with other JS files.</li>
+	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
+	<li><a href="SparkGateway.zip">Download</a></li>
+	</ol>
+</article>
+
+<article>
 	<header>5.9.0 July 13, 2020</header>
 	<ol>
 	<li>Supports Webcam redirection.</li>
@@ -33,13 +47,7 @@ header, h2 {
 	<li>Fixed a specific DIB format issue on clipboard redirection.</li>
 	<li>Fixed validTo parameter not working issue on HTTP SYMLINK API.</li>
 	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
-	<li><a href="SparkGateway.zip">Download</a></li>
-	</ol>
-	<header>Known issues</header> 
-	<ol>
-	<li>IE does't support audio recording (microphone redirection).</li>
-	<li>RemoteApp on separated Window doesn't work on IE because of IE bug.</li>
-	<li>Windows doesn't support NumpadEqual. Please use non-numpad or unicode keyboard instead.</li>
+	<li><a href="5.9/SparkGateway.zip">Download</a></li>
 	</ol>
 </article>
 
@@ -225,8 +233,8 @@ header, h2 {
 <li>Fixed "Create directory" button not working issue on the file loading interface.</li>
 <li>Fixed mapClipboard switch not working on cached session issue.</li>
 <li>UPDATE: SparkGateway.jar, html directory. <a href="5.0/SparkGateway.zip">Download</a></li>
-<li><span style="color:yellow; font-size: 1.8em">&#9888;</span><strong>Incompatiblity warning: You need to include h5core_min.js and rdpcore_min.js in your web pages too since 5.0. 
-	You must configure hi5.libPath if you are using Spark View client side library in your portal and has Web Workers enabled.</strong></li>
+<li><span style="color:orange; font-size: 1.8em">&#9888;</span><strong>Incompatiblity warning:</strong> You need to include h5core_min.js and rdpcore_min.js in your web pages too since 5.0. 
+	You must configure hi5.libPath if you are using Spark View client side library in your portal and has Web Workers enabled.</li>
 </ol>
 </article>
 
