@@ -1,3 +1,26 @@
+Build 976
+1. Fixed mouse wheel not working issue on Chrome 89.
+
+Build 975
+1. RDP: better audio quality and performance on microphone redirection.
+2. TELNET: supports utf-8 encoding.
+3. Fixed mouse stuck issue on specific Hyper-V console connection when the resolution is changed in Hyper-V console.
+
+Build 974
+1. Supports OTP code (two factor authentication) on Radius integration.
+2. Supports transferCredential property on Radius integration.
+
+
+Build 973
+1. List session HTTP API can query with "server", "user", "domain", "symlink" and "__ip" parameters.
+2. Fixed RemoteApp permission issue when exe path is used instead of alias name.
+
+
+Build 972
+1. RDP: Fixed copy issue from the non-primary monitor when multi-monitor is enabled.
+2. RDP: Better audio input device detection.
+
+
 Build 971 (6.0.0)
 1. Supports native RDP shadowing. You can use <a href="shadow.html">shadow.html</a> to shadow any active RDP sessions.
 2. Better audio encoding with new thread.

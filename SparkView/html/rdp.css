@@ -123,7 +123,7 @@ background-color:#0F0;
 	border: none;
 	resize: none;
 	position: absolute;
-	opacity: 0;
+	opacity: 0.01;
 	margin: 0;
 	cursor: default;
 	overflow: hidden;
@@ -242,4 +242,8 @@ background-color:#0F0;
 	display: none;
 }
 
-/*canvas { background:url(rdp128.png) }*/
+canvas { 
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
