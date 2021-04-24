@@ -1,3 +1,11 @@
+Bild 978
+1. SSH: Fixed Alt key status issue after pressing Alt+TAB.
+2. SSH: Removed keyfile log.
+
+Build 977
+1. Fixed RemoteApp sometimes not maximized issue on Windows 2019.
+3. Fixed a drawing issue caused by browser bug.
+
 Build 976
 1. Fixed mouse wheel not working issue on Chrome 89.
 
