@@ -1,3 +1,13 @@
+Build 980
+1. Better lock key status synchronization.
+2. Paste file directly with Ctrl/Command + V (keyboard only).
+3. Fixed a null pointer issue on VNC recording player. 
+4. Workaround for "Connecting AudioNodes from AudioContexts with different sample-rate is currently not supported." error on Firefox when session is running in a iframe.
+5. Fixed starting second RemoteApp issue on login2.html.
+
+Build 979
+1. RDP: customize file path of audiorecorder_min.js in appcfg.js: audiorecorder: "/mylib/audiorecorder_min.js";
+
 Bild 978
 1. SSH: Fixed Alt key status issue after pressing Alt+TAB.
 2. SSH: Removed keyfile log.
