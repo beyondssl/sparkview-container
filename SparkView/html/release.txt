@@ -1,3 +1,12 @@
+Build 983
+1. Removed commons-io library dependency.
+
+Build 982
+1. Fixed a big file (> 10G) downloading issue.
+
+Build 981
+1. Fixed drive redirection not working on Windows 2003 issue.
+
 Build 980
 1. Better lock key status synchronization.
 2. Paste file directly with Ctrl/Command + V (keyboard only).
