@@ -1,3 +1,8 @@
+Build 984:
+1. Fixed Null Pointer Exception when "shadow sessionNumber" in Windows 2008 and clipboard redirection is enabled.
+2. Added file.viewable (default is true) in gateway.conf.
+4. Added releaseOnMouseOut in appcfg.js to release mouse buttons when user move the cursor out of the session. Default is false. This is helpful when session is in a iframe.
+
 Build 983
 1. Removed commons-io library dependency.
 
