@@ -1,3 +1,7 @@
+Build 985:
+1. RDP: Fixed a drawing issue when 24 bit color is not available.
+2. Fixed a API access issue on session shadowing.
+
 Build 984:
 1. Fixed Null Pointer Exception when "shadow sessionNumber" in Windows 2008 and clipboard redirection is enabled.
 2. Added file.viewable (default is true) in gateway.conf.

@@ -1,11 +1,11 @@
 Please executing the following commands as root.
 
-1. Download JDK
+1. Download JDK (OpenJDK 11 recommended)
 
-wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.rpm
+wget https://cdn.azul.com/zulu/bin/zulu11.50.19-ca-jdk11.0.12-linux.x86_64.rpm
 
 2. Install
-rpm -ivh jdk-8u102-linux-x64.rpm
+rpm -ivh zulu11.50.19-ca-jdk11.0.12-linux.x86_64.rpm
 
 3. Confirm Java version
 java -version
@@ -16,7 +16,7 @@ cd /usr/local/bin
 wget http://remotespark.com/view/SparkGateway.zip
 unzip SparkGateway.zip
 
-5. Download SUSE scripts:
+5. SUSE scripts (for reference):
 cd ./SparkGateway
 wget http://remotespark.com/view/SparkGateway_SUSE.sh
 wget http://remotespark.com/view/SparkGateway_SUSE.service
@@ -29,7 +29,7 @@ You can see "Listeing on port: 80.." if it's working. If not, you may need to ch
 
 Ctrl+C to terminate the executing
 
-7. Install as a service
+7. Install as a service (for reference)
 
 cp SparkGateway_SUSE.service /etc/systemd/system/SparkGateway.service
 touch /etc/systemd/system/SparkGateway.service
