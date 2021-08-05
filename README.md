@@ -1,5 +1,5 @@
-# SparkView
-![beyond SSL](https://www.beyondssl.com/beyondssl-logo-small-color.png)
+# SparkView by beyond SSL
+![beyond SSL](https://www.beyondssl.com/beyondssl-logo-200-2021.png)
 
 Current repository of SparkView for Docker, globally distributed by [beyond SSL GmbH](https://www.beyondssl.com/).
 
