@@ -1,3 +1,9 @@
+Build 987
+1. RDP: set transferCredentials as true for imported AD users
+
+Build 986
+1. Fixed domain name case sensitive problem on 2FA with active directory integration.
+
 Build 985:
 1. RDP: Fixed a drawing issue when 24 bit color is not available.
 2. Fixed a API access issue on session shadowing.
