@@ -1,3 +1,7 @@
+Build 988
+1. Added ssh.transferCredential, vnc.transferCredential, telnet.transferCredential in gateway.conf to override the transferCredential value in users.json.
+2. Fixed garbage characters on SSH session when users are configured and 2FA is enabled.
+
 Build 987
 1. RDP: set transferCredentials as true for imported AD users
 
