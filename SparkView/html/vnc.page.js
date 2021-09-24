@@ -83,7 +83,9 @@ function initServers(){
     }
     $id('gateway').value = gw || "www.remotespark.com:8080";
 
-    if (urlObj.server || urlObj.symlink){
+    var hasTokenAuth = document.cookie.indexOf('__SV_TOKEN_A') != -1;
+    var autoLogin = hasTokenAuth || urlObj.server || urlObj.symlink;
+    if (autoLogin){
         query = location.search.substring(1);
     }else{
         urlObj = svGlobal.util.getServerArgs();

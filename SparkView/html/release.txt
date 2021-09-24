@@ -1,3 +1,9 @@
+Build 989
+1. SSH: Fixed a display issue with Aruba switch.
+2. SSH: Added SSH key option on the UI.
+3. RDP: URL redirection is disabled if the default UI is not used.
+3. examplePost.html can redirect to any other web pages.
+
 Build 988
 1. Added ssh.transferCredential, vnc.transferCredential, telnet.transferCredential in gateway.conf to override the transferCredential value in users.json.
 2. Fixed garbage characters on SSH session when users are configured and 2FA is enabled.

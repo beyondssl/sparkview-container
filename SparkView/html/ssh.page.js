@@ -34,6 +34,29 @@ function checkBrowser() {
 
 };
 
+function loadFromFile(files){
+    if (files.length != 1) {
+        hi5.notifications.notify('Please choose one file only');
+        return;
+    }
+
+    var f = files[0];
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+		var result = e.target.result;
+		if (!result) return;
+		console.log(result);
+		var elm = document.getElementById('keyfile');
+		if (elm){
+			elm.value = result;
+		}
+    };
+
+    reader.readAsText(f);
+}
+
+
 function initUI() {
 	checkBrowser();
 	svGlobal.util.initDragDrop($id('dropZone'), $id('frmConn'));
@@ -61,6 +84,14 @@ function initUI() {
 		Connection.loadToForm($id('frmConn'), last);
 		$id('frmConn').elements['pwd'].focus();
 	}
+
+	var elm = hi5.$('certfile');
+	if (elm) {
+		elm.addEventListener('change', function(e){
+			loadFromFile(e.target.files);
+		}, false);
+	}
+
 }
 
 window.addEventListener('load', initUI, false);
