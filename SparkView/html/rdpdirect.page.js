@@ -1,4 +1,8 @@
-function connectRDP(args, q){
+window.$id = function (id){
+    return document.getElementById(id);
+};
+
+function connectRDP(args, q) {
     var r = null
         oldQ = q;
 
@@ -40,18 +44,21 @@ function connectRDP(args, q){
 		}
     }
 
-    if (r.hasSmartCard() || r.hasScanner()){
-        startGatewayAgent(r);
-    } else {
-        r.run();
-    }
-
     r.onclose = function(expected){
         if (window.__agentBridge){
             __agentBridge.close();
         }
+        if (svGlobal.monitors){
+            for (var i = 0, len = svGlobal.monitors.length; i < len; i++){
+                if (svGlobal.monitors[i]){
+                    svGlobal.monitors[i].close();
+                }
+            }
+        }
     };
 
+    r.run();
+    return false;
 }
 
 window.onload = function() {

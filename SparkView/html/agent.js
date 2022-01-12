@@ -7,7 +7,7 @@ function startGatewayAgent(r){
     if (navigator.appVersion.indexOf("Win")!=-1) {
         downloadRef.href="sg_agent.exe";
     } else if (navigator.appVersion.indexOf("Mac")!=-1) {
-        downloadRef.href="sg_agent.zip";
+        downloadRef.href="sg_agent.tbz";
     } else if (navigator.appVersion.indexOf("Linux")!=-1) {
         downloadRef.href="sg_agent.rpm";
     };

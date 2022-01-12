@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Session Dashboard</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <link rel="stylesheet" href="hi5.css" />        
+        <link rel="stylesheet" href="sessiondashboard.css" />
+
+        <script type="text/javascript" src="resource.js"></script>
+		<script type="text/javascript" src="sessiondashboard.page.js"></script>
+        <script type="text/javascript" src="hi5core_min.js"></script>
+        <script type="text/javascript" src="hi5_min.js"></script>
+  	</head>
+
+  	<body>
+		<h1 class="title pr-lg pl-lg">Current session(s) on the gateway</h1>
+	
+		<div class="pr-lg pl-lg" id="errMsgMediaSource">
+			<p style="color:red";></p>
+		</div>
+
+        <div>
+            <h3 class="count pr-lg pl-lg" id="sessionCount">sessions found</h3>
+        </div>
+
+        <div class="pr-lg pl-lg">
+            <div class="filters" id="filter">
+                <input type="text" class="input-key" id="searchKeyword" onkeydown="filter(event)" placeholder="Filter by Session ID, User Name or Protocol Type...">
+                <select id="sorter" class="sort-select" onchange="reshuffle()">
+                    <option value="" selected="selected" disabled="disabled">Sort Sessions</option>                     
+                    <option value="['type', 'asc']">Type: A to Z</option> 
+                    <option value="['type', 'desc']">Type: Z to A</option> 
+                    <option value="['name', 'asc']">User Name: A to Z</option> 
+                    <option value="['name', 'desc']">User Name: Z to A</option> 
+                    <option value="['time', 'asc']">Start Time Asc </option> 
+                    <option value="['time', 'desc']">Start Time Desc</option> 
+                </select>
+            </div> 
+
+            <div class="pt-sm pb-sm"></div>
+            
+            <div>
+                <div class="row grid-row" id="grid">
+                    <!---->                   
+                </div>
+            </div>
+        </div>
+  	</body>
+</html>

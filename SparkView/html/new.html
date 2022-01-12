@@ -23,6 +23,30 @@ header, h2 {
 <body>
 <h2>Version History and Release Notes for Spark View</h2>
 <article>
+	<header>6.1.0 Januarary 10, 2022</header>
+	<ol>
+	<li>RDP: WebUSB based USB redirection.
+	<li>RDP: No temporary file generated on gateway when you copy a file from the server.</li>
+	<li>RDP: New cipherSuitesClient in gateway.conf to configure the cipher suites used in RDP connection.</li>
+	<li>RDP: New "enforce" value for credSSP entry in gateway.conf.</li>
+	<li>RDP: RDP server plugin for monitor server (15).</li>
+	<li>RDP: New toolsdir entry in gateway.conf which will be automatically redirected as a drive and run the RDP plugin for the monitor server (15).</li>
+	<li>RDP: Fixed "Access denied" issue when downloading a file with Alternated Data Streams. </li>
+	<li>RDP: Workaround for Chrome full screen bug 1281939.</li>
+	<li>SSH: New cmdList parameter for SSH command whitelist or blacklist.</li>
+	<li>SSH: Supports BCrypt encrypted key file and PKCS#8 format, and aes-256-ctr private key.</li>
+	<li>SNMP support.</li>
+	<li>New sessiondashboard.html reference implementation for session notification.</li>
+	<li>Don't trust connections from localhost in config.html and API with trustLocal = false in gateway.conf.</li>
+	<li>Fixed a UPN login issue on Active Directory integration.</li>
+	<li>Standalone Monitor Server for monitoring, event logging.</li>
+	<li>Fixed downloading issue when files includes special characters.</li>
+	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
+	<li><a href="SparkGateway.zip">Download</a></li>
+	</ol>
+</article>
+
+<article>
 	<header>6.0.0 Januarary 11, 2021</header>
 	<ol>
 	<li>Supports native RDP shadowing. You can use <a href="shadow.html">shadow.html</a> to shadow any active RDP sessions.</li>

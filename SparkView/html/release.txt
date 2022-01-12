@@ -1,3 +1,25 @@
+Build 993 (6.1)
+1. RDP: WebUSB based USB redirection.
+2. RDP: No temporary file generated on gateway when you copy a file from the server.
+3. RDP: New cipherSuitesClient in gateway.conf to configure the cipher suites used in RDP connection.
+4. RDP: New "enforce" value for credSSP entry in gateway.conf.
+5. RDP: RDP server plugin for monitor server (15).
+6. RDP: New toolsdir entry in gateway.conf which will be automatically redirected as a drive and run the RDP plugin for the monitor server (15).
+7. RDP: Fixed "Access denied" issue when downloading a file with Alternated Data Streams. 
+8. RDP: Workaround for Chrome full screen bug 1281939.
+9. SSH: New cmdList parameter for SSH command whitelist or blacklist.
+10. SSH: Supports BCrypt encrypted key file and PKCS#8 format, and aes-256-ctr private key.
+11. SNMP support.
+12. New sessiondashboard.html reference implementation for session notification.
+13. Don't trust connections from localhost in config.html and API with trustLocal = false in gateway.conf.
+14. Fixed a UPN login issue on Active Directory integration.
+15. Standalone Monitor Server for monitoring, event logging.
+16. Fixed downloading issue when files includes special characters.
+
+
+Build 990
+1. SSH: Fixed a dead lock issue.
+
 Build 989
 1. SSH: Fixed a display issue with Aruba switch.
 2. SSH: Added SSH key option on the UI.

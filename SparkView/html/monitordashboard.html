@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Spark Gateway Monitoring Tools</title>
+
+	<script type="text/javascript" src="hi5core_min.js"></script>
+	<script type="text/javascript" src="monitor_min.js"></script>
+
+	<link rel="stylesheet" href="monitor.css" />
+</head>
+
+<body>
+	<div class="content">
+		<div style="text-align: center; margin-bottom:32px">
+			<h3></h3>
+			<h2 class="heading">Spark Gateway Monitoring Tools</h2>
+		</div>
+
+		<div class="itemsgrid">
+			<div class="itemslot">
+				<div class="item">
+					<a id="playbacks" href="javascript:loadRecordingQuery()">
+						<div class="itomicon">
+							<img class="itemiconimg" src="recording.png" alt="Playbacks">
+						</div>
+						<div class="itomcaption">
+							<h3 id="playbacknote" class="annotation">Playback</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="itemslot">
+				<div class="item">
+					<a id="inputs" href="javascript:loadKeyboardInputQuery()">
+						<div class="itomicon">
+							<img class="itemiconimg" src="input.png" alt="Inputs">
+						</div>
+						<div class="itomcaption">
+							<h3 id="keyboardnote" class="annotation">Keyboard inputs</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="itemslot">
+				<div class="item">
+					<a id="applications" href="javascript:loadApplicationQuery()">
+						<div class="itomicon">
+							<img class="itemiconimg" src="app.png" alt="Applications">
+						</div>
+						<div class="itomcaption">
+							<h3 id="applicationnote" class="annotation">Applications</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="itemslot">
+				<div class="item">
+					<a id="files" href="javascript:loadFileTransferQuery()">
+						<div class="itomicon">
+							<img class="itemiconimg" src="file.png" alt="Files">
+						</div>
+						<div class="itomcaption">
+							<h3 id="filenote" class="annotation">File transfers</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="itemslot">
+				<div class="item">
+					<a id="prints" href="javascript:loadPrintQuery()">
+						<div class="itomicon">
+							<img class="itemiconimg" src="print.png" alt="Prints">
+						</div>
+						<div class="itomcaption">
+							<h3 id="printnote" class="annotation">Prints</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="itemslot">
+				<div class="item">
+					<a id="users" href="javascript:loadUserEventQuery()">
+						<div class="itomicon">
+							<img class="itemiconimg" src="user.png" alt="Users">
+						</div>
+						<div class="itomcaption">
+							<h3 id="usereventnote" class="annotation">User events</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="itemslot">
+				<div class="item">
+					<a id="attacks" href="javascript:loadAttackQuery()">
+						<div class="itomicon">
+							<img class="itemiconimg" src="security.png" alt="Attacks">
+						</div>
+						<div class="itomcaption">
+							<h3 id="attacknote" class="annotation">Attack events</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="itemslot">
+				<div class="item">
+					<a id="licenses" href="javascript:loadLicenseQuery()">
+						<div class="itomicon">
+							<img class="itemiconimg" src="alert.png" alt="Licenses">
+						</div>
+						<div class="itomcaption">
+							<h3 id="licensenote" class="annotation">License events</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Query form -->
+		<div id="queries" class="queries">
+			<div class="querycontrols">
+				<div style="text-align: center; margin-right:30px">
+					<b>User Name</b>
+					<input type="text" name="userName" id="userName" />
+				</div>
+				<div style="text-align: center; margin-right:30px;">
+					<b>StartTime</b><span style="color:red">*</span>
+					<input type="datetime-local" id="startTime" name="startTime" size="10" required onchange="clearErrorMsg()"/>
+				</div>
+				<div style="text-align: center; margin-right:30px">
+					<b>Host Name</b>
+					<input type="text" name="hostName" id="hostName" /> 
+				</div>
+				<div style="text-align: center; margin-right:30px">
+					<b>EndTime</b>
+					<input type="datetime-local" id="endTime" name="endTime" />
+				</div>
+			</div>
+
+			<div class="querycontrols">
+				<div id="searchApp"style="text-align:center; margin-right:20px">
+					<b>Search application usage name</b>
+					<input type="text" name="searchAppName" id="searchAppName" oninput="clearErrorMsg()"/>
+				</div>
+				<div id="searchAppFormat"style="text-align:center; margin-right:20px">
+					<input type="checkbox" name="searchAppSrt" id="searchAppSrt"/> Download as .srt file
+				</div>
+				<div id="searchKeyboard" style="text-align:center; margin-right:20px">
+					<b>Search keyboard input</b>
+					<input type="text" name="searchKey" id="searchKey" oninput="clearErrorMsg()"/>
+				</div>				
+			</div>
+
+			<div class="search">
+				<input type="button" class="searchbutton" onclick=search() />
+			</div>
+		</div> 
+
+		<!-- Error Messages -->
+		<div id="errorDiv" style="text-align: left;">
+			<p ><label><span style="color:red;" id="errorMsg"></span></label></p>
+		</div>
+
+		<!-- Results --> 
+		<div id="result">
+			<p><label id="resultLabel"></label></p>
+
+			<div id="resultTable">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

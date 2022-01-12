@@ -1,0 +1,88 @@
+--
+-- This is RemoteSpark GATEWAY-ALERT-MIB
+--
+
+GATEWAY-ALERT-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    enterprises,
+    MODULE-IDENTITY,
+    OBJECT-TYPE,
+    NOTIFICATION-TYPE,
+    Integer32
+        FROM SNMPv2-SMI
+    DisplayString,
+    TEXTUAL-CONVENTION
+        FROM SNMPv2-TC
+    MODULE-COMPLIANCE,
+    OBJECT-GROUP,
+    NOTIFICATION-GROUP
+        FROM SNMPv2-CONF
+    ;
+
+-- Module Identity
+------------------
+gatewayMIB MODULE-IDENTITY
+    -- Date Format is "YYYYMMDDhhmmZ"
+    LAST-UPDATED "202112020000Z"
+    ORGANIZATION "RemoteSpark"
+    CONTACT-INFO "info@toremote.com"
+    DESCRIPTION  "This is the MIB of RemoteSpark Gateway"
+    -- Multiple pairs revision/description allowed
+    REVISION     "202112020000Z"
+    DESCRIPTION  "RemoteSpark Gateway MIB"
+    -- 1.3.6.1.4.1.29999.10
+    ::= { RemoteSpark 10 }
+
+-- Enterprise OIDs
+------------------
+RemoteSpark OBJECT IDENTIFIER ::= { enterprises 29999 }
+
+-- Textual Conventions
+----------------------
+
+-- Top-level tree (sections)
+----------------------------
+gatewayMIBObjects       OBJECT IDENTIFIER ::= { gatewayMIB 1 }
+gatewayMIBConformance   OBJECT IDENTIFIER ::= { gatewayMIB 3 }
+
+gatewayAlert			OBJECT IDENTIFIER ::= { gatewayMIBObjects 2 }
+
+-- SECTION: Gateway Notifications
+--------------------
+gatewayTraps OBJECT IDENTIFIER ::= { gatewayAlert 0 }
+
+licenseAlert NOTIFICATION-TYPE
+    STATUS  current
+    DESCRIPTION "Notification: license usage alert"
+    ::= { gatewayTraps 1 }
+
+attackAlert NOTIFICATION-TYPE
+    STATUS  current
+    DESCRIPTION "Notification: attack occurred"
+    ::= { gatewayTraps 2 }
+
+--
+-- SECTION: Conformance
+--
+compliance MODULE-COMPLIANCE
+    STATUS  current
+    DESCRIPTION
+        "The compliance statement for SNMP entities which
+        implement this MIB."
+    MODULE  -- this module
+    MANDATORY-GROUPS {
+        notifyGroup
+    }
+    ::= { gatewayMIBConformance 1 }
+
+notifyGroup NOTIFICATION-GROUP
+    NOTIFICATIONS {
+        licenseAlert,
+        attackAlert
+    }
+    STATUS current
+    DESCRIPTION "A collection of notification nodes in this MIB"
+    ::= { gatewayMIBConformance 3 }
+
+END

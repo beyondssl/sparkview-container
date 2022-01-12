@@ -2,38 +2,6 @@ window.$id = function (id){
     return document.getElementById(id);
 };
 
-function checkBrowser(){
-    if (hi5.browser.isChromeApp) return;
-    
-    var msg = '';
-    try { 
-        document.createElement('canvas').getContext('2d');
-    } catch (e) {
-        msg = 'This browser does not support Canvas.\n\n';
-    };
-    
-    
-    var noWebSocket = !('WebSocket' in window) && !('MozWebSocket' in window);
-    var userAgent = navigator.userAgent;
-    var isFirefox = userAgent.indexOf('Firefox') != -1;
-        
-    if (noWebSocket){
-        msg += "This browser doesn't support WebSocket.\n\n";
-        if (isFirefox){
-            msg += 'Please update to Firefox 6 or later.\n\n';
-        }
-        else if (userAgent.indexOf('Opera') != -1){
-            msg += 'Please open "opera:config#Enable WebSockets" (type it in the link field) make "Enable WebSockets" selected and restart Opera.\n\n';
-        }
-        else if (userAgent.indexOf('MSIE') != -1){
-            msg += 'Please install Google Chrome Frame.\n\n';
-        }
-    }
-    
-    if (msg.length > 0)
-        hi5.notifications.notify(msg);
-    
-};
 
 function initTimezone(){
     var zone = hi5.DateUtils.getGMT();
@@ -58,7 +26,6 @@ function initTimezone(){
 
 function initUI(){
 	window.removeEventListener('load', initUI, false);
-    checkBrowser();
     if (hi5.browser.isTouch && $id('touchrow')){
        	$id('touchrow').style.display = 'table-row';
     }
@@ -168,9 +135,11 @@ function initUI(){
     	};
     }
 
-    // if (window.devicePixelRatio < 1 || (window.devicePixelRatio > 1 && window.devicePixelRatio < 2)){
-    //     hi5.notifications.notify('Please make sure the zoom level of your browser is 100%');
-    // }
+    var usb = elms['mapUSB'];
+    if (usb && !navigator.usb){
+        usb.disabled = true;
+    }
+
 }
     
 window.addEventListener('load', initUI, false);
@@ -257,14 +226,6 @@ function useFullBrowser(){
     $id('height').value = 0;
 };
 
-function registerRdp(){
-    if ('registerProtocolHandler' in navigator){
-        navigator.registerProtocolHandler('web+rdp', location.protocol +'//' + location.host + '/rdpdirect.html?%s', 'Spark View');
-    }
-    else{
-        hi5.notifications.notify("Sorry, your browser doesn't support this.");
-    }
-}
 
 function connectRDP(e){
     e.preventDefault();
@@ -456,14 +417,10 @@ function connectRDP(e){
         console.log('no onnoresponse');
     };
 
-    if (r.hasSmartCard()){
-        startGatewayAgent(r);
-    }else{
-        r.run();
-    }
-   
+    r.run();
     return false;
-};
+}
+
 
 function serverListCallback(hasNew, connected){
     if (!connected){

@@ -42,7 +42,9 @@ window.addEventListener('load', function(){
             }
         };
         p.onprogress = function(played, total){
-            seekBar.value = (played / total * 100); 
+            if (total > 0){
+                seekBar.value = (played / total * 100); 
+            }
         };
         
         p.onend = function(){

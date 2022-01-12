@@ -17,6 +17,7 @@
     <script type="text/javascript" src="hi5core_min.js"></script>
     <script type="text/javascript" src="hi5_min.js"></script>
     <script type="text/javascript" src="surface_min.js"></script>
+    <script type="text/javascript" src="dvc_usb_min.js"></script>
     <script type="text/javascript" src="rdpcore_min.js"></script>
     <script type="text/javascript" src="rdp_min.js"></script>
 </head>
@@ -167,7 +168,7 @@
             </table>
         </div>
     </div>
-
+    <!-- For smartcard and scanner -->
     <div id="sgAgentInfo" class="appdlg">
         <table line-height:50px>
             <tr>
@@ -177,7 +178,7 @@
                 <td>Local hardware (smart card, scanner) redirection needs an agent (native application) running on your computer to acees the local hardware. Please:<br></td>
             </tr>
             <tr>
-                <td>&nbsp;&nbsp;1. <a id="agentRef" href="sg_agent.exe" id ="agentLink">Download</a> the agent.</td>
+                <td>&nbsp;&nbsp;1. <a id="agentRef" href="sg_agent.exe">Download</a> the agent.</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;2. Run the agent and keep it running during the connection (You only need to run the agent once for multiple sessions).</td>
@@ -191,8 +192,10 @@
         </table>
     </div>
 
+    <!-- For Scanner -->
     <div id="dsSelection" class="appdlg"></div>
 	
+    <!-- For 2FA -->
 	<div id="twofainfo" class="appdlg">
 		<div id="barcodeDiv">
 			<div>Please install Google or Microsoft Authenticator on your mobile device.<br>Scan the QR code to add an account (Other account for Microsoft Authenticator):</div>
@@ -212,6 +215,20 @@
 		</div>
 	</div>
 
+    <!-- For USB -->
+	<div id = "usbPicker" class="appdlg">
+		<form id="frmUsbPicker">
+			<fieldset>
+				<legend>Open USB</legend>
+				<input type="button" id="addUSB" value="  +  "></input><br><br>
+				<select id="selectedUSB" size="6" style="width: 16em;">
+				</select><br><br>
+				<input type="submit" name="confirm" value="OK"></input>
+			</fieldset>
+		</form>
+	</div>
+
+    <script type="text/javascript" src="recording_min.js"></script>    
     <script type="text/javascript" src="agent.js"></script>
     <script type="text/javascript" src="rdpdirect.page.js"></script>
 </body>

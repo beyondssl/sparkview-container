@@ -313,6 +313,9 @@
 								<td>Camera</td><td><input type="checkbox" name="mapCamera" id="mapCamera"/>Enable Camera</td>
 							</tr>
 							<tr>
+								<td>USB</td><td><input type="checkbox" name="mapUSB" id="mapUSB"/>Enable USB</td>
+							</tr>
+							<tr>
 								<td>Smart Card</td><td><input type="checkbox" name="smartCard" id="smartCard"/>Enable Smart Card</td>
 							</tr>
 							<tr>
@@ -500,7 +503,7 @@
         </table>
 		</div>
 	</div>
-
+	<!-- For smartcard and scanner -->
 	<div id="sgAgentInfo" class="appdlg">
         <table line-height:50px>
             <tr>
@@ -510,7 +513,7 @@
                 <td>Local hardware (smart card, scanner) redirection needs an agent (native application) running on your computer to acees the local hardware. Please:</td>
             </tr>
             <tr>
-                <td>&nbsp;&nbsp;1. <a id="agentRef" href="sg_agent.exe" id ="agentLink">Download</a> the agent.</td>
+                <td>&nbsp;&nbsp;1. <a id="agentRef" href="sg_agent.exe" >Download</a> the agent.</td>
             </tr>
             <tr>
                 <td>&nbsp;&nbsp;2. Run the agent and keep it running during the connection (You only need to run the agent once for multiple sessions).</td>
@@ -523,15 +526,29 @@
             </tr>
         </table>
 	</div>
+	<!-- For USB -->
+	<div id = "usbPicker" class="appdlg">
+		<form id="frmUsbPicker">
+			<fieldset>
+				<legend>Open USB</legend>
+				<input type="button" id="addUSB" value="  +  "></input><br><br>
+				<select id="selectedUSB" size="6" style="width: 16em;">
+				</select><br><br>
+				<input type="submit" name="confirm" value="OK"></input>
+			</fieldset>
+		</form>
+	</div>
+
+	<!-- For scanner -->
 	<div id="dsSelection" class="appdlg"></div>
 
 <script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="dvc_usb_min.js"></script>
 <script type="text/javascript" src="rdpcore_min.js"></script>
 <script type="text/javascript" src="rdp_min.js"></script>
 <script type="text/javascript" src="recording_min.js"></script>
 <script type="text/javascript" src="agent.js"></script>
 <script type="text/javascript" src="rdp.page.js"></script>
-
 </body>
 
 </html>
