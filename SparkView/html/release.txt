@@ -1,3 +1,29 @@
+Build 999
+1. SSH: reduced memory/CPU usage on gateway.
+2. SSH: new CommandFilterInterface for monitoring commands in plugin.
+3. Added getHeader() method on com.toremote.recording.Merger to get metadata from recording files.
+4. The session HTTP API returns loadbalanceTokenName and value too.
+5. Experimental proxy support to use gateway as a jump host (To turn it on: set http.proxy.enable = true in gateway.conf).
+
+Build 998
+1. VNC: Added vnc.ciphers in gateway.conf for VNC TLS encryption.
+2. SSH: Added ssh.ciphers in gaetway.conf for SSH encryption.
+
+Build 997
+1. RDP: Fixed a failed to copy file issue when the file has specific size.
+2. Added SessionInformation argument in com.toremote.gateway.plugin.Filterable.pipe method.
+3. sessionRecord value will be returned too when you query information for a single session with the HTTP Session API.
+
+Build 996
+1. RDP: Fixed copying file not working issue when mapDisk is disabled.
+2. Added file.filter.download in gateway.conf (file.filter is for uploading).
+
+Build 995
+1. RDP: Supports Smart Card Sign-in with new 'passwordIsPin' parameter.
+
+Build 994
+1. SparkGateway.jar works in Java 8 if SNMP is not enabled.
+
 Build 993 (6.1)
 1. RDP: WebUSB based USB redirection.
 2. RDP: No temporary file generated on gateway when you copy a file from the server.
@@ -15,6 +41,7 @@ Build 993 (6.1)
 14. Fixed a UPN login issue on Active Directory integration.
 15. Standalone Monitor Server for monitoring, event logging.
 16. Fixed downloading issue when files includes special characters.
+Incompatibility warning: Java 9 or later versions are required if SNMP is enabled (Please update to build 994).
 
 
 Build 990

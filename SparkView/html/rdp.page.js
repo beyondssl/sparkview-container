@@ -140,6 +140,20 @@ function initUI(){
         usb.disabled = true;
     }
 
+    var pin = elms['passwordIsPin'];
+    var card = elms['smartCard'];
+    if (pin && card){
+        pin.onchange = function(e){
+            if (e.target.checked && !card.checked){
+                card.checked = true;
+            }
+        };
+        card.onchange = function(e){
+            if (!e.target.checked && pin.checked){
+                pin.checked = false;
+            }
+        };
+    }
 }
     
 window.addEventListener('load', initUI, false);
@@ -366,6 +380,14 @@ function connectRDP(e){
             r.hide();
             if (window.__agentBridge){
                 __agentBridge.close();
+            }
+
+            if (svGlobal.monitors){
+                for (var i = 0, len = svGlobal.monitors.length; i < len; i++){
+                    if (svGlobal.monitors[i]){
+                        svGlobal.monitors[i].close();
+                    }
+                }
             }
         };
         var sur = new svGlobal.LocalInterface();
