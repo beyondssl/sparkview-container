@@ -1,3 +1,6 @@
+Build 1000
+1. Support VMWare web console (./html//vmware/index.html, index2.html, need to turn on proxy support: set http.proxy.enable = true in gateway.conf);
+
 Build 999
 1. SSH: reduced memory/CPU usage on gateway.
 2. SSH: new CommandFilterInterface for monitoring commands in plugin.
