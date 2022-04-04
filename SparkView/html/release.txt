@@ -1,3 +1,26 @@
+Build 1004
+
+1. SNMP: Fixed incorrect enterprise id issue.
+2. Fixed on file.viewable doesn't work on gaetway side issue.
+
+Build 1003
+1. New app.id entry in gateway.conf, which can be used for load balancing. This unique id will be automatically generated if it's not set.
+2. The CONTROL?target=gateway HTTP API returns the app.id too.
+3. The value of hi5.appcfg.loadbalanceTokenName now use app.id in gateway.conf instead of random id.
+3. The value of hi5.appcfg.loadbalanceTokenName can also be included in websocket URL (check rdpdirect.page.js for more details);
+4. Scollbar will be displayed always on macOS if the resolution is bigger than your local browser window.
+
+Build 1002
+1. Fixed AD Group member issue with server.json.
+2. Updated sshdirect.html.
+3. Enable smartCard in servers.json (set smartCard: true);
+4. Organization name for Two factor authentication in gateway.conf (set organization in gateway.conf).
+
+Build 1001
+1. Fixed shift and command key stuck issue when taking screenshot on macOS with Shift+CMD+4.
+2. Fixed groups property in users.json not working issue when the group name is invalid (for Active Directory).
+3. Credentials in SMB URL is not logged.
+
 Build 1000
 1. Support VMWare web console (./html//vmware/index.html, index2.html, need to turn on proxy support: set http.proxy.enable = true in gateway.conf);
 

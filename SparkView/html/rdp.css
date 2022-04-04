@@ -247,3 +247,17 @@ canvas {
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 }
+
+/* Make scrollbar alwasy visible on macOS */
+body::-webkit-scrollbar {
+	width: initial;
+	height: initial;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #333;
+}
+
+body::-webkit-scrollbar-track {
+	background-color: #999;
+}

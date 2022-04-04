@@ -1,14 +1,13 @@
-/* Various changes 2018 */
-
+/* Changes 2019 */
 body, html {padding: 0; margin: 0; background: #f0f0f0; font-family: 'Roboto', sans-serif;}
-.container {background-color: #fff; margin-top: 3em; width: 90%; margin: 3em auto 0 auto; max-width: 600px;}
+.container {background-color: #fff; margin-top: 3em; width: 600px; margin: 3em auto 0 auto;}
 .containerPrograms {width: 100%;}
 .icon {width: calc(16.6666666% - 10px); height: auto; text-align: center; padding: 1em; vertical-align: middle; transition: all .3s; margin-bottom: 10px; float: left; background: #fff; box-sizing: border-box; margin-right: 10px;}
 .icon:hover {background:#CCC;}
 .icon img {width:48px; height:48px;}
 .containerTop {width: 100%; float: left; background: #fff; box-sizing: border-box;}
-.cTLeft {width: 40%; float: left; padding: 10px 1em; box-sizing: border-box;}
-.cTLeft img {width: 100%; float: left; margin-top: 22px;}
+.cTLeft {width: 40%; float: left; padding: 6px 2em; box-sizing: border-box;}
+.cTLeft img {width: 100%; float: left; margin-top: 0px;}
 .cTRight {width: 60%; float: left; box-sizing: border-box; background: #005a80; padding: 1em 2em; text-align: right; color: #fff;}
 .containerCenter {width: 100%; float: left; background: #fff; padding: 2em; box-sizing: border-box; border-left: 3px solid #005a80; border-right: 3px solid #005a80; border-top: 3px solid #005a80;}
 .containerBottom {width: 100%; float: left; background: #005a80; padding: 1em 2em; box-sizing: border-box;}
@@ -26,8 +25,7 @@ p {margin: 0; font-size: 14px;}
 .fieldWrapper input[type="submit"]:hover {color: #000; background: #ccc;}
 .cCInnerRight p:first-child {margin-bottom: 20px;}
 .programsHeader {margin-bottom: 20px;}
-.programsOuter {position: fixed; height: 100vh; width: 100vw; background: url(Background_Programs.jpg) center center no-repeat; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
-.programsInner {position: absolute; left: 50%; top: 50%; width: 90%; max-width: 900px; transform: translate(-50%, -50%); margin: 0; padding: 1.5em; background: #005a80;}
+.programsInner {position: absolute; left: 50%; top: 50%; width: 900px; transform: translate(-50%, -50%); margin: 0; padding: 1.5em; background: #005a80;}
 .programsInner p {width: 100%; float: left; color: #fff; font-size: 18px; margin-bottom: 10px;}
 .programsTopButtons {width: 100%; margin: 10px 0; float: left;}
 .programsTopButtons input {-webkit-appearance: none; -moz-appearance: none; appearance: none; background: #fff; color: #000; padding: 8px 12px; margin-right: 5px; border: none; transition: all .3s; cursor: pointer; font-size: 14px;}
@@ -35,5 +33,8 @@ p {margin: 0; font-size: 14px;}
 #programs {width: 100%; float: left; margin-bottom: 20px;}
 .floatLeft {float: left; width: 100%; color: #fff;}
 .floatLeft a {color: #fff;}
+/* End of changes 2019 */
 
-/* End of 2019 changes */
+/* Changes 2022 */
+#login {border: none !important; width: 100%; height: 100%; background: rgb(51,51,51);}
+/* End of changes 2022 */

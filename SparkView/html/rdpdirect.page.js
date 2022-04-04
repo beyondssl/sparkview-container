@@ -2,9 +2,27 @@ window.$id = function (id){
     return document.getElementById(id);
 };
 
-function connectRDP(args, q) {
+function connectRDP(args, q, token) {
     var r = null
         oldQ = q;
+
+    //get loadbalance token from gateway
+    if (hi5.appcfg.loadbalanceTokenName && !token){
+        fetch(location.origin + '/CONTROL?target=gateway')
+            .then(function(response){
+                response.json()
+                    .then(function(data){ 
+                        connectRDP(args, q, data.appId);
+                    })
+                    .catch(function(e){
+                        console.error(e);
+                    })
+            })
+            .catch(function(e){
+                console.error(e)
+            });
+        return;
+    }
 
     if (!args.keyboard){
         args.keyboard = svGlobal.Rdp.languageToKeyboard.detect() || 1033;
@@ -25,8 +43,15 @@ function connectRDP(args, q) {
         var s = args['server_bpp'] || args['color'];
         var gw = args['gateway'] || hi5.browser.getHost();
         var color = s ? parseInt(s) : 16;
+        
+        if (token){
+            q += '&' + hi5.appcfg.loadbalanceTokenName + '=' + token;
+        }
         r = new svGlobal.Rdp(p + gw + '/RDP?' + q, w, h, color);
     }else{
+        if (token){
+            args[i5.appcfg.loadbalanceTokenName] = token;
+        }
         r = new svGlobal.Rdp2(args);
     }
     var surface = new svGlobal.LocalInterface(); 

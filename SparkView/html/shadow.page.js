@@ -29,6 +29,7 @@ function getInvitation(e) {
 	var sessionID = elements['sessionID'].value;
 	var control = elements['control'].checked;
 	var noConsentPrompt = elements['noConsentPrompt'].checked;
+	var gateway = elements['gateway'].value;
 
 	var prameters = 'server=' + server +
 				'&domain=' + domain +
@@ -45,7 +46,7 @@ function getInvitation(e) {
 		if (this.readyState === XMLHttpRequest.DONE) {
 			if (this.status === 200){
 				console.log(this.responseText);
-				doShadow(this.responseText, control, server);
+				doShadow(this.responseText, control, server, gateway);
 			}else if (this.status == 500 && this.responseText){
 				hi5.notifications.notify(this.responseText);
 			}else{
@@ -59,14 +60,17 @@ function getInvitation(e) {
 };
 
 
-function doShadow(invitation, control, server) {
+function doShadow(invitation, control, server, gateway) {
 	console.log("====doShadow() invitation=" + invitation);
 
 	var protocol = (location.protocol == 'https:') ? 'wss://' : 'ws://';
+	if (!gateway){
+		gateway = location.hostname + ':' + location.port;
+	}
 
 	$id('shadowInput').style.display = 'none';
 
-	var r = new svGlobal.Rdp(protocol + location.hostname + '/RDP?invitation=' + 
+	var r = new svGlobal.Rdp(protocol + gateway + '/RDP?invitation=' + 
 		encodeURIComponent(invitation) + '&pwd=&expert=Expert&shadow=true&control=' + control + '&server=' + server);
 
 	r.onclose = function() {

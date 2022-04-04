@@ -24,6 +24,7 @@ window.onload = function() {
     	args = svGlobal.util.getServerArgs();
         q = hi5.browser.obj2url(args);
     }
+    // q += "&terminalType=xterm&mapClipboard=on";
 
     var p = (args['useSSL'] == 'true' || 'https:' == location.protocol) ? 'wss://' : 'ws://';
     var w = args['width'] || window.innerWidth;
