@@ -475,7 +475,12 @@
 			<option value="2">Only one can control (others can move mouse)</option>
 		  </select><br></td></tr>
 		  <tr><td></td><td><input type="checkbox" id="joinOpen">Leave joined sessions open when close</td></tr>
-		  <tr><td colspan="2"><b>Join this session with following link:</b><br><a id="joinLink" target="_blank"></a></td></tr>
+		  <tr>
+				<td colspan="2"><b>Join this session with following link:</b><br>
+					<a id="joinLink" target="_blank"></a>
+					<img src="share.svg" class="h5-img-btn" alt="Share" id="shareSession">
+				</td>
+		  </tr>
 		  <tr>
 			<td colspan="2" align="right">
 				<input type="button" id="reqFullscr" value="Fullscreen" />
@@ -517,19 +522,37 @@
                 <td>Local hardware (smart card, scanner) redirection needs an agent (native application) running on your computer to acees the local hardware. Please:</td>
             </tr>
             <tr>
-                <td>&nbsp;&nbsp;1. <a id="agentRef" href="sg_agent.exe" >Download</a> the agent.</td>
+                <td>&nbsp;&nbsp;- <a id="agentRef" href="sg_agent.exe" >Please download</a> and install the agent.</td>
+            </tr>
+			<tr id="sgAgentSSLOptional">
+                <td>&nbsp;&nbsp;- Click <input type="button" id="btnBridge" value="Open"> to open a new window(bridge.html) to commnicate with the agent and keep it open during the connection.</td>
             </tr>
             <tr>
-                <td>&nbsp;&nbsp;2. Run the agent and keep it running during the connection (You only need to run the agent once for multiple sessions).</td>
-            </tr>
-            <tr id="sgAgentSSLOptional">
-                <td>&nbsp;&nbsp;3. Click <input type="button" id="btnBridge" value="Open"> to open a new window(bridge.html) to commnicate with the agent and keep it open during the connection.</td>
-            </tr>
-            <tr>
-                <td>Switch back and close this dialog to continue.</td>
+                <td>Close this dialog to continue.</td>
             </tr>
         </table>
 	</div>
+
+	<!-- For 2FA -->
+	<div id="twofainfo" class="appdlg">
+		<div id="barcodeDiv">
+			<div>Please install Google or Microsoft Authenticator on your mobile device.<br>Scan the QR code to add an account (Other account for Microsoft Authenticator):</div>
+			<img src="" alt="Barcode" id = "imgBarcode">
+		</div>
+		<div>
+			<input type="number" id="faCode" placeholder="6 digit code">
+			<input type="button" value="Enable" id="enableTwoFA">
+			<input type="button" value="Disable" id="disableTwoFA">
+		</div>
+	</div>
+	<div id="twofacode" class="appdlg">
+		<div>Please enter the two-factor authentication code</div>
+		<div>
+			<input type="number" id="faAuthCode" placeholder="6 digit code">
+			<input type="button" value="submit" id="btnTwoFACode">
+		</div>
+	</div>
+	
 	<!-- For USB -->
 	<div id = "usbPicker" class="appdlg">
 		<form id="frmUsbPicker">

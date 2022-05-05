@@ -1,3 +1,19 @@
+Build 1006
+1. Fixed a issue on 4 or more monitors.
+2. Fixed white screen issue on IE 11.
+3. Press enter to send the Two factor authentication code.
+4. Added license.limit in gateway.conf to restrict the concurrent session number for testing etc.
+5. Exclude the RemoteApp arguments from the log.
+
+
+Build 1005
+1. Better HTTP Proxy (Experimental).
+2. Fixed a connection issue cause by Out of Index exception.
+3. Faster HTTP request handling.
+4. Updated SNMP library to 3.6.6.
+5. "enforce" for multi factor authentication works on rdp.html.
+6. RDP: fixed a null pointer issue on USB redireciton.
+
 Build 1004
 
 1. SNMP: Fixed incorrect enterprise id issue.

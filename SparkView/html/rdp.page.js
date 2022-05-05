@@ -278,7 +278,7 @@ function connectRDP(e){
 
     // s += '&monitor=1&monitorDef=' + encodeURIComponent('-1920:100:-1:1179,0:0:1079:1919');
     var protocol = ('https:' == location.protocol) ? 'wss://' : 'ws://';
-    
+
     if (svGlobal.monitors && svGlobal.monitors.length){//multi monitor
     	var r = new svGlobal.Rdp(protocol + gw + '/RDP?' + s, w, h, server_bpp);
 		var surface = new svGlobal.LocalInterface();
@@ -295,6 +295,16 @@ function connectRDP(e){
         	console.log('close, expected:' + expected);
             r.hide();
             $id('login').style.display = 'block';
+            if (window.__agentBridge){
+                __agentBridge.close();
+            }
+            if (svGlobal.monitors){
+                for (var i = 0, len = svGlobal.monitors.length; i < len; i++){
+                    if (svGlobal.monitors[i]){
+                        svGlobal.monitors[i].close();
+                    }
+                }
+            }
         };
         
 		r.run();
@@ -380,14 +390,6 @@ function connectRDP(e){
             r.hide();
             if (window.__agentBridge){
                 __agentBridge.close();
-            }
-
-            if (svGlobal.monitors){
-                for (var i = 0, len = svGlobal.monitors.length; i < len; i++){
-                    if (svGlobal.monitors[i]){
-                        svGlobal.monitors[i].close();
-                    }
-                }
             }
         };
         var sur = new svGlobal.LocalInterface();

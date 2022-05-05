@@ -26,7 +26,10 @@ function startGatewayAgent(r){
     };
 
     var isSSL = r.protocol == 'wss';
-    if (isSSL) {
+    //The agent has TLS enabled.
+    var noBridge = !isSSL || (hi5.appcfg.agent && hi5.appcfg.agent.noBridge);
+
+    if (!noBridge) {
         if (hi5.browser.isIE) {
             hi5.notifications.notify("Sorry, local hardware redirection is diabled for Microsoft IE, because it doesn't support cross-domain message.");
             r.run();
@@ -39,14 +42,11 @@ function startGatewayAgent(r){
         }
     }
 
-    var sgAgentDlg = new hi5.ui.Lightbox(sgAgentElm);
-    sgAgentDlg.show();
-
     var _connected = false;
-    sgAgentDlg.onclose = function() {
-        if (!isSSL) {
+    function onAgentClose() {
+        if (noBridge) {
             // Connect to agent directly in case SSL is not needed.
-            var ws = new WebSocket("ws://127.0.0.1:8095");
+            var ws = new WebSocket((isSSL ? "wss" : "ws") + "://localhost:8095");
             ws.binaryType = "arraybuffer";
             
             r.onagentmessage = function(data){
@@ -142,4 +142,37 @@ function startGatewayAgent(r){
    
         // r.run();
     };
+
+    function showAgentDlg(fnClose){
+        var sgAgentDlg = new hi5.ui.Lightbox(sgAgentElm);
+        sgAgentDlg.show();
+        sgAgentDlg.onclose = fnClose;
+
+    }
+
+    if (noBridge){
+        var url = (hi5.appcfg.agent && hi5.appcfg.agent.scheme) || 'sparkagent';
+        url += '://none';
+        if (isSSL){
+            url += '?scheme=https';
+        }
+        hi5.browser.launchApp(url, 
+            function(){//sucess
+                onAgentClose();
+            }, 
+            function(){//error
+                showAgentDlg(function(){
+                    hi5.browser.launchApp(url, 
+                        function(){//sucess
+                            onAgentClose();
+                        }, 
+                        function(){//error
+                        }
+                    );
+                });
+            }
+        );
+    }else{
+        showAgentDlg(onAgentClose);
+    }
 }

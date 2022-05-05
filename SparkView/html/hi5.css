@@ -16,8 +16,8 @@ font-size:85%;color:#333;border-top-left-radius:5px;border-top-right-radius:5px;
 .toolbar_img_on{ vertical-align:top;cursor:pointer;width:35px;height:35px;border-bottom: 1px solid palevioletred}
 .toolbar input{opacity:0.6}
 .hi5_dialog{border:1px solid #222;padding:2em;border-radius:8px;background-color:white}
-.h5-img-btn{ vertical-align:middle;cursor:pointer;width:35px;height:35px;}
-.h5-img-btn-on{ vertical-align:top;cursor:pointer;width:35px;height:35px;border-bottom: 1px solid palevioletred}
+.h5-img-btn{ vertical-align:middle;cursor:pointer;width:2em;height:2em}
+.h5-img-btn-on{ vertical-align:top;cursor:pointer;width:2em;height:2em;border-bottom: 1px solid palevioletred}
 .h5-img-btn:hover{background-color: lightslategrey}
 .h5-img-btn:active{background-color: darkgrey}
 

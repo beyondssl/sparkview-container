@@ -80,6 +80,10 @@ function connectRDP(args, q, token) {
                 }
             }
         }
+
+        if (hi5.appcfg && hi5.appcfg.closeOnDisconn) {
+            window.close();
+        }
     };
 
     r.run();
