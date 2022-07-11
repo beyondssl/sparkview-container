@@ -227,3 +227,7 @@ justin@justinaguilar.com
     height: 1px;
     pointer-events: none;  
 }
+
+input[type=text], input[type=number] {
+    touch-action: none;
+}

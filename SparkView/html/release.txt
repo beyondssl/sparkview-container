@@ -1,9 +1,36 @@
+Build 1012
+1. More info in sessiondashboard.html.
+2. Fixed a connection issue with native shadowing (shadow.html).
+
+Build 1011
+1. Fixed a high CPU usage (20%) issue on SSH session.
+2. New Agent installer: minimize the console window, more error logs.
+3. Added "Continue" button on Agent dialog.
+
+
+Build 1010
+1. Don't start the gateway agent again if it's running.
+2. New version available notification for gateway agent if version is configured in appcfg.js: agent: {version: {major: 2, minor: 3}}.
+
+Build 1009
+1. The gateway agent will try to listen on port 8095-8097.
+2. More information for sessiondashboard.html: ip, user agent, connection status etc.
+
+
+Build 1008
+1. Fixed a high CPU usage issue.
+
+Build 1007
+1. New window and macOS installer for Gateway Agent.
+2. Bridge.html is not needed for smart card or scanner redireciton with the new installer.
+
 Build 1006
 1. Fixed a issue on 4 or more monitors.
 2. Fixed white screen issue on IE 11.
 3. Press enter to send the Two factor authentication code.
 4. Added license.limit in gateway.conf to restrict the concurrent session number for testing etc.
 5. Exclude the RemoteApp arguments from the log.
+6. Fixed joined RemoteApp session disconnection issue.
 
 
 Build 1005

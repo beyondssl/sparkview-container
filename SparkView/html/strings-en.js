@@ -39,7 +39,12 @@ var __svi18n = {
             'userCopy': 'Failed to copy the followings to local clipboard. Please copy it again via context menu',
             'succeeded': 'Operation succeeded.',
             'digit6': 'It must be a 6 digit number',
-            'TwainNotSupported': 'The selected scanner does not supoort TWAIN protocol. Could not use Twain-based DataSource'
+            'TwainNotSupported': 'The selected scanner does not supoort TWAIN protocol. Could not use Twain-based DataSource',
+            'noUSBConnected': 'Could not find connected USB device',
+            'noUSBMapped': 'No USB device was selected to redirect',
+            'scardAuth': 'Smart card authentication in progress. Please wait...',
+            'newVersion': 'New verson available',
+            'updateAgent': 'Please download and install the new gateway agent'
         },
         errorCode: {
             '1': 'The disconnection was initiated by an administrative tool on the server in another session.',
@@ -100,7 +105,9 @@ var __svi18n = {
             'S3018': 'File is blocked.',
             'S3019': 'Maximum number of emergency concurrent users is reached.',
             'S3020': 'Maximum number of emergency license days is reached.',
-            'S3021': 'Wrong authentication code'
+            'S3021': 'Wrong authentication code',
+            // browser compability
+            'B01': 'The USB redirection is only available in Google Chrome.',
         },
         serverStatus: {
             '401': 'The destination computer is being located.',

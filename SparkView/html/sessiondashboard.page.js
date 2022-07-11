@@ -6,7 +6,8 @@ var sessionCardsByID = new Map();
 var wsChannel;
 
 function init() {
-	createChannel();
+    var md5password = "21232F297A57A5A743894A0E4A801FC3";
+	createChannel(md5password);
 
     refreshCount();
 }
@@ -33,9 +34,9 @@ function refreshCount(delta) {
     }
 }
 
-function createChannel() {
+function createChannel(password) {
 	wsChannel = new WsChannel();    
-    wsChannel.initialize();
+    wsChannel.initialize(password);
 }
 
 function WsChannel() {
@@ -43,9 +44,9 @@ function WsChannel() {
 	var ws;
     var isConnected = false;
 
-    this.initialize = function() {
+    this.initialize = function(password) {
         var protocol = ('https:' == location.protocol) ? 'wss://' : 'ws://';
-		var url = protocol + location.hostname + "/DASHBOARD"
+		var url = protocol + location.hostname + "/DASHBOARD?gatewayPwd=" + password + "&fields=" + encodeURIComponent("mapClipboard,mapDisk");
                 
         ws = new WebSocket(url);
 		ws.binaryType = "arraybuffer";
@@ -64,7 +65,7 @@ function WsChannel() {
 		};
 	
 		ws.onclose = function() {
-            console.log("Spark Stream Server closed the connection.");
+            hi5.notifications.notify("Connection was closed.");
             
 			if (ws) {
 				ws = null;
@@ -75,6 +76,11 @@ function WsChannel() {
 				}
             }
             isConnected = false;
+
+            var gridEle = document.getElementById("grid");
+            while (gridEle.firstChild){
+                gridEle.removeChild(gridEle.firstChild);
+            }
 		};
 	
 		ws.onerror = function(evt) {
@@ -120,23 +126,41 @@ function WsChannel() {
                         var startDate = new Date(startTime);
                         var startTimeStr = startDate.toLocaleString("en-CA", {hour12: false});
                         var sidLen = dataBuf.getLittleEndian32();
-                        var sid = dataBuf.getUnicodeString(sidLen, false);
+                        var sid = dataBuf.getAsciiString(sidLen, false);
+                        var joinLen = dataBuf.getLittleEndian32();
+                        var joinedSID = (joinLen > 0) ? dataBuf.getAsciiString(joinLen, false) : '';
                         var unLen = dataBuf.getLittleEndian32();
                         var userName = dataBuf.getUnicodeString(unLen, false);
                         var thumbnailWidth = dataBuf.getLittleEndian32();
                         var thumbnailLen = dataBuf.getLittleEndian32();
-                        var thumbnail = dataBuf.getAscllString(thumbnailLen, false); 
+                        var thumbnail = 'computer.png';
+                        if (thumbnailLen > 0) {
+                            thumbnail = dataBuf.getAscllString(thumbnailLen, false); 
+                            thumbnail.replace(/[\n\r]/g, '');
+                        }
 
-                        thumbnail.replace(/[\n\r]/g, '');
-        
-                        // console.debug("==== Session[" + i + "]:\n" + 
-                        //         "protocolType=" + protocolTypeStr +
-                        //         ", startTime=" + startTimeStr +
-                        //         ", sessionId=" + sid +
-                        //         ", userName=" + userName +
-                        //         ", thumbnailWidth=" + thumbnailWidth +
-                        //         ", thumbnailLen=" + thumbnailLen);                                
-                    
+                        var ipLen = dataBuf.getLittleEndian32();
+                        var ip = "N/A";
+                        if (ipLen > 0){
+                            ip = dataBuf.getAsciiString(ipLen, false);
+                        }
+
+                        var userAgentLen = dataBuf.getLittleEndian32();
+                        var userAgent = "N/A";
+                        if (userAgentLen > 0){
+                            userAgent = dataBuf.getAsciiString(userAgentLen, false);
+                        }
+                        
+                        //extra fields if websocekt url includes the fields parameter
+                        var fields = "";
+                        while (dataBuf.has(4)){
+                            var lenField = dataBuf.getLittleEndian32();
+                            if (fields){
+                                fields += ";";
+                            }
+                            fields += dataBuf.getUnicodeString(lenField, false);
+                            // console.log("extra field:" + fields);
+                        }
                         
                         var gridColEle;
                         var existingCard = document.getElementById(sid);
@@ -167,7 +191,7 @@ function WsChannel() {
                             }
                         } else {
                             // Append a new session card
-                            gridColEle = _self.createCard(sid, thumbnailWidth, thumbnail, protocolTypeStr, startTime, startTimeStr, userName);
+                            gridColEle = _self.createCard(sid, thumbnailWidth, thumbnail, protocolTypeStr, startTime, startTimeStr, userName, joinedSID, ip, userAgent, fields);
 
                             reshuffle();
                         }
@@ -184,8 +208,33 @@ function WsChannel() {
 
                 case 0x01:          // Remove thumbnail
                     var sidLen = dataBuf.getLittleEndian32();
-                    var sid = dataBuf.getUnicodeString(sidLen, false);
+                    var sid = dataBuf.getAsciiString(sidLen, false);
                     // console.log("==== remove thumbnail of session id \"" + sid + "\".");
+                    var loggedin = dataBuf.getByte() == 1;
+                    var statusCode = dataBuf.getLittleEndian32();
+                    var status = "";
+                    switch (statusCode){
+                        case 0:
+                            status = "Unknown";  
+                            break;
+                        case 1:
+                            status = "Connected";
+                            break;
+                        case 2:
+                            status = "User disconnected";
+                            break;
+                        case 3:
+                            status = "Server disconnected";
+                            break;
+                        case 4:
+                            status = "Log off";
+                            break;
+                        default:
+                            status = "Invalid status " + statusCode;
+                            break;
+                    }
+
+                    hi5.notifications.notify("Session " + sid + "disconnected, loggedin: " + loggedin + " connection status: " + status);
                     
                     // remove the element
                     var cardEle = document.getElementById(sid);
@@ -207,12 +256,29 @@ function WsChannel() {
                 default:
                     console.debug("Unknown session information operation code [" + operation + "], ignored.");
             }
-        } else {
-            console.log("Received empty data. Ignore.");
+        } else {//text data
+            var type = parseInt(data.substring(0, 2), 16);
+            var value = data.substring(2);
+            switch (type) {
+                case 0x1A: processMsg(value); break;
+                default: hi5.notifications.notify('Invalid output:' + data);
+            }
         }
     }; 
 
-    this.createCard = function(sid, thumbnailWidth, thumbnail, protocolTypeStr, startTime, startTimeStr, userName) {
+    function processMsg(value) {
+        var message = JSON.parse(value);
+        
+        if (!isNaN(message.name)){//if it's number
+            message.name = 'S' + message.name;
+        }
+    
+        var msg = __svi18n.errorCode[message.name];
+    
+        hi5.notifications.notify(msg);
+    }
+    
+    this.createCard = function(sid, thumbnailWidth, thumbnail, protocolTypeStr, startTime, startTimeStr, userName, joinedSID, ip, userAgent, fields) {
         var gridEle = document.getElementById("grid");
         
         var gridColEle = document.createElement("div");
@@ -243,6 +309,17 @@ function WsChannel() {
         // imgEle.src = imageUrl;
 
         imgEle.src = thumbnail;
+        imgEle.onclick = function(){
+            var join = 'join';
+			switch (protocolTypeStr){
+			case 'RFB': join = 'joinvnc'; break;
+			case 'SSH': join = 'joinssh'; break;
+			case 'TELNET': join = 'jointelnet'; break;
+			}
+			
+			var url = location.protocol + '//' + location.hostname + '/' + join + '.html?id=' + sid;
+			window.open(url);
+        }
 
         imgDivEle.appendChild(imgEle);
 
@@ -252,10 +329,14 @@ function WsChannel() {
         var detailEle = document.createElement("p");
         detailEle.className = "cardDetail";
         detailEle.innerHTML = 
-                    "<b>Session ID: </b>" + sid + "<br />" +
-                    "<b>Protocol Type: </b>" + protocolTypeStr + "<br />" +
-                    "<b>Start Time: </b>" + startTimeStr + "<br />" +
-                    "<b>User Name: </b>" + userName;
+                    "<b>Session ID: </b>" + sid + "" +
+                    "<br/><b>Protocol Type: </b>" + protocolTypeStr +
+                    "<br/><b>Start Time: </b>" + startTimeStr +
+                    "<br/><b>User Name: </b>" + userName +
+                    "<br/><b>Joined: </b>" + joinedSID +
+                    "<br/><b>IP: </b>" + ip +
+                    "<br/><b>UserAgent: </b>" + userAgent + 
+                    "<br/><b>Extra:</b>" + fields;
 
         detailDivEle.appendChild(detailEle);
         

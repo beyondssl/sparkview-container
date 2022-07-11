@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<head>
 <title>Spark View (RDP)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale=1.0" />
@@ -514,21 +514,18 @@
 	</div>
 	<!-- For smartcard and scanner -->
 	<div id="sgAgentInfo" class="appdlg">
-        <table line-height:50px>
+        <table style="line-height:2.5em" id="agentInfo">
             <tr>
                 <td><h3>Spark Gateway Agent</h3></td>
             </tr>
             <tr>
-                <td>Local hardware (smart card, scanner) redirection needs an agent (native application) running on your computer to acees the local hardware. Please:</td>
+                <td>Smart card or scanner redirection needs an agent (native application) running on your computer to acees the local hardware. Please:</td>
             </tr>
             <tr>
-                <td>&nbsp;&nbsp;- <a id="agentRef" href="sg_agent.exe" >Please download</a> and install the agent.</td>
-            </tr>
-			<tr id="sgAgentSSLOptional">
-                <td>&nbsp;&nbsp;- Click <input type="button" id="btnBridge" value="Open"> to open a new window(bridge.html) to commnicate with the agent and keep it open during the connection.</td>
+                <td>&nbsp;&nbsp;- <a id="agentSetup" href="agent_setup.exe" >Download</a> and install the agent.</td>
             </tr>
             <tr>
-                <td>Close this dialog to continue.</td>
+                <td>The browser will run the agent automatically. <input type="button" id="btnAgentContinue" value="Continue"></td>
             </tr>
         </table>
 	</div>
@@ -558,10 +555,10 @@
 		<form id="frmUsbPicker">
 			<fieldset>
 				<legend>Open USB</legend>
-				<input type="button" id="addUSB" value="  +  "></input><br><br>
+				<input type="button" id="addUSB" value="  +  "><br><br>
 				<select id="selectedUSB" size="6" style="width: 16em;">
 				</select><br><br>
-				<input type="submit" name="confirm" value="OK"></input>
+				<input type="submit" name="confirm" value="OK">
 			</fieldset>
 		</form>
 	</div>
