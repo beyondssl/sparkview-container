@@ -139,8 +139,18 @@
         <img alt="" src="info.png" style="float:left">  
         <table>
         <tbody>
-          <tr><td align="right"><b>Connected to:</b></td><td><span id="connectingTo"></span><br></td></tr>
+        <tr><td align="right"><b>Connected to:</b></td><td><span id="connectingTo"></span><br></td></tr>
           <tr><td align="right"><b>Session id:</b></td><td><span id="numericId"></span><br></td></tr>
+		  <tr>
+			<td>Enocding:</td>
+			<td>
+				<select name="lan_encoding" id="lan_encoding">
+					<option value="utf-8">UTF-8</option>
+					<option value="gb2312">GB2312</option>
+					<option value="shift-jis">SHIFT-JIS</option>
+				</select>
+			</td>
+		  </tr>
         </tbody>
         <tbody id="shadowing">
           <tr><td align="right"><b>Join mode:</b></td><td>
@@ -154,5 +164,11 @@
         </table>
     </div>
 	<script type="text/javascript" src="ssh.page.js"></script>
+	
+	<!-- For GB2312 Chinese encoding -->
+	<!-- <script type="text/javascript" src="lan_gb2312.js"></script> -->
+
+	<!-- For SHIFT_JIS Japanese encoding -->
+	<!-- <script type="text/javascript" src="lan_shift_jis.js"></script> -->
 </body>
 </html>

@@ -22,10 +22,32 @@ header, h2 {
 </head>
 <body>
 <h2>Version History and Release Notes for Spark View</h2>
+
+<article>
+	<header>6.2.0 August 14, 2022</header>
+	<ol>
+	<li>VMWare html console support.
+		<ul>
+			<li>The server of vnc.html can be a weboscket address if you know the ticket, for example: wss://10.10.20.8/ticket/4b6abe3e92d7c6b1</li>
+			<li>User vmware.html if you know the ESX credentials.</li>
+			<li>Check vmware/index.html for proxy method.</li>
+		</ul>
+	</li>
+	<li>SSH: Better unicode (Chiease, Japanese) support.</li>
+	<li>SSH: Supports GB2312 and Shift-JIS encoding.</li>
+	<li>SSH: Supports line drawing mode.</li>
+	<li>HTTP Proxy: https://Gateway/PXY/https/www.address.com/443/rdp.html, set http.proxy.enable=true in gateway.conf to enable it</li>
+	<li>New Windows and macOS agents for samrt card and scanner redirection.</li>
+	<li>Bug fixes.</li>
+	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
+	</ol>
+</article>
+
+
 <article>
 	<header>6.1.0 Januarary 10, 2022</header>
 	<ol>
-	<li>RDP: WebUSB based USB redirection.
+	<li>RDP: WebUSB based USB redirection.</li>
 	<li>RDP: No temporary file generated on gateway when you copy a file from the server.</li>
 	<li>RDP: New cipherSuitesClient in gateway.conf to configure the cipher suites used in RDP connection.</li>
 	<li>RDP: New "enforce" value for credSSP entry in gateway.conf.</li>
@@ -42,7 +64,6 @@ header, h2 {
 	<li>Standalone Monitor Server for monitoring, event logging.</li>
 	<li>Fixed downloading issue when files includes special characters.</li>
 	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
-	<li><a href="SparkGateway.zip">Download</a></li>
 	</ol>
 </article>
 
@@ -56,7 +77,6 @@ header, h2 {
 	<li>Spark View becomes free personal version by default (allow 2 concurrent sessions) if license file was not found.</li>
 	<li><span style="color:orange; font-size: 1.8em">&#9888;</span><strong>Incompatibility warning:</strong> audiorecorder_min.js is added and it'll be loaded by the libaray automatically. Make sure you deploy it along with other JS files.</li>
 	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
-	<li><a href="SparkGateway.zip">Download</a></li>
 	</ol>
 </article>
 
@@ -127,8 +147,6 @@ header, h2 {
 	<li>File Manager UI can be sorted by clicking on the table tile.</li>
 	<li>Increased default header size of HTTP to 16K from 8K (set maxRequestBytes in gateway.conf)</li>
 	<li>Improved performance on HTTP Sessin API.</li>
-
-	<li><a href="SparkGateway.zip">Download</a></li>
 	</ol>
 </article>
 
@@ -160,7 +178,6 @@ header, h2 {
 	<li>SSH: reconnectOnResize proptery and reconnect(newWidth, newHeight) method are also available.</li>
 	<li>Okta integration.</li>
 	<li>Tested on Open JDK 11 and zulu Open JDK 11.</li>
-	<li><a href="5.7/SparkGateway.zip">Download</a></li>
 	</ol>
 </article>
 
@@ -186,7 +203,6 @@ header, h2 {
 	<li>Fixed mouse wheel (2 fingers) moving too fast issue on iOS and Android</li>
 	<li>Fixed resolution change issue when switching back from other apps on iOS</li>
 	<li>Fixed VNC Command key stuck issue on Mac.</li>
-	<li><a href="5.6/SparkGateway.zip">Download</a></li>
 	</ol>
 </article>
 
@@ -236,7 +252,6 @@ header, h2 {
 	<li>Fixed extra headers configured in gateway.conf are not applied on XMLHTTP Request issue.</li>
 	<li>Fixed file name encoding issue when file has unicode in it on IE.</li>
 	<li>Better compatibiity with Chromium Embedded Framework and Electron.</li>
-	<li><a href="5.5/SparkGateway.zip">Download</a></li>
 	</ol>
 </article>
 	
@@ -256,7 +271,6 @@ header, h2 {
 <li>Fixed a crash issue when using unicode keyboard on Edge.</li>
 <li>Fixed "Create directory" button not working issue on the file loading interface.</li>
 <li>Fixed mapClipboard switch not working on cached session issue.</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="5.0/SparkGateway.zip">Download</a></li>
 <li><span style="color:orange; font-size: 1.8em">&#9888;</span><strong>Incompatiblity warning:</strong> You need to include h5core_min.js and rdpcore_min.js in your web pages too since 5.0. 
 	You must configure hi5.libPath if you are using Spark View client side library in your portal and has Web Workers enabled.</li>
 </ol>
@@ -281,7 +295,6 @@ header, h2 {
 <li>Fixed file uploading dialog visible issue when clipboard redirection is disabled in servers.json.</li>
 <li>Fixed file uploading issue on iOS.</li>
 <li>Fixed incorrect format issue when copying from PowerShell ISE to local computer.</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8.9/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -318,7 +331,6 @@ header, h2 {
 <li>Fixed getRecordingFile retured null issue in plugin's onSessionCreated.</li>
 <li>Fixed mousewheel peroformacne issue on VNC.</li>
 <li>Fixed Alt + NumPad issue on VNC.</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8.8/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -363,7 +375,6 @@ header, h2 {
 <li>Fixed writeKeyComb('Ctrl+Alt+Del') not working on VNC.</li>
 <li>Fixed AltGr key stuck issue on embedded RDP session.</li> 
 <li>Fixed screen scrolling up issue when right click on Mac Chrome</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8.6/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -380,7 +391,6 @@ header, h2 {
 <li>Fixed AltGr key not working issue on Putty.</li>
 <li>Fixed mouse position issue when some extensions in use.</li>
 <li>Fixed context menu disappear issue when zoom in on Android.</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -397,7 +407,6 @@ header, h2 {
 <li>Adjust the size of RemoteApp child window to fit current browser window.</li>
 <li>Fixed a RemoteFX black screen issue on Windows 2012 R2.</li>
 <li>Fixed CapsLock sync issue.</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.8/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -422,7 +431,6 @@ header, h2 {
 <li>Fixed a exception when Safari in in private mode (iOS)</li>
 <li>Fixed screen auto scrolling issue when RDP session in a scrollable iframe</li>
 <li>Allow user to download the image if user is copying a image which is not supported by browser</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.7/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -458,7 +466,6 @@ header, h2 {
 <li>Fixed Spanish `´ key issue on unicode keyboard</li>
 <li>Fixed a 'string is too big' issue when using big cursor on IE within CheckPoint VPN.</li>
 <li>Fixed non-breaking space issue one IE with unicode keyboard</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.6/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -481,7 +488,6 @@ header, h2 {
 <li>Fixed copying XML issue when using copy dialog</li>
 <li>Fixed bold font issue when copying RTF format.</li>
 <li>Incompatible change: file uploading and Virtual Channels doesn't work on Safari 5 anymore.</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.5/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -501,7 +507,6 @@ header, h2 {
 <li>Fixed session terminated issue when using Photoshop CS.</li>
 <li>Fixed wrong recording duration issue on rare case.</li>
 <li>Other minor fixes and changes.</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.4/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -527,7 +532,6 @@ header, h2 {
 <li>Fixed copying image issue on Windows 8 with virtual keyboard.</li>
 <li>Fixed record warning not correctly displayed issue.</li>
 <li>Fixed multi line copying issue on Chrome (caused by incompatible API change on Chrome 38).</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.3/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -553,7 +557,6 @@ header, h2 {
 <li>Fixed wrong join link issue in Chrome Web App. </li>
 <li>Fixed a TELNET connection issue introduced in 4.1.</li>
 <li>Fixed duplicated RemoteApp closing notification issue (RemoteApp plugin)</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.2/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -579,7 +582,6 @@ header, h2 {
 <li>Fixed copy image issue on Firefox and IE.</li>
 <li>Fixed a repeated character issue on Firefox.</li>
 <li>Fixed a OpenID issue.</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.1/SparkGateway.zip">Download</a></li>
 </ol>
 </article>
 
@@ -596,7 +598,6 @@ header, h2 {
 <li>Fixed paste issue on Ubuntu Firefox</li>
 <li>Fixed wrong touch detection on Firefox 24</li>
 <li>Fixed repeated character issue on Firefox with unicode keyboard</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="4.0/SparkGateway.zip">Download 4.0</a></li>
 </ol>
 </article>
 
@@ -621,7 +622,6 @@ header, h2 {
 <li>Fixed audio playback broken issue on Firefox 26.</li>
 <li>Fixed wrong html link issue on load banlanced gateway.</li>
 <li>Fixed null object issue on joined VNC conection.</li>
-<li>UPDATE: SparkGateway.jar, html directory. <a href="3.6.3/SparkGateway.zip">Download 3.6.3</a></li>
 </ol>
 <header>Incompatible changes</header> 
 <ol>

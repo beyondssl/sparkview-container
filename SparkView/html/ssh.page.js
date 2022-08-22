@@ -310,6 +310,15 @@ function connectSSH(e) {
 		};
 	}
 
+	var elmCodec = document.getElementById('lan_encoding');
+	if (elmCodec){
+		elmCodec.onchange = function(e){
+			if (r){
+				r.setCodec(e.target.value);
+			}
+		}
+	}
+
 	r.run();
 
 	return false;

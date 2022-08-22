@@ -1,18 +1,18 @@
 <!doctype html>
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Spark View (Shadowing)</title>
     <meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 1.0, maximum-scale = 8"
     />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <link rel="stylesheet" href="hi5.css" />
+<link rel="stylesheet" href="hi5.css" />
     <link rel="stylesheet" href="rdp.css" />
     
     <script type="text/javascript" src="appcfg.js"></script>
-    <script type="text/javascript" src="resource.js"></script>
+<script type="text/javascript" src="resource.js"></script>
     <script type="text/javascript" src="hi5core_min.js"></script>
     <script type="text/javascript" src="hi5_min.js"></script>
     <script type="text/javascript" src="surface_min.js"></script>
@@ -34,8 +34,125 @@
 <body>
 	<div style="position: relative; clear: both">
 		<canvas id="remotectrl" width="1" height="1"></canvas>
+		<div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+            <textarea id="svTouchInput"></textarea>
+            <img src="info.png" title="Information" id="svInfo">
+        </div>
+        <div id="pc_key"><span>Ctrl</span><span>Alt</span><span>Shift</span><span>Del</span><span>Esc</span><span>...</span>
+            <div id="pc_key_more">
+                <span>F1</span><span>&larr;</span><span>&uarr;</span><span>&rarr;</span><span>&darr;</span><span>Start</span><span>Alt+F4</span><span>Ctrl+Alt+Del</span>
+            </div>
+        </div>
 	</div>
-	
+
+	<div id="appinfo" class="appdlg">
+        <img alt="" src="info.png" style="float:left">
+        <table>
+            <tbody>
+                <tr>
+                    <td align="right"><b>Connected to:</b></td>
+                    <td><span id="connectingTo"></span><br></td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Session id:</b></td>
+                    <td><span id="numericId"></span><br></td>
+                </tr>
+            </tbody>
+            <tbody id="shadowing">
+                <tr>
+                    <td align="right"><b>Join mode:</b></td>
+                    <td>
+                        <select id="joinSelect">
+                            <option value="0">Every one can control</option>
+                            <option value="1">Only one can control</option>
+                            <option value="2">Only one can control (others can move mouse)</option>
+                        </select><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Join this session with following link:</b><br>
+                        <a id="joinLink" target="_blank"></a>
+                        <img src="share.svg" class="h5-img-btn" alt="Share" id="shareSession">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="ssParent"><input type="checkbox" id="saveSession">Leave session on and reconnect to it from other devices.</div>
+        <div id="keyParent"><input type="checkbox" id="shortcuts">Keyboard shortcuts</div>
+        <div>
+            <input type="button" id="reqFullscr" value="Fullscreen" />
+            <input type="button" value="Two-factor authentication" id="btnTwoFA">
+            <input type="button" id="requestControl" value="Request Control" disabled="disabled" />
+        </div>
+        <div style="overflow:auto;height:150px;display:none" id="touchGesture">
+            <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)</div>
+            Tap <img src="kbd.png" align="middle"> to activate soft keyboard. IE doesn't support 3 finger gestures and 2
+            finger scroll (mouse wheel).
+            <table>
+                <tr>
+                    <td><img src="longpress.png"></td>
+                    <td>Long press</td>
+                    <td>Right click</td>
+                </tr>
+                <tr>
+                    <td><img src="flick.png"></td>
+                    <td>Flick</td>
+                    <td>Scroll screen if remote desktop resolution is bigger, <br>otherwise, drag</td>
+                </tr>
+                <tr>
+                    <td><img src="pan.png"></td>
+                    <td>Pan</td>
+                    <td>Drag</td>
+                </tr>
+                <tr>
+                    <td><img src="2tap.png"></td>
+                    <td>2 finger tap</td>
+                    <td>Right click</td>
+                </tr>
+                <tr>
+                    <td><img src="2scroll.png"></td>
+                    <td>2 finger scoll</td>
+                    <td>Mouse wheel</td>
+                </tr>
+                <tr>
+                    <td><img src="3tap.png"></td>
+                    <td>3 finger tap</td>
+                    <td>Show software keyboard (iOS only)</td>
+                </tr>
+                <tr>
+                    <td><img src="3open.png"></td>
+                    <td>3 finger pinch open</td>
+                    <td>Maximize window</td>
+                </tr>
+                <tr>
+                    <td><img src="3close.png"></td>
+                    <td>3 finger pinch close</td>
+                    <td>Restore window</td>
+                </tr>
+                <tr>
+                    <td><img src="3left.png"></td>
+                    <td>3 finger flick left</td>
+                    <td>Previous window</td>
+                </tr>
+                <tr>
+                    <td><img src="3right.png"></td>
+                    <td>3 finger flick right</td>
+                    <td>Next window</td>
+                </tr>
+                <tr>
+                    <td><img src="3down.png"></td>
+                    <td>3 finger flick down</td>
+                    <td>Minimize all windows</td>
+                </tr>
+                <tr>
+                    <td><img src="3up.png"></td>
+                    <td>3 finger flick up</td>
+                    <td>Restore all windows</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 	<div id="shadowInput" style="padding: 0.5em;">
 		<h2>Spark View Native RDP Shadow <span class="ver"></span></h2>
 		<div><a href="rdp.html" target="_blank" class="hi5_app">Spark View (RDP)</a><a href="vnc.html" target="_blank" class="hi5_app">Spark View (VNC)</a>
@@ -46,11 +163,11 @@
 		</div>
 
 		<form id="formShadow" method="POST" action="SHADOW">
-			<div>
-				Spark Gateway: <input type="text" name="gateway" id="gateway" required/>*default port is 80 if it's not specified (ip:port).  
-			</div>
-			<div id="shadowConfZone" class="tab_body" style="width:90%;height:300px; padding: 33px">
 				<div> 
+				Spark Gateway: <input type="text" name="gateway" id="gateway" required/>*default port is 80 if it's not specified (ip:port).  
+				</div>
+			<div id="shadowConfZone" class="tab_body" style="width:90%;height:300px; padding: 33px">
+				<div>
 					<label>RDP Server:</label> 
 					<input type="text" name="server" id="remoteServer" required/> 
 				</div>

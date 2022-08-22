@@ -32,6 +32,17 @@ window.onload = function() {
     var gw = args['gateway'] || location.host || 'localhost';
     var ssh = new svGlobal.SSH(p + gw + '/SSH?' + q, w, h);
     ssh.addSurface(new svGlobal.LocalInterface());
+
+
+    var elmCodec = document.getElementById('lan_encoding');
+	if (elmCodec){
+		elmCodec.onchange = function(e){
+			if (ssh){
+				ssh.setCodec(e.target.value);
+			}
+		}
+	}
+
     ssh.run();
 
 };

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<header>
+	<title>Example of HTTP Post</title>
+</header>
+
+
+<form action="/CONNECT" method="POST">
+	<table>
+		<tr>
+			<td>ESXi or vCenter</td>
+			<td><input type="text" name="server" id="server" required="true" /></td>
+		</tr>
+		<tr>
+			<td>User Name</td>
+			<td><input type="text" name="user" id = "user"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="pwd" id = "pwd" autocomplete="off"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Domain</td>
+			<td><input type="text" name="domain" id = "domain" />
+			</td>
+		</tr>
+		<tr>
+			<td>VM Name</td>
+			<td><input type="text" name="vmname" id = "vmname"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Hypervisor</td>
+			<td><input type="text" name="hypervisor" id = "hypervisor" value="esxi"/>
+			</td>
+		</tr>
+		<tr>
+			<td>Return URL</td>
+			<td><input type="text" name="returnUrl" id = "returnUrl" value="/vnc.html"/>
+			</td>
+		</tr>
+	</table>
+	<input type="submit" name="remoting" value="Connect" />
+</form>
+
+<body>
+
+</body>
+</html>
