@@ -476,7 +476,9 @@
 			<td colspan="2" align="right">
 				<input type="button" id="reqFullscr" value="Fullscreen" />
 				<input type="button" value="Two-factor authentication" id="btnTwoFA">
-				<input type="button" id="requestControl" value="Request Control" disabled="disabled" /></td>
+				<input type="button" id="requestControl" value="Request Control" disabled="disabled" />
+				<input type="button" id="attachPrinter" value="Attach Printer">
+			</td>
 		  </tr>
 		</tbody>
 		</table>
@@ -556,8 +558,16 @@
 
 	<!-- For scanner -->
 	<div id="dsSelection" class="appdlg"></div>
+	<!-- For local printer redirection-->
+	<div id="localPrinter" class="appdlg">
+		<select id="selectPrinter"></select><br>
+		<input type="checkbox" name="textDriver">
+		Use 'Generic / Text Only' driver (POS printer)
+		<input type="checkbox" name="isDefault">Set as default
+	</div>
 
 <script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="dvc_drv_min.js"></script>
 <script type="text/javascript" src="dvc_usb_min.js"></script>
 <script type="text/javascript" src="rdpcore_min.js"></script>
 <script type="text/javascript" src="rdp_min.js"></script>

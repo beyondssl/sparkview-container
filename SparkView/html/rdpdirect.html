@@ -16,6 +16,7 @@
     <script type="text/javascript" src="hi5core_min.js"></script>
     <script type="text/javascript" src="hi5_min.js"></script>
     <script type="text/javascript" src="surface_min.js"></script>
+    <script type="text/javascript" src="dvc_drv_min.js"></script>
     <script type="text/javascript" src="dvc_usb_min.js"></script>
     <script type="text/javascript" src="rdpcore_min.js"></script>
     <script type="text/javascript" src="rdp_min.js"></script>
@@ -99,6 +100,7 @@
             <input type="button" id="reqFullscr" value="Fullscreen" />
             <input type="button" value="Two-factor authentication" id="btnTwoFA">
             <input type="button" id="requestControl" value="Request Control" disabled="disabled" />
+            <input type="button" id="attachPrinter" value="Attach Printer">
         </div>
         <div style="overflow:auto;height:150px;display:none" id="touchGesture">
             <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)</div>
@@ -220,6 +222,13 @@
 				<input type="submit" name="confirm" value="OK">
 			</fieldset>
 		</form>
+	</div>
+	<!-- For local printer redirection-->
+	<div id="localPrinter" class="appdlg">
+		<select id="selectPrinter"></select><br>
+		<input type="checkbox" name="textDriver">
+		Use 'Generic / Text Only' driver (POS printer)
+		<input type="checkbox" name="isDefault">Set as default
 	</div>
 
     <script type="text/javascript" src="recording_min.js"></script>    
