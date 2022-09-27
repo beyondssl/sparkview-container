@@ -1,3 +1,7 @@
+Build 1015
+1. Allow playback of the recordings from recdir if you set recdir.play.enable = true in gateway.conf.
+2. No need to include dvc_*.js in player.html.
+
 Build 1014
 1. Attach local printers on Windows (native agent is needed).
 
