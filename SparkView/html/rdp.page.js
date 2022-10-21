@@ -4,12 +4,12 @@ window.$id = function (id){
 
 
 function initTimezone(){
-    var zone = hi5.DateUtils.getGMT();
+    var zone = hi5.timezone.getTimeZone();
     var tzSelect = $id('timezone');
     var ops = tzSelect.options;
     h = ops.length;
     for (var i = 0; i < h; i++){
-        if (ops[i].text.indexOf(zone) == 0){
+        if (ops[i].value == zone.standardName){
             tzSelect.selectedIndex = i;
             break;
         }

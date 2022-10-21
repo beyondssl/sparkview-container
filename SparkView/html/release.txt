@@ -1,3 +1,7 @@
+Build 1016
+1. Better time zone handling.
+2. Fixed a Chrome/Edge crash issue on specific web sites when time zone redirection is enabled. https://bugs.chromium.org/p/chromium/issues/detail?id=1371532&q=STATUS_BREAKPOINT&can=2
+
 Build 1015
 1. Allow playback of the recordings from recdir if you set recdir.play.enable = true in gateway.conf.
 2. No need to include dvc_*.js in player.html.
