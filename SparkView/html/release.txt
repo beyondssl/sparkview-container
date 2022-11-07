@@ -1,3 +1,27 @@
+Build 1017
+1. Fixed two mouse button pressing at the same time issue.
+2. New com.toremote.gateway.plugin.HttpAccessInterface, so plugin can verify proxy access.
+public class SimpleManager implements ManagerInterface, HttpAccessInterface {
+    	@Override
+	public void onAccess(HttpHeader header) throws HttpException{
+		System.out.println(header.toString());
+		System.out.println("Is Proxy: " + Proxy.isProxy(header));
+		
+//		throw new HttpException(403, "Forbidden");
+	}
+
+	@Override
+	public void afterAccess(HttpHeader header) {
+		// TODO Auto-generated method stub
+		
+	}	
+3. RDP: New "dpi" parameter.
+
+4. Won't send SMB URL to use if the format is invlaid.
+
+5. Increased connection timeout (for slow network).
+
+
 Build 1016
 1. Better time zone handling.
 2. Fixed a Chrome/Edge crash issue on specific web sites when time zone redirection is enabled. https://bugs.chromium.org/p/chromium/issues/detail?id=1371532&q=STATUS_BREAKPOINT&can=2
