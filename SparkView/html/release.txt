@@ -1,3 +1,6 @@
+Build 1018
+1. RDP: Fixed multiple mouse buttons clicking/dragging at the same time issue.
+
 Build 1017
 1. Fixed two mouse button pressing at the same time issue.
 2. New com.toremote.gateway.plugin.HttpAccessInterface, so plugin can verify proxy access.
