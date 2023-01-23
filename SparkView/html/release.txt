@@ -1,3 +1,12 @@
+Build 1020
+1. SSH: Fixed a JSON format error.
+
+Build 1019
+1. SSH: Fixed a bug with command white list.
+2. RDP: Fixed orientationchange issue on mobile browsers.
+3. Fixed toolbar compatibility issue with jquery on mobile devices.
+4. Agent 2.7 (Windows) fixed a authentication issue with ePass2000.
+
 Build 1018
 1. RDP: Fixed multiple mouse buttons clicking/dragging at the same time issue.
 

@@ -42,11 +42,21 @@ function startGatewayAgent(r){
             }
         }
 
-        var url = (hi5.appcfg.agent && hi5.appcfg.agent.scheme) || 'sparkagent';
-        url += '://none';
-        if (isSSL){
-            url += '?scheme=https';
+        var url = 'sparkagent';
+        var hidden = false;
+        if (hi5.appcfg.agent) {
+            if (hi5.appcfg.agent.scheme){
+                url = hi5.appcfg.agent.scheme;
+            }
+            hidden = hi5.appcfg.agent.hidden == true;
         }
+
+        url += '://none?hidden=' + hidden;
+
+        if (isSSL){
+            url += '&scheme=https';
+        }
+
         hi5.browser.launchApp(url, 
             function(){//sucess
                 svGlobal.logger.info("Agent launched");
@@ -86,12 +96,22 @@ function startGatewayAgent(r){
             }
         };
 
+        r.onagentclose = function(){
+            if (ws && _connected){
+                ws.close();
+            }
+        };
+
         ws.onopen = function() {
             _connected = true;
             svGlobal.logger.info("connected to the agent on " + this.url);
 
             if (!r.hasScanner() && !r.running()) {//// With scanner, rdp should be connected after the user selects the preferred DS
                 r.run();
+            }
+
+            if (r.setAgentStatus){
+                r.setAgentStatus(1);
             }
 
             var versionReq = new Uint8Array(2);
@@ -118,6 +138,9 @@ function startGatewayAgent(r){
         ws.onclose = function () {
             if (r) {
                 r.onagentmessage = null;
+                if (r.setAgentStatus){
+                    r.setAgentStatus(0);
+                }
             }
             if (ws){
                 ws = null;
@@ -150,7 +173,7 @@ function startGatewayAgent(r){
 
     svGlobal.logger.info('Starting agent, ssl:' + isSSL);
     //check if agent is already running
-    var host = (isSSL ? "wss" : "ws") + "://localhost"
+    var host = (isSSL ? "wss" : "ws") + "://localhost";
     var wsAddrs = [host + ":8095", host + ":8096", host + ":8097"];
     hi5.tool.scanAnyGood(wsAddrs, 
         function(url){
