@@ -5,6 +5,10 @@ window.$id = function (id){
 
 function initTimezone(){
     var zone = hi5.timezone.getTimeZone();
+    if (!zone){
+        return;
+    }
+    
     var tzSelect = $id('timezone');
     var ops = tzSelect.options;
     h = ops.length;

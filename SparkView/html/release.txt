@@ -1,3 +1,10 @@
+Build 1021
+1. RDP: Reuse session id if user refresh the browser or reconnect.
+2. RDP: Fixed wrong default time zone name issue.
+3. RDP: Fixed a IE11 compatibility issue.
+4. SSH: Fixed a line wrapping issue.
+5. SSH: Multiple commands are not allowed if command white list is enabled.
+
 Build 1020
 1. SSH: Fixed a JSON format error.
 
