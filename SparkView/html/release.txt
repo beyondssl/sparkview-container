@@ -1,3 +1,7 @@
+Build 1022
+1. SSH: Fixed "\n" not handled issue in command list(cmdList).
+2. RDP: Session id parameters are disabled by default (Reuse session id). Turn on with session.id.param = true in gateway.conf.
+
 Build 1021
 1. RDP: Reuse session id if user refresh the browser or reconnect.
 2. RDP: Fixed wrong default time zone name issue.
