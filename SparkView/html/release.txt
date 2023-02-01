@@ -1,3 +1,9 @@
+Build 1023
+1. RDP: fixed mouse release issue when it's running in iframe.
+2. PROXY: fixed HTTP proxy path issue.
+3. UI: Added HTTP Proxy UI and loadBalanceInfo for RDP.
+4. Kerberos authentication can be enabled with kerberos.realm in gateway.conf.
+
 Build 1022
 1. SSH: Fixed "\n" not handled issue in command list(cmdList).
 2. RDP: Session id parameters are disabled by default (Reuse session id). Turn on with session.id.param = true in gateway.conf.

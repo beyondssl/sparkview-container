@@ -355,6 +355,7 @@ header,h2 {
 									<input type="checkbox" name="isVNC" />VNC
 									<input type="checkbox" name="isSSH" />SSH
 									<input type="checkbox" name="isTELNET" />TELNET
+									<input type="checkbox" name="isHTTP" />HTTP
 								</td>
 						</tr>
 						<tr><td colspan="2">
@@ -363,6 +364,7 @@ header,h2 {
 									<div class="tab_title">
 										<span tabIndex="0">RDP</span> <span tabIndex="1">VNC</span>
 										<span tabIndex="2">SSH</span><span tabIndex="3">TELNET</span>
+										<span tabIndex="4">HTTP</span>
 									</div>
 								</div>
 								<div class="tab_body">	
@@ -483,7 +485,8 @@ header,h2 {
 											</tr>
 											<tr><td>Smart Card Redirection</td><td><input type="checkbox" name="smartCard"/></td></tr>
 											<tr><td>Camera Redirection</td><td><input type="checkbox" name="mapCamera"/></td></tr>
-											<!-- <tr><td>USB Redirection</td><td><input type="checkbox" name="mapUSB"/></td></tr> -->
+											<tr><td>USB Redirection</td><td><input type="checkbox" name="mapUSB"/></td></tr>
+											<tr><td>Load Balance Info</td><td><input type="text" name="loadBalanceInfo" placeholder="tsv://MS Terminal Services Plugin.1.CollectionName"/></td></tr>
 										</table>
 									</div>
 									<div>
@@ -593,7 +596,20 @@ header,h2 {
 														<option value="1">Recording Graphic only</option>
 												</select></td>
 											</tr>
-								</table>	
+										</table>	
+									</div>
+									<div>
+										<table width="100%">
+											<tr>
+													<td>Scheme</td><td ><input type="text" name="http.scheme" id="http.scheme" value="https"/></td>
+											</tr>
+											<tr>								
+													<td>Port</td><td><input type="number" name="http.port" id="http.port" value="443" /></td>
+											</tr>
+											<tr>	
+												<td>Path</td><td><input type="text" name="http.path" id="http.path" /></td>
+											</tr>
+									</table>	
 									</div>
 								</div>
 							</div>
