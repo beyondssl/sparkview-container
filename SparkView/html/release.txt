@@ -1,3 +1,7 @@
+Build 1024
+1. RDP: Fixed a copying file to shared drive issue.
+2. Always disable session id reuse on joined sessions.
+
 Build 1023
 1. RDP: fixed mouse release issue when it's running in iframe.
 2. PROXY: fixed HTTP proxy path issue.
