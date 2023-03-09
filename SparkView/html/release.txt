@@ -1,3 +1,6 @@
+Build 1025
+1. RDP: allow set up "clientHost" in users.json.
+
 Build 1024
 1. RDP: Fixed a copying file to shared drive issue.
 2. Always disable session id reuse on joined sessions.
