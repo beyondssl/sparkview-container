@@ -1,3 +1,9 @@
+Build 1026
+1. Fixed a issue with authorization = Basic (gateway.conf)
+2. RDP: added added rdp.sessionInfo.joiners and oncontrolchange(sessionInfo)
+3. SSH: added ssh.cache (gateway.conf) to enable/disable SSH history cache for joined sessions (default is true).
+4. Better file type name for file manager.
+
 Build 1025
 1. RDP: allow set up "clientHost" in users.json.
 
