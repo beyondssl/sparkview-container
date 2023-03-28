@@ -31,7 +31,7 @@ For more information, please [click here](https://www.beyondssl.com/en/products/
 * [latest](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
 
 ## Dependencies
-* [OpenJDK 14.0.2 buster](https://github.com/docker-library/openjdk/blob/83fbf16d99f4094df192b4f07909b473ad1d8392/14/jdk/buster/Dockerfile)
+* [OpenJDK 21 slim buster](https://github.com/docker-library/openjdk/blob/6e380564c7664da5698bbff2a30934f9f6ca23ff/21/jdk/slim-buster/Dockerfile)
 
 ## Quick usage guide
 ### For use with docker-compose
