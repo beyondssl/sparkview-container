@@ -1,4 +1,4 @@
-FROM openjdk:14.0.2-slim-buster
+FROM openjdk:17.0.1-slim-buster
 
 RUN mkdir /usr/local/bin/SparkGateway
 
