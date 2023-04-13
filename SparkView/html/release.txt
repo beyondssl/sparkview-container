@@ -1,3 +1,6 @@
+Build 1027
+1. VNC: better compatibility when RFB version is 4.
+
 Build 1026
 1. Fixed a issue with authorization = Basic (gateway.conf)
 2. RDP: added added rdp.sessionInfo.joiners and oncontrolchange(sessionInfo)
