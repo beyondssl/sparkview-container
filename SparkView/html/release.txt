@@ -1,3 +1,7 @@
+Build 1028
+1. Fixed duplicated parameters in the WebSocket URL when the client is reconnecting.
+2. SSH: Fixed a copying issue after scrolling in editor.
+
 Build 1027
 1. VNC: better compatibility when RFB version is 4.
 
