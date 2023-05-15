@@ -23,7 +23,7 @@ Access VMs, desktops, servers or applications anytime and from anywhere, without
 * No Java, No Flash, No ActiveX, No Plugin
 * and more
 
-Check out this image for a first look and talk to us to learn about all the features and solutions offered by beyond SSL and SparkView (e.g. integrations with F5 and Pulse Secure)
+**Check out this image for a first look and talk to us to learn about all the features and solutions offered by beyond SSL and SparkView (e.g. integrations with F5 and Pulse Secure)**
 
 For more information, please [click here](https://www.beyondssl.com/en/products/sparkview/).
 
@@ -38,8 +38,11 @@ For more information, please [click here](https://www.beyondssl.com/en/products/
 Just run `docker-compose up -d` from the same directory, where the `docker-compose.yaml` exists or reference to it, using the `-f` flag.
 
 ### For use with Docker CLI
-The following command will lead to a working instance:<br>
+The following command will lead to a working instance on port 80:<br>
 `docker run -p 80:80 beyondssl/sparkview`. Use `-d` flag for detached mode.
+
+For use with HTTPS on port 443, use:<br>
+`docker run -p 443:443 beyondssl/sparkview`. Use `-d` flag for detached mode.
 
 ## Information
 For quick starts via docker-compose, the following docker-compose.yaml is used by default:
@@ -51,7 +54,6 @@ volumes:
   data:
   conf:
   keystore:
-  lic:
 
 services:
   sparkview:
@@ -60,7 +62,6 @@ services:
       - 'data:/usr/local/bin/SparkGateway/data'
       - 'conf:/usr/local/bin/SparkGateway/conf'
       - 'keystore:/usr/local/bin/SparkGateway/keystore'
-      - 'lic:/usr/local/bin/SparkGateway/lic'
     ports:
       - '80:80'
       - '443:443'
