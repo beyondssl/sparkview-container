@@ -1,3 +1,7 @@
+Build 1029:
+1. VNC: Dialog to allow user to enter password if it failed to login.
+2. VNC: Better QEMU extension key compatibility with consol/debian-xfce-vnc container.
+
 Build 1028
 1. Fixed duplicated parameters in the WebSocket URL when the client is reconnecting.
 2. SSH: Fixed a copying issue after scrolling in editor.

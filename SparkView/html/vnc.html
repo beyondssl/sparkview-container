@@ -216,6 +216,19 @@
         <textarea id="svTouchInput"></textarea>
         <img src="info.png" title="Information" id="svInfo">
     </div>
+
+	<dialog id="authDialog">
+		<form method="dialog">
+			<p>
+				<label for="authPwd">Password:</label>
+				<input type="password" name="authPwd" id="authPwd" autocomplete="off"/>
+			</p>
+			<p>
+				<button name="confirm" formmethod="dialog" type="submit">Submit</button>
+				<button name="cancel">Cancel</button>
+			</p>
+		</form>
+	</dialog>
 	<script type="text/javascript" src="vnc.page.js"></script>
 </body>
 </html>
