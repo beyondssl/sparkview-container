@@ -1,3 +1,8 @@
+Build 1030:
+1. RDP: Fixed a cipher suite issue with RD Webfeed integration.
+2. OAUTH: Added auth_uri for oauth2.json.
+3. Rename "kerberos.realm" to "kerberos.kdc" in gateway.conf.
+
 Build 1029:
 1. VNC: Dialog to allow user to enter password if it failed to login.
 2. VNC: Better QEMU extension key compatibility with consol/debian-xfce-vnc container.
