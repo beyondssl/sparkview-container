@@ -1,3 +1,7 @@
+Build 1032:
+1. RDP: Make multi-monitor works when menu bar is hidden or always displayed on macOS.
+2. SSH: Fixed recording file not saved issue when SSH server is restarted.
+
 Build 1031:
 1. Allow sub directories in the __record_name parameter.
 2. SSH: NumpadEnter key is also supported during login.
