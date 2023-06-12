@@ -18,6 +18,7 @@ RUN ln -s ./keystore/keystore.jks keystore.jks
 VOLUME /usr/local/bin/SparkGateway/conf
 VOLUME /usr/local/bin/SparkGateway/data
 VOLUME /usr/local/bin/SparkGateway/keystore
+VOLUME /usr/local/bin/SparkGateway/logs
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
