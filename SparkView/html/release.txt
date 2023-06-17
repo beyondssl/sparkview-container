@@ -1,3 +1,7 @@
+Build 1033:
+1. SSH: Right click to paste instead of showing history.
+2. SSH: Added History button in toolbar.
+
 Build 1032:
 1. RDP: Make multi-monitor works when menu bar is hidden or always displayed on macOS.
 2. SSH: Fixed recording file not saved issue when SSH server is restarted.
