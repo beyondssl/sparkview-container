@@ -1,3 +1,9 @@
+Build 1034:
+1. Player: Fixed "File not found" exception was not captured issue.
+2. .disposable directory is only created when it's in use.
+3. RDP: Fixed  smart card control code error in the agent.
+
+
 Build 1033:
 1. SSH: Right click to paste instead of showing history.
 2. SSH: Added History button in toolbar.
