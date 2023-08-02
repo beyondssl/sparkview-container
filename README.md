@@ -31,7 +31,7 @@ For more information, please [click here](https://www.beyondssl.com/en/products/
 * [latest](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
 
 ## Dependencies
-* [OpenJDK 21 slim buster](https://github.com/docker-library/openjdk/blob/6e380564c7664da5698bbff2a30934f9f6ca23ff/21/jdk/slim-buster/Dockerfile)
+* [OpenJDK 21 slim bookworm](https://hub.docker.com/layers/library/tomcat/jdk21-openjdk-slim-bookworm/images/sha256-16b80b5cb56dd87ff0e5270ff4aa2d202bac9f4d69fe90df86b626a8766c1f69?context=explore)
 
 ## Quick usage guide
 ### For use with docker-compose
@@ -54,14 +54,24 @@ volumes:
   data:
   conf:
   keystore:
+  logs:
 
 services:
   sparkview:
     image: 'beyondssl/sparkview:latest'
     volumes:
-      - 'data:/usr/local/bin/SparkGateway/data'
-      - 'conf:/usr/local/bin/SparkGateway/conf'
-      - 'keystore:/usr/local/bin/SparkGateway/keystore'
+      - type: volume
+        source: data
+        target: /usr/local/bin/SparkGateway/data
+      - type: volume
+        source: conf
+        target: /usr/local/bin/SparkGateway/conf
+      - type: volume
+        source: keystore
+        target: /usr/local/bin/SparkGateway/keystore
+      - type: volume
+        source: logs
+        target: /usr/local/bin/SparkGateway/logs
     ports:
       - '80:80'
       - '443:443'
