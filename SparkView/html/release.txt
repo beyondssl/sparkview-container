@@ -1,3 +1,10 @@
+Build 1035
+1. Proxy: Fixed unmatched host name and redirecting issue.
+2. RDP: Improved RemoteApp Windows sizing.
+3. SSH: Fixed input issue after switching window focus.
+4: RDP: Fixed a lock release issue with smart card kerberos authentication.
+
+
 Build 1034:
 1. Player: Fixed "File not found" exception was not captured issue.
 2. .disposable directory is only created when it's in use.
