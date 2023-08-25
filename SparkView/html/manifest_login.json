@@ -1,0 +1,29 @@
+{
+  "short_name": "Spark View",
+  "name": "Spark View Login",
+  "description": "Pure HTML5, supports clipboard, drive, sound, printer, RemoteFX, RemoteApp, session auditing/shadowing/prelaunch",
+  "version": "5.6.0",
+  "manifest_version": 2,
+  "icons": [
+    {
+      "src": "/icon128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/login.html?appMode=pwa",
+  "id": "/login.html?appMode=pwa",
+  "background_color": "#3367D6",
+  "display": "fullscreen",
+  "display_override": ["window-controls-overlay"]
+}

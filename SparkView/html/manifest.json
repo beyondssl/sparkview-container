@@ -1,22 +1,29 @@
 {
-  "name": "Spark View, Faster than any native RDP client",
+  "short_name": "Spark View",
+  "name": "Spark View",
   "description": "Pure HTML5, supports clipboard, drive, sound, printer, RemoteFX, RemoteApp, session auditing/shadowing/prelaunch",
   "version": "5.6.0",
   "manifest_version": 2,
-  "app": {
-    "background": {
-      "scripts": ["background.js"]
+  "icons": [
+    {
+      "src": "/icon128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
-  },
-  "icons": {
-    "128": "icon128.png"
-  },
-  "permissions": [
-    "notifications",
-    "clipboardRead",
-    "clipboardWrite",
-    "storage",
-    "fullscreen",
-    "webview"
-  ]
+  ],
+  "start_url": "/rdp.html?appMode=pwa",
+  "id": "/rdp.html?appMode=pwa",
+  "background_color": "#3367D6",
+  "display": "fullscreen",
+  "display_override": ["window-controls-overlay"]
 }

@@ -1,3 +1,9 @@
+Build 1036
+1. RDP: Fixed some customized cursor rendering issue.
+2. RDP: Better PWD support.
+3. Fixed Set-Cookie without Secure flag warning.
+
+
 Build 1035
 1. Proxy: Fixed unmatched host name and redirecting issue.
 2. RDP: Improved RemoteApp Windows sizing.
