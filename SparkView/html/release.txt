@@ -1,3 +1,6 @@
+Build 1037
+1. Proxy: Fixed websocket proxy issue introduced in 1035.
+
 Build 1036
 1. RDP: Fixed some customized cursor rendering issue.
 2. RDP: Better PWD support.
