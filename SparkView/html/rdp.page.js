@@ -136,7 +136,7 @@ function initUI(){
     	btnNextScr.onclick = function(){
     		svGlobal.monitors = svGlobal.monitors || []; 
             var win_opt = "width=" + window.outerWidth + ",height=" + window.outerHeight;
-    		svGlobal.monitors.push(window.open('monitor.html', 'new-window', win_opt));
+    		svGlobal.monitors.push(window.open('monitor.html', '_blank', win_opt));
     	};
     }
 
