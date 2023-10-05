@@ -1,4 +1,4 @@
-FROM openjdk:21-ea-31-slim-bookworm
+FROM openjdk:22-ea-17-slim-bookworm
 
 RUN mkdir /usr/local/bin/SparkGateway
 
