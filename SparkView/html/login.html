@@ -108,7 +108,7 @@
 		</form>
 		<div class="container" id="frmConn"  style="display:none">
 		<div><strong>My Computers and Programs:&nbsp;&nbsp;&nbsp;</strong>
-			<input type="button" name="showlogin" value="Back" id="goback"/>
+			<input type="button" name="showlogin" value="Sign out" id="goback"/>
 			<input type="button" name="anyconn" id="anyconn" value="Remote Desktop"/>
 		</div>
 			<div id="programs"></div>
@@ -179,22 +179,31 @@
 	<div id="settingsDiv" class="appdlg">
 		<form id="frmSettings">
 			<table>
-				<tr>
-					<td align="right">Current Password:</td>
-					<td><input type="password" id="currPwd" name="currPwd" required autocomplete="off" /></td>
-				</tr>
-				<tr>
-					<td align="right">New Password:</td>
-					<td><input type="password" name="newPwd1" required autocomplete="off" /></td>
-				</tr>
-				<tr>
-					<td align="right">Confirm new Password (Repeat):</td>
-					<td><input type="password" name="newPwd2" required autocomplete="off" /></td>
-				</tr>
-				<tr>
-					<td><input type="button" value="Two-factor authentication" id="btnTwoFA"> </td>
-					<td align="right"><input type="submit" name="submit" /></td>
-				</tr>
+				<tbody id="pwdZone">
+					<tr>
+						<td align="right">Current Password:</td>
+						<td><input type="password" id="currPwd" name="currPwd" required autocomplete="off" /></td>
+					</tr>
+					<tr>
+						<td align="right">New Password:</td>
+						<td><input type="password" name="newPwd1" required autocomplete="off" /></td>
+					</tr>
+					<tr>
+						<td align="right">Confirm new Password (Repeat):</td>
+						<td><input type="password" name="newPwd2" required autocomplete="off" /></td>
+					</tr>
+					<tr id="2fa_code_pwd">
+						<td align="right">Two-factor Auth:</td><td><input type="number" name="faCode" placeholder="6 digit  code"></td>
+					</tr>
+					<tr>
+						<td align="right" colspan="2"><input type="submit" name="submit" value="Submit"/></td>
+					</tr>
+				</tbody>
+				<tbody>
+					<tr>
+						<td colspan="2"><input type="button" value="Two-factor authentication" id="btnTwoFA"> </td>
+					</tr>
+				</tbody>
 			</table>
 		</form>
 	</div>
@@ -246,7 +255,8 @@
 			<img src="" alt="Barcode" id = "imgBarcode">
 		</div>
 		<div>
-			<input type="number" id="faCode" placeholder="6 digit code">
+			<input type="password" name="pwd" autocomplete="off" required placeholder="password"/>
+			<input type="number" id="faCode" name="faCode" required placeholder="6 digit code">
 			<input type="button" value="Enable" id="enableTwoFA">
 			<input type="button" value="Disable" id="disableTwoFA">
 		</div>
