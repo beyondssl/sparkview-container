@@ -1,4 +1,4 @@
-![Static Badge](https://img.shields.io/badge/Maintained%3F-Yes-success) ![Static Badge](https://img.shields.io/badge/Snyk_security-monitored-8A2BE2) ![Static Badge](https://img.shields.io/badge/Version-6.2.0-blue) ![Static Badge](https://img.shields.io/badge/Release-1038-blue)
+[![Static Badge](https://img.shields.io/badge/Maintained%3F-Yes-success)](https://support.beyondssl.com/en/) ![Static Badge](https://img.shields.io/badge/Snyk_security-monitored-8A2BE2) [![Static Badge](https://img.shields.io/badge/Version-6.2.0-blue)](https://www.beyondssl.com/en/products/sparkview/) [![Static Badge](https://img.shields.io/badge/Release-1038-blue)](https://www.beyondssl.com/en/products/sparkview/)
 
 # SparkView by beyond SSL
 <img alt="beyond SSL GmbH" src="https://repository.beyondssl.com/images/beyondssl-200.svg" width="200">
