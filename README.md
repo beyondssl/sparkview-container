@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/badge/Maintained%3F-Yes-success) ![Static Badge](https://img.shields.io/badge/Snyk_security-monitored-8A2BE2) ![Static Badge](https://img.shields.io/badge/Version-6.2.0-blue) ![Static Badge](https://img.shields.io/badge/Release-1038-blue)
+
 # SparkView by beyond SSL
 <img alt="beyond SSL GmbH" src="https://repository.beyondssl.com/images/beyondssl-200.svg" width="200">
 
@@ -31,7 +33,7 @@ For more information, please [click here](https://www.beyondssl.com/en/products/
 * [latest](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
 
 ## Dependencies
-* [OpenJDK 21 slim bookworm](https://hub.docker.com/layers/library/tomcat/jdk21-openjdk-slim-bookworm/images/sha256-16b80b5cb56dd87ff0e5270ff4aa2d202bac9f4d69fe90df86b626a8766c1f69?context=explore)
+* [OpenJDK 22 slim bookworm](https://github.com/docker-library/openjdk/blob/0ba8bdb0f3750ed27e73d66e2328c2216dcf1539/22/jdk/slim-bookworm/Dockerfile)
 
 ## Quick usage guide
 ### For use with docker-compose
