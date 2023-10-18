@@ -1,4 +1,3 @@
-/* Changes 2019 */
 body, html {padding: 0; margin: 0; background: #f0f0f0; font-family: 'Roboto', sans-serif;}
 .container {background-color: #fff; margin-top: 3em; width: 600px; margin: 3em auto 0 auto;}
 .containerPrograms {width: 100%;}
@@ -6,7 +5,7 @@ body, html {padding: 0; margin: 0; background: #f0f0f0; font-family: 'Roboto', s
 .icon:hover {background:#CCC;}
 .icon img {width:48px; height:48px;}
 .containerTop {width: 100%; float: left; background: #fff; box-sizing: border-box;}
-.cTLeft {width: 40%; float: left; padding: 6px 2em; box-sizing: border-box;}
+.cTLeft {width: 40%; float: left; padding: 34px 2em; box-sizing: border-box;}
 .cTLeft img {width: 100%; float: left; margin-top: 0px;}
 .cTRight {width: 60%; float: left; box-sizing: border-box; background: #005a80; padding: 1em 2em; text-align: right; color: #fff;}
 .containerCenter {width: 100%; float: left; background: #fff; padding: 2em; box-sizing: border-box; border-left: 3px solid #005a80; border-right: 3px solid #005a80; border-top: 3px solid #005a80;}
@@ -23,7 +22,6 @@ p {margin: 0; font-size: 14px;}
 .fieldWrapper input:focus {outline: none; border: 1px solid #005a80;}
 .fieldWrapper input[type="submit"] {transition: all .3s; border: none; background: #005a80; color: #fff; cursor: pointer; float: right;}
 .fieldWrapper input[type="submit"]:hover {color: #000; background: #ccc;}
-.cCInnerRight p:first-child {margin-bottom: 20px;}
 .programsHeader {margin-bottom: 20px;}
 .programsInner {position: absolute; left: 50%; top: 50%; width: 900px; transform: translate(-50%, -50%); margin: 0; padding: 1.5em; background: #005a80;}
 .programsInner p {width: 100%; float: left; color: #fff; font-size: 18px; margin-bottom: 10px;}
@@ -33,8 +31,4 @@ p {margin: 0; font-size: 14px;}
 #programs {width: 100%; float: left; margin-bottom: 20px;}
 .floatLeft {float: left; width: 100%; color: #fff;}
 .floatLeft a {color: #fff;}
-/* End of changes 2019 */
-
-/* Changes 2022 */
 #login {border: none !important; width: 100%; height: 100%; background: rgb(51,51,51);}
-/* End of changes 2022 */

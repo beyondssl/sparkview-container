@@ -1,3 +1,6 @@
+Build 1039
+1. VNC: Allow directory in __record_name parameter for session recording.
+
 Build 1038
 1. 2FA for Password change.
 2. Password for 2FA deactivation.
