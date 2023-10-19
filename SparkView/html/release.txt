@@ -4,7 +4,7 @@ Build 1039
 Build 1038
 1. 2FA for Password change.
 2. Password for 2FA deactivation.
-3. 2FA brute force and relay protection.
+3. 2FA brute force and replay protection.
 4. Clean gateway session when user log off.
 5. Empty password input after user log in.
 6. Right click to paste on Telnet (Doesn't open history dialog anymore).
