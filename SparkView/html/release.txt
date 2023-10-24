@@ -1,3 +1,6 @@
+Build 1040
+1. VNC: Fixed NullPointer issue with rec.end.exec on session recording
+
 Build 1039
 1. VNC: Allow directory in __record_name parameter for session recording.
 
