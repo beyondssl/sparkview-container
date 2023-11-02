@@ -1,3 +1,6 @@
+Build 1041
+1. VNC: Fixed surface.scaleTo() doesn't work on player issue.
+
 Build 1040
 1. VNC: Fixed NullPointer issue with rec.end.exec on session recording
 
