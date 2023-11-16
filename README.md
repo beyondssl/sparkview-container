@@ -33,7 +33,7 @@ For more information, please [click here](https://www.beyondssl.com/en/products/
 * [latest](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
 
 ## Dependencies
-* [OpenJDK 22 slim bookworm](https://github.com/docker-library/openjdk/blob/0ba8bdb0f3750ed27e73d66e2328c2216dcf1539/22/jdk/slim-bookworm/Dockerfile)
+* [OpenJDK 22 slim bookworm](https://github.com/docker-library/openjdk/blob/10bb9a771a94688cdeb3e0460e04e6036b60718d/22/jdk/slim-bookworm/Dockerfile)
 
 ## Quick usage guide
 ### For use with docker-compose
