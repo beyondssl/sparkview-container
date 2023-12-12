@@ -1,3 +1,8 @@
+Build 1042
+1. SSH: Fixed a recording white screen (timing) issue.
+2. SSH: Fixed a onfocus() null reference issue.
+3. RDP: Fixed Yubikey smart card login issue on Windows and macOS.
+
 Build 1041
 1. VNC: Fixed surface.scaleTo() doesn't work on player issue.
 
