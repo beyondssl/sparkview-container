@@ -112,6 +112,13 @@ aside {
     color: #0075bf;
 }
 
+.card-button-small.license-button {
+    background: linear-gradient(138deg,rgba(247,213,96,1) 0%,rgba(241,95,170,1) 100%);
+    border: none;
+    color: #fff;
+    margin-top: 20px;
+}
+
 .aside-bottom {
     color: #47536b;
     font-size: 10px;
