@@ -1,0 +1,247 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 300;
+    src: url('/fonts/titillium-web-v17-latin-300.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/fonts/titillium-web-v17-latin-600.woff2') format('woff2');
+}
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: #f0f0f0;
+    font-family: 'Titillium Web', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h3 {
+    font-weight: 600;
+    font-size: 16px;
+    color: #0075bf;
+    display: block;
+    width: 100%;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dde3ec;
+}
+
+.container {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    width: 100%;
+    max-width: 80vw;
+    height: auto;
+}
+
+header {
+    background: #0075bf;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+header img {
+    width: 100px;
+    height: auto;
+    display: block;
+}
+
+header span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.content {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+aside {
+    flex: 0 1 250px;
+    background: #dde3ec;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.aside-top a {
+    display: block;
+    color: #0075bf;
+    margin-bottom: 15px;
+}
+
+.aside-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: auto;
+    margin-bottom: 40px;
+}
+
+.aside-buttons .card-button-small {
+    flex: 0 1 100%;
+    margin-right: 0;
+    border: 1px solid #0075bf;
+    color: #0075bf;
+}
+
+.aside-bottom {
+    color: #47536b;
+    font-size: 10px;
+    text-align: center;
+}
+
+.aside-bottom a {
+    color: inherit;
+}
+
+main {
+    flex: 0 1 calc(100% - 250px);
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.card-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.card-button {
+    margin: 0 20px 20px 0;
+    border-radius: 7px;
+    flex: 0 1 calc(50% - 20px);
+    background: #dde3ec;
+    border: 1px solid #47536b;
+    padding: 8px 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    color: #47536b;
+    text-decoration: none;
+    transition: all .2s;
+}
+
+.card-button-icon {
+    flex: 0 1 auto;
+    height: 20px;
+}
+
+.card-button-content {
+    margin-left: 15px;
+    padding-left: 15px;
+    border-left: 1px solid #47536b;
+}
+
+.card-button-small-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.card-button-small-subtitle {
+    display: block;
+    font-size: 14px;
+}
+
+.card-button:hover,
+.card-button:focus,
+.card-button-small:hover,
+.card-button-small:focus {
+    outline: none;
+    transform: translateY(-3px);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);   
+}
+
+.card-button-small {
+    margin: 0 20px 20px 0;
+    border-radius: 7px;
+    flex: 0 1 calc(33.333333333% - 20px);
+    background: #dde3ec;
+    border: 1px solid #47536b;
+    padding: 8px 15px;
+    box-sizing: border-box;
+    color: #47536b;
+    text-decoration: none;
+    transition: all .2s;
+}
+
+@media (max-width: 1460px) {
+    .card-button-small {
+        flex: 0 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 1150px) {
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    header,
+    aside {
+        padding: 20px;
+    }
+
+    main {
+        padding: 20px 40px;
+    }
+
+    .card-button-small,
+    .card-button {
+        flex: 0 1 100%;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    header img {
+        width: 80px;
+    }
+
+    .content {
+        flex-direction: column-reverse;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .aside-buttons {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
