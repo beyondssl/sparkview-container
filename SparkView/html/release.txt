@@ -1,3 +1,18 @@
+Build 1044:
+1. SSH: set ssh.etm = false to workaround CVE-2023-48795.
+2. RDP, VNC, SSH, TELNET: added oncreatewebsocket event to allow the library to use an existing WebSocket connection:
+
+//only the parameters are used if it has oncreatewebsocket event listener.
+var rdp = new svGlobal.Rdp("ws://not_used.com/RDP?server=xxx...");
+rdp.oncreatewebsocket = function(url) {
+	//connecting your proxy or SparkGateway directly.
+	var ws = new WebSocket("ws://myproxy.com/RDP?_METHOD=post");
+	return ws;
+};
+
+Make sure you have "/RDP?_METHOD=post" if it's connecting to a SparkGateway server for RDP session.
+
+
 Build 1043:
 1. Wait longer to enter two factor code after 3 failed attempts.
 2. Fixed unauthorised proxy access problem.
