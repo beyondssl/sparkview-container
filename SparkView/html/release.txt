@@ -1,3 +1,6 @@
+Build 1045:
+1. SSH: Fixed hi5.appcfg.wsPost = true  not working issue which was introduced in build 1044.
+
 Build 1044:
 1. SSH: set ssh.etm = false to workaround CVE-2023-48795.
 2. RDP, VNC, SSH, TELNET: added oncreatewebsocket event to allow the library to use an existing WebSocket connection:
