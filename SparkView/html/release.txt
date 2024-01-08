@@ -1,3 +1,7 @@
+Build 1046:
+1. LDAP: Fixed a connection issue with singed LDAPS.
+2. gateway.conf: Added readOnly=true to make it readable only.
+
 Build 1045:
 1. SSH: Fixed hi5.appcfg.wsPost = true  not working issue which was introduced in build 1044.
 
