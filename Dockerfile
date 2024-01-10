@@ -1,4 +1,4 @@
-FROM openjdk:22-ea-26
+FROM openjdk:22-ea-29
 
 RUN mkdir /usr/local/bin/SparkGateway
 
