@@ -1,3 +1,7 @@
+Build 1047:
+1. SSH: Added aes192-ctr and aes192-cbc ciphers.
+2. LDAP: Added "Group" option in config.html for LDAP importing.
+
 Build 1046:
 1. LDAP: Fixed a connection issue with singed LDAPS.
 2. gateway.conf: Added readOnly=true to make it readable only.

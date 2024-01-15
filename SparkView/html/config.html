@@ -630,7 +630,11 @@ header,h2 {
 					<input type="button" name="refresh" value="Refresh" onclick="sparkConfig.refreshUsers();"/>
 					<br><input type="button" name="importUser" value="Import Active Directory Users" id="users.import" onclick="sparkConfig.importUsers();"/>
 					<input id="adUser" placeholder="User Name" ><input id="adPwd" type="password" placeholder="Password" autocomplete="off"><input id="adDomain" placeholder="Domain" >
-					<input id="adOU" placeholder="Organizational Unit" ><input id="adServer" placeholder="Domain Server" ><input id="secProtocol" placeholder="AD Security: ssl/tls" ><br>
+					<input id="adOU" placeholder="Organizational Unit" >
+					<input id="adGroup" placeholder="Group" >
+					<input id="adServer" placeholder="Domain Server" >
+					<input id="secProtocol" placeholder="AD Security: ssl/tls" >
+					<br>
 					<span><small>Servers for imported users:</small></span><input id="adServers" placeholder="serverId1,serverId2, ...">
 				</header>
 				<table id="users.rows" class="table">
