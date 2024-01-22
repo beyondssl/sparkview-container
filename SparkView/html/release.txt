@@ -1,3 +1,7 @@
+Build 1048:
+1. RDP: Fixed Null Pointer issue in player.html when recoding is using RDP 6.1 compression.
+2. LDAP: Group name search is not case sensitive anymore during LDAP importing (config.html).
+
 Build 1047:
 1. SSH: Added aes192-ctr and aes192-cbc ciphers.
 2. LDAP: Added "Group" option in config.html for LDAP importing.
