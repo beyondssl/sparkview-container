@@ -1,3 +1,6 @@
+Build 1049
+1. LDAP: Fixed "Group" option doesn't work in specific servers.
+
 Build 1048:
 1. RDP: Fixed Null Pointer issue in player.html when recoding is using RDP 6.1 compression.
 2. LDAP: Group name search is not case sensitive anymore during LDAP importing (config.html).
