@@ -26,7 +26,7 @@ hi5.appcfg = {
 //      disableJoinedAppResize: true,//Disable remoteapp window resizing on joined sessions, default is false
 //		disableScrollbars: false, //Disable browser scrollbars, default is true
 //		disableDVC: true,
-//		wsPost: true,
+		wsPost: true,
 //       startup:{//start up a server or remoteapp automatically after login.
 //       	server: "",//if server is "" or not found, the first one will be opened instead.
 //       	newWindow: false //if open in new window
@@ -55,6 +55,9 @@ hi5.appcfg = {
 		// disableClickEffect: true,
 		// detectNetwork: true, //Detect network automatically.
 		//closeRemoteApp: true, //try close all remoteapps too when session is closed.
+		ssh: {
+			theme: 'light',
+		},
 		img: {
 //			close: 'close.png',
 //			cloud: 'cloud.png',
