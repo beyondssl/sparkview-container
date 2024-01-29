@@ -1,9 +1,11 @@
-build 1050:
+Build  1051
+1. LDAP: Group name in implorting can be a full distinguished name: "OU=Bayreuth,OU=Company,OU=DE,DC=test,DC=com".
+2. The returlUrl of CONNECT? handler can also be login.html (examplePost.html), means you can use HTTP POST for login.html.
+
+Build 1050:
 1. RDP: Fixed a connecting issue with Ubuntu 22 Remote Desktop.
 2. SSH: Added a new "light" theme along with the original "classic", also added ssh.setTheme(theme) method and hi5.appcfg.ssh.theme option. You can run $ssh.setThem('light') in the Dev Tools to check it.
 3. ALL: Added hi5.appcfg.returnUrl option which redirect to that URL after the session is closed and onclose event is not registered.
-
-
 
 Build 1049
 1. LDAP: Fixed "Group" option doesn't work in specific servers.
