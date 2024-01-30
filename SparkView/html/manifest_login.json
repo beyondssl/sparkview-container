@@ -6,17 +6,17 @@
   "manifest_version": 2,
   "icons": [
     {
-      "src": "/icon128.png",
+      "src": "/images/android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "/icon192.png",
+      "src": "/images/android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/icon512.png",
+      "src": "/images/android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
