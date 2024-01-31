@@ -1,3 +1,6 @@
+Build 1052
+1. Native Shadowing: Fixed "not a enum" building issue introduced in 1048.
+
 Build  1051
 1. LDAP: Group name in implorting can be a full distinguished name: "OU=Bayreuth,OU=Company,OU=DE,DC=test,DC=com".
 2. The returlUrl of CONNECT? handler can also be login.html (examplePost.html), means you can use HTTP POST for login.html.

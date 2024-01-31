@@ -1,40 +1,34 @@
-@font-face {font-display: swap; font-family: 'Titillium Web'; font-style: normal; font-weight: 300; src: url('/fonts/titillium-web-v17-latin-300.woff2') format('woff2');}
-@font-face { font-display: swap; font-family: 'Titillium Web'; font-style: normal; font-weight: 600; src: url('/fonts/titillium-web-v17-latin-600.woff2') format('woff2');}
-html {padding: 0; margin: 0;}
-body {padding: 0; margin: 0; background: #f0f0f0; font-family: 'Titillium Web', sans-serif;}
+body, html {padding: 0; margin: 0; background: #f0f0f0; font-family: 'Roboto', sans-serif;}
+.container {background-color: #fff; margin-top: 3em; width: 600px; margin: 3em auto 0 auto;}
+.containerPrograms {width: 100%;}
+.icon {width: calc(16.6666666% - 10px); height: auto; text-align: center; padding: 1em; vertical-align: middle; transition: all .3s; margin-bottom: 10px; float: left; background: #fff; box-sizing: border-box; margin-right: 10px;}
+.icon:hover {background:#CCC;}
+.icon img {width:48px; height:48px;}
+.containerTop {width: 100%; float: left; background: #fff; box-sizing: border-box;}
+.cTLeft {width: 40%; float: left; padding: 34px 2em; box-sizing: border-box;}
+.cTLeft img {width: 100%; float: left; margin-top: 0px;}
+.cTRight {width: 60%; float: left; box-sizing: border-box; background: #005a80; padding: 1em 2em; text-align: right; color: #fff;}
+.containerCenter {width: 100%; float: left; background: #fff; padding: 2em; box-sizing: border-box; border-left: 3px solid #005a80; border-right: 3px solid #005a80; border-top: 3px solid #005a80;}
+.containerBottom {width: 100%; float: left; background: #005a80; padding: 1em 2em; box-sizing: border-box;}
 p {margin: 0; font-size: 14px;}
-#login {width: 100%; min-height: 80vh; display: flex; align-items: center; justify-content: center;}
-#frmLogin {width: 600px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; border-radius: 20px; overflow: hidden; box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05); margin: 0 auto;}
-.containerTop {flex: 0 1 100%; background: #fff; box-sizing: border-box; display: flex; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch;}
-.cTLeft {flex: 0 1 40%; padding: 0 2em; box-sizing: border-box; display: flex; align-items: center;}
-.cTLeft img {width: 100%; height: auto; display: block; max-height: 60px; object-fit: contain;}
-.cTRight {flex: 0 1 60%; box-sizing: border-box; background: #0075bf; padding: 1em 2em; text-align: right; color: #fff;}
-.containerCenter {flex: 0 1 100%; background: #fff; padding: 2em 4em; box-sizing: border-box; border-left: 3px solid #0075bf; border-right: 3px solid #0075bf; border-top: 3px solid #0075bf;}
-.fieldWrapper {width: 100%; margin-bottom: 20px;}
+.containerBottom p {font-size: 12px; width: 100%; text-align: center; color: #fff;}
+.containerBottom a {color: #fff;}
+.cCInnerLeft {float: left; width: 70%; box-sizing: border-box; padding-right: 5%;}
+.cCInnerRight {float: left; width: 30%; box-sizing: border-box; padding: 15px; background: #eee;}
+.fieldWrapper {width: 100%; float: left; margin-bottom: 20px;}
 .fieldWrapper:last-child {margin-bottom: 0px;}
-.fieldWrapper p {margin-bottom: 10px; font-weight: bold;}
-.fieldWrapper input {display: block; width: 100%; padding: 10px 22px; box-sizing: border-box; font-family: 'Titillium Web', sans-serif; font-size: 14px; border: 1px solid #dde3ec; border-radius: 5px; outline: none; resize: none; font-weight: lighter;}
-.fieldWrapper input:focus {border-color: #0075bf; box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);}
-.fieldWrapper input[type="submit"] {border: none; background: #0075bf; color: #fff; cursor: pointer; width: auto; padding: 10px 40px;}
-.fieldWrapper input[type="submit"]:hover {background: #005e99;}
-.containerBottom {flex: 0 1 100%; background: #0075bf; padding: 1em 2em; box-sizing: border-box;}
-.containerBottom p, .copyrightPrograms {font-size: 12px; width: 100%; text-align: center; color: #fff;}
-.copyrightPrograms {margin-top: 20px;}
-.containerBottom a, .copyrightPrograms a {color: #fff;}
-.containerPrograms {background: #0075bf; padding: 2em; box-sizing: border-box; width: 100%; max-width: 800px; border-radius: 20px; box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05); margin: 0 auto;}
-.containerPrograms > p {color: #fff; margin-bottom: 20px; font-size: 16px;}
-#programs {width: 100%; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start;}
-.icon {flex: 0 1 calc(16.6666666% - 10px); height: auto; text-align: center; padding: 1em; vertical-align: middle; transition: all .3s; margin-bottom: 10px; background: #fff; box-sizing: border-box; margin-right: 10px; border-radius: 10px; pointer-events: none;}
-.icon img {width:48px; height:48px; pointer-events: auto; border-radius: 5px; margin-bottom: 5px;}
-.icon:hover {background: #dde3ec;}
-.settingsPrograms {display: flex; flex-wrap: wrap; justify-content: flex-start; align-items: center;}
-.settingsPrograms select {padding: 6px 12px; box-sizing: border-box; font-family: 'Titillium Web', sans-serif; font-size: 14px; border: 1px solid #dde3ec; border-radius: 5px; outline: none; resize: none; font-weight: lighter; margin-right: 20px;}
-input#multiMon {margin: 0; margin-right: 8px; width: 15px; height: 15px;}
-.settingsPrograms label {color: #fff;}
-#settings {margin-left: auto; height: 30px; width: auto; display: block; cursor: pointer;}
-#settings:hover {opacity: .75;}
-#goback {border: none; background: #dde3ec; color: #000; cursor: pointer; width: auto; padding: 10px 40px; box-sizing: border-box; font-family: 'Titillium Web', sans-serif; font-size: 14px; border-radius: 5px; outline: none; resize: none; font-weight: lighter; margin-top: 20px;}
-#goback:hover {background: #fff;}
-#twofainfo input, #twofacode input {display: inline-block; width: 45%; padding: 10px 22px; box-sizing: border-box; font-family: 'Titillium Web', sans-serif; font-size: 14px; border: 1px solid #dde3ec; border-radius: 5px; outline: none; resize: none; font-weight: lighter;}
-#twofainfo input:focus, #twofacode input:focus {border-color: #0075bf; box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);}
-#twofainfo input[type="button"], #twofacode input[type="button"] {width: auto; margin-top: 10px; border: none;}
+.fieldWrapper p {width: 40%; float: left; text-align: right; box-sizing: border-box; padding-right: 10px; padding-top: 10px;}
+.fieldWrapper input {width: 60%; float: left; box-sizing: border-box; padding: 10px; border: 1px solid #ccc; background: #fff; font-family: 'Roboto', sans-serif; font-size: 14px; transition: all .3s;}
+.fieldWrapper input:focus {outline: none; border: 1px solid #005a80;}
+.fieldWrapper input[type="submit"] {transition: all .3s; border: none; background: #005a80; color: #fff; cursor: pointer; float: right;}
+.fieldWrapper input[type="submit"]:hover {color: #000; background: #ccc;}
+.programsHeader {margin-bottom: 20px;}
+.programsInner {position: absolute; left: 50%; top: 50%; width: 900px; transform: translate(-50%, -50%); margin: 0; padding: 1.5em; background: #005a80;}
+.programsInner p {width: 100%; float: left; color: #fff; font-size: 18px; margin-bottom: 10px;}
+.programsTopButtons {width: 100%; margin: 10px 0; float: left;}
+.programsTopButtons input {-webkit-appearance: none; -moz-appearance: none; appearance: none; background: #fff; color: #000; padding: 8px 12px; margin-right: 5px; border: none; transition: all .3s; cursor: pointer; font-size: 14px;}
+.programsTopButtons input:hover {background: #eee;}
+#programs {width: 100%; float: left; margin-bottom: 20px;}
+.floatLeft {float: left; width: 100%; color: #fff;}
+.floatLeft a {color: #fff;}
+#login {border: none !important; width: 100%; height: 100%; background: rgb(51,51,51);}
