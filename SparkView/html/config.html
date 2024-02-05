@@ -51,7 +51,7 @@ header,h2 {
 		</header>
 	</article>
 	<article style="display:block">
-		<input type="button" value="Start Configuration" onclick="sparkConfig.getAll();" />
+		<input type="button" value="Start Configuration" id="startCfg"/>
 		<span id="message"></span>
 	</article>
 	<div class="tab_all" id="conf3" style="margin-left:20px;display:none">
@@ -66,7 +66,7 @@ header,h2 {
 			<div>
 				<header>
 					Gateway Configuration (Saved in gateway.conf)<input type="button"
-						name="saveGateway" value="Save" onclick="sparkConfig.saveGateway();"/>
+						name="saveGateway" value="Save" />
 				</header>
 				<form action="" id="frmGateway">
 					<table>
@@ -307,8 +307,8 @@ header,h2 {
 			<div>
 				<header>
 					Server (RDP Host) Configuration (Saved in servers.json)
-					<input type="button" name="addServer" value="Add" id="servers.add" onclick="sparkConfig.editServer();"/>
-					<input type="button" name="refresh" value="Refresh" onclick="sparkConfig.refreshServers();"/> 
+					<input type="button" name="addServer" value="Add" id="servers.add"/>
+					<input type="button" name="refresh" id="servers.refresh" value="Refresh"/> 
 				</header>
 				<div id ="servers" class="data-source">
 					<label for="servers.type">Type</label> 
@@ -340,7 +340,7 @@ header,h2 {
 							</tr>
 						</tbody>
 					</table>
-					<form name="server" id="servers.view" style="display:none" onsubmit="return sparkConfig.saveServer();">
+					<form name="server" id="servers.view" style="display:none" >
 					  <table class="hi5_dialog" style="width:100%">
 					    <tr><td colspan="2"><input type="submit" value="Save"/></td></tr>
 						<tr><td>ID</td><td><input type="text" name="id" id="server.id" required/>
@@ -441,7 +441,7 @@ header,h2 {
 											<tr><td>Drive Redirection</td><td><input type="checkbox" name="mapDisk" id="server.mapDisk"/></td></tr>
 											<tr>
 													<td rowspan="3">Drive 0</td>
-													<td >Dos Name&nbsp;<input type="text" name="dosName0" onchange="document.getElementById('server.mapDisk').checked=true;" /></td></tr>
+													<td >Dos Name&nbsp;<input type="text" name="dosName0" /></td></tr>
 											<tr>
 													<td>Path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;<input type="text" name="devicePath0" /></td>
 											</tr>
@@ -626,9 +626,9 @@ header,h2 {
 			<div>
 				<header>
 					User Configuration (Saved in users.json)
-					<input type="button" name="addUser" value="Add" id="users.add" onclick="sparkConfig.editUser();"/>
-					<input type="button" name="refresh" value="Refresh" onclick="sparkConfig.refreshUsers();"/>
-					<br><input type="button" name="importUser" value="Import Active Directory Users" id="users.import" onclick="sparkConfig.importUsers();"/>
+					<input type="button" name="addUser" value="Add" id="users.add"/>
+					<input type="button" name="refresh" value="Refresh" id="users.refresh"/>
+					<br><input type="button" name="importUser" value="Import Active Directory Users" id="users.import"/>
 					<input id="adUser" placeholder="User Name" ><input id="adPwd" type="password" placeholder="Password" autocomplete="off"><input id="adDomain" placeholder="Domain" >
 					<input id="adOU" placeholder="Organizational Unit" >
 					<input id="adGroup" placeholder="Group" >
@@ -662,7 +662,7 @@ header,h2 {
 						</tr>
 					</tbody>
 				</table>
-				<form name="user" id="users.view" style="display: none" onsubmit="return sparkConfig.saveUser();">
+				<form name="user" id="users.view" style="display: none">
 					<table class="hi5_dialog" style="width:100%">
 						<tr>
 							<td colspan="2"><input type="submit" value="Save"/></td>
@@ -700,8 +700,8 @@ header,h2 {
 			<div>
 				<header>
 					Symlink Configuration (Saved in symlink.json)
-					<input type="button" name="addSymlink" value="Add" id="symlinks.add" onclick="sparkConfig.editSymlink();"/>
-					<input type="button" name="refresh" value="Refresh" onclick="sparkConfig.refreshSymlinks();"/>
+					<input type="button" name="addSymlink" value="Add" id="symlinks.add" />
+					<input type="button" name="refresh" value="Refresh" id="symlinks.refresh" />
 				</header>
 				<table id="symlinks.rows" class="table">
 					<thead>
@@ -728,7 +728,7 @@ header,h2 {
 						</tr>
 					</tbody>
 				</table>
-				<form name="symlink" id="symlinks.view" style="display: none" onsubmit="return sparkConfig.saveSymlink();">
+				<form name="symlink" id="symlinks.view" style="display: none" >
 					<table class="hi5_dialog" style="width:100%">
 						<tr>
 							<td colspan="2"><input type="submit" value="Save"/></td>
@@ -772,7 +772,7 @@ header,h2 {
 			</div>
 			<div>
 				<header>
-					Sessions <input type="button" name="refresh" value="Refresh" onclick="sparkConfig.refreshSessions();"/>
+					Sessions <input type="button" name="refresh" id="sessions.refresh" value="Refresh" />
 					<span>Total: </span><span id="sessions.size"></span>
 				</header>
 				<table id="sessions.rows" class="table">
@@ -823,8 +823,8 @@ header,h2 {
 			<div>
 				<header>
 					Server Group Configuration (Saved in servergroups.json)
-					<input type="button" name="addServerGroup" value="Add" id="serverGroups.add" onclick="sparkConfig.editServerGroup();"/>
-					<input type="button" name="refresh" value="Refresh" onclick="sparkConfig.refreshServerGroups();"/>
+					<input type="button" name="addServerGroup" value="Add" id="serverGroups.add" />
+					<input type="button" name="refresh" value="Refresh" id="serverGroups.refresh" />
 				</header>
 				<table id="serverGroups.rows" class="table">
 					<thead>
@@ -843,7 +843,7 @@ header,h2 {
 						</tr>
 					</tbody>
 				</table>
-				<form name="serverGroup" id="serverGroups.view" style="display: none" onsubmit="return sparkConfig.saveServerGroup();">
+				<form name="serverGroup" id="serverGroups.view" style="display: none" >
 					<table class="hi5_dialog" style="width:100%">
 						<tr>
 							<td colspan="2"><input type="submit" value="Save"/></td>
@@ -863,8 +863,8 @@ header,h2 {
 			<div>
 				<header>
 					User Group Configuration (Saved in usergroups.json)
-					<input type="button" name="addUserGroup" value="Add" id="userGroups.add" onclick="sparkConfig.editUserGroup();"/>
-					<input type="button" name="refresh" value="Refresh" onclick="sparkConfig.refreshUserGroups();"/>
+					<input type="button" name="addUserGroup" value="Add" id="userGroups.add" />
+					<input type="button" name="refresh" value="Refresh" id="userGroups.refresh" />
 				</header>
 				<table id="userGroups.rows" class="table">
 					<thead>
@@ -885,7 +885,7 @@ header,h2 {
 						</tr>
 					</tbody>
 				</table>
-				<form name="userGroup" id="userGroups.view" style="display: none" onsubmit="return sparkConfig.saveUserGroup();">
+				<form name="userGroup" id="userGroups.view" style="display: none" >
 					<table class="hi5_dialog" style="width:100%">
 						<tr>
 							<td colspan="2"><input type="submit" value="Save"/></td>

@@ -1,3 +1,8 @@
+Build 1053
+1. LDAP: Fixed Null attribute issue on user importing.
+2. Config.html: Removed inline scripts.
+3. RDP: better port checking timeout calculation (portCheckTimes, portCheckInterval).
+
 Build 1052
 1. Native Shadowing: Fixed "not a enum" building issue introduced in 1048.
 
