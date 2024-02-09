@@ -1,3 +1,7 @@
+Build 1054
+1. SSH: Fixed file uploading issue when the directory is created from UI.
+2. Config.html: added "Single Sign-on" option for server, default is true.
+
 Build 1053
 1. LDAP: Fixed Null attribute issue on user importing.
 2. Config.html: Removed inline scripts.
