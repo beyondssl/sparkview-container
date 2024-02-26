@@ -1,3 +1,6 @@
+Build 1055
+1. RDP: Set hi5.appcfg.windowState = 5 to keep the RemoteApp window not maximized, so it will not hide other apps in the same window.
+
 Build 1054
 1. SSH: Fixed file uploading issue when the directory is created from UI.
 2. Config.html: added "Single Sign-on" option for server, default is true.
