@@ -7,19 +7,20 @@
 	<title>SparkView</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="application-name" content="Spark RDP" />
-	<link rel="apple-touch-icon" href="rdp.png" />
 	<link rel="manifest" href="manifest_login.json">
-	<meta name="application-name" content="Spark View" />
-	<meta name="description" content="Remotely view and contrl your computer with RDP protocol" />
-	<link rel="SHORTCUT ICON" href="rdp.ico" />
-	<link rel="icon" href="rdp32.png" sizes="32x32" />
-	<link rel="icon" href="rdp48.png" sizes="48x48" />
+	<meta name="application-name" content="SparkView" />
+	<meta name="description" content="SparkView provides secure remote access to servers, desktops and applications from any device with a browser." />
+	
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+	<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#0075bf">
+	<meta name="msapplication-TileColor" content="#0075bf">
+	<meta name="theme-color" content="#ffffff">
 
 	<link rel="stylesheet" href="login3.css" />
 	<link rel="stylesheet" href="hi5.css" />
 	<link rel="stylesheet" href="rdp.css" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 
 	<script type="text/javascript" src="appcfg.js"></script>
 	<script type="text/javascript" src="hi5core_min.js"></script>
@@ -28,110 +29,86 @@
 </head>
 
 <body>
-	<div id="login" style="background-color:white">
+	<div id="login">
 		<form id="frmLogin">
-			<div class="container">
-				<div class="containerTop">
-					<div class="cTLeft">
-						<img src="sparkview.svg" alt="SparkView" title="SparkView" />
-					</div>
-
-					<div class="cTRight">
-						<h3>SparkView <span class="ver"></span></h3>
-					</div>
+			<div class="containerTop">
+				<div class="cTLeft">
+					<img src="/images/beyondssl.svg" alt="SparkView – distributed by beyond SSL" title="SparkView – distributed by beyond SSL" />
 				</div>
-
-				<div class="containerCenter">
-					<div class="cCInnerLeft">
-						<div class="fieldWrapper">
-							<p>Gateway:</p>
-							<input type="text" name="gateway" id="gateway" required />
-						</div>
-						<div class="fieldWrapper">
-							<p>Domain\Username:</p>
-							<input type="text" name="user" id="user" required />
-						</div>
-						<div class="fieldWrapper">
-							<p>Password:</p>
-							<input type="password" name="pwd" required autocomplete="off" />
-						</div>
-						<!-- you can enable this if you are using RDAIUS
-						<tr>
-							<td align="right">Shared Secret:</td>
-							<td><input type="text" name="sharedSecret" required/>
-							</td>
-						</tr>
-						-->
-						<div class="fieldWrapper">
-							<input type="submit" name="usrlogin" value="Sign in" />
-						</div>
-					</div>
-
-					<div class="cCInnerRight">
-						<p>See <a href="new.html" target="_blank" style="color: #005a80;">what's new</a>.</p>
-					</div>
+				<div class="cTRight">
+					<h3>SparkView <span class="ver"></span></h3>
 				</div>
+			</div>
 
-				<div class="containerBottom">
-					<p>Copyright &copy; <a href="http://www.remotespark.com" target="_blank">Remote Spark Corp.</a> 2011 - 2023</p>
+			<div class="containerCenter">
+				<div class="fieldWrapper">
+					<p>Gateway:</p>
+					<input type="text" name="gateway" id="gateway" required readonly />
 				</div>
+				<div class="fieldWrapper">
+					<p>Domain\Username:</p>
+					<input type="text" name="user" id="user" required />
+				</div>
+				<div class="fieldWrapper">
+					<p>Password:</p>
+					<input type="password" name="pwd" required autocomplete="off" />
+				</div>
+				<div class="fieldWrapper">
+					<input type="submit" name="usrlogin" value="Sign in" />
+				</div>
+			</div>
 
+			<div class="containerBottom">
+				<p>Copyright &copy; Remote Spark Corp. 2011 - 2024. Distributed by <a href="https://www.beyondssl.com/de/produkte/sparkview/" target="_blank">beyond SSL</a>.</p>
 			</div>
 		</form>
 		<div class="containerPrograms" id="frmConn" style="display:none">
-			<div class="programsOuter">
-				<div class="programsInner">
-					<p><strong>My computers and programs:</strong></p>
-					<div class="programsTopButtons">
-						<input type="button" name="showlogin" value="Sign out" id="goback" />
-						<input type="button" name="anyconn" id="anyconn" value="Remote Desktop" />
-					</div>
-					<div id="programs"></div>
-					<div id="touchpadmode" style="display:none">
-						<input type="checkbox" name="touchpad" id="touchpad" />Touchpad mode (relative mouse movement)
-					</div>
-					<div class="floatLeft">
-						<select name="keyboard" id="keyboard">
-							<option value="1033">English (United States)</option>
-							<option value="2057">English (United Kingdom)</option>
-							<option value="4105">English (Canadian French)</option>
-							<option value="99999">Unicode (Universal QWERTY)</option>
-							<option value="99998">Unicode (Universal AZERTY)</option>
-							<option value="99997">Unicode (Universal QWERTZ)</option>
-							<option value="1025">Arabic (Saudi Arabia)</option>
-							<option value="2052">Chinese (Simplified)</option>
-							<option value="1028">Chinese (Traditional)</option>
-							<option value="2060">French (Belgium)</option>
-							<option value="3084">French (Canada Legacy)</option>
-							<option value="1036">French (France)</option>
-							<option value="4108">French (Switzerland)</option>
-							<option value="1031">German (Germany)</option>
-							<option value="2055">German (Switzerland)</option>
-							<option value="66567">German (IBM)</option>
-							<option value="1037">Hebrew</option>
-							<option value="1040">Italian (Italy)</option>
-							<option value="66576">Italian (142) (Italy)</option>
-							<option value="3758162961">Japanese (Japan)</option>
-							<option value="3758162962">Korean (Korea)</option>
-							<option value="1044">Norwegian (Bokmal)</option>
-							<option value="1083">Norwegian with Sami</option>
-							<option value="1045">Polish</option>
-							<option value="2070">Portuguese</option>
-							<option value="1046">Portuguese (Brazil ABNT)</option>
-							<option value="66582">Portuguese (Brazil ABNT2)</option>
-							<option value="1049">Russian (Russia)</option>
-							<option value="1034">Spanish (International Sort)</option>
-							<option value="66570">Spanish (Variation)</option>
-							<option value="2058">Spanish (Mexico/Latin American)</option>
-							<option value="1053">Swedish (Sweden)</option>
-							<option value="1055">Turkish</option>
-						</select>
-						<input type="checkbox" id="multiMon" />Use multiple monitors
-						<img alt="Settings" id="settings" src="settings.png" align="top" style="float:right">
-					</div>
-					<div class="floatLeft">Copyright &copy; Remote Spark Corp. 2011 - 2023 <a href="https://www.remotespark.com/" target="_blank">www.remotespark.com</a></div>
-				</div>
+			<p><strong>My computers and programs:</strong></p>
+			<div id="programs"></div>
+			<div id="touchpadmode" style="display:none">
+				<input type="checkbox" name="touchpad" id="touchpad" />Touchpad mode (relative mouse movement)
 			</div>
+			<div class="settingsPrograms">
+				<select name="keyboard" id="keyboard">
+					<option value="1033">English (United States)</option>
+					<option value="2057">English (United Kingdom)</option>
+					<option value="4105">English (Canadian French)</option>
+					<option value="99999">Unicode (Universal QWERTY)</option>
+					<option value="99998">Unicode (Universal AZERTY)</option>
+					<option value="99997">Unicode (Universal QWERTZ)</option>
+					<option value="1025">Arabic (Saudi Arabia)</option>
+					<option value="2052">Chinese (Simplified)</option>
+					<option value="1028">Chinese (Traditional)</option>
+					<option value="2060">French (Belgium)</option>
+					<option value="3084">French (Canada Legacy)</option>
+					<option value="1036">French (France)</option>
+					<option value="4108">French (Switzerland)</option>
+					<option value="1031">German (Germany)</option>
+					<option value="2055">German (Switzerland)</option>
+					<option value="66567">German (IBM)</option>
+					<option value="1037">Hebrew</option>
+					<option value="1040">Italian (Italy)</option>
+					<option value="66576">Italian (142) (Italy)</option>
+					<option value="3758162961">Japanese (Japan)</option>
+					<option value="3758162962">Korean (Korea)</option>
+					<option value="1044">Norwegian (Bokmal)</option>
+					<option value="1083">Norwegian with Sami</option>
+					<option value="1045">Polish</option>
+					<option value="2070">Portuguese</option>
+					<option value="1046">Portuguese (Brazil ABNT)</option>
+					<option value="66582">Portuguese (Brazil ABNT2)</option>
+					<option value="1049">Russian (Russia)</option>
+					<option value="1034">Spanish (International Sort)</option>
+					<option value="66570">Spanish (Variation)</option>
+					<option value="2058">Spanish (Mexico/Latin American)</option>
+					<option value="1053">Swedish (Sweden)</option>
+					<option value="1055">Turkish</option>
+				</select>
+				<input type="checkbox" id="multiMon" /><label for="multiMon">Use multiple monitors</label>
+				<img alt="Settings" id="settings" src="/images/settings.svg">
+			</div>
+			<input type="button" name="showlogin" value="Sign out" id="goback" />
+			<div class="copyrightPrograms">Copyright &copy; Remote Spark Corp. 2011 - 2024. Distributed by <a href="https://www.beyondssl.com/de/produkte/sparkview/" target="_blank">beyond SSL</a>.</div>
 		</div>
 	</div>
 	<div>
@@ -165,7 +142,7 @@
 						<td><input type="password" name="newPwd2" required autocomplete="off" /></td>
 					</tr>
 					<tr id="2fa_code_pwd">
-						<td align="right">Two-factor Auth:</td><td><input type="number" name="faCode" placeholder="6 digit  code"></td>
+						<td align="right">Two-factor Auth:</td><td><input type="number" name="faCode" placeholder="6 digit code"></td>
 					</tr>
 					<tr>
 						<td align="right" colspan="2"><input type="submit" name="submit" value="Submit"/></td>
