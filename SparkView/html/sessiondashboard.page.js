@@ -6,10 +6,16 @@ var sessionCardsByID = new Map();
 var wsChannel;
 
 function init() {
-    var md5password = "21232F297A57A5A743894A0E4A801FC3";
-	createChannel(md5password);
-
-    refreshCount();
+    var frm = document.getElementById('frmQuery');
+    frm.onsubmit = function(e) {
+        e.preventDefault();
+        if (!wsChannel || !wsChannel.isConnected()) {
+            var md5password = hi5.md5(document.getElementById('pwd').value);
+            createChannel(md5password);
+        }
+        refreshCount();
+        return false;
+    }
 }
 
 function refreshCount(delta) {    
@@ -70,9 +76,9 @@ function WsChannel() {
 			if (ws) {
 				ws = null;
 				if (isConnected) {
-					console.log('Lost connection to Spark Stream Server. Plase make sure the server is running.');
+					console.log('Lost connection to Spark Stream Server. Please make sure the server is running.');
 				} else {
-					console.log('Spark Stream Server is disconencted. Plase make sure the server is running.');
+					console.log('Spark Stream Server is disconencted. Please make sure the server is running.');
 				}
             }
             isConnected = false;

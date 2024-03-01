@@ -1,3 +1,7 @@
+Build 1056
+1. sessiondashboard.html: Fixed a date parsing issue, streamlined for final users.
+2. SSH: set up keyfile, keyfilePwd in users.json.
+
 Build 1055
 1. RDP: Set hi5.appcfg.windowState = 5 to keep the RemoteApp window not maximized, so it will not hide other apps in the same window.
 

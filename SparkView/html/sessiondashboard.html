@@ -17,15 +17,19 @@
 
   	<body>
 		<h1 class="title pr-lg pl-lg">Current session(s) on the gateway</h1>
-	
-		<div class="pr-lg pl-lg" id="errMsgMediaSource">
+        <div class="pr-lg pl-lg" id="errMsgMediaSource">
 			<p style="color:red";></p>
 		</div>
 
         <div>
-            <h3 class="count pr-lg pl-lg" id="sessionCount">sessions found</h3>
+            <h3 class="count pr-lg pl-lg" id="sessionCount"></h3>
         </div>
-
+        <div class="pr-lg pl-lg">
+            <form id="frmQuery">
+                <label for="pwd">Password </label> <input type="password" id="pwd" name="pwd" autocomplete="off">
+                <input type="submit" name="" id="frmQuery">
+            </form>
+        </div>
         <div class="pr-lg pl-lg">
             <div class="filters" id="filter">
                 <input type="text" class="input-key" id="searchKeyword" onkeydown="filter(event)" placeholder="Filter by Session ID, User Name or Protocol Type...">

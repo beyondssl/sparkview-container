@@ -573,7 +573,7 @@ header,h2 {
 												<td>Key File</td><td><input type="text" name="ssh.keyfile"/></td>
 											</tr>
 											<tr>
-												<td>Password of Key File</td><td><input type="text" name="ssh.keyfilePwd"/></td>
+												<td>Password of Key File</td><td><input type="password" autocomplete="off" name="ssh.keyfilePwd"/></td>
 											</tr>
 											<tr>
 												<td>Terminal Type</td><td><input type="text" name="ssh.terminalType" value="xterm"/></td>
@@ -695,6 +695,12 @@ header,h2 {
                             <td>Host Name (RDP)</td>
                             <td><input type="text" name="clientHost" placeholder="Host name of computer"/></td>
                         </tr>
+						<tr>
+							<td>Key File (SSH)</td><td><input type="text" name="keyfile"/></td>
+						</tr>
+						<tr>
+							<td>Password of Key File</td><td><input type="password" autocomplete="off" name="keyfilePwd"/></td>
+						</tr>
 					</table>
 				</form>
 			</div>
