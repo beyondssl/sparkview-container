@@ -34,7 +34,38 @@
 	
 	<div>
 		<canvas id="remotectrl" width="1" height="1"></canvas>
+		<div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+            <textarea id="svTouchInput"></textarea>
+            <img src="cloud.png" title="My Files" id="svCloud">
+            <img src="info.png" title="Information" id="svInfo">
+        </div>
 	</div>
 
+	<div id="appinfo" class="appdlg">
+        <img alt="" src="info.png" style="float:left">
+        <table>
+            <tbody>
+                <tr>
+                    <td align="right"><b>Connected to:</b></td>
+                    <td><span id="connectingTo"></span><br></td>
+                </tr>
+                <tr>
+                    <td align="right"><b>Session id:</b></td>
+                    <td><span id="numericId"></span><br></td>
+                </tr>
+            </tbody>
+            <tbody id="shadowing">
+                <tr>
+                    <td colspan="2"><b>Join this session with following link:</b><br>
+                        <a id="joinLink" target="_blank"></a>
+                        <img src="share.svg" class="h5-img-btn" alt="Share" id="shareSession">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <input type="button" id="reqFullscr" value="Fullscreen" />
+        </div>
+    </div>
 </body>
 </html>
