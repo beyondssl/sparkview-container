@@ -1,3 +1,7 @@
+Build 1057
+1. RDP: Fixed ReomteApp not bring to front issue when hi5.appcfg.windowState = 5.
+2. SSH: Fixed Alt key stuck issue.
+
 Build 1056
 1. sessiondashboard.html: Fixed a date parsing issue, streamlined for final users.
 2. SSH: set up keyfile, keyfilePwd in users.json.
