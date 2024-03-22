@@ -1,3 +1,7 @@
+Build 1058
+1. VNC: TightPNG encoding support.
+2. Agent: Fixed "No reader" issue with Datev smart card.
+
 Build 1057
 1. RDP: Fixed ReomteApp not bring to front issue when hi5.appcfg.windowState = 5.
 2. SSH: Fixed Alt key stuck issue.
