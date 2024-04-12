@@ -10,7 +10,7 @@ function init() {
     frm.onsubmit = function(e) {
         e.preventDefault();
         if (!wsChannel || !wsChannel.isConnected()) {
-            var md5password = hi5.md5(document.getElementById('pwd').value);
+            var md5password = hi5.crypto.md5(document.getElementById('pwd').value);
             createChannel(md5password);
         }
         refreshCount();

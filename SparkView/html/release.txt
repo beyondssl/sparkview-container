@@ -1,3 +1,14 @@
+Build 1060
+1. ALL: added two new filters in gateway.conf for file downloading, for example, only allow pdf,doc and smaller than 2M: 
+	file.filter.download=pdf,doc
+	file.maxSize.download= 1000000
+2. ALL: recordig also checks if it's under "recdir" even __record_name is allowed.
+
+Build 1059
+1. VNC: Better VMWare console compatibility: V-Scan Code, pasting.
+2. RDP: Supports extra mouse buttons (back, forward, chromium based browsers only) 
+3. RDP: Fixed line break issue with PowerShell ISE.
+
 Build 1058
 1. VNC: TightPNG encoding support.
 2. Agent: Fixed "No reader" issue with Datev smart card.
