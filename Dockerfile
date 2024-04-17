@@ -1,4 +1,4 @@
-FROM openjdk:23-ea-17-jdk-oraclelinux8
+FROM openjdk:23-oraclelinux8
 
 RUN mkdir /usr/local/bin/SparkGateway
 
