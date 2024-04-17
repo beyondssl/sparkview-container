@@ -1,4 +1,4 @@
-[![Static Badge](https://img.shields.io/badge/Maintained%3F-Yes-success)](https://support.beyondssl.com/en/) ![Static Badge](https://img.shields.io/badge/Snyk_security-monitored-8A2BE2) [![Static Badge](https://img.shields.io/badge/Version-6.2.0-blue)](https://www.beyondssl.com/en/products/sparkview/) ![Static Badge](https://img.shields.io/badge/%F0%9F%92%A1-Open_Documentation-blue?link=https%3A%2F%2Fdocs.sparkview.info%2F)
+[![Static Badge](https://img.shields.io/badge/Maintained%3F-Yes-success)](https://support.beyondssl.com/en/) ![Static Badge](https://img.shields.io/badge/Snyk_security-monitored-8A2BE2) [![Static Badge](https://img.shields.io/badge/Version-6.2.0-blue)](https://www.beyondssl.com/en/products/sparkview/) [![Static Badge](https://img.shields.io/badge/%F0%9F%92%A1-Open_Documentation-blue?link=https%3A%2F%2Fdocs.sparkview.info%2F)](https://docs.sparkview.info/)
 
 # SparkView by beyond SSL
 <img alt="beyond SSL GmbH" src="https://repository.beyondssl.com/images/beyondssl-200.svg" width="200">
@@ -33,7 +33,7 @@ For more information, please [click here](https://www.beyondssl.com/en/products/
 * [latest](https://github.com/beyondssl/sparkview/blob/master/Dockerfile)
 
 ## Dependencies
-* [OpenJDK 22 slim bookworm](https://github.com/docker-library/openjdk/blob/10bb9a771a94688cdeb3e0460e04e6036b60718d/22/jdk/slim-bookworm/Dockerfile)
+* [OpenJDK](https://hub.docker.com/_/openjdk)
 
 ## Quick usage guide
 ### For use with docker-compose
