@@ -1,3 +1,6 @@
+Build 1061:
+1. Fixed file.filter.download filter issue introduced in 1060.
+
 Build 1060
 1. ALL: added two new filters in gateway.conf for file downloading, for example, only allow pdf,doc and smaller than 2M: 
 	file.filter.download=pdf,doc
