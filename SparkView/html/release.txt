@@ -1,3 +1,15 @@
+Build 1063
+1. SSH: increase the buffer size to fix issue with specific applications.
+
+Build 1062:
+1. Redesigned the file type filter, allow disabling file types with ? character, and allow any file types with *, for example: 
+//allow uploading any files other than .exe and .com
+file.filter=?exe,?com,*
+//allow downloading txt and pdf files only
+file.filter.download = txt,pdf
+
+The program will only apply the first matched filter, so the '*' character must be the last one to make it work correctly.
+
 Build 1061:
 1. Fixed file.filter.download filter issue introduced in 1060.
 
@@ -5,7 +17,7 @@ Build 1060
 1. ALL: added two new filters in gateway.conf for file downloading, for example, only allow pdf,doc and smaller than 2M: 
 	file.filter.download=pdf,doc
 	file.maxSize.download= 1000000
-2. ALL: recordig also checks if it's under "recdir" even __record_name is allowed.
+2. ALL: recording also checks if it's under "recdir" even __record_name is allowed.
 
 Build 1059
 1. VNC: Better VMWare console compatibility: V-Scan Code, pasting.
@@ -17,7 +29,7 @@ Build 1058
 2. Agent: Fixed "No reader" issue with Datev smart card.
 
 Build 1057
-1. RDP: Fixed ReomteApp not bring to front issue when hi5.appcfg.windowState = 5.
+1. RDP: Fixed RemoteApp not bring to front issue when hi5.appcfg.windowState = 5.
 2. SSH: Fixed Alt key stuck issue.
 
 Build 1056
@@ -40,7 +52,7 @@ Build 1052
 1. Native Shadowing: Fixed "not a enum" building issue introduced in 1048.
 
 Build  1051
-1. LDAP: Group name in implorting can be a full distinguished name: "OU=Bayreuth,OU=Company,OU=DE,DC=test,DC=com".
+1. LDAP: Group name in importing can be a full distinguished name: "OU=Bayreuth,OU=Company,OU=DE,DC=test,DC=com".
 2. The returlUrl of CONNECT? handler can also be login.html (examplePost.html), means you can use HTTP POST for login.html.
 
 Build 1050:
@@ -83,7 +95,7 @@ Make sure you have "/RDP?_METHOD=post" if it's connecting to a SparkGateway serv
 
 Build 1043:
 1. Wait longer to enter two factor code after 3 failed attempts.
-2. Fixed unauthorised proxy access problem.
+2. Fixed unauthorized proxy access problem.
 3. Added "Smart Card Sign-in" option in config.html
 4. License expire notification email includes name and license number.
 5. Allow self-singed certificate for LDAP.
@@ -226,7 +238,7 @@ public class SimpleManager implements ManagerInterface, HttpAccessInterface {
 	}	
 3. RDP: New "dpi" parameter.
 
-4. Won't send SMB URL to use if the format is invlaid.
+4. Won't send SMB URL to use if the format is invalid.
 
 5. Increased connection timeout (for slow network).
 
@@ -297,7 +309,7 @@ Build 1003
 2. The CONTROL?target=gateway HTTP API returns the app.id too.
 3. The value of hi5.appcfg.loadbalanceTokenName now use app.id in gateway.conf instead of random id.
 3. The value of hi5.appcfg.loadbalanceTokenName can also be included in websocket URL (check rdpdirect.page.js for more details);
-4. Scollbar will be displayed always on macOS if the resolution is bigger than your local browser window.
+4. Scrollbar will be displayed always on macOS if the resolution is bigger than your local browser window.
 
 Build 1002
 1. Fixed AD Group member issue with server.json.
@@ -322,7 +334,7 @@ Build 999
 
 Build 998
 1. VNC: Added vnc.ciphers in gateway.conf for VNC TLS encryption.
-2. SSH: Added ssh.ciphers in gaetway.conf for SSH encryption.
+2. SSH: Added ssh.ciphers in gateway.conf for SSH encryption.
 
 Build 997
 1. RDP: Fixed a failed to copy file issue when the file has specific size.
@@ -406,7 +418,7 @@ Build 980
 Build 979
 1. RDP: customize file path of audiorecorder_min.js in appcfg.js: audiorecorder: "/mylib/audiorecorder_min.js";
 
-Bild 978
+Build 978
 1. SSH: Fixed Alt key status issue after pressing Alt+TAB.
 2. SSH: Removed keyfile log.
 
@@ -713,8 +725,8 @@ Build 918
 5. Fixed clipboardRead of null issue in rare case.
 
 Build 917
-1. SSH: Prefer keybaord-interactive authentication by default. To disable it, set preferInteractive=false in gateway.conf
-2. SSH: Fixed a dsiplay issue with PowerShell on Linux.
+1. SSH: Prefer keyboard-interactive authentication by default. To disable it, set preferInteractive=false in gateway.conf
+2. SSH: Fixed a display issue with PowerShell on Linux.
 3. SSH: Display image or download file with base64 command.
 
 Build 916
