@@ -21,8 +21,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/login.html?appMode=pwa",
-  "id": "/login.html?appMode=pwa",
+  "start_url": "/login3.html?appMode=pwa",
+  "id": "/login3.html?appMode=pwa",
   "background_color": "#3367D6",
   "display": "fullscreen",
   "display_override": ["window-controls-overlay"]

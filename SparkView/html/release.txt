@@ -1,3 +1,7 @@
+Build 1064
+1. Set clipboard.enabled = false in gateway.conf or hi5.appcfg.clipboard.enabled = false in browser to disable clipboard redirection.
+2. Added "disabled" option for server configured on gateway (servers.json).
+
 Build 1063
 1. SSH: increase the buffer size to fix issue with specific applications.
 
