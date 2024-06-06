@@ -382,10 +382,14 @@
 								<td>
 									<input type="checkbox" name="smartCard" id="smartCard"/>Enable Smart Card
 									<input type="checkbox" name="passwordIsPin" id="passwordIsPin"/>Smart Card Sign-in
+									<input type="checkbox" name="remoteGuard" id="remoteGuard" checked/>Remote Credential Guard (*)
 								</td>
 							</tr>
 							<tr>
 								<td>Scanner</td><td><input type="checkbox" name="scanner" id="scanner"/>Enable Scanner</td>
+							</tr>
+							<tr>
+								<td colspan="2">* Remote Credential Guard: User credentials are always needed at the first time since the browser can not access the local domain. They are not needed if kerberos.enableTicketCache is true on the gateway (SSO) and your browser is not restarted. Make sure Remote Credential Guard is enabled on your RDP server</td>
 							</tr>
 						</table>
 					</div>

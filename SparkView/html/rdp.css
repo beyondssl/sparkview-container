@@ -189,27 +189,6 @@ background-color:#0F0;
     outline: none;
 }
 
-.h5-btn, .h5-form input[type="button"], .h5-form button, .h5-form input[type="submit"]{
-    background-color: #337ab7 ; 
-    border: 1px solid #2e6da4;
-	border-radius: 4px;
-	color:#FFF;
-	margin: 3px;
-}
-
-.h5-btn:active, .h5-form input[type="button"]:active, .h5-form button:active, .h5-form input[type="submit"]:active{
-	transform: translateY(2px);
-}
-
-.h5-btn:disabled, .h5-form input[type="button"]:disabled, .h5-form button:disabled, .h5-form input[type="submit"]:disabled{
-	cursor: not-allowed;
-	opacity: .65;
-}
-
-.h5-btn:hover, .h5-form input[type="button"]:hover, .h5-form button:hover, .h5-form input[type="submit"]:hover{
-	background-color: #2e6da4;
-}
-
 
 #__sv_folder__{
 	vertical-align: bottom;

@@ -24,7 +24,21 @@ header, h2 {
 <h2>Version History and Release Notes for Spark View</h2>
 
 <article>
-	<header>6.2.0 August 14, 2022</header>
+	<header>6.3.0, build 1065, June 02, 2023</header>
+	<ol>
+	<li>RDP: Kerberos authentiation with credentials, smart card</li>
+	<li>RDP: Remote Credential Guard based Single Sign-On (SSO)</li>
+	<li>RDP: Smart card authentication support on macOS</li>
+	<li>ALL: New reverse agent allow you connect to anywhere<a href="doc/reverse.pdf">reverse.pdf</a></li>
+	<li>Facelift</li>
+	<li>Bug fixes.</li>
+	<li><b>We release new builds 2-3 times a month with bug fixes and new features. Please check <a href="release.txt">release.txt</a> for the newest updates</b></li>
+	</ol>
+</article>
+
+
+<article>
+	<header>6.2.0, build 1013, August 14, 2022</header>
 	<ol>
 	<li>VMWare html console support.
 		<ul>
@@ -33,13 +47,13 @@ header, h2 {
 			<li>Check vmware/index.html for proxy method.</li>
 		</ul>
 	</li>
-	<li>SSH: Better unicode (Chiease, Japanese) support.</li>
+	<li>SSH: Better unicode (Chinese, Japanese) support.</li>
 	<li>SSH: Supports GB2312 and Shift-JIS encoding.</li>
 	<li>SSH: Supports line drawing mode.</li>
 	<li>HTTP Proxy: https://Gateway/PXY/https/www.address.com/443/rdp.html, set http.proxy.enable=true in gateway.conf to enable it</li>
-	<li>New Windows and macOS agents for samrt card and scanner redirection.</li>
+	<li>New Windows and macOS agents for smart card and scanner redirection.</li>
 	<li>Bug fixes.</li>
-	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
+	<li><b>We release new builds 2-3 times a month with bug fixes and new features. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
 	</ol>
 </article>
 
@@ -63,8 +77,8 @@ header, h2 {
 	<li>Fixed a UPN login issue on Active Directory integration.</li>
 	<li>Standalone Monitor Server for monitoring, event logging.</li>
 	<li>Fixed downloading issue when files includes special characters.</li>
-	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
-	</ol>
+	<li><b>We release new builds 2-3 times a month with bug fixes and new features. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
+	</ol
 </article>
 
 <article>
@@ -76,7 +90,7 @@ header, h2 {
 	<li>Fixed recorded session playback issue when the resolution is wrong.</li>
 	<li>Spark View becomes free personal version by default (allow 2 concurrent sessions) if license file was not found.</li>
 	<li><span style="color:orange; font-size: 1.8em">&#9888;</span><strong>Incompatibility warning:</strong> audiorecorder_min.js is added and it'll be loaded by the libaray automatically. Make sure you deploy it along with other JS files.</li>
-	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
+	<li><b>We release new builds 2-3 times a month with bug fixes and new features. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
 	</ol>
 </article>
 
@@ -90,7 +104,7 @@ header, h2 {
 	<li>Fixed RemoteApp resizing issue.</li>
 	<li>Fixed a specific DIB format issue on clipboard redirection.</li>
 	<li>Fixed validTo parameter not working issue on HTTP SYMLINK API.</li>
-	<li><b>We release new builds 2-3 times a month with bug fixs and new feauters. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
+	<li><b>We release new builds 2-3 times a month with bug fixes and new features. Please check <a href="release.txt">release.txt</a> for more details.</b></li>
 	<li><a href="5.9/SparkGateway.zip">Download</a></li>
 	</ol>
 </article>
@@ -131,9 +145,9 @@ header, h2 {
 	<li>SSH: Can upload file bigger than 1GB (up to 8PB).</li>
 	<li>SSH: Display image or download file with base64 command.</li>
 	<li>SSH: Fixed a Keyboard Interactive authentication issue.</li>
-	<li>SSH: SSH: Fixed a dsiplay issue with PowerShell on Linux.</li>
+	<li>SSH: SSH: Fixed a display issue with PowerShell on Linux.</li>
 	<li>SSH: onusername and onauthprompt events to customize authentication UI.</li>
-	<li>SSH: Text selcteion in SSH improved, background color is cutomisiable with hi5.appcfg.selectionColor = "white" </li>
+	<li>SSH: Text selcteion in SSH improved, background color is customizable with hi5.appcfg.selectionColor = "white" </li>
 	<li>SSH: onclose supports "expected" argument too.</li>
 	<li>SSH: fixed onerror not fired issue when gateway is down.</li>
 	<li>SSH: Option to disable auto resolution change (set reconnectOnResize as false, same as RDP).</li>
@@ -146,12 +160,12 @@ header, h2 {
 	<li>Fixed a OpenLDAP authentication issue.</li>
 	<li>File Manager UI can be sorted by clicking on the table tile.</li>
 	<li>Increased default header size of HTTP to 16K from 8K (set maxRequestBytes in gateway.conf)</li>
-	<li>Improved performance on HTTP Sessin API.</li>
+	<li>Improved performance on HTTP Session API.</li>
 	</ol>
 </article>
 
 <article>
-	<header>5.7.0 Januarary 12, 2019</header>
+	<header>5.7.0 January 12, 2019</header>
 	<ol>
 	<li>RDP: Automatically choose the best printer driver for target OS if printer driver is not configured.</li>
 	<li>RDP: Supports text only printers: Receipt, Label printers.</li>
@@ -187,7 +201,7 @@ header, h2 {
 	<li>Supprts the newest credSSP version 6 (Microsoft CredSSP updates for CVE-2018-0886)</li>
 	<li>Supports sftp, curve25519-sha256 KexAlogorithms and ed25519 key file on SSH</li>
 	<li>Support server group, user group</li>
-	<li>Better concurrent session shdaowing when resetOnJoin = true</li>
+	<li>Better concurrent session shadowing when resetOnJoin = true</li>
 	<li>Better IME, mouse wheel gesture (2 finger) support on iOS and Andorid</li>
 	<li>New portCheckTimes, portCheckInterval parameters for server status checking.</li>
 	<li>New fontFamily, lineHeight parameters for SSH</li>
@@ -197,7 +211,7 @@ header, h2 {
 	<li>Fixed Convert/NonConvert key not working issue on Japanese keyboard</li>
 	<li>Fixed numlock sync issue after browser is resized</li>
 	<li>Fixed half hour timezone issue, such as IST.</li>
-	<li>Fixed some pages missing issue when priting multiple files together</li>
+	<li>Fixed some pages missing issue when printing multiple files together</li>
 	<li>Fixed some temporary files were not deleted issue</li>
 	<li>Fixed remote copy/paste issue when running in Electron</li>
 	<li>Fixed mouse wheel (2 fingers) moving too fast issue on iOS and Android</li>
@@ -221,9 +235,9 @@ header, h2 {
 	<li>New sendKeyboardSynchronize(scroll, numlock, capital) (RDP).</li>
 	<li>Keyboard auto-detection.</li>
 	<li>Fixed "can not swtich focus back from addresssbar on IE" issue.</li>
-	<li>Fixed a conenction issue on Remote Assitance (assist.html).</li>
+	<li>Fixed a connection issue on Remote Assitance (assist.html).</li>
 	<li>Fixed double cursor issue on Remote Assistance (assit.html).</li>
-	<li>Fixed multiple monitor conenction issue when screen is scaled on Windows.</li>
+	<li>Fixed multiple monitor connection issue when screen is scaled on Windows.</li>
 	<li>Fixed audio plack issue on Edge.</li>
 	<li>Fixed unicode keyboard issue on XRDP.</li>
 	<li>Fixed blurry screen issue when mouse move to Chrome toolbar.</li>
@@ -235,7 +249,7 @@ header, h2 {
 	<li>Fixed session shadowing issue when Tight Encoding is used on VNC.</li>
 	<li>Fixed Print and Pause key not working issue on QEMU VNC.</li>
 
-	<li>Better xterm terminla support on SSH.</li>
+	<li>Better xterm terminal support on SSH.</li>
 	<li>Better performance on SSH.</li>
 	<li>Supports 24 bit color on SSH.</li>
 	<li>New terminlaType parameter for SSH.</li>
@@ -244,14 +258,14 @@ header, h2 {
 	<li>Click special effect on session shadowing; also supported on playback.</li>
 	<li>UI streamlined and improved: show uploading speed, new hi5.ui.Lightbox, better hi5.Draggable etc.</li>
 	<li>Fixed extra key up message issue when working with Keepass Auto-Type.</li>
-	<li>Better keybaord handling. Including lock key synchronization, key down or key up not captured by browser etc.</li>
+	<li>Better keyboard handling. Including lock key synchronization, key down or key up not captured by browser etc.</li>
 	<li>writeText and writeKeyComb method added interval and callback arguments.</li>
-	<li>Supports Radius Acceept Challenge message.</li>
+	<li>Supports Radius Accept Challenge message.</li>
 	<li>syslog integration (Linux).</li>
 	<li>Supports SAML integration.</li>
 	<li>Fixed extra headers configured in gateway.conf are not applied on XMLHTTP Request issue.</li>
 	<li>Fixed file name encoding issue when file has unicode in it on IE.</li>
-	<li>Better compatibiity with Chromium Embedded Framework and Electron.</li>
+	<li>Better compatibility with Chromium Embedded Framework and Electron.</li>
 	</ol>
 </article>
 	

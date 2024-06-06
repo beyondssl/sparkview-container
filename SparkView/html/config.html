@@ -368,8 +368,7 @@ header,h2 {
 								<div class="tab">
 									<div class="tab_title">
 										<span tabIndex="0">RDP</span> <span tabIndex="1">VNC</span>
-										<span tabIndex="2">SSH</span><span tabIndex="3">TELNET</span>
-										<span tabIndex="4">HTTP</span>
+										<span tabIndex="2">SSH</span><span tabIndex="3">TELNET</span><span tabIndex="4">HTTP</span>
 									</div>
 								</div>
 								<div class="tab_body">	
@@ -516,30 +515,30 @@ header,h2 {
 											<tr>
 												<td>
 											      JPEG Quality 
-                            <select name="quality" style="width:40px">
-                            	<option value= "1">1 (Lowest quality)</option><option value="2">2</option>
-                              <option value="3">3</option><option value="4">4</option><option value="5"  selected="selected">5</option>
-                              <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9 (Best quality)</option> 
-                            </select>
-                            ZIP/Tight Compression
-                            <select name="compression" style="width:40px">
-                            	<option value= "1">1(Little compression)</option><option value="2">2</option>
-                              <option value="3">3</option><option value="4">4</option><option value="5">5</option>
-                              <option value="6" selected="selected">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option> 
-                            </select>
-                        </td>
-                      </tr>
-				             	<tr>
-				             			<td>Use CopyRect encoding</td><td ><input type="checkbox" name="UseCopyRect" id="UseCopyRect" checked/></td>
-				             	</tr>
+													<select name="quality" style="width:40px">
+														<option value= "1">1 (Lowest quality)</option><option value="2">2</option>
+													<option value="3">3</option><option value="4">4</option><option value="5"  selected="selected">5</option>
+													<option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9 (Best quality)</option> 
+													</select>
+													ZIP/Tight Compression
+													<select name="compression" style="width:40px">
+														<option value= "1">1(Little compression)</option><option value="2">2</option>
+													<option value="3">3</option><option value="4">4</option><option value="5">5</option>
+													<option value="6" selected="selected">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option> 
+													</select>
+						                        </td>
+                      						</tr>
 											<tr>
-              						<td>Colors</td>
-						    					<td><input type="radio" name="vnc.color" value="32" checked />Full color <input type="radio" name="vnc.color" value="8"/>256 color</td></tr>				
-											<tr>
-													<td>Share the server</td><td><input type="checkbox" name="share" checked/></td>
+													<td>Use CopyRect encoding</td><td ><input type="checkbox" name="UseCopyRect" id="UseCopyRect" checked/></td>
 											</tr>
 											<tr>
-													<td>Clipboard redirection</td><td><input type="checkbox" name="vnc.mapClipboard" checked></td>
+			              						<td>Colors</td>
+						    					<td><input type="radio" name="vnc.color" value="32" checked />Full color <input type="radio" name="vnc.color" value="8"/>256 color</td></tr>				
+											<tr>
+												<td>Share the server</td><td><input type="checkbox" name="share" checked/></td>
+											</tr>
+											<tr>
+												<td>Clipboard redirection</td><td><input type="checkbox" name="vnc.mapClipboard" checked></td>
 											</tr>
 											<tr>
 												<td>Session Recording</td>
@@ -583,7 +582,7 @@ header,h2 {
 											<tr>
 												<td>Terminal Type</td><td><input type="text" name="ssh.terminalType" value="xterm"/></td>
 											</tr>
-									</table>	
+										</table>	
 									</div>
 									<div>
 										<table width="100%">
@@ -608,23 +607,20 @@ header,h2 {
 									<div>
 										<table width="100%">
 											<tr>
-													<td>Scheme</td><td ><input type="text" name="http.scheme" id="http.scheme" value="https"/></td>
+												<td>Scheme</td><td ><input type="text" name="http.scheme" id="http.scheme" value="https"/></td>
 											</tr>
 											<tr>								
-													<td>Port</td><td><input type="number" name="http.port" id="http.port" value="443" /></td>
+												<td>Port</td><td><input type="number" name="http.port" id="http.port" value="443" /></td>
 											</tr>
 											<tr>	
 												<td>Path</td><td><input type="text" name="http.path" id="http.path" /></td>
 											</tr>
-									</table>	
+										</table>	
 									</div>
 								</div>
 							</div>
 							</td>
 						</tr>
-						
-						
-						
 					  </table>
 					</form>
 				</div>
