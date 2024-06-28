@@ -134,6 +134,21 @@ function initUI(){
 		}
 	}
     
+    var q = location.search,
+    args = null;
+    if (q.length){//arguments from the url
+        q = q.substring(1);
+        args = hi5.tool.queryToObj(q);
+    }else{
+        //arguments from the parent window
+        args = svGlobal.util.getServerArgs();
+    }
+
+    //Connect directly
+    if (args && args.server){
+        remoteAssist(args.invitation || "RSVP", args.pwd || '', args.expert || '', args.server);
+    }
+
 }
     
 window.addEventListener('load', initUI, false);
@@ -159,21 +174,26 @@ function loadFromFile(files){
         var result = e.target.result;
         if (!result) return;
         console.log(result);
-        remoteAssist(result);
+        remoteAssist(result, $id('password').value, $id('expert').value);
     };
 
     reader.readAsText(f);
 }
 
-function remoteAssist(xml){
+function remoteAssist(xml, password, expert, server){
 
 	var gw = $id('gateway').value;
     var protocol = ('https:' == location.protocol) ? 'wss://' : 'ws://';
     
     $id('login').style.display = 'none';
+
+    var url = protocol + gw + '/RDP?invitation=' + encodeURIComponent(xml) 
+        + '&pwd=' + encodeURIComponent(password) + '&expert=' + expert;
+    if (server) {
+        url += "&server=" + server;
+    }
     
-    var r = new svGlobal.Rdp(protocol + gw + '/RDP?invitation=' + encodeURIComponent(xml) 
-    		+ '&pwd=' + encodeURIComponent($id('password').value) + '&expert=' + $id('expert').value);
+    var r = new svGlobal.Rdp(url);
     
     r.onclose = function(){
         r.hide();

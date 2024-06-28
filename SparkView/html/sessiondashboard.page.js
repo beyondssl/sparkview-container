@@ -53,6 +53,7 @@ function WsChannel() {
     this.initialize = function(password) {
         var protocol = ('https:' == location.protocol) ? 'wss://' : 'ws://';
 		var url = protocol + location.hostname + "/DASHBOARD?gatewayPwd=" + password + "&fields=" + encodeURIComponent("mapClipboard,mapDisk");
+        var fieldLen = 2;//mapClipboard, mapDisk here
                 
         ws = new WebSocket(url);
 		ws.binaryType = "arraybuffer";
@@ -64,7 +65,7 @@ function WsChannel() {
 		ws.onmessage = function(e) { 
 			// Received data (a byte array) from SparkGatewayAgent
 			try {
-				_self.dataReceived(e.data);
+				_self.dataReceived(e.data, fieldLen);
 			} catch (err) {
 				console.log(err);
 			}
@@ -108,12 +109,17 @@ function WsChannel() {
 			console.log('Error: failed to send data through websocket with state: ' + ws.readyState);
 		}
     };
+
+    this.refresh = function() {
+        var CMD_REFRESH = new Uint8Array(1);
+        ws.send(CMD_REFRESH);
+    }
     
     /**
      * The received session information data from gateway.
      * @param {*} data the TypedArray received from the gateway through websocket
      */
-    this.dataReceived = function(data) {        
+    this.dataReceived = function(data, fieldLen) {        
 		if (data.byteLength) {
             data = new Uint8Array(data);
             var dataBuf = new hi5.DataBuffer(data);
@@ -159,12 +165,13 @@ function WsChannel() {
                         
                         //extra fields if websocekt url includes the fields parameter
                         var fields = "";
-                        while (dataBuf.has(4)){
+                        while (dataBuf.has(4) && fieldLen > 0){
                             var lenField = dataBuf.getLittleEndian32();
                             if (fields){
                                 fields += ";";
                             }
                             fields += dataBuf.getUnicodeString(lenField, false);
+                            fieldLen--;
                             // console.log("extra field:" + fields);
                         }
                         

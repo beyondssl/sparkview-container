@@ -1,3 +1,5 @@
+This file is deprecated and has been moved into the version history (new.html).
+
 Build 1065 (6.3.0)
 
 Build 1064
