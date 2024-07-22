@@ -28,6 +28,12 @@
 <body>
 	<div style="position: relative; clear: both">
 		<canvas id="remotectrl" width="1" height="1"></canvas>
+    <div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+			<textarea id="svTouchInput"></textarea>
+			<img src="cloud.png" title="My Files" id="svCloud">
+			<img src="view.png" title="History" id="svHistory">
+			<img src="info.png" title="Information" id="svInfo">
+		</div>
 	</div>
   <div id="cursorID" class="cursor-node" focus="false"  style="position: absolute; top: 10px; display: none; width: 10px; height: 16px; -webkit-transition: opacity, background-color 100ms linear; transition: opacity, background-color 100ms linear; border-color: rgba(255, 0, 0, 0.498039); left: 0px; opacity: 1; background-color: rgba(255, 0, 0, 0.498039);"></div>
 	<div id="copydialog" style="display:none; width:80%; height:80%">

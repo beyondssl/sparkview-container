@@ -253,6 +253,10 @@ function connectSSH(e) {
 		s += (n + '=' + encodeURIComponent(v));
 	}
 
+	if (frms.pwd) {
+        frms.pwd.value = '';
+    }
+
 	var protocol = ('https:' == location.protocol) ? 'wss://' : 'ws://';
 
 	$id('login').style.display = 'none';
@@ -279,7 +283,7 @@ function connectSSH(e) {
 		var elms = document.getElementsByTagName('grammarly-ghost');
 		var len = elms.length;
 		if (len){
-			hi5.notifications.notify("We recommend to disalbe Grammarly entension")
+			hi5.notifications.notify("We recommend to disable Grammarly extension")
 			for (var i = 0, len = elms.length; i < len; i++){
 				elms[i].style.visibility = "hidden";
 			}
