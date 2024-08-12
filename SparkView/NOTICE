@@ -23,14 +23,18 @@ TinyRadius: http://tinyradius.sourceforge.net/ LGPLv2
 
 agafua-syslog https://code.google.com/archive/p/agafua-syslog/ MIT License
 
-H2 MVStore https://www.h2database.com/html/mvstore.html  MPL 2.0 OR EPL 1.0
+H2 MVStore: https://www.h2database.com/html/mvstore.html  MPL 2.0 OR EPL 1.0
 ZXing Java SE Extensions https://github.com/zxing/zxing	Apache License 2.0
 
 SNMJ4J: https://www.snmp4j.org/ Apache 2 Open Source License
 
+EdDSA-Java: https://github.com/str4d/ed25519-java/tree/master?tab=readme-ov-file#eddsa-java CC0-1.0 licence
 
+Dom4j: https://dom4j.github.io/  Apache Style license: https://github.com/dom4j/dom4j/blob/master/LICENSE
 
+OpenSAML: https://shibboleth.atlassian.net/wiki/spaces/OSAML/overview Apache 2.0 license
 
+SNMP4j Agent: https://www.snmp4j.org/ Apache 2 Open Source License
 
 
 https://www.bouncycastle.org/licence.html:
