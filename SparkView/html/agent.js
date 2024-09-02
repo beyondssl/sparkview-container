@@ -5,7 +5,7 @@
 function startGatewayAgent(r){
     var isSSL = r.protocol == 'wss';
 
-    function startAgent(r, url){
+    function startAgent(){
         var downloadRef = document.getElementById('agentSetup');
         downloadRef.href = r.getAgentLink();
 
@@ -26,7 +26,7 @@ function startGatewayAgent(r){
         }
 
         function onAgentClose() {
-            connectAgent(r, 8095);            
+            connectAgent(8095);            
         };
 
 
@@ -58,28 +58,37 @@ function startGatewayAgent(r){
         }
 
         hi5.browser.launchApp(url, 
-            function(){//sucess
+            function(){//success
                 svGlobal.logger.info("Agent launched");
                 onAgentClose();
             }, 
             function(){//error
-                svGlobal.logger.info("Agent not installed");
-                showAgentDlg(function(){
-                    hi5.browser.launchApp(url, 
-                        function(){//sucess
-                            onAgentClose();
-                        }, 
-                        function(){//error
-                            svGlobal.logger.warn("Failed to launch the agent, continue");
-                            continueOnError();
-                        }
-                    );
-                });
+                svGlobal.logger.info("Agent may not installed");
+                //The agent is slow to start sometimes, so double check here
+                setTimeout(
+                    function() {
+                        checkAgentStatus(
+                            function() {
+                                showAgentDlg(function(){
+                                    hi5.browser.launchApp(url, 
+                                        function(){//success
+                                            onAgentClose();
+                                        }, 
+                                        function(){//error
+                                            svGlobal.logger.warn("Failed to launch the agent, continue");
+                                            continueOnError();
+                                        }
+                                    );
+                                });
+                            }
+                        );
+                    }, 777
+                );
             }
         );
     }
  
-    function connectAgent(r, port){
+    function connectAgent(port){
         // Connect to agent directly(HTTP or agent has root a trusted certificate).
         var url = (isSSL ? "wss" : "ws") + "://localhost:" + port;
         var _connected = false;
@@ -88,7 +97,7 @@ function startGatewayAgent(r){
         ws.binaryType = "arraybuffer";
         
         r.onagentmessage = function(data){
-            // Received message from the gateway channel and send it to SparkGateway Agent
+            // Received message from the gateway channel and send it to the agent
             if (ws && ws.readyState == ws.OPEN) {
                 ws.send(data);
             } else {
@@ -121,15 +130,15 @@ function startGatewayAgent(r){
 
             if (r.hasScanner()) {
                 var hs = new Uint8Array(2);
-                hs[0] = 04;
-                hs[1] = 01;
+                hs[0] = 0x04;
+                hs[1] = 0x01;
                 
                 ws.send(hs);
             }
         };
     
         ws.onmessage = function (e) { 
-            // Received data (a byte array) from SparkGateway Agent
+            // Received data (a byte array) from the Agent
             if (r) {
                 r.writeAgent(e.data);
             }
@@ -146,13 +155,13 @@ function startGatewayAgent(r){
                 ws = null;
                 if (!_connected) {
                     if (port >= 8097){//last try (8095-8097)
-                        hi5.notifications.notify('Failed to connect to the Agent. Plase make sure the Agent is running. Local hardware redirection will be disabled.');
+                        hi5.notifications.notify('Failed to connect to the Agent. Please make sure the Agent is running. Local hardware redirection will be disabled.');
                     }else{
                         svGlobal.logger.info('Failed to connect to the agent on port ' + port);
-                        connectAgent(r, port + 1);
+                        connectAgent(port + 1);
                     }
                 } else {
-                    hi5.notifications.notify('Agent was disconencted. Plase make sure the Agent is running. Local hardware redirection will be disabled.');
+                    hi5.notifications.notify('Agent was disconnected. Please make sure the Agent is running. Local hardware redirection will be disabled.');
                 }
             }
         };
@@ -171,21 +180,25 @@ function startGatewayAgent(r){
     }
 
 
-    svGlobal.logger.info('Starting agent, ssl:' + isSSL);
-    //check if agent is already running
-    var host = (isSSL ? "wss" : "ws") + "://localhost";
-    var wsAddrs = [host + ":8095", host + ":8096", host + ":8097"];
-    hi5.tool.scanAnyGood(wsAddrs, 
-        function(url){
-            svGlobal.logger.info("agent is already running on " + url);
-            var idx = url.lastIndexOf(":") + 1;
-            var port = parseInt(url.substring(idx));
-            connectAgent(r, port);
-        }, 
-        function(){
-            svGlobal.logger.info("agent is not running, start..");
-            startAgent(r);
-        }
-    );
+    function checkAgentStatus(failCallback) {
+        svGlobal.logger.info('Checking agent status, ssl:' + isSSL);
+        //check if agent is already running
+        var host = (isSSL ? "wss" : "ws") + "://localhost";
+        var wsAddrs = [host + ":8095", host + ":8096", host + ":8097"];
+        hi5.tool.scanAnyGood(wsAddrs, 
+            function(url){
+                svGlobal.logger.info("agent is already running on " + url);
+                var idx = url.lastIndexOf(":") + 1;
+                var port = parseInt(url.substring(idx));
+                connectAgent(port);
+            }, 
+            function(){
+                svGlobal.logger.info("agent is not running, start..");
+                failCallback();
+            }
+        );
+    }
+
+    checkAgentStatus(startAgent);
 
 }

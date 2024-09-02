@@ -347,7 +347,7 @@ header,h2 {
 					<form name="server" id="servers.view" style="display:none" >
 					  <table class="hi5_dialog" style="width:100%">
 					    <tr><td colspan="2"><input type="submit" value="Save"/></td></tr>
-						<tr><td>ID</td><td><input type="text" name="id" id="server.id" required/>
+						<tr><td>ID</td><td><input type="text" name="id" id="server.id" required/>*lowercase recommended for HTTP server</td></tr>
 						<tr><td>Display Name</td><td><input type="text" name="displayName" id="server.displayName" required/></td></tr>
 						
 						<tr><td>Server</td><td><input type="text" name="server" id="server.server"/></td></tr>
@@ -612,11 +612,14 @@ header,h2 {
 											<tr>								
 												<td>Port</td><td><input type="number" name="http.port" id="http.port" value="443" /></td>
 											</tr>
-											<tr>	
+											<!-- <tr>	
 												<td>Path</td><td><input type="text" name="http.path" id="http.path" /></td>
-											</tr>
+											</tr> -->
 											<tr>	
 												<td>Replace absolute links</td><td><input type="checkbox" name="http.replaceAbsoluteLink" id="http.replaceAbsoluteLink" /></td>
+											</tr>
+											<tr>	
+												<td>Add forward headers</td><td><input type="checkbox" name="http.addForwardHeaders" id="http.addForwardHeaders" />*X-Forwarded-For, X-Forwarded-Proto</td>
 											</tr>
 										</table>	
 									</div>
