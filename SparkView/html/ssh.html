@@ -105,6 +105,55 @@
 								<td><input type="text" name="terminalType" id="terminalType" value="xterm"/></td>
 							</tr>
 							<tr>
+								<td>Remote Character Set</td>
+								<td>
+									<select name="charset" id="charset">
+									<option value="utf-8">UTF-8 (Default)</option>
+									<option value="big5">BIG5 (Chinese)</option>
+									<option value="euc-jp">EUC-JP/UJIS (Japanese)</option>
+									<option value="euc-kr">EUC-KR (Korean)</option>
+									<option value="gb18030">GB18030 (Chinese)</option>
+									<option value="gbk">GBK (Simplified Chinese)</option>
+									<option value="ibm866">IBM866/CP866</option>
+									<option value="iso-2022-jp">ISO-2022-JP(CP50220)</option>
+									<option value="iso-8859-1">ISO-8859-1 (Latin-1, West Europe)</option>
+									<option value="iso-8859-2">ISO-8859-2 (Latin-2, East Europe)</option>
+									<option value="iso-8859-3">ISO-8859-3 (Latin-3, South Europe)</option>
+									<option value="iso-8859-4">ISO-8859-4 (Latin-4, North Europe)</option>
+									<option value="iso-8859-5">ISO-8859-5 (Latin/Cyrillic)</option>
+									<option value="iso-8859-6">ISO-8859-6 (Latin/Arabic)</option>
+									<option value="iso-8859-7">ISO-8859-7 (Latin/Greek)</option>
+									<option value="iso-8859-8">ISO-8859-8 (Latin/Hebrew)</option>`
+									<option value="iso-8859-8i">ISO-8859-8-I</option>
+									<option value="iso-8859-9">ISO-8859-9 (Latin-5, Turkish)</option>
+									<option value="iso-8859-10">ISO-8859-10 (Latin-6, Nordic)</option>
+									<option value="iso-8859-11">ISO-8859-11 (Latin/Thai)</option>
+									<option value="iso-8859-13">ISO-8859-13 (Latin-7, Baltic)</option>
+									<option value="iso-8859-14">ISO-8859-14 (Latin-8, Celtic)</option>
+									<option value="iso-8859-15">ISO-8859-15 (Latin-9, euro)</option>
+									<option value="iso-8859-16">ISO-8859-16 (Latin-10, Balkan)</option>
+									<option value="koi8-r">KOI8-R</option>
+									<option value="koi8-u">KOI8-U</option>
+									<option value="macintosh">Macintosh (Mac OS Roman)</option>
+									<option value="shift-jis">SHIFT-JIS (Japanese)</option>
+									<option value="utf-16be">UTF-16BE</option>
+									<option value="utf-16le">UTF-16LE</option>
+									<option value="windows-874">Windows-874</option>
+									<option value="windows-1250">Windows-1250 (Central European)</option>
+									<option value="windows-1251">Windows-1251 (Cyrillic)</option>
+									<option value="windows-1252">Windows-1252 (Western)</option>
+									<option value="windows-1253">Windows-1253 (Greek)</option>
+									<option value="windows-1254">Windows-1254 (Turkish)</option>
+									<option value="windows-1255">Windows-1255 (Hebrew)</option>
+									<option value="windows-1256">Windows-1256 (Arabic)</option>
+									<option value="windows-1257">Windows-1257 (Baltic)</option>
+									<option value="windows-1258">Windows-1258 (Vietnamese)</option>
+									<option value="x-mac-cyrillic">X-MAC-CYRILLIC (Mac OS Cyrillic)</option>
+									<option value="x-user-defined">X-USER-DEFINED</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
 								<td>Session Recording</td><td><input type="checkbox" name="recording"/></td>
 							</tr>
 							<tr>
@@ -116,6 +165,15 @@
 							</tr>
 							<tr><td>Passphrase</td><td><input type="password" name="keyfilePwd"></td></tr>
 							<tr><td>Commands allowed</td><td><textarea name="cmdList" cols="10" rows="5"></textarea></td></tr>
+							<tr>
+								<td>Theme</td>
+								<td>
+									<select name="theme" id="charset">
+										<option value="light">Light</option>
+										<option value="classic">Classic</option>
+									</select>
+								</td>
+							</tr>
 						</table>
 					</div>
 				</div>
