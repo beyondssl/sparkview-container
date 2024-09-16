@@ -41,6 +41,11 @@ background-color:#0F0;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 }
+
+#filecontainer > table {
+	width: 100%;
+}
+
 .th, #filelist th
 {
 	font-size: 1em;
