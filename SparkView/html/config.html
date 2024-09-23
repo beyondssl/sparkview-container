@@ -612,14 +612,18 @@ header,h2 {
 											<tr>								
 												<td>Port</td><td><input type="number" name="http.port" id="http.port" value="443" /></td>
 											</tr>
-											<!-- <tr>	
-												<td>Path</td><td><input type="text" name="http.path" id="http.path" /></td>
-											</tr> -->
 											<tr>	
 												<td>Replace absolute links</td><td><input type="checkbox" name="http.replaceAbsoluteLink" id="http.replaceAbsoluteLink" /></td>
 											</tr>
 											<tr>	
 												<td>Add forward headers</td><td><input type="checkbox" name="http.addForwardHeaders" id="http.addForwardHeaders" />*X-Forwarded-For, X-Forwarded-Proto</td>
+											</tr>
+											<tr>	
+												<td>Path</td><td><input type="text" name="http.path" id="http.path" /></td>
+											</tr>
+											<tr>	
+												<td>Path access whitelist</td>
+												<td><textarea name="http.pathList" id="http.pathList" rows="3" cols="40"></textarea></td>
 											</tr>
 										</table>	
 									</div>
