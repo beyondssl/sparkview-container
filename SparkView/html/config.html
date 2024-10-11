@@ -670,7 +670,7 @@ header,h2 {
 							<td></td>
                             <td></td>
 							<td><img src="edit.png" name="view" title="Edit"><img
-								src="del.png" name="remove" title="Delete"></td>
+								src="del.png" name="remove" title="Delete"><img src="2fa.png" alt="Reset 2FA" title="Reset 2FA" name="2fa"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -681,26 +681,36 @@ header,h2 {
 						</tr>
 						<tr>
 							<td>Name</td>
-							<td><input type="text" name="name" required/>
+							<td><input type="text" name="name" required placeholder="Domain\Username or UPN name for domain user" size="40" />
 						<tr>
 							<td>Password</td>
 							<td><input type="password" name="password" required autocomplete="off"/><br>*Set password as *** for domain user</td>
 						</tr>
 						<tr>
 							<td>Servers</td>
-							<td><input type="text" name="servers" size="40" id="user.server"/><br/>Seperated by "," For example: server1,server2]<br>Use Ctrl/Shift + mouse to select multi servers</td>
+							<td><input type="text" name="servers" size="40" id="user.server"/><br/>Separated by "," For example: server1,server2]<br>Use Ctrl/Shift + mouse to select multi servers</td>
 						</tr>
 						<tr>
-							<td>Domain user</td>
+							<td>Domain User</td>
 							<td><input type="checkbox" name="isDomainUser" /></td>
 						</tr>
                         <tr>
-                            <td>Domain Server</td>
-                            <td><input type="text" name="domainServer" /></td>
+                            <td>Domain Server and port</td>
+                            <td><input type="text" name="domainServer" />Default port is 389</td>
                         </tr>
                         <tr>
-                            <td>Transfer Credential to Connection</td>
-                            <td><input type="checkbox" name="transferCredential"/>*Always true if this is domain user</td>
+                            <td>LDAP Security</td>
+                            <td>
+								<select name="secProtocol" id="secProtocol">
+									<option value="">None</option>
+									<option value="ssl">SSL</option>
+									<option value="tls">TLS</option>
+								</select>
+							</td>
+                        </tr>
+                        <tr>
+                            <td>Forward Credentials to Connection (SSO)</td>
+                            <td><input type="checkbox" name="transferCredential"/>*Always true for domain user</td>
                         </tr>
 						<tr>
                             <td>Host Name (RDP)</td>
