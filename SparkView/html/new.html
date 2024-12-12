@@ -24,27 +24,13 @@ header, h2 {
 <h2>Version History and Release Notes for Spark View</h2>
 
 <article>
-	<header>build 1077, Oct 28, 2024</header>
+	<header>7.0.0, build 1075, Dec 12, 2024</header>
 	<ol>
-	<li>RDP: Set kerberos.config=krb5.conf for multi-KDC, ref: https://web.mit.edu/kerberos/krb5-1.12/doc/admin/conf_files/krb5_conf.html</li>
-	<li>RDP: Better video performance (more is coming). with gfx=on (same as remotefx=on) url parameter</li>
-	<li>Config.html: Allow any query string when importing user.</li>
-	</ol>
-</article>
-
-<article>
-	<header>build 1076, Oct 22, 2024</header>
-	<ol>
-	<li>SSH: show history dialog when the mouse is scrolling up (mapClipboard=on required).</li>
-	<li>TELNET: support hi5.appcfg.pingInterval</li>
-	</ol>
-</article>
-
-
-<article>
-	<header>build 1075, Oct 9, 2024</header>
-	<ol>
-	<li>Config.html: added LDAP protocol option and "Reset 2FA" for user.</li>
+	<li>GFX Video (H.264) Acceleration on desktop mode (no RemoteApp yet), session shadowing (broadcasting), and session recording.</li>
+	<li>Group Policey changes:<br>
+		Prioritize H.264/AVC 444 graphics mode for Remote Desktop Connections: "Enable"<br>
+		Configure compression for RemoteFX data: "Enable", "Do not use an RDP compression algorithm"</li>
+	<li>Make sure the new dvc_gfx.js is included in your web page.</li>
 	</ol>
 </article>
 

@@ -497,7 +497,7 @@
 								<td>
 									<input type="checkbox" name="smartCard" id="smartCard"/>Enable Smart Card
 									<input type="checkbox" name="passwordIsPin" id="passwordIsPin"/>Smart Card Sign-in
-									<input type="checkbox" name="remoteGuard" id="remoteGuard" checked/>Remote Credential Guard (*)
+									<input type="checkbox" name="remoteGuard" id="remoteGuard"/>Remote Credential Guard (*)
 								</td>
 							</tr>
 							<tr>
@@ -576,7 +576,12 @@
 								<td colspan="2"><hr/></td>
 							</tr>
 							<tr>
-							<td><input type="checkbox" name="remotefx" id="rfxOpt" />RemoteFX(32 bit color and lan only)</td>
+							<td><input type="checkbox" name="remotefx" id="rfxOpt" />RemoteFX(For Thin Client, 720P video)</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="gfx" id="gfxOpt" />GFX Video Acceleration (Harware Acceleration, 1080P or above) <br>
+									Group Policey: <br>"Prioritize H.264/AVC 444 graphics mode for Remote Desktop Connections": Enable <br>
+									"Configure compression for RemoteFX data": Enable, "Do not use an RDP compression algorithm"</td>
 							</tr>
 							<tr>
 								<td><input type="checkbox" name="recording" id="recording" />Session Recording</td>
@@ -758,6 +763,7 @@
 	</div>
 
 <script type="text/javascript" src="surface_min.js"></script>
+<script type="text/javascript" src="dvc_gfx_min.js"></script>
 <script type="text/javascript" src="dvc_drv_min.js"></script>
 <script type="text/javascript" src="dvc_usb_min.js"></script>
 <script type="text/javascript" src="rdpcore_min.js"></script>
