@@ -30,7 +30,20 @@
 	border-radius: 10px;
 	box-shadow: 2px 2px 10px #888;
 	padding: 2em;
-	margin-top: 2em;
+	margin-top: 2em;	
+}
+
+.container-or {
+	background-color: white;	
+	padding: 1em;
+	margin-top: 4em;	
+	margin-right: 1em;
+	float: left;
+}
+
+.container-pk {
+	margin-right: 2em;
+	float: left;
 }
 
 .icon {
@@ -72,7 +85,7 @@
 				</tr>
 				<tr>
 					<td align="right">Password:</td>
-					<td><input type="password" name="pwd" required autocomplete="off"/>
+					<td><input type="password" name="pwd" id="pwd" required autocomplete="off"/>
 					</td>
 				</tr>
 				<!-- you can enable this if you are using RDAIUS
@@ -87,6 +100,7 @@
 						<a href="/OPENID?id=Google"><img src="google.png" title="Sign in with Google account"/></a>
 						<a href="/OPENID?id=Live"><img src="live.png" title="Sign in with Windows Live Connect"/></a>
 						<a href="/SAML?id=Saml"><img src="saml.png" title="Sign in with Saml Connect"/></a>
+						<a href="#" id="passkeyIcon"><img src="passkey.png" title="Sign in with Passkey" onclick="passkeySignIn()"/></a>
 					</td>
 					<td align="right"><input type="submit" name="usrlogin"
 						value="Sign in" />
@@ -110,7 +124,12 @@
 		<div><strong>My Computers and Programs:&nbsp;&nbsp;&nbsp;</strong>
 			<input type="button" name="showlogin" value="Sign out" id="goback"/>
 			<input type="button" name="anyconn" id="anyconn" value="Remote Desktop"/>
+			<input type="button" name="addPasskey" id="addPasskeyBtn" value="Add Passkey" onclick="passkeyAdd()"/>
+			<input type="button" name="deletePasskey" id="deletePasskeyBtn" value="Delete Passkey" onclick="passkeyDel()"/>
 		</div>
+		<!-- For passkey delete -->
+		<div id="passkeySelection" class="appdlg"></div>
+
 			<div id="programs"></div>
 			<div id="touchpadmode" style="display:none">
 				<input type="checkbox" name="touchpad" id="touchpad" />Touchpad mode(Relative mouse movement)
@@ -381,13 +400,111 @@
 			<input type="button" value="submit" id="btnTwoFACode">
 		</div>
 	</div>
+
+	<!-- <div id="passkeyOpt" class="appdlg">
+		<h3>Spark Gateway Passkey Authentication</h3>		
+		<div>
+			<table><tr>
+				<td>
+					<table class="container container-pk">
+						<tr>
+							<td align="right">Username:</td>
+							<td><input type="text" name="pkun" id="pkun" placeholder="user name"/></td>				
+						</tr>
+						<tr>
+							<td align="right">Password:</td>
+							<td><input type="password" name="pkpwd" id="pkpwd" placeholder="passsword"/></td>				
+						</tr>
+						<tr height="10px">
+							<td colspan="2"></td>
+						</tr>
+						<tr>
+							<td align="right"></td>
+							<td align="right"><input type="button" value="Add a passkey" id="addPasskeyBtn" onclick="passkeyAdd()"></td>
+						</tr>						
+					</table>
+				</td>
+				<td>
+					<table class="container-or">
+						<tr>
+							<td><b>OR</b></td>
+						</tr>
+					</table>						
+				</td>
+				<td>
+					<table class="container container-pk">            
+						<tr>
+							<td align="right">Username:</td>
+							<td><input type="text" name="loginun" id="loginun" placeholder="optional"/></td>				
+						</tr>
+						<tr height="5px">
+							<td colspan="2"></td>
+						</tr>
+						<tr>
+							<td align="right"></td>
+							<td align="right"><input type="button" id="signInPasskeyBtn" value="Sign-in with passkey" onclick="passkeySignIn()"></td>
+						</tr>
+					</table>
+				</td>
+			</tr></table>
+		</div>		
+	</div> -->
+
+	<div id="passkeyOpt" class="appdlg">
+		<h3>Spark Gateway Passkey Authentication</h3>		
+		<div>
+			<table><tr>
+				<td>
+					<table class="container container-pk">
+						<tr>
+							<td align="right">Username:</td>
+							<td><input type="text" name="pkun" id="pkun" placeholder="user name"/></td>				
+						</tr>
+						<tr>
+							<td align="right">Password:</td>
+							<td><input type="password" name="pkpwd" id="pkpwd" placeholder="passsword"/></td>				
+						</tr>
+						<tr height="10px">
+							<td colspan="2"></td>
+						</tr>
+						<tr>
+							<td align="right"></td>
+							<td align="right"><input type="button" value="Add a passkey" id="addPasskeyBtn" onclick="passkeyAdd()"></td>
+						</tr>						
+					</table>
+				</td>
+				<td>
+					<table class="container-or">
+						<tr>
+							<td><b>OR</b></td>
+						</tr>
+					</table>						
+				</td>
+				<td>
+					<table class="container container-pk">            
+						<tr>
+							<td align="right">Username:</td>
+							<td><input type="text" name="loginun" id="loginun" placeholder="optional"/></td>				
+						</tr>
+						<tr height="5px">
+							<td colspan="2"></td>
+						</tr>
+						<tr>
+							<td align="right"></td>
+							<td align="right"><input type="button" id="signInPasskeyBtn" value="Sign-in with passkey" onclick="passkeySignIn()"></td>
+						</tr>
+					</table>
+				</td>
+			</tr></table>
+		</div>		
+	</div>
 	
 <script type="text/javascript" src="resource.js"></script>
 <script type="text/javascript" src="surface_min.js"></script>
-<script type="text/javascript" src="dvc_gfx_min.js"></script>
 <script type="text/javascript" src="rdpcore_min.js" async="async"></script>
 <script type="text/javascript" src="rdp_min.js" async="async"></script>
-<script type="text/javascript" src="login_min.js" async="async"></script>
-	
+<script type="text/javascript" src="login.js" async="async"></script>
+<script type="text/javascript" src="passkey.js" async="async"></script>
+
 </body>
 </html>

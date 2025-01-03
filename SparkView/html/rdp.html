@@ -481,6 +481,9 @@
 								</td>
 							</tr>
 							<tr>
+								<td>Scanner</td><td><input type="checkbox" name="scanner" id="scanner"/>Enable Scanner</td>
+							</tr>
+							<tr>
 								<td>Drives</td><td><input type="checkbox" name="mapDisk" id="mapDisk" checked/>Uploading/Downloading files. (Drag files to your screen after connected).</td>
 							</tr>
 							<tr>
@@ -488,10 +491,7 @@
 							</tr>
 							<tr>
 								<td>Camera</td><td><input type="checkbox" name="mapCamera" id="mapCamera"/>Enable Camera</td>
-							</tr>
-							<tr>
-								<td>USB</td><td><input type="checkbox" name="mapUSB" id="mapUSB"/>Enable USB</td>
-							</tr>
+							</tr>							
 							<tr>
 								<td>Smart Card</td>
 								<td>
@@ -501,10 +501,17 @@
 								</td>
 							</tr>
 							<tr>
-								<td>Scanner</td><td><input type="checkbox" name="scanner" id="scanner"/>Enable Scanner</td>
+								<td>USB</td><td><input type="checkbox" name="mapUSB" id="mapUSB"/>Enable USB (**)</td>
 							</tr>
 							<tr>
-								<td colspan="2">* Remote Credential Guard: User credentials are always needed at the first time since the browser can not access the local domain. They are not needed if kerberos.enableTicketCache is true on the gateway (SSO) and your browser is not restarted. Make sure Remote Credential Guard is enabled on your RDP server</td>
+								<td>WebAuthn</td><td><input type="checkbox" name="enableWebAuthn" id="enableWebAuthn"/>Enable WebAuthn (**)</td>
+							</tr>
+							<tr><td colspan="2" style="height: 10px;"></td></tr>
+							<tr>
+								<td colspan="2">* &nbsp;&nbsp;&nbsp;Remote Credential Guard: User credentials are always needed at the first time since the browser can not access the local domain. They are not needed if kerberos.enableTicketCache is true on the gateway (SSO) and your browser is not restarted. Make sure Remote Credential Guard is enabled on your RDP server</td>
+							</tr>
+							<tr>
+								<td colspan="2">** &nbsp;HTTPS is required to support this device or feature redirection</td>
 							</tr>
 						</table>
 					</div>
@@ -763,7 +770,6 @@
 	</div>
 
 <script type="text/javascript" src="surface_min.js"></script>
-<script type="text/javascript" src="dvc_gfx_min.js"></script>
 <script type="text/javascript" src="dvc_drv_min.js"></script>
 <script type="text/javascript" src="dvc_usb_min.js"></script>
 <script type="text/javascript" src="rdpcore_min.js"></script>
@@ -771,6 +777,7 @@
 <script type="text/javascript" src="recording_min.js"></script>
 <script type="text/javascript" src="agent.js"></script>
 <script type="text/javascript" src="rdp.page.js"></script>
+
 </body>
 
 </html>
