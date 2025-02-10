@@ -24,6 +24,24 @@ header, h2 {
 <h2>Version History and Release Notes for Spark View</h2>
 
 <article>
+	<header>build 1081, Feb 7, 2025</header>
+	<ol>
+	<li>shadow.html: Fixed a black screen issue when joining the shadowed session (introdeced in build 1075).</li>
+	<li>SSH: Fixed a display issue caused by invalid row number (MikroTik Device).</li>
+	<li>RDP(GFX): Fixed a decode() of Null issue when noise data were transfered in joined session</li>
+	</ol>
+</article>
+
+
+<article>
+	<header>build 1080, Feb 3, 2025</header>
+	<ol>
+	<li>RDP(GFX): Fixed a black screen issue when ffmpeg video decoder is used on Chromium based browsers ("Use graphics acceleration when available" is disabled)</li>
+	<li>RDP: Fixed audio recording not working issue when audio playback redirectoin is disabled</li>
+	</ol>
+</article>
+
+<article>
 	<header>build 1079, Jan 30, 2025</header>
 	<ol>
 	<li>RDP: GFX session will show a play icon instead if it's not started and need user's permission (only happens in Edge when session is in a iframe).</li>
