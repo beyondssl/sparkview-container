@@ -86,6 +86,8 @@
 					<td>
 						<a href="/OPENID?id=Google"><img src="google.png" title="Sign in with Google account"/></a>
 						<a href="/OPENID?id=Live"><img src="live.png" title="Sign in with Windows Live Connect"/></a>
+						<a href="/SAML?id=Saml"><img src="saml.png" title="Sign in with Saml Connect"/></a>
+						<a href="#" id="passkeySignIn" style="display:none"><img src="passkey.png" title="Sign in with Passkey"/></a>
 					</td>
 					<td align="right"><input type="submit" name="usrlogin"
 						value="Sign in" />
@@ -109,7 +111,15 @@
 		<div><strong>My Computers and Programs:&nbsp;&nbsp;&nbsp;</strong>
 			<input type="button" name="showlogin" value="Sign out" id="goback"/>
 			<input type="button" name="anyconn" id="anyconn" value="Remote Desktop"/>
+			<input type="button" name="addPasskey" id="addPasskeyBtn" value="Add Passkey" style="display:none"/>
+			<input type="button" name="deletePasskey" id="deletePasskeyBtn" value="Delete Passkey" style="display:none"/>
 		</div>
+		<!-- For passkey delete -->
+		<div id="passkeySelection" class="appdlg">
+			<p><b>Select Passkey(s) to delete</b></p>
+			<div name="passkeys"></div>
+		</div>
+
 			<div id="programs"></div>
 			<div id="touchpadmode" style="display:none">
 				<input type="checkbox" name="touchpad" id="touchpad" />Touchpad mode(Relative mouse movement)
@@ -271,6 +281,7 @@
 <script type="text/javascript" src="rdpcore_min.js" async="async"></script>
 <script type="text/javascript" src="rdp_min.js" async="async"></script>
 <script type="text/javascript" src="login2_min.js" async="async"></script>
+<script type="text/javascript" src="passkey_min.js" async="async"></script>
 	
 </body>
 </html>

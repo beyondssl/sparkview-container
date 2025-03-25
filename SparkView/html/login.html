@@ -100,7 +100,7 @@
 						<a href="/OPENID?id=Google"><img src="google.png" title="Sign in with Google account"/></a>
 						<a href="/OPENID?id=Live"><img src="live.png" title="Sign in with Windows Live Connect"/></a>
 						<a href="/SAML?id=Saml"><img src="saml.png" title="Sign in with Saml Connect"/></a>
-						<a href="#" id="passkeyIcon"><img src="passkey.png" title="Sign in with Passkey" onclick="passkeySignIn()"/></a>
+						<a href="#" id="passkeySignIn" style="display:none"><img src="passkey.png" title="Sign in with Passkey"/></a>
 					</td>
 					<td align="right"><input type="submit" name="usrlogin"
 						value="Sign in" />
@@ -124,11 +124,14 @@
 		<div><strong>My Computers and Programs:&nbsp;&nbsp;&nbsp;</strong>
 			<input type="button" name="showlogin" value="Sign out" id="goback"/>
 			<input type="button" name="anyconn" id="anyconn" value="Remote Desktop"/>
-			<input type="button" name="addPasskey" id="addPasskeyBtn" value="Add Passkey" onclick="passkeyAdd()"/>
-			<input type="button" name="deletePasskey" id="deletePasskeyBtn" value="Delete Passkey" onclick="passkeyDel()"/>
+			<input type="button" name="addPasskey" id="addPasskeyBtn" value="Add Passkey"  style="display:none"/>
+			<input type="button" name="deletePasskey" id="deletePasskeyBtn" value="Delete Passkey"  style="display:none"/>
 		</div>
 		<!-- For passkey delete -->
-		<div id="passkeySelection" class="appdlg"></div>
+		<div id="passkeySelection" class="appdlg">
+			<p><b>Select Passkey(s) to delete</b></p>
+			<div name="passkeys"></div>
+		</div>
 
 			<div id="programs"></div>
 			<div id="touchpadmode" style="display:none">
@@ -401,109 +404,13 @@
 		</div>
 	</div>
 
-	<!-- <div id="passkeyOpt" class="appdlg">
-		<h3>Spark Gateway Passkey Authentication</h3>		
-		<div>
-			<table><tr>
-				<td>
-					<table class="container container-pk">
-						<tr>
-							<td align="right">Username:</td>
-							<td><input type="text" name="pkun" id="pkun" placeholder="user name"/></td>				
-						</tr>
-						<tr>
-							<td align="right">Password:</td>
-							<td><input type="password" name="pkpwd" id="pkpwd" placeholder="passsword"/></td>				
-						</tr>
-						<tr height="10px">
-							<td colspan="2"></td>
-						</tr>
-						<tr>
-							<td align="right"></td>
-							<td align="right"><input type="button" value="Add a passkey" id="addPasskeyBtn" onclick="passkeyAdd()"></td>
-						</tr>						
-					</table>
-				</td>
-				<td>
-					<table class="container-or">
-						<tr>
-							<td><b>OR</b></td>
-						</tr>
-					</table>						
-				</td>
-				<td>
-					<table class="container container-pk">            
-						<tr>
-							<td align="right">Username:</td>
-							<td><input type="text" name="loginun" id="loginun" placeholder="optional"/></td>				
-						</tr>
-						<tr height="5px">
-							<td colspan="2"></td>
-						</tr>
-						<tr>
-							<td align="right"></td>
-							<td align="right"><input type="button" id="signInPasskeyBtn" value="Sign-in with passkey" onclick="passkeySignIn()"></td>
-						</tr>
-					</table>
-				</td>
-			</tr></table>
-		</div>		
-	</div> -->
-
-	<div id="passkeyOpt" class="appdlg">
-		<h3>Spark Gateway Passkey Authentication</h3>		
-		<div>
-			<table><tr>
-				<td>
-					<table class="container container-pk">
-						<tr>
-							<td align="right">Username:</td>
-							<td><input type="text" name="pkun" id="pkun" placeholder="user name"/></td>				
-						</tr>
-						<tr>
-							<td align="right">Password:</td>
-							<td><input type="password" name="pkpwd" id="pkpwd" placeholder="passsword"/></td>				
-						</tr>
-						<tr height="10px">
-							<td colspan="2"></td>
-						</tr>
-						<tr>
-							<td align="right"></td>
-							<td align="right"><input type="button" value="Add a passkey" id="addPasskeyBtn" onclick="passkeyAdd()"></td>
-						</tr>						
-					</table>
-				</td>
-				<td>
-					<table class="container-or">
-						<tr>
-							<td><b>OR</b></td>
-						</tr>
-					</table>						
-				</td>
-				<td>
-					<table class="container container-pk">            
-						<tr>
-							<td align="right">Username:</td>
-							<td><input type="text" name="loginun" id="loginun" placeholder="optional"/></td>				
-						</tr>
-						<tr height="5px">
-							<td colspan="2"></td>
-						</tr>
-						<tr>
-							<td align="right"></td>
-							<td align="right"><input type="button" id="signInPasskeyBtn" value="Sign-in with passkey" onclick="passkeySignIn()"></td>
-						</tr>
-					</table>
-				</td>
-			</tr></table>
-		</div>		
-	</div>
 	
 <script type="text/javascript" src="resource.js"></script>
 <script type="text/javascript" src="surface_min.js"></script>
 <script type="text/javascript" src="rdpcore_min.js" async="async"></script>
 <script type="text/javascript" src="rdp_min.js" async="async"></script>
 <script type="text/javascript" src="login_min.js" async="async"></script>
+<script type="text/javascript" src="passkey_min.js" async="async"></script>
 
 </body>
 </html>
