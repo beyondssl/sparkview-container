@@ -20,9 +20,10 @@ hi5.appcfg = {
 //		hiddenDomain: true,//Don't display the default domain name to user.
 //		numlock: true, //enable numlock
 		params: 'url',//using url to transfer parameters, you can also choose 'cookie' or 'object', please check manual section 4.2.3
+		// hardwareAcceleration: "prefer-software",
 //      defaultPort: 20010,
 //		copyDialog: true,//using dialog to inform user when copying instead of writing local clipboard directly, default is false
-//      closeOnDisconn: false,//close popup window if RDP sessin get disconnected, default is true
+      	closeOnDisconn: false,//close popup window if RDP sessin get disconnected, default is true
 //      disableJoinedAppResize: true,//Disable remoteapp window resizing on joined sessions, default is false
 //		disableScrollbars: false, //Disable browser scrollbars, default is true
 //		disableDVC: true,
