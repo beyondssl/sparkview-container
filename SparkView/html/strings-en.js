@@ -7,6 +7,7 @@ var __svi18n = {
             warn: 'Warning: This is the parent window of following RemoteApps:',
             close: "Please quit the application from application's File menu."
         },
+        scardAuthFailed: "Smartcard authentication failed",
         info: {
             'closed': 'Connection was closed!',
             'recording': 'You session is recorded and monitored.',
@@ -58,6 +59,8 @@ var __svi18n = {
             'A': 'The server does not accept saved user credentials and requires that the user enter their credentials for each connection.',
             'B': "The disconnection was initiated by an administrative tool on the server running in the user's session.",
             'C': 'The disconnection was initiated by the user logging off his or her session on the server.',
+            '19': 'The remote server is busy shutting down.',
+            '1A': 'The remote server is busy rebooting.',
             //Protocol-independent licensing codes:
             '100': 'An internal error has occurred in the Terminal Services licensing component.',
             '101': 'A Terminal Server License Server could not be found to provide a license.',
@@ -124,7 +127,8 @@ var __svi18n = {
             'uploadDone': 'File uploading finished. Please refresh the shared disk in My Computer.',
             'folder': 'folder',
             '1': 'Invalid directory.',
-            '2': 'Not a directory'
+            '2': 'Not a directory',
+            "3": 'Access denied',
         },
         player: {
             'noinput': 'No input found.',
