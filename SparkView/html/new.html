@@ -23,6 +23,25 @@ header, h2 {
 <body>
 <h2>Version History and Release Notes for Spark View</h2>
 
+<article>
+	<header>build 1093, May 14, 2025</header>
+	<ol>
+	<li>SFTP: Fixed home directory was reset to "\" issue</li>
+	<li>SFTP: Set sftp.maxTransferSize in gateway.conf to improve uploading performance (131072 is recommended).</li>
+	<li>IME: force local keyboard to English mode when Chinese IME keybaord is selecleted</li>
+	</ol>
+</article>
+
+
+<article>
+	<header>build 1092, May 12, 2025</header>
+	<ol>
+	<li>RDP(GFX): Fixed session joining issue when RemoteFX decompression is not turned off in RDP server Group Policey</li>
+	<li>RDP(GFX): Better YUV444 support</li>
+	<li>RDP(GFX): YUV44 mode is disabled by default since preformance concern. You can set yuv444=true in weboscket URL or appcfg.js to enable it</li>
+	</ol>
+</article>
+
 
 <article>
 	<header>build 1091, May 8, 2025</header>
