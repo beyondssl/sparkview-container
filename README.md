@@ -1,4 +1,4 @@
-[![Static Badge](https://img.shields.io/badge/Maintained%3F-Yes-success)](https://support.beyondssl.com/en/) ![Static Badge](https://img.shields.io/badge/Snyk_security-monitored-8A2BE2) [![Static Badge](https://img.shields.io/badge/Version-6.2.0-blue)](https://www.beyondssl.com/en/products/sparkview/) [![Static Badge](https://img.shields.io/badge/%F0%9F%92%A1-Open_Documentation-blue?link=https%3A%2F%2Fdocs.sparkview.info%2F)](https://docs.sparkview.info/)
+[![Static Badge](https://img.shields.io/badge/Maintained%3F-Yes-success)](https://support.beyondssl.com/en/) ![Static Badge](https://img.shields.io/badge/Snyk_security-monitored-8A2BE2) [![Static Badge](https://img.shields.io/badge/Version-7.0-blue)](https://www.beyondssl.com/en/products/sparkview/) [![Static Badge](https://img.shields.io/badge/%F0%9F%92%A1-Open_Documentation-blue?link=https%3A%2F%2Fdocs.sparkview.info%2F)](https://docs.sparkview.info/)
 
 # SparkView by beyond SSL
 <img alt="beyond SSL GmbH" src="https://repository.beyondssl.com/images/beyondssl-200.svg" width="200">
@@ -25,7 +25,7 @@ Access VMs, desktops, servers or applications anytime and from anywhere, without
 * No Java, No Flash, No ActiveX, No Plugin
 * and more
 
-**Check out this image for a first look and talk to us to learn about all the features and solutions offered by beyond SSL and SparkView (e.g. integrations with F5 and Pulse Secure)**
+**Check out this image for a first look and talk to us to learn about all the features and solutions offered by beyond SSL and SparkView (e.g. integrations with appliance vendors like Fortinet, F5 or Ivanti)**
 
 For more information, please [click here](https://www.beyondssl.com/en/products/sparkview/).
 
