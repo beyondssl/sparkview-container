@@ -5,6 +5,10 @@ var sessionCardsByID = new Map();
 
 var wsChannel;
 
+var CMD_PING = new Uint8Array(1);
+CMD_PING[0] = 0x04; // Ping command
+
+
 function init() {
     var frm = document.getElementById('frmQuery');
     frm.onsubmit = function(e) {
@@ -114,6 +118,10 @@ function WsChannel() {
         var CMD_REFRESH = new Uint8Array(1);
         ws.send(CMD_REFRESH);
     }
+
+    this.sendPing = function() {
+        ws.send(CMD_PING);
+    };
     
     /**
      * The received session information data from gateway.
@@ -265,7 +273,12 @@ function WsChannel() {
                     refreshCount();
 
                     break;
-
+                case 0x05:// Ping response
+                    // console.log("Ping response received.");
+                    if (wsChannel.onpingresponse) {
+                        wsChannel.onpingresponse();
+                    }
+                    break;
                 default:
                     console.debug("Unknown session information operation code [" + operation + "], ignored.");
             }
