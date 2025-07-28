@@ -47,6 +47,13 @@ function refreshCount(delta) {
 function createChannel(password) {
 	wsChannel = new WsChannel();    
     wsChannel.initialize(password);
+    if (hi5 && hi5.appcfg && hi5.appcfg.pingInterval) {
+        setInterval(function() {
+            if (wsChannel.isConnected()) {
+                wsChannel.sendPing();
+            }
+        }, hi5.appcfg.pingInterval);
+    }
 }
 
 function WsChannel() {

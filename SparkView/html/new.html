@@ -25,6 +25,21 @@ header, h2 {
 
 
 <article>
+	<header>7.2 build 1098, July 27, 2025</header>
+	<ol>
+	<li>RDP: Stablize H.264 decoding.</li>
+	<li>RDP, SSH: support cetificate/key warning with rdp.cert.alert = true or ssh.cert.alert = true (default is false) in gateway.conf</li>
+	<li>Player.html(RDP): Better "Seek" response with long RDP recording files.</li>
+	<li>gateway.conf: support envrionment variable, for example: key=Values with system variable ${TMP}"</li>
+	<li></li>
+	<li>Plugin: New com.toremote.gateway.plugin.FileValidateInterface to verify the file contents uplaoded from RDP and SFTP</li>
+	<li>rdp.html: Added "Show more options" checkbox to display/hide options</li>
+	<li>Fix files in .disposable directory not deleted issue</li>
+	</ol>
+</article>
+
+
+<article>
 	<header>build 1097, June 15, 2025</header>
 	<ol>
 	<li>SessionDashboard API: added sendPing() method which can be used to solve network idle timeout problem (sessiondashboard.page.js)</li>

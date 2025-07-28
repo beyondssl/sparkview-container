@@ -45,7 +45,8 @@ var __svi18n = {
             'noUSBMapped': 'No USB device was selected to redirect',
             'scardAuth': 'Smart card authentication in progress. Please wait...',
             'newVersion': 'New verson available',
-            'updateAgent': 'Please download and install the new gateway agent'
+            'updateAgent': 'Please download and install the new gateway agent',
+            'cert': 'The certificate of remote connection could not be verified. Do you want to continue?<br>Target: %1,<br>Hash: %2',//%1 publisher, %2 remote computer, %3 hash
         },
         errorCode: {
             '1': 'The disconnection was initiated by an administrative tool on the server in another session.',
@@ -109,6 +110,7 @@ var __svi18n = {
             'S3019': 'Maximum number of emergency concurrent users is reached.',
             'S3020': 'Maximum number of emergency license days is reached.',
             'S3021': 'Wrong authentication code',
+            'S3022': 'SFTP might be disabled on the remote device.',
             // browser compability
             'B01': 'The USB redirection is only available in Google Chrome.',
         },

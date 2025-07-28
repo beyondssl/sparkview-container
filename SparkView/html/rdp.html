@@ -64,7 +64,7 @@
 			</div>
 			<div class="tab_all" id="tab_demo">
 				<div class="tab">
-					<div class="tab_title">
+					<div class="tab_title" id ="tabTitle" style = "display:none">
 						<span tabIndex="0">General</span><span tabIndex="1">Display</span><span tabIndex="2">Local</span>
 						<span tabIndex="2">Programs</span><span tabIndex="3">Advanced</span><span tabIndex="4">Multi-Monitor</span>
 					</div>
@@ -260,6 +260,11 @@
 								<td></td>
 								<td><input type="checkbox" name="useConsole" />Connect to
 									console session</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="checkbox" id="displayTabs" />Show more 
+									options</td>
 							</tr>
 							<tr style="display:none" id="touchrow">
 								<td></td>
@@ -777,7 +782,7 @@
 <script type="text/javascript" src="recording_min.js"></script>
 <script type="text/javascript" src="agent.js"></script>
 <script type="text/javascript" src="rdp.page.js"></script>
-
+<script type="text/javascript" src="passkey_min.js"></script>
 </body>
 
 </html>
