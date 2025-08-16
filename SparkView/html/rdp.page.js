@@ -145,6 +145,14 @@ function initUI(){
         usb.disabled = true;
     }
 
+    var webAuthn = elms['enableWebAuthn'];
+    if (webAuthn) {
+        if (window?.PublicKeyCredential == undefined ||
+            typeof window.PublicKeyCredential !== 'function') {
+            webAuthn.disabled = true;
+        }
+    }
+
     var pin = elms['passwordIsPin'];
     var card = elms['smartCard'];
     if (pin && card){
@@ -159,6 +167,14 @@ function initUI(){
             }
         };
     }
+    
+    const checkbox = document.getElementById('displayTabs');
+    const tabsContainer = document.querySelector('.tab_title');
+
+	checkbox.checked = false;
+    checkbox.addEventListener('change', () => {
+      tabsContainer.style.display = checkbox.checked ? 'block' : 'none';
+    });
 }
     
 window.addEventListener('load', initUI, false);
@@ -276,6 +292,10 @@ function connectRDP(e){
         
         if (s != '') s += '&';
         s += (n + '=' + encodeURIComponent(v));
+    }
+
+    if (frms.pwd) {
+        frms.pwd.value = '';
     }
     //s += '&smartCard=on';
     // s += '&name=Admin' + '&waWidth=' + window.innerWidth + '&waHeight=' + window.innerHeight;

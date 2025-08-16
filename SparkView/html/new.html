@@ -24,6 +24,16 @@ header, h2 {
 <h2>Version History and Release Notes for Spark View</h2>
 
 <article>
+	<header>build 1100, August 15, 2025</header>
+	<ol>
+	<li>RDP: Fix invalid variable in tmpdir entry (gateway.conf) is not removed (regression bug introduced in build 1098)</li>
+	<li>RDP: Sound quality (soundPref) supports more options: 0: Low quality, 1: High quality, 2: PCM, 3: GSM, 4: AAC, 255: Dynamic</li>
+	<li>RDP: rdp.close(url) method supports url argument which can navigate to the url after the session is fully closed</li>
+	<li>gateway.conf: New conf.volatileKeys if you don't want to save some keys into the file</li>
+	</ol>
+</article>
+
+<article>
 	<header>build 1099, July 31, 2025</header>
 	<ol>
 	<li>RDP: Sound available in joined sessions</li>
