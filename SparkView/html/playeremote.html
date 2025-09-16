@@ -5,6 +5,7 @@
 <title>Spark Player</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 0.1, maximum-scale = 8" />
+<meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="application-name" content="Spark Player" />
 <link rel="apple-touch-icon" href="rdp.png" />
@@ -24,12 +25,12 @@
 
 </head>
 <body>
-    <div id="playerZone" style="height:100%">
-        <div id="sessionZone" style="position: relative;">
+    <div id="playerZone">
+        <div id="sessionZone" class="session_parent">
             <canvas id="remotectrl" width="1" height="1"></canvas>
-            <div id="cursorID" class="cursor-node" focus="false" title="(10, 24)" style="position: absolute; top: 10px; display: none; width: 10px; height: 16px; -webkit-transition: opacity, background-color 100ms linear; transition: opacity, background-color 100ms linear; border-color: rgba(255, 0, 0, 0.498039); left: 0px; opacity: 1; background-color: rgba(255, 0, 0, 0.498039);"></div>
-            <div id="copydialog" style="display:none; width:80%; height:80%">
-                <textarea  id="copytextarea" style="width:100%;height:100%;resize:none;">
+            <div id="cursorID" class="cursor-node" focus="false"></div>
+            <div id="copydialog" class="copy_dialog">
+                <textarea  id="copytextarea" class="copy_text">
                 </textarea>
             </div>
         </div>

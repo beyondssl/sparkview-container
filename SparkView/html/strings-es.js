@@ -7,6 +7,7 @@ var __svi18n = {
             warn: 'Warning: Esta es la ventana principal de la siguientes aplicaciones remotas:',
             close: "Por favor, salga de la aplicación desde la opción Salir."
         },
+        scardAuthFailed: "La autenticación de la tarjeta inteligente falló",
         info: {
             'closed': 'La conexión se ha cerrado.',
             'recording': 'La sesión se está grabando y monitorizando.',
@@ -100,8 +101,10 @@ var __svi18n = {
             'S3018': 'El archivo está bloqueado.',
             'S3019': 'Se alcanzÃ³ el nÃºmero mÃ¡ximo de usuarios simultÃ¡neos.',
             'S3020': 'Se alcanzÃ³ el nÃºmero mÃ¡ximo de usuarios simultÃ¡neos.',
-            'S3021': 'Código de autenticación incorrecto'
-            
+            'S3021': 'Código de autenticación incorrecto',
+            'S3022': 'SFTP podría estar deshabilitado en el dispositivo remoto.',
+            // browser compability
+            'B01': 'La redirección USB solo está disponible en Google Chrome.',
         },
         serverStatus: {
             '401': 'El equipo de destino se ha localizado.',
@@ -125,11 +128,11 @@ var __svi18n = {
             'fmterror': 'Formato de archivo no válido.'
         },
         template: {
-            'filecontainer': '<div id="total" class="progressback" style="display: none">\
+            'filecontainer': '<div id="total" class="progressback display_none">\
                             Actualizando...<div class="progressfront"></div>\
                         </div>\
 						<div class="th"><button id="__sv_position__">Carpeta:</button> <span id="parentPath"></span><input type="file" id="uploadfile" name="upload" multiple /> \
-            				<input type="button" id="__cancelUpload" style="visibility:hidden" value="Cancel uploading"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="Nombre de la carpeta" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="Carpeta nueva" ></div>\
+            				<input type="button" id="__cancelUpload" class="visibility_hidden" value="Cancel uploading"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="Nombre de la carpeta" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="Carpeta nueva" ></div>\
                         <table id="filelist" summary="File List">\
                         <thead>\
                             <tr>\

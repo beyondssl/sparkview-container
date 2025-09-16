@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Spark View</title>
 <meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 1.0, maximum-scale = 8" />
+<meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 
 <link rel="stylesheet" href="hi5.css" />
@@ -22,17 +23,17 @@
 </head>
 <body>
 	<div id="inputArea">
-	<form action="" onsubmit="return join();">
-	Spark Gateway: <input type="text" name="gateway" id="gateway" required/>
-	Session id:<input type="text" placeholder="9-digit number" id="sessionId" name="id" />
-	Name:<input type="text" placeholder="join as" name="name" id="joinas"/>
-	<input type="submit" value="Join" />
+	<form id="frmJoin" action="">
+        Spark Gateway: <input type="text" name="gateway" id="gateway" required/>
+        Session id:<input type="text" placeholder="9-digit number" id="sessionId" name="id" />
+        Name:<input type="text" placeholder="join as" name="name" id="joinas"/>
+        <input type="submit" value="Join" />
 	</form>
 	</div>
 
-	<div style="position: relative; clear: both">
+	<div class="session_parent">
 		<canvas id="remotectrl" width="800" height="600"></canvas>
-        <div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+        <div class="toolbar" id="svToolbar" tabindex="999">
             <textarea id="svTouchInput"></textarea>
             <img src="cloud.png" title="My Files" id="svCloud">
             <img src="info.png" title="Information" id="svInfo">
@@ -46,15 +47,15 @@
 
 
 	<!-- filecontainer is used for file share -->
-	<div id="filecontainer" style="overflow:auto;display:none; width:85%">
+	<div id="filecontainer" class="display_none">
 	</div>
 	<div id="appinfo" class="appdlg">
-		<img alt="" src="info.png" style="float:left">	
+		<img alt="" src="info.png" class="hi5_notifer_icon">	
 		<table>
 		<tr><td><b>Session id:</b></td><td><span id="numericId"></span><br></td></tr>
 		<tr><td></td><td align="right"><input type="button" id="requestControl" value="Request Control" disabled="disabled" /></td></tr>
 		</table>
-		<div style="overflow:auto;height:150px;display:none" id="touchGesture">
+		<div id="touchGesture">
         <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)</div>
         Tap <img src="kbd.png" align="middle"> to activate soft keyboard. IE doesn't support 3 finger gestures and 2 finger scroll (mouse wheel).
         <table>

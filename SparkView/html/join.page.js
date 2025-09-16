@@ -30,6 +30,13 @@ function initUI(){
     }
     elm.focus();
 
+    var form = document.getElementById('frmJoin');
+    if (form) {
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            return join();
+        };
+    }
 
 }
 window.addEventListener('load', initUI, false);

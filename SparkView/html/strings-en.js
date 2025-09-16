@@ -137,11 +137,11 @@ var __svi18n = {
             'fmterror': 'Invalid file format.'
         },
         template: {
-            'filecontainer': '<div id="total" class="progressback" style="display: none">\
+            'filecontainer': '<div id="total" class="progressback display_none">\
                             Uploading...<div class="progressfront"></div>\
                         </div>\
                         <div class="th"><button id="__sv_position__">Your Position:</button> <span id="parentPath"></span><input type="file" id="uploadfile" name="upload" multiple /> \
-            				<input type="button" id="__cancelUpload" style="visibility:hidden" value="Cancel uploading"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="folder name" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="New folder" ></div>\
+            				<input type="button" id="__cancelUpload" class="visibility_hidden" value="Cancel uploading"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="folder name" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="New folder" ></div>\
                         <table id="filelist" summary="File List">\
                         <thead>\
                             <tr>\

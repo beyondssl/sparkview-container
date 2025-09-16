@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 0.1, maximum-scale = 8" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="application-name" content="Spark RDP" />
 <link rel="apple-touch-icon" href="rdp.png" />
 <meta name="application-name" content="Spark View" />
@@ -28,14 +29,18 @@
 </head>
 <body>
 
-	<div style="position: relative; clear: both">
+	<div lass="session_parent">
 		<canvas id="remotectrl" width="1" height="1"></canvas>
+		<div class="toolbar" id="svToolbar" tabindex="999">
+			<textarea id="svTouchInput"></textarea>
+			<img src="info.png" title="Information" id="svInfo">
+		</div>
 	</div>
 
 
 <!-- following is for login dialog only -->
 
-	<div id="login" style="padding: 0.5em;">
+	<div id="login" class="padding_page">
 		<h2>Spark View (VNC) <span class="ver"></span></h2>
 		<div><a href="rdp.html" target="_blank" class="hi5_app">Spark View (RDP)</a> <a href="ssh.html" target="_blank" class="hi5_app">Spark View (SSH)</a> 
 			<a href="telnet.html" target="_blank" class="hi5_app">Spark View (TELNET)</a> 
@@ -83,7 +88,7 @@
 								</td>
 							</tr>
 							
-							<tr style="display:none" id="touchrow">
+							<tr class="display_none" id="touchrow">
 								<td></td>
 								<td><input type="checkbox" name="touchpad" />Touchpad mode(Relative mouse movement)</td>
 							</tr>
@@ -101,14 +106,14 @@
                             <tr>
                                 <td><input type="radio" name="encoding" value="Tight" />Tight</td>
                                 <td>JPEG Quality
-                                    <select name="quality" style="width:40px">
+                                    <select name="quality">
 										<option value= "0">0 (Disable)</option>
                                         <option value= "1">1 (Lowest quality)</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option><option value="5"  selected="selected">5</option>
                                         <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9 (Best quality)</option> 
                                     </select><br>
                                 ZIP/Tight Compression
-                                    <select name="compression" style="width:40px">
+                                    <select name="compression">
                                         <option value= "1">1(Little compression)</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option><option value="5">5</option>
                                         <option value="6" selected="selected">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option> 
@@ -148,7 +153,7 @@
 							<tr>
 							<tr><td colspan="2"><input type="checkbox" name="recording" id="recording" />Session Recording</td></tr>
 							<tr><td colspan="2"><input type="text" name="repeaterHost" placeholder="Repeater address" />
-								<input type="number" name="repeaterPort" placeholder="Port" value="5901" style="width:4em" />
+								<input type="number" name="repeaterPort" placeholder="Port" value="5901"/>
 							</td></tr>
 						</table>
 					</div>
@@ -169,7 +174,7 @@
 		</div>
 	</div>
     <div id="appinfo" class="appdlg">
-        <img alt="" src="info.png" style="float:left">  
+        <img alt="" src="info.png" class="hi5_notifer_icon">  
         <table>
         <tbody>
           <tr><td align="right"><b>Connected to:</b></td><td><span id="connectingTo"></span><br></td></tr>
@@ -188,7 +193,7 @@
         </tbody>
         </table>
         <div id="keyParent"><input type="checkbox" id="shortcuts">Keyboard shortcuts</div>
-        <div style="overflow:auto;height:150px;display:none" id="touchGesture">
+        <div id="touchGesture">
         <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)</div>
         Tap <img src="kbd.png" align="middle"> to activate soft keyboard. IE doesn't support 3 finger gestures and 2 finger scroll (mouse wheel).
         <table>
@@ -211,10 +216,6 @@
       <div id="pc_key_more">
         <span>F1</span><span>&larr;</span><span>&uarr;</span><span>&rarr;</span><span>&darr;</span><span>Start</span><span>Alt+F4</span><span>Ctrl+Alt+Del</span>
      </div>
-    </div>
-    <div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
-        <textarea id="svTouchInput"></textarea>
-        <img src="info.png" title="Information" id="svInfo">
     </div>
 
 	<dialog id="authDialog">

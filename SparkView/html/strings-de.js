@@ -7,6 +7,7 @@ var __svi18n = {
         warn: 'Warnung: Dies ist das übergeordnete Fenster der folgenden RemoteApps:',
         close: 'Bitte beenden Sie die Anwendung über das Datei-Menü der Anwendung.'
     },
+    scardAuthFailed: "Die Smartcard-Authentifizierung ist fehlgeschlagen.",
     info: {
         'closed': 'Die Verbindung wurde geschlossen!',
         'recording': 'Ihre Sitzung wird aufgezeichnet und überwacht.',
@@ -131,11 +132,11 @@ var __svi18n = {
         'fmterror': 'Ungültiges Dateiformat.'
     },
     template: {
-        'filecontainer': '<div id="total" class="progressback" style="display: none">\
+        'filecontainer': '<div id="total" class="progressback display_none">\
                         Upload …<div class="progressfront"></div>\
                     </div>\
                     <div class="th"><button id="__sv_position__">Ihre Position:</button> <span id="parentPath"></span><input type="file" id="uploadfile" name="upload" multiple /> \
-                        <input type="button" id="__cancelUpload" style="visibility:hidden" value="Upload abbrechen"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="Ordnername" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="Neuer Ordner"></div>\
+                        <input type="button" id="__cancelUpload" class="visibility_hidden" value="Upload abbrechen"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="Ordnername" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="Neuer Ordner"></div>\
                     <table id="filelist" summary="Datei-Liste">\
                     <thead>\
                         <tr>\

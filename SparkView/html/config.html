@@ -15,25 +15,8 @@
 <script type="text/javascript" src="resource.js"></script>
 <script type="text/javascript" src="hi5core_min.js"></script>
 <script type="text/javascript" src="hi5_min.js"></script>
-<script type="text/javascript" src="config_min.js"></script>
+<script type="text/javascript" src="config.js"></script>
 
-<style type="text/css">
-article {
-	display: block;
-	margin: 10px;
-	padding: 10px;
-	font: normal 13px Verdana, Arial, 'Bitstream Vera Sans', Helvetica,
-		sans-serif;
-	display: none;
-}
-
-header,h2 {
-	padding: 5px;
-	font-size: 110%;
-	font-family: tahoma, verdana, sans-serif;
-	border-bottom: 1px dotted #BBB;
-}
-</style>
 </head>
 <body>
 <div id="info"></div>
@@ -44,17 +27,17 @@ header,h2 {
 		</header>
 	</article>
 
-	<article id="conf1">
+	<article id="conf1" class="display_none">
 		<header>
 			Spark is running on <span id="sparkAddr"></span> <span id="expect"
-				style="display: none">, expected on <span id="expectAddr"></span></span>
+				class="display_none">, expected on <span id="expectAddr"></span></span>
 		</header>
 	</article>
-	<article style="display:block">
+	<article>
 		<input type="button" value="Start Configuration" id="startCfg"/>
 		<span id="message"></span>
 	</article>
-	<div class="tab_all" id="conf3" style="margin-left:20px;display:none">
+	<div class="tab_all display_none" id="conf3">
 		<div class="tab">
 			<div class="tab_title">
 				<span tabIndex="0">Gateway</span> <span tabIndex="1">Server</span>
@@ -332,7 +315,7 @@ header,h2 {
 							</tr>
 						</thead>
 						<tbody>
-							<tr style="cursor: pointer">
+							<tr class="path">
 								<td></td>
 								<td></td>
 								<td></td>
@@ -344,8 +327,8 @@ header,h2 {
 							</tr>
 						</tbody>
 					</table>
-					<form name="server" id="servers.view" style="display:none" >
-					  <table class="hi5_dialog" style="width:100%">
+					<form name="server" id="servers.view" class="display_none" >
+					  <table class="hi5_dialog">
 					    <tr><td colspan="2"><input type="submit" value="Save"/></td></tr>
 						<tr><td>ID</td><td><input type="text" name="id" id="server.id" required/>*lowercase recommended for HTTP server</td></tr>
 						<tr><td>Display Name</td><td><input type="text" name="displayName" id="server.displayName" required/></td></tr>
@@ -364,7 +347,7 @@ header,h2 {
 								</td>
 						</tr>
 						<tr><td colspan="2">
-							<div class="tab_all" id="conf_server" style="margin-left:20px;">
+							<div class="tab_all" id="conf_server">
 								<div class="tab">
 									<div class="tab_title">
 										<span tabIndex="0">RDP</span> <span tabIndex="1">VNC</span>
@@ -494,6 +477,7 @@ header,h2 {
 											<tr><td>Smart Card Redirection</td><td><input type="checkbox" name="smartCard"/></td></tr>
 											<tr><td>Smart Card Sign-in </td><td><input type="checkbox" name="passwordIsPin"/></td></tr>
 											<tr><td>Camera Redirection</td><td><input type="checkbox" name="mapCamera"/></td></tr>
+											<tr><td>WebAuthn Redirection</td><td><input type="checkbox" name="enableWebAuthn"/></td></tr>
 											<tr><td>USB Redirection</td><td><input type="checkbox" name="mapUSB"/></td></tr>
 											<tr><td>Load Balance Info</td><td><input type="text" name="loadBalanceInfo" placeholder="tsv://MS Terminal Services Plugin.1.CollectionName"/></td></tr>
 											<tr><td>Single Sign-on</td><td><input type="checkbox" name="sso" checked/></td></tr>
@@ -519,13 +503,13 @@ header,h2 {
 											<tr>
 												<td>
 											      JPEG Quality 
-													<select name="quality" style="width:40px">
+													<select name="quality">
 														<option value= "1">1 (Lowest quality)</option><option value="2">2</option>
 													<option value="3">3</option><option value="4">4</option><option value="5"  selected="selected">5</option>
 													<option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9 (Best quality)</option> 
 													</select>
 													ZIP/Tight Compression
-													<select name="compression" style="width:40px">
+													<select name="compression">
 														<option value= "1">1(Little compression)</option><option value="2">2</option>
 													<option value="3">3</option><option value="4">4</option><option value="5">5</option>
 													<option value="6" selected="selected">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option> 
@@ -666,7 +650,7 @@ header,h2 {
 						</tr>
 					</thead>
 					<tbody>
-						<tr style="cursor: pointer">
+						<tr class="path">
 							<td></td>
 							<td></td>
 							<td></td>
@@ -678,8 +662,8 @@ header,h2 {
 						</tr>
 					</tbody>
 				</table>
-				<form name="user" id="users.view" style="display: none">
-					<table class="hi5_dialog" style="width:100%">
+				<form name="user" id="users.view" class="display_none">
+					<table class="hi5_dialog">
 						<tr>
 							<td colspan="2"><input type="submit" value="Save"/></td>
 						</tr>
@@ -748,7 +732,7 @@ header,h2 {
 						</tr>
 					</thead>
 					<tbody>
-						<tr style="cursor: pointer">
+						<tr class="path">
 							<td></td>
 							<td></td>
 							<td></td>
@@ -760,8 +744,8 @@ header,h2 {
 						</tr>
 					</tbody>
 				</table>
-				<form name="symlink" id="symlinks.view" style="display: none" >
-					<table class="hi5_dialog" style="width:100%">
+				<form name="symlink" id="symlinks.view" class="display_none" >
+					<table class="hi5_dialog">
 						<tr>
 							<td colspan="2"><input type="submit" value="Save"/></td>
 						</tr>
@@ -827,7 +811,7 @@ header,h2 {
 						</tr>
 					</thead>
 					<tbody>
-						<tr style="cursor: pointer">
+						<tr class="path">
 							<td></td>
 							<td></td>
 							<td></td>
@@ -867,7 +851,7 @@ header,h2 {
 						</tr>
 					</thead>
 					<tbody>
-						<tr style="cursor: pointer">
+						<tr class="path">
 							<td></td>
 							<td></td>
 							<td><img src="edit.png" name="view" title="Edit"><img
@@ -875,8 +859,8 @@ header,h2 {
 						</tr>
 					</tbody>
 				</table>
-				<form name="serverGroup" id="serverGroups.view" style="display: none" >
-					<table class="hi5_dialog" style="width:100%">
+				<form name="serverGroup" id="serverGroups.view" class="display_none" >
+					<table class="hi5_dialog">
 						<tr>
 							<td colspan="2"><input type="submit" value="Save"/></td>
 						</tr>
@@ -908,7 +892,7 @@ header,h2 {
 						</tr>
 					</thead>
 					<tbody>
-						<tr style="cursor: pointer">
+						<tr class="path">
 							<td></td>
 							<td></td>
 							<td></td>
@@ -917,8 +901,8 @@ header,h2 {
 						</tr>
 					</tbody>
 				</table>
-				<form name="userGroup" id="userGroups.view" style="display: none" >
-					<table class="hi5_dialog" style="width:100%">
+				<form name="userGroup" id="userGroups.view" class="display_none" >
+					<table class="hi5_dialog">
 						<tr>
 							<td colspan="2"><input type="submit" value="Save"/></td>
 						</tr>

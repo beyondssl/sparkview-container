@@ -25,15 +25,11 @@
 <script type="text/javascript" src="hi5core_min.js"></script>
 <script type="text/javascript" src="hi5_min.js"></script>
 
-<style type="text/css">
-.groupborder{border:solid 1px #888;}
-</style>
-
 </head>
 <body>
-	<div style="position: relative; clear: both">
+	<div class="session_parent">
 		<canvas id="remotectrl" width="1" height="1"></canvas>
-		<div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+		<div class="toolbar" id="svToolbar" tabindex="999">
 			<textarea id="svTouchInput"></textarea>
 			<img src="cloud.png" title="My Files" id="svCloud">
 			<img src="info.png" title="Information" id="svInfo">
@@ -49,7 +45,7 @@
 
 <!-- following is for login dialog only -->
 
-	<div id="login" style="padding: 0.5em;">
+	<div id="login" class="padding_page">
 		<h2>Spark View (RDP) <span class="ver"></span></h2>
 		<div><a href="vnc.html" target="_blank" class="hi5_app">Spark View (VNC)</a> <a href="ssh.html" target="_blank" class="hi5_app">Spark View (SSH)</a> 
 			<a href="telnet.html" target="_blank" class="hi5_app">Spark View (TELNET)</a> 
@@ -64,7 +60,7 @@
 			</div>
 			<div class="tab_all" id="tab_demo">
 				<div class="tab">
-					<div class="tab_title" id ="tabTitle" style = "display:none">
+					<div class="tab_title display_none" id ="tabTitle">
 						<span tabIndex="0">General</span><span tabIndex="1">Display</span><span tabIndex="2">Local</span>
 						<span tabIndex="2">Programs</span><span tabIndex="3">Advanced</span><span tabIndex="4">Multi-Monitor</span>
 					</div>
@@ -266,7 +262,7 @@
 								<td><input type="checkbox" id="displayTabs" />Show more 
 									options</td>
 							</tr>
-							<tr style="display:none" id="touchrow">
+							<tr class="display_none" id="touchrow">
 								<td></td>
 								<td><input type="checkbox" name="touchpad" />Touchpad mode(Relative mouse movement)</td>
 							</tr>
@@ -511,7 +507,7 @@
 							<tr>
 								<td>WebAuthn</td><td><input type="checkbox" name="enableWebAuthn" id="enableWebAuthn"/>Enable WebAuthn (**)</td>
 							</tr>
-							<tr><td colspan="2" style="height: 10px;"></td></tr>
+							<tr><td colspan="2"></td></tr>
 							<tr>
 								<td colspan="2">* &nbsp;&nbsp;&nbsp;Remote Credential Guard: User credentials are always needed at the first time since the browser can not access the local domain. They are not needed if kerberos.enableTicketCache is true on the gateway (SSO) and your browser is not restarted. Make sure Remote Credential Guard is enabled on your RDP server</td>
 							</tr>
@@ -647,10 +643,10 @@
 		</div>
 	</div>
 	<!-- filecontainer is used for file share -->
-	<div id="filecontainer" style="overflow:auto;display:none; width:80%">
+	<div id="filecontainer" class="display_none">
 	</div>
 	<div id="appinfo" class="appdlg">
-		<img alt="" src="info.png" style="float:left">	
+		<img alt="" src="info.png" class="hi5_notifer_icon">	
 		<table>
 		<tbody>
 		  <tr><td align="right"><b>Connected to:</b></td><td><span id="connectingTo"></span>&nbsp;&nbsp;<input type="button" value="Disconnect" id="disconnect"><br></td></tr>
@@ -682,7 +678,7 @@
 		</table>
 		<div id="ssParent"><input type="checkbox" id="saveSession">Leave session on and reconnect to it from other devices.</div>
 		<div id="keyParent"><input type="checkbox" id="shortcuts">Keyboard shortcuts</div>
-		<div style="overflow:auto;height:150px;display:none" id="touchGesture">
+		<div id="touchGesture">
         <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)
         <input type="checkbox" name="extKeyboard" id="extKBD" />External Keyboard
         </div>
@@ -705,7 +701,7 @@
 	</div>
 	<!-- For smartcard and scanner -->
 	<div id="sgAgentInfo" class="appdlg">
-        <table style="line-height:2.5em" id="agentInfo">
+        <table id="agentInfo">
             <tr>
                 <td><h3>Spark Gateway Agent</h3></td>
             </tr>
@@ -747,7 +743,7 @@
 			<fieldset>
 				<legend>Open USB</legend>
 				<input type="button" id="addUSB" value="  +  "><br><br>
-				<select id="selectedUSB" size="6" style="width: 16em;">
+				<select id="selectedUSB" size="6">
 				</select><br><br>
 				<input type="submit" name="confirm" value="OK">
 			</fieldset>      

@@ -6,6 +6,7 @@
     <title>Spark View (RDP)</title>
     <meta name="viewport" content="width = device-width, initial-scale = 1.0, user-scalable = yes, minimum-scale = 1.0, maximum-scale = 8"
     />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <link rel="stylesheet" href="hi5.css" />
@@ -23,9 +24,9 @@
 </head>
 
 <body>
-    <div style="position: relative; clear: both">
+    <div class="session_parent">
         <canvas id="remotectrl" width="1" height="1"></canvas>
-        <div class="toolbar" id="svToolbar" tabindex="999" style="display: none;">
+        <div class="toolbar" id="svToolbar" tabindex="999">
             <textarea id="svTouchInput"></textarea>
             <img src="cloud.png" title="My Files" id="svCloud">
             <img src="info.png" title="Information" id="svInfo">
@@ -60,10 +61,10 @@
 
 
     <!-- filecontainer is used for file share -->
-    <div id="filecontainer" style="overflow:auto;display:none; width:85%">
+    <div id="filecontainer" class="display_none">
     </div>
     <div id="appinfo" class="appdlg">
-        <img alt="" src="info.png" style="float:left">
+        <img alt="" src="info.png" class="hi5_notifer_icon">
         <table>
             <tbody>
                 <tr>
@@ -102,7 +103,7 @@
             <input type="button" id="requestControl" value="Request Control" disabled="disabled" />
             <input type="button" id="attachPrinter" value="Attach Printer" disabled="disabled">
         </div>
-        <div style="overflow:auto;height:150px;display:none" id="touchGesture">
+        <div id="touchGesture">
             <div id="tmContainer"><input type="checkbox" name="touchpad" id="touchpadMode" />Touchpad mode(Relative mouse movement)</div>
             Tap <img src="kbd.png" align="middle"> to activate soft keyboard. IE doesn't support 3 finger gestures and 2
             finger scroll (mouse wheel).
@@ -172,7 +173,7 @@
     </div>
     <!-- For smartcard and scanner -->
     <div id="sgAgentInfo" class="appdlg">
-        <table style="line-height:2.5em" id="agentInfo">
+        <table id="agentInfo">
             <tr>
                 <td><h3>Spark Gateway Agent</h3></td>
             </tr>
@@ -217,7 +218,7 @@
 			<fieldset>
 				<legend>Open USB</legend>
 				<input type="button" id="addUSB" value="  +  "><br><br>
-				<select id="selectedUSB" size="6" style="width: 16em;">
+				<select id="selectedUSB" size="6">
 				</select><br><br>
 				<input type="submit" name="confirm" value="OK">
 			</fieldset>

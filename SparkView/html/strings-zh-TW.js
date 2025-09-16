@@ -7,6 +7,7 @@ var __svi18n = {
 		warn : '警告：這是下列正在運行的程序的父窗口：',
 		close : '請使用程序自己的菜單來關閉程序。'
 	},
+	scardAuthFailed: "智能卡身份驗證失敗",
 	info : {
 		'closed' : '連接被關閉了。',
 		'recording' : '提示：您的連接被錄制和監視中。',
@@ -101,7 +102,9 @@ var __svi18n = {
 		'S3018' : '該文件已被禁止。',
         'S3019' : '伺服器已達到最大連接數限制',
 		'S3020' : '伺服器已達到最大連接數限制',
-		'S3021': 'Wrong authentication code'
+		'S3021': 'Wrong authentication code',
+		'S3022': '遠端裝置上的 SFTP 可能已停用。 ',
+		'B01': 'USB 重定向僅在 Google Chrome 中可用。 ',
 	},
 	serverStatus : {
 		'401' : '發現目標計算機。',
@@ -125,11 +128,11 @@ var __svi18n = {
 		'fmterror' : '不合法的文件格式'
 	},
 	template : {
-		'filecontainer' : '<div id="total" class="progressback" style="display: none">\
+		'filecontainer' : '<div id="total" class="progressback display_none">\
                         上傳中...<div class="progressfront"></div>\
                         </div>\
                         <div class="th"><button id="__sv_position__">您的位置：</button> <span id="parentPath"></span><input type="file" id="uploadfile" name="upload" multiple />\
-							<input type="button" id="__cancelUpload" style="visibility:hidden" value="取消上傳"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="資料夾名" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="新建資料夾" ></div>\
+							<input type="button" id="__cancelUpload" class="visibility_hidden" value="取消上傳"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="資料夾名" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="新建資料夾" ></div>\
                         <table id="filelist" summary="File List">\
                         <thead>\
                             <tr>\

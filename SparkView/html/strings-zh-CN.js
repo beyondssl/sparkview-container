@@ -7,6 +7,7 @@ var __svi18n = {
             warn: '警告：这是下列正在运行的程序的父窗口：',
             close: '请使用程序自己的菜单来关闭程序。'
         },
+        scardAuthFailed: "智能卡身份验证失败。",
         info: {
             'closed': '连接被关闭了。',
             'recording': '提示：你的连接被录制和监视中。',
@@ -99,7 +100,9 @@ var __svi18n = {
             'S3018': '该文件已被禁止。',
             'S3019': '服务器已达到最大连接数限制',
             'S3020': '服务器已达到最大连接数限制',
-            'S3021': 'Wrong authentication code'
+            'S3021': 'Wrong authentication code',
+            'S3022': '远程设备上的 SFTP 可能被禁用。',
+		    'B01': 'USB 重定向功能仅在 Google Chrome 浏览器中可用。',
         },
         serverStatus: {
             '401': '发现目标计算机。',
@@ -123,11 +126,11 @@ var __svi18n = {
             'fmterror': '不合法的文件格式'
         },
         template: {
-            'filecontainer': '<div id="total" class="progressback" style="display: none">\
+            'filecontainer': '<div id="total" class="progressback display_none">\
                         上传中...<div class="progressfront"></div>\
                         </div>\
                         <div class="th"><button id="__sv_position__">你的位置：</button> <span id="parentPath"></span><input type="file" id="uploadfile" name="upload" multiple />\
-            				<input type="button" id="__cancelUpload" style="visibility:hidden" value="取消上载"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="文件夹名称" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="新建文件夹" ></div>\
+            				<input type="button" id="__cancelUpload" class="visibility_hidden" value="取消上载"><span id="__diskSpace"></span><input id="__sv_folder_name_" placeholder="文件夹名称" ><img id="__sv_folder__" src="' + getLibPath('resource.js') + 'folder.png" align="center" name="folder" title="新建文件夹" ></div>\
                         <table id="filelist" summary="File List">\
                         <thead>\
                             <tr>\
