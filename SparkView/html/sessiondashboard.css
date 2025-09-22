@@ -197,3 +197,7 @@ body {
     color: #777;
     min-height: 2rem;
 }
+
+.error {
+    color: red
+}
